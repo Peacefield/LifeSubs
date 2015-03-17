@@ -1,2 +1,2 @@
-# LifeSubsMobile
+# LifeSubsDesktop
 Desktop app 
