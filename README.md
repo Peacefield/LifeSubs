@@ -1,2 +1,2 @@
-# LifeSubsMobile
-Android app 
+# LifeSubs
+Android and desktop app 
