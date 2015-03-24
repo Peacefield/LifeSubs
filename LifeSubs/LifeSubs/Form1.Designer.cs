@@ -1,4 +1,5 @@
 ﻿using System.Drawing;
+using System.Windows.Forms;
 namespace LifeSubs
 {
     partial class Form1
@@ -38,6 +39,8 @@ namespace LifeSubs
             this.menuStripPanel.Name = "menuStripPanel";
             this.menuStripPanel.Size = new System.Drawing.Size(0, 20);
             this.menuStripPanel.TabIndex = 0;
+            this.menuStripPanel.Dock = DockStyle.Top;
+            this.menuStripPanel.BackColor = System.Drawing.Color.FromArgb(((int)(((byte)(0)))), ((int)(((byte)(0)))), ((int)(((byte)(0)))));
             this.menuStripPanel.MouseDown += new System.Windows.Forms.MouseEventHandler(this.menuStripPanel_MouseDown);
             this.menuStripPanel.MouseMove += new System.Windows.Forms.MouseEventHandler(this.menuStripPanel_MouseMove);
             this.menuStripPanel.MouseUp += new System.Windows.Forms.MouseEventHandler(this.menuStripPanel_MouseUp);
@@ -59,6 +62,7 @@ namespace LifeSubs
         #endregion
 
         private System.Windows.Forms.Panel menuStripPanel;
+
     }
 }
 
