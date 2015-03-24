@@ -14,7 +14,11 @@ namespace LifeSubs
     {
         public Form1()
         {
+            var screen = System.Windows.Forms.Screen.PrimaryScreen.Bounds;
+            var width = screen.Width;
+
             InitializeComponent();
+            this.Width = width;
         }
     }
 }
