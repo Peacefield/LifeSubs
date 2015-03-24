@@ -28,6 +28,7 @@ namespace LifeSubs
             this.StartPosition = FormStartPosition.Manual;
             this.Location = new Point(0, Screen.PrimaryScreen.Bounds.Height - this.Height);
             this.TopMost = true;
+            this.closeBtn.Location = new System.Drawing.Point(width - 20, 0);
         }
 
         #region Event handlers
@@ -81,5 +82,10 @@ namespace LifeSubs
         }
 
         #endregion
+
+        private void closeBtn_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
     }
 }
