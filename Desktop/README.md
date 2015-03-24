@@ -1,2 +1,0 @@
-# LifeSubsDesktop
-Desktop app 

@@ -1,2 +1,0 @@
-# LifeSubsMobile
-Android app 

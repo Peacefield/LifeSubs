@@ -1,2 +1,2 @@
 # LifeSubs
-Android and desktop app 
+Desktop app for live subtitles
