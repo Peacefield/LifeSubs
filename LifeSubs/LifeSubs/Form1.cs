@@ -22,7 +22,12 @@ namespace LifeSubs
 
             InitializeComponent();
             this.Width = width;
+            this.Height = 150;
             this.menuStripPanel.Width = width;
+            Rectangle r = Screen.PrimaryScreen.WorkingArea;
+            this.StartPosition = FormStartPosition.Manual;
+            this.Location = new Point(0, Screen.PrimaryScreen.Bounds.Height - this.Height);
+            this.TopMost = true;
         }
 
         #region Event handlers
