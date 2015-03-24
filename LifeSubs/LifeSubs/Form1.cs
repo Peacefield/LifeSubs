@@ -23,6 +23,7 @@ namespace LifeSubs
             InitializeComponent();
             this.Width = width;
             this.menuStripPanel.Width = width;
+            this.closeBtn.Location = new System.Drawing.Point(width - 20, 0);
         }
 
         #region Event handlers
@@ -76,5 +77,10 @@ namespace LifeSubs
         }
 
         #endregion
+
+        private void closeBtn_Click(object sender, EventArgs e)
+        {
+            Application.Exit();
+        }
     }
 }
