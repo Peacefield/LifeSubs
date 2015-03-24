@@ -28,12 +28,36 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            this.menuStripPanel = new System.Windows.Forms.Panel();
+            this.SuspendLayout();
+            // 
+            // menuStripPanel
+            // 
+            this.menuStripPanel.Location = new System.Drawing.Point(0, 0);
+            this.menuStripPanel.Name = "menuStripPanel";
+            this.menuStripPanel.Size = new System.Drawing.Size(0, 20);
+            this.menuStripPanel.TabIndex = 0;
+            this.menuStripPanel.MouseDown += new System.Windows.Forms.MouseEventHandler(this.menuStripPanel_MouseDown);
+            this.menuStripPanel.MouseMove += new System.Windows.Forms.MouseEventHandler(this.menuStripPanel_MouseMove);
+            this.menuStripPanel.MouseUp += new System.Windows.Forms.MouseEventHandler(this.menuStripPanel_MouseUp);
+            // 
+            // Form1
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Text = "LifeSubs - Subtitle your life";
+            this.ClientSize = new System.Drawing.Size(284, 261);
+            this.ControlBox = false;
+            this.Controls.Add(this.menuStripPanel);
+            this.FormBorderStyle = System.Windows.Forms.FormBorderStyle.FixedSingle;
+            this.Name = "Form1";
+            this.ResumeLayout(false);
+
         }
 
+
         #endregion
+
+        private System.Windows.Forms.Panel menuStripPanel;
     }
 }
 
