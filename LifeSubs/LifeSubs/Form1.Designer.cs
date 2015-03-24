@@ -1,4 +1,5 @@
-﻿namespace LifeSubs
+﻿using System.Drawing;
+namespace LifeSubs
 {
     partial class Form1
     {
