@@ -19,6 +19,12 @@ namespace LifeSubs
 
             InitializeComponent();
             this.Width = width;
+            this.Height = 150;
+            Rectangle r = Screen.PrimaryScreen.WorkingArea;
+            this.StartPosition = FormStartPosition.Manual;
+            this.Location = new Point(0, Screen.PrimaryScreen.Bounds.Height - this.Height);
+            this.TopMost = true;
+            
         }
     }
 }
