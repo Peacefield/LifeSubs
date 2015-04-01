@@ -81,11 +81,12 @@ namespace LifeSubs
             }
         }
 
-        #endregion
-
         private void closeBtn_Click(object sender, EventArgs e)
         {
             Application.Exit();
         }
+
+        #endregion
+
     }
 }
