@@ -28,6 +28,7 @@ namespace LifeSubs
             this.StartPosition = FormStartPosition.Manual;
             this.Location = new Point(0, Screen.PrimaryScreen.Bounds.Height - this.Height);
             this.TopMost = true;
+            label1.Width = width;
             this.closeBtn.Location = new System.Drawing.Point(width - 20, 0);
         }
 
@@ -87,5 +88,14 @@ namespace LifeSubs
         {
             Application.Exit();
         }
+
+        private void buttonStartSubs_Click(object sender, EventArgs e)
+        {
+            Father father = new Father(this);
+            String a = father.GoogleSpeechRequest("juiui",1);
+
+        }
+
+
     }
 }
