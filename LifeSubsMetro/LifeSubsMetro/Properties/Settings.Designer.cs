@@ -8,7 +8,7 @@
 // </auto-generated>
 //------------------------------------------------------------------------------
 
-namespace LifeSubs.Properties
+namespace LifeSubsMetro.Properties
 {
 
 
