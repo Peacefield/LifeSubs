@@ -11,18 +11,27 @@ using System.Windows.Forms;
 
 namespace LifeSubsMetro
 {
-    public partial class Form1 : MetroForm
+    public partial class Subtitle : MetroForm
     {
-        public Form1()
+        MainMenu mm;
+        public Subtitle(MainMenu mm)
         {
             var screen = System.Windows.Forms.Screen.PrimaryScreen.Bounds;
             var width = screen.Width;
+            this.mm = mm;
+
             InitializeComponent();
+
             this.Width = width;
             this.Height = 150;
             this.StartPosition = FormStartPosition.Manual;
             this.Location = new Point(0, Screen.PrimaryScreen.Bounds.Height - this.Height);
             this.TopMost = true;
+        }
+
+        private void Subtitle_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            mm.WindowState = FormWindowState.Normal;
         }
     }
 }
