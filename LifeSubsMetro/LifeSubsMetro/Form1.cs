@@ -24,5 +24,11 @@ namespace LifeSubsMetro
             this.Location = new Point(0, Screen.PrimaryScreen.Bounds.Height - this.Height);
             this.TopMost = true;
         }
+
+        private void metroTile1_Click(object sender, EventArgs e)
+        {
+            Form f = new Form2();
+            f.Visible = true;
+        }
     }
 }
