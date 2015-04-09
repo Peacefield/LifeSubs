@@ -83,6 +83,16 @@ namespace LifeSubsMetro.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Add_Group_64 {
+            get {
+                object obj = ResourceManager.GetObject("Add_Group_64", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap broken_lines {
             get {
                 object obj = ResourceManager.GetObject("broken_lines", resourceCulture);
@@ -106,6 +116,26 @@ namespace LifeSubsMetro.Properties {
         internal static System.Drawing.Bitmap exit_48 {
             get {
                 object obj = ResourceManager.GetObject("exit_48", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Groups_64 {
+            get {
+                object obj = ResourceManager.GetObject("Groups_64", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Groups_Filled_64 {
+            get {
+                object obj = ResourceManager.GetObject("Groups_Filled_64", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

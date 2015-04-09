@@ -141,6 +141,15 @@
   <ItemGroup>
     <None Include="icons\Subtitles\broken_lines.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="icons\Conversations\Groups-64.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="icons\Conversations\Groups Filled-64.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="icons\Conversations\Add Group-64.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
