@@ -28,28 +28,12 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.tileSubtitle = new MetroFramework.Controls.MetroTile();
             this.tileCreateRoom = new MetroFramework.Controls.MetroTile();
             this.tileJoinRoom = new MetroFramework.Controls.MetroTile();
             this.tileExit = new MetroFramework.Controls.MetroTile();
             this.tileSettings = new MetroFramework.Controls.MetroTile();
+            this.tileSubtitle = new MetroFramework.Controls.MetroTile();
             this.SuspendLayout();
-            // 
-            // tileSubtitle
-            // 
-            this.tileSubtitle.ActiveControl = null;
-            this.tileSubtitle.Location = new System.Drawing.Point(23, 63);
-            this.tileSubtitle.Name = "tileSubtitle";
-            this.tileSubtitle.Size = new System.Drawing.Size(150, 150);
-            this.tileSubtitle.Style = MetroFramework.MetroColorStyle.Green;
-            this.tileSubtitle.TabIndex = 0;
-            this.tileSubtitle.Text = "Start Subtitling";
-            this.tileSubtitle.TileTextFontSize = MetroFramework.MetroTileTextSize.Tall;
-            this.tileSubtitle.TileTextFontWeight = MetroFramework.MetroTileTextWeight.Regular;
-            this.tileSubtitle.UseSelectable = true;
-            this.tileSubtitle.Click += new System.EventHandler(this.tileSubtitle_Click);
-            this.tileSubtitle.MouseEnter += new System.EventHandler(this.tileSubtitle_MouseEnter);
-            this.tileSubtitle.MouseLeave += new System.EventHandler(this.tileSubtitle_MouseLeave);
             // 
             // tileCreateRoom
             // 
@@ -115,6 +99,25 @@
             this.tileSettings.UseTileImage = true;
             this.tileSettings.MouseEnter += new System.EventHandler(this.tileSettings_MouseEnter);
             this.tileSettings.MouseLeave += new System.EventHandler(this.tileSettings_MouseLeave);
+            // 
+            // tileSubtitle
+            // 
+            this.tileSubtitle.ActiveControl = null;
+            this.tileSubtitle.Location = new System.Drawing.Point(23, 63);
+            this.tileSubtitle.Name = "tileSubtitle";
+            this.tileSubtitle.Size = new System.Drawing.Size(150, 150);
+            this.tileSubtitle.Style = MetroFramework.MetroColorStyle.Green;
+            this.tileSubtitle.TabIndex = 0;
+            this.tileSubtitle.Text = "Start Subtitling";
+            this.tileSubtitle.TileImage = global::LifeSubsMetro.Properties.Resources.text_center_64;
+            this.tileSubtitle.TileImageAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.tileSubtitle.TileTextFontSize = MetroFramework.MetroTileTextSize.Tall;
+            this.tileSubtitle.TileTextFontWeight = MetroFramework.MetroTileTextWeight.Regular;
+            this.tileSubtitle.UseSelectable = true;
+            this.tileSubtitle.UseTileImage = true;
+            this.tileSubtitle.Click += new System.EventHandler(this.tileSubtitle_Click);
+            this.tileSubtitle.MouseEnter += new System.EventHandler(this.tileSubtitle_MouseEnter);
+            this.tileSubtitle.MouseLeave += new System.EventHandler(this.tileSubtitle_MouseLeave);
             // 
             // MainMenu
             // 

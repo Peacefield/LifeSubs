@@ -121,9 +121,6 @@
     <None Include="icons\Settings\1428589893_engineering_48.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="icons\Settings\settings-48.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="icons\Settings\settings-21-48.png" />
   </ItemGroup>
   <ItemGroup>
@@ -131,6 +128,15 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="icons\Exit\exit-48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Resources\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="icons\Subtitles\text-justify-48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="icons\Subtitles\text-center-64.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
