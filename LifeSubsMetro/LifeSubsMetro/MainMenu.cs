@@ -36,6 +36,7 @@ namespace LifeSubsMetro
             Application.Exit();
         }
 
+        #region hoverEvents
         private void tileSubtitle_MouseEnter(object sender, EventArgs e)
         {
             this.tileSubtitle.Style = MetroFramework.MetroColorStyle.Lime;
@@ -102,5 +103,6 @@ namespace LifeSubsMetro
         }
 
 
+        #endregion
     }
 }
