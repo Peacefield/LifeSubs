@@ -21,14 +21,14 @@ namespace LifeSubsMetro
 
         private void tileSubtitle_Click(object sender, EventArgs e)
         {
-            DialogResult dr = MetroMessageBox.Show(this, "Start Subtitling?", "Confirm", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
+            //DialogResult dr = MetroMessageBox.Show(this, "Start Subtitling?", "Confirm", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
 
-            if (dr == DialogResult.OK)
-            {
+            //if (dr == DialogResult.OK)
+            //{
                 Subtitle subtitle = new Subtitle(this);
                 subtitle.Visible = true;
                 this.Visible = false;
-            }
+            //}
         }
 
         private void tileExit_Click(object sender, EventArgs e)

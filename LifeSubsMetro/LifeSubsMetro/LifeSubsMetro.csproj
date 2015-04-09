@@ -76,6 +76,9 @@
     <Compile Include="Subtitle.Designer.cs">
       <DependentUpon>Subtitle.cs</DependentUpon>
     </Compile>
+    <EmbeddedResource Include="Form2.resx">
+      <DependentUpon>Form2.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="MainMenu.resx">
       <DependentUpon>MainMenu.cs</DependentUpon>
     </EmbeddedResource>
@@ -87,6 +90,7 @@
     <Compile Include="Properties\Resources.Designer.cs">
       <AutoGen>True</AutoGen>
       <DependentUpon>Resources.resx</DependentUpon>
+      <DesignTime>True</DesignTime>
     </Compile>
     <EmbeddedResource Include="Subtitle.resx">
       <DependentUpon>Subtitle.cs</DependentUpon>
@@ -103,6 +107,39 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="App.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="icons\1428589085_engineering.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="icons\Settings-50.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="icons\Settings-32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="icons\1428588800_engineering.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="icons\Settings-64.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="icons\1428589893_engineering.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="icons\Settings\1428589893_engineering.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="icons\Settings\Settings-64.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="icons\Exit\1428591099_logout.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="icons\Exit\1428591099_logout_48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="icons\Settings\1428589893_engineering_48.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
