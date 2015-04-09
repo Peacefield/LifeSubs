@@ -34,31 +34,46 @@
             this.passwordBox = new MetroFramework.Controls.MetroTextBox();
             this.roomNameBox = new MetroFramework.Controls.MetroTextBox();
             this.tileCreateRoom = new MetroFramework.Controls.MetroTile();
-            this.tileJoinRoom = new MetroFramework.Controls.MetroTile();
             this.tileExit = new MetroFramework.Controls.MetroTile();
             this.joinRoomButton = new MetroFramework.Controls.MetroButton();
             this.metroLabel1 = new MetroFramework.Controls.MetroLabel();
             this.metroLabel2 = new MetroFramework.Controls.MetroLabel();
             this.joinRoomPanel = new MetroFramework.Controls.MetroPanel();
             this.joinRoomPanel.SuspendLayout();
-            this.tileSettings = new MetroFramework.Controls.MetroTile();
-            this.tileSubtitle = new MetroFramework.Controls.MetroTile();
             this.SuspendLayout();
             // 
-            // tileCreateRoom
+            // tileSubtitle
             // 
-            this.tileCreateRoom.ActiveControl = null;
-            this.tileCreateRoom.Location = new System.Drawing.Point(335, 63);
-            this.tileCreateRoom.Name = "tileCreateRoom";
-            this.tileCreateRoom.Size = new System.Drawing.Size(155, 70);
-            this.tileCreateRoom.Style = MetroFramework.MetroColorStyle.Green;
-            this.tileCreateRoom.TabIndex = 3;
-            this.tileCreateRoom.Text = "Create Room";
-            this.tileCreateRoom.TileTextFontSize = MetroFramework.MetroTileTextSize.Tall;
-            this.tileCreateRoom.TileTextFontWeight = MetroFramework.MetroTileTextWeight.Regular;
-            this.tileCreateRoom.UseSelectable = true;
-            this.tileCreateRoom.MouseEnter += new System.EventHandler(this.tileCreateRoom_MouseEnter);
-            this.tileCreateRoom.MouseLeave += new System.EventHandler(this.tileCreateRoom_MouseLeave);
+            this.tileSubtitle.ActiveControl = null;
+            this.tileSubtitle.Location = new System.Drawing.Point(23, 63);
+            this.tileSubtitle.Name = "tileSubtitle";
+            this.tileSubtitle.Size = new System.Drawing.Size(150, 150);
+            this.tileSubtitle.Style = MetroFramework.MetroColorStyle.Green;
+            this.tileSubtitle.TabIndex = 0;
+            this.tileSubtitle.Text = "Start Subtitling";
+            this.tileSubtitle.TileTextFontSize = MetroFramework.MetroTileTextSize.Tall;
+            this.tileSubtitle.TileTextFontWeight = MetroFramework.MetroTileTextWeight.Regular;
+            this.tileSubtitle.UseSelectable = true;
+            this.tileSubtitle.Click += new System.EventHandler(this.tileSubtitle_Click);
+            this.tileSubtitle.MouseEnter += new System.EventHandler(this.tileSubtitle_MouseEnter);
+            this.tileSubtitle.MouseLeave += new System.EventHandler(this.tileSubtitle_MouseLeave);
+            // 
+            // tileSettings
+            // 
+            this.tileSettings.ActiveControl = null;
+            this.tileSettings.Location = new System.Drawing.Point(335, 139);
+            this.tileSettings.Name = "tileSettings";
+            this.tileSettings.Size = new System.Drawing.Size(75, 75);
+            this.tileSettings.Style = MetroFramework.MetroColorStyle.Green;
+            this.tileSettings.TabIndex = 2;
+            this.tileSettings.TileImage = global::LifeSubsMetro.Properties.Resources.settings_21_48;
+            this.tileSettings.TileImageAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.tileSettings.TileTextFontSize = MetroFramework.MetroTileTextSize.Tall;
+            this.tileSettings.TileTextFontWeight = MetroFramework.MetroTileTextWeight.Regular;
+            this.tileSettings.UseSelectable = true;
+            this.tileSettings.UseTileImage = true;
+            this.tileSettings.MouseEnter += new System.EventHandler(this.tileSettings_MouseEnter);
+            this.tileSettings.MouseLeave += new System.EventHandler(this.tileSettings_MouseLeave);
             // 
             // tileJoinRoom
             // 
