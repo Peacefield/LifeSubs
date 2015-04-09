@@ -1,6 +1,6 @@
 ﻿namespace LifeSubsMetro
 {
-    partial class Form1
+    partial class Subtitle
     {
         /// <summary>
         /// Required designer variable.
@@ -46,12 +46,20 @@
             // Form1
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
+            this.SuspendLayout();
+            // 
+            // Subtitle
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(300, 300);
-            this.Controls.Add(this.metroTile1);
-            this.Name = "Form1";
-            this.Style = MetroFramework.MetroColorStyle.Silver;
-            this.Text = "Form1";
+            this.MaximizeBox = false;
+            this.Movable = false;
+            this.Name = "Subtitle";
+            this.Resizable = false;
+            this.Style = MetroFramework.MetroColorStyle.Green;
+            this.Text = "Subtitle";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Subtitle_FormClosing);
             this.ResumeLayout(false);
 
         }
@@ -61,4 +69,3 @@
         private MetroFramework.Controls.MetroTile metroTile1;
     }
 }
-
