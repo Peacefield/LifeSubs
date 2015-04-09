@@ -109,28 +109,7 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="icons\1428589085_engineering.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="icons\Settings-50.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="icons\Settings-32.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="icons\1428588800_engineering.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="icons\Settings-64.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="icons\1428589893_engineering.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="icons\Settings\1428589893_engineering.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="icons\Settings\Settings-64.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="icons\Exit\1428591099_logout.png" />
@@ -140,6 +119,18 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="icons\Settings\1428589893_engineering_48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="icons\Settings\settings-48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="icons\Settings\settings-21-48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="icons\Exit\close-window-48.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="icons\Exit\exit-48.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

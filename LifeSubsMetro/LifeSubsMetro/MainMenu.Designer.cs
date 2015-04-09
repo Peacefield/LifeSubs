@@ -89,7 +89,7 @@
             this.tileExit.Size = new System.Drawing.Size(75, 75);
             this.tileExit.Style = MetroFramework.MetroColorStyle.Green;
             this.tileExit.TabIndex = 5;
-            this.tileExit.TileImage = global::LifeSubsMetro.Properties.Resources._1428591099_logout_48;
+            this.tileExit.TileImage = global::LifeSubsMetro.Properties.Resources.exit_48;
             this.tileExit.TileImageAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.tileExit.TileTextFontSize = MetroFramework.MetroTileTextSize.Tall;
             this.tileExit.TileTextFontWeight = MetroFramework.MetroTileTextWeight.Regular;
@@ -107,7 +107,7 @@
             this.tileSettings.Size = new System.Drawing.Size(75, 75);
             this.tileSettings.Style = MetroFramework.MetroColorStyle.Green;
             this.tileSettings.TabIndex = 2;
-            this.tileSettings.TileImage = global::LifeSubsMetro.Properties.Resources._1428589893_engineering_48;
+            this.tileSettings.TileImage = global::LifeSubsMetro.Properties.Resources.settings_21_48;
             this.tileSettings.TileImageAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.tileSettings.TileTextFontSize = MetroFramework.MetroTileTextSize.Tall;
             this.tileSettings.TileTextFontWeight = MetroFramework.MetroTileTextWeight.Regular;
