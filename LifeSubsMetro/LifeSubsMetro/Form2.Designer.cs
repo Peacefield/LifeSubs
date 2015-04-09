@@ -31,6 +31,7 @@
             this.messagesList = new System.Windows.Forms.ListView();
             this.columnPicHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.columnTextHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
+            this.columnOwnPicHeader = ((System.Windows.Forms.ColumnHeader)(new System.Windows.Forms.ColumnHeader()));
             this.SuspendLayout();
             // 
             // messagesList
@@ -38,22 +39,30 @@
             this.messagesList.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.messagesList.Columns.AddRange(new System.Windows.Forms.ColumnHeader[] {
             this.columnPicHeader,
-            this.columnTextHeader});
+            this.columnTextHeader,
+            this.columnOwnPicHeader});
             this.messagesList.Enabled = false;
             this.messagesList.Location = new System.Drawing.Point(23, 63);
             this.messagesList.Name = "messagesList";
             this.messagesList.Size = new System.Drawing.Size(604, 382);
             this.messagesList.TabIndex = 0;
             this.messagesList.UseCompatibleStateImageBehavior = false;
-            this.messagesList.View = System.Windows.Forms.View.List;
+            this.messagesList.View = System.Windows.Forms.View.Details;
             // 
             // columnPicHeader
             // 
-            this.columnPicHeader.Width = 218;
+            this.columnPicHeader.Text = "Foto";
+            this.columnPicHeader.Width = 105;
             // 
             // columnTextHeader
             // 
+            this.columnTextHeader.Text = "Tekst";
+            this.columnTextHeader.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
             this.columnTextHeader.Width = 383;
+            // 
+            // columnOwnPicHeader
+            // 
+            this.columnOwnPicHeader.Text = "Foto";
             // 
             // Form2
             // 
@@ -72,6 +81,7 @@
         private System.Windows.Forms.ListView messagesList;
         private System.Windows.Forms.ColumnHeader columnPicHeader;
         private System.Windows.Forms.ColumnHeader columnTextHeader;
+        private System.Windows.Forms.ColumnHeader columnOwnPicHeader;
 
     }
 }

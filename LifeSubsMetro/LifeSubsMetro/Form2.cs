@@ -29,17 +29,24 @@ namespace LifeSubsMetro
             //messagesList.Items.Add(lvi);
 
 
-            ListViewItem text = new ListViewItem("Messages");
+            
 
             for (int i = 0; i < messages.Count; i++)
             {
-                Console.WriteLine(messages[i]);
-                
-                text.SubItems.Add(messages[i].ToString());
+                //First item of 3 - the profile pic of the other
+                ListViewItem text = new ListViewItem(messages[i].ToString() + " - EERSTE");
+
+                //Second item of 3 - the (spoken) text of both you and the other
+                text.SubItems.Add(messages[i].ToString() + " - TWEEDE");
+
+                //Third item of 3 - your profile pic
+                text.SubItems.Add("rgfds - DERDE");
+
+                //Add item and its subitems to the list
+                messagesList.Items.Add(text);
                 
             }
-               text.SubItems.Add("rgfds");
-               messagesList.Items.Add(text);
+               
         }
     }
 }
