@@ -31,7 +31,7 @@ namespace LifeSubsMetro
 
         private void Subtitle_FormClosing(object sender, FormClosingEventArgs e)
         {
-            mm.WindowState = FormWindowState.Normal;
+            mm.Visible = true;
         }
     }
 }
