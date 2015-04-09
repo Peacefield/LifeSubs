@@ -31,7 +31,7 @@ namespace LifeSubsMetro
 
         private void metroTile1_Click(object sender, EventArgs e)
         {
-            Form f = new Form2();
+            Form f = new GroupConversations(mm);
             f.Visible = true;
         }
 
