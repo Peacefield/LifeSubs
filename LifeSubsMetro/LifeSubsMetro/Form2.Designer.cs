@@ -45,7 +45,7 @@
             this.messagesList.Size = new System.Drawing.Size(604, 382);
             this.messagesList.TabIndex = 0;
             this.messagesList.UseCompatibleStateImageBehavior = false;
-            this.messagesList.View = System.Windows.Forms.View.Details;
+            this.messagesList.View = System.Windows.Forms.View.List;
             // 
             // columnPicHeader
             // 

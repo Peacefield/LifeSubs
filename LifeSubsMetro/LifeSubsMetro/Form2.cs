@@ -24,22 +24,22 @@ namespace LifeSubsMetro
             messages.Add("egrfgregrtrferfer");
             messages.Add("fwerfergergregfer");
 
-            ListViewItem lvi = new ListViewItem();
-            lvi.SubItems.Add("SubItem");
-            messagesList.Items.Add(lvi);
+            //ListViewItem lvi = new ListViewItem();
+            //lvi.SubItems.Add("SubItem");
+            //messagesList.Items.Add(lvi);
 
 
-            //ListViewItem text = new ListViewItem("Messages");
+            ListViewItem text = new ListViewItem("Messages");
 
-            //for (int i = 0; i < messages.Count; i++)
-            //{
-            //    Console.WriteLine(messages[i]);
+            for (int i = 0; i < messages.Count; i++)
+            {
+                Console.WriteLine(messages[i]);
                 
-            //    text.SubItems.Add(messages[i].ToString());
+                text.SubItems.Add(messages[i].ToString());
                 
-            //}
-            //text.SubItems.Add("rgfds");
-            //messagesList.Items.Add(text);
+            }
+               text.SubItems.Add("rgfds");
+               messagesList.Items.Add(text);
         }
     }
 }
