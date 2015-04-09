@@ -1,6 +1,6 @@
 ﻿namespace LifeSubsMetro
 {
-    partial class Form1
+    partial class Subtitle
     {
         /// <summary>
         /// Required designer variable.
@@ -28,12 +28,24 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.components = new System.ComponentModel.Container();
+            this.SuspendLayout();
+            // 
+            // Subtitle
+            // 
+            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.Text = "Form1";
+            this.ClientSize = new System.Drawing.Size(300, 300);
+            this.MaximizeBox = false;
+            this.Movable = false;
+            this.Name = "Subtitle";
+            this.Resizable = false;
+            this.Style = MetroFramework.MetroColorStyle.Green;
+            this.Text = "Subtitle";
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Subtitle_FormClosing);
+            this.ResumeLayout(false);
+
         }
 
         #endregion
     }
 }
-
