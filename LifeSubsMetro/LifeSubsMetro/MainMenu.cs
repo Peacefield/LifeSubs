@@ -86,6 +86,23 @@ namespace LifeSubsMetro
         {
             this.tileExit.Style = MetroFramework.MetroColorStyle.Green;
         }
+
+        private void tileJoinRoom_Click(object sender, EventArgs e)
+        {
+            this.tileJoinRoom.Visible = false;
+            this.joinRoomPanel.Visible = true;
+        }
+
+        private void joinRoomButton_Click(object sender, EventArgs e)
+        {
+            this.tileJoinRoom.Visible = true;
+            this.joinRoomPanel.Visible = false;
+            GroupConversations groupWindow = new GroupConversations(this);
+            this.Visible = false;
+            groupWindow.Visible = true;
+        }
+
+
         #endregion
     }
 }

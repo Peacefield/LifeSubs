@@ -28,9 +28,19 @@
         /// </summary>
         private void InitializeComponent()
         {
+            this.tileSubtitle = new MetroFramework.Controls.MetroTile();
+            this.tileSettings = new MetroFramework.Controls.MetroTile();
+            this.tileJoinRoom = new MetroFramework.Controls.MetroTile();
+            this.passwordBox = new MetroFramework.Controls.MetroTextBox();
+            this.roomNameBox = new MetroFramework.Controls.MetroTextBox();
             this.tileCreateRoom = new MetroFramework.Controls.MetroTile();
             this.tileJoinRoom = new MetroFramework.Controls.MetroTile();
             this.tileExit = new MetroFramework.Controls.MetroTile();
+            this.joinRoomButton = new MetroFramework.Controls.MetroButton();
+            this.metroLabel1 = new MetroFramework.Controls.MetroLabel();
+            this.metroLabel2 = new MetroFramework.Controls.MetroLabel();
+            this.joinRoomPanel = new MetroFramework.Controls.MetroPanel();
+            this.joinRoomPanel.SuspendLayout();
             this.tileSettings = new MetroFramework.Controls.MetroTile();
             this.tileSubtitle = new MetroFramework.Controls.MetroTile();
             this.SuspendLayout();
@@ -53,7 +63,7 @@
             // tileJoinRoom
             // 
             this.tileJoinRoom.ActiveControl = null;
-            this.tileJoinRoom.Location = new System.Drawing.Point(179, 63);
+            this.tileJoinRoom.Location = new System.Drawing.Point(179, 64);
             this.tileJoinRoom.Name = "tileJoinRoom";
             this.tileJoinRoom.Size = new System.Drawing.Size(150, 150);
             this.tileJoinRoom.Style = MetroFramework.MetroColorStyle.Green;
@@ -62,8 +72,50 @@
             this.tileJoinRoom.TileTextFontSize = MetroFramework.MetroTileTextSize.Tall;
             this.tileJoinRoom.TileTextFontWeight = MetroFramework.MetroTileTextWeight.Regular;
             this.tileJoinRoom.UseSelectable = true;
+            this.tileJoinRoom.Click += new System.EventHandler(this.tileJoinRoom_Click);
             this.tileJoinRoom.MouseEnter += new System.EventHandler(this.tileJoinRoom_MouseEnter);
             this.tileJoinRoom.MouseLeave += new System.EventHandler(this.tileJoinRoom_MouseLeave);
+            // 
+            // passwordBox
+            // 
+            this.passwordBox.Lines = new string[0];
+            this.passwordBox.Location = new System.Drawing.Point(0, 76);
+            this.passwordBox.MaxLength = 32767;
+            this.passwordBox.Name = "passwordBox";
+            this.passwordBox.PasswordChar = '\0';
+            this.passwordBox.ScrollBars = System.Windows.Forms.ScrollBars.None;
+            this.passwordBox.SelectedText = "";
+            this.passwordBox.Size = new System.Drawing.Size(147, 23);
+            this.passwordBox.TabIndex = 1;
+            this.passwordBox.UseSelectable = true;
+            // 
+            // roomNameBox
+            // 
+            this.roomNameBox.Lines = new string[0];
+            this.roomNameBox.Location = new System.Drawing.Point(0, 18);
+            this.roomNameBox.MaxLength = 32767;
+            this.roomNameBox.Name = "roomNameBox";
+            this.roomNameBox.PasswordChar = '\0';
+            this.roomNameBox.ScrollBars = System.Windows.Forms.ScrollBars.None;
+            this.roomNameBox.SelectedText = "";
+            this.roomNameBox.Size = new System.Drawing.Size(147, 23);
+            this.roomNameBox.TabIndex = 0;
+            this.roomNameBox.UseSelectable = true;
+            // 
+            // tileCreateRoom
+            // 
+            this.tileCreateRoom.ActiveControl = null;
+            this.tileCreateRoom.Location = new System.Drawing.Point(335, 63);
+            this.tileCreateRoom.Name = "tileCreateRoom";
+            this.tileCreateRoom.Size = new System.Drawing.Size(155, 70);
+            this.tileCreateRoom.Style = MetroFramework.MetroColorStyle.Green;
+            this.tileCreateRoom.TabIndex = 3;
+            this.tileCreateRoom.Text = "Create Room";
+            this.tileCreateRoom.TileTextFontSize = MetroFramework.MetroTileTextSize.Tall;
+            this.tileCreateRoom.TileTextFontWeight = MetroFramework.MetroTileTextWeight.Regular;
+            this.tileCreateRoom.UseSelectable = true;
+            this.tileCreateRoom.MouseEnter += new System.EventHandler(this.tileCreateRoom_MouseEnter);
+            this.tileCreateRoom.MouseLeave += new System.EventHandler(this.tileCreateRoom_MouseLeave);
             // 
             // tileExit
             // 
@@ -83,41 +135,52 @@
             this.tileExit.MouseEnter += new System.EventHandler(this.tileExit_MouseEnter);
             this.tileExit.MouseLeave += new System.EventHandler(this.tileExit_MouseLeave);
             // 
-            // tileSettings
+            // joinRoomButton
             // 
-            this.tileSettings.ActiveControl = null;
-            this.tileSettings.Location = new System.Drawing.Point(335, 139);
-            this.tileSettings.Name = "tileSettings";
-            this.tileSettings.Size = new System.Drawing.Size(75, 75);
-            this.tileSettings.Style = MetroFramework.MetroColorStyle.Green;
-            this.tileSettings.TabIndex = 2;
-            this.tileSettings.TileImage = global::LifeSubsMetro.Properties.Resources.settings_21_48;
-            this.tileSettings.TileImageAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.tileSettings.TileTextFontSize = MetroFramework.MetroTileTextSize.Tall;
-            this.tileSettings.TileTextFontWeight = MetroFramework.MetroTileTextWeight.Regular;
-            this.tileSettings.UseSelectable = true;
-            this.tileSettings.UseTileImage = true;
-            this.tileSettings.MouseEnter += new System.EventHandler(this.tileSettings_MouseEnter);
-            this.tileSettings.MouseLeave += new System.EventHandler(this.tileSettings_MouseLeave);
+            this.joinRoomButton.Location = new System.Drawing.Point(0, 113);
+            this.joinRoomButton.Name = "joinRoomButton";
+            this.joinRoomButton.Size = new System.Drawing.Size(147, 37);
+            this.joinRoomButton.TabIndex = 2;
+            this.joinRoomButton.Text = "Verbinden";
+            this.joinRoomButton.UseSelectable = true;
+            this.joinRoomButton.Click += new System.EventHandler(this.joinRoomButton_Click);
             // 
-            // tileSubtitle
+            // metroLabel1
             // 
-            this.tileSubtitle.ActiveControl = null;
-            this.tileSubtitle.Location = new System.Drawing.Point(23, 63);
-            this.tileSubtitle.Name = "tileSubtitle";
-            this.tileSubtitle.Size = new System.Drawing.Size(150, 150);
-            this.tileSubtitle.Style = MetroFramework.MetroColorStyle.Green;
-            this.tileSubtitle.TabIndex = 0;
-            this.tileSubtitle.Text = "Start Subtitling";
-            this.tileSubtitle.TileImage = global::LifeSubsMetro.Properties.Resources.text_center_64;
-            this.tileSubtitle.TileImageAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.tileSubtitle.TileTextFontSize = MetroFramework.MetroTileTextSize.Tall;
-            this.tileSubtitle.TileTextFontWeight = MetroFramework.MetroTileTextWeight.Regular;
-            this.tileSubtitle.UseSelectable = true;
-            this.tileSubtitle.UseTileImage = true;
-            this.tileSubtitle.Click += new System.EventHandler(this.tileSubtitle_Click);
-            this.tileSubtitle.MouseEnter += new System.EventHandler(this.tileSubtitle_MouseEnter);
-            this.tileSubtitle.MouseLeave += new System.EventHandler(this.tileSubtitle_MouseLeave);
+            this.metroLabel1.AutoSize = true;
+            this.metroLabel1.Location = new System.Drawing.Point(-3, -4);
+            this.metroLabel1.Name = "metroLabel1";
+            this.metroLabel1.Size = new System.Drawing.Size(83, 19);
+            this.metroLabel1.TabIndex = 6;
+            this.metroLabel1.Text = "Kamernaam:";
+            // 
+            // metroLabel2
+            // 
+            this.metroLabel2.AutoSize = true;
+            this.metroLabel2.Location = new System.Drawing.Point(-3, 51);
+            this.metroLabel2.Name = "metroLabel2";
+            this.metroLabel2.Size = new System.Drawing.Size(86, 19);
+            this.metroLabel2.TabIndex = 7;
+            this.metroLabel2.Text = "Wachtwoord:";
+            // 
+            // joinRoomPanel
+            // 
+            this.joinRoomPanel.Controls.Add(this.metroLabel1);
+            this.joinRoomPanel.Controls.Add(this.metroLabel2);
+            this.joinRoomPanel.Controls.Add(this.passwordBox);
+            this.joinRoomPanel.Controls.Add(this.joinRoomButton);
+            this.joinRoomPanel.Controls.Add(this.roomNameBox);
+            this.joinRoomPanel.HorizontalScrollbarBarColor = true;
+            this.joinRoomPanel.HorizontalScrollbarHighlightOnWheel = false;
+            this.joinRoomPanel.HorizontalScrollbarSize = 10;
+            this.joinRoomPanel.Location = new System.Drawing.Point(179, 64);
+            this.joinRoomPanel.Name = "joinRoomPanel";
+            this.joinRoomPanel.Size = new System.Drawing.Size(150, 150);
+            this.joinRoomPanel.TabIndex = 8;
+            this.joinRoomPanel.VerticalScrollbarBarColor = true;
+            this.joinRoomPanel.VerticalScrollbarHighlightOnWheel = false;
+            this.joinRoomPanel.VerticalScrollbarSize = 10;
+            this.joinRoomPanel.Visible = false;
             // 
             // MainMenu
             // 
@@ -125,16 +188,19 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(518, 242);
             this.Controls.Add(this.tileExit);
-            this.Controls.Add(this.tileJoinRoom);
             this.Controls.Add(this.tileCreateRoom);
             this.Controls.Add(this.tileSettings);
             this.Controls.Add(this.tileSubtitle);
+            this.Controls.Add(this.tileJoinRoom);
+            this.Controls.Add(this.joinRoomPanel);
             this.MaximizeBox = false;
             this.Name = "MainMenu";
             this.Resizable = false;
             this.ShadowType = MetroFramework.Forms.MetroFormShadowType.DropShadow;
             this.Style = MetroFramework.MetroColorStyle.Green;
             this.Text = "LifeSubs";
+            this.joinRoomPanel.ResumeLayout(false);
+            this.joinRoomPanel.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -146,6 +212,12 @@
         private MetroFramework.Controls.MetroTile tileJoinRoom;
         private MetroFramework.Controls.MetroTile tileCreateRoom;
         private MetroFramework.Controls.MetroTile tileExit;
+        private MetroFramework.Controls.MetroTextBox passwordBox;
+        private MetroFramework.Controls.MetroTextBox roomNameBox;
+        private MetroFramework.Controls.MetroButton joinRoomButton;
+        private MetroFramework.Controls.MetroLabel metroLabel1;
+        private MetroFramework.Controls.MetroLabel metroLabel2;
+        private MetroFramework.Controls.MetroPanel joinRoomPanel;
 
     }
 }
