@@ -72,6 +72,7 @@
     <Compile Include="GroupConversations.Designer.cs">
       <DependentUpon>GroupConversations.cs</DependentUpon>
     </Compile>
+    <Compile Include="MicLevelListener.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
     <Compile Include="Subtitle.cs">

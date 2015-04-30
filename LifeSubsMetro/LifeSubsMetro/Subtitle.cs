@@ -15,11 +15,13 @@ namespace LifeSubsMetro
     public partial class Subtitle : MetroForm
     {
         MainMenu mm;
-        Listener listener1 = null;
-        Listener listener2 = null;
+        MicLevelListener mll;
 
         Thread th = null;
         Thread th2 = null;
+
+        Listener listener1 = null;
+        Listener listener2 = null;
 
         String currentListener;
         int deviceNumber = 0;
@@ -45,16 +47,20 @@ namespace LifeSubsMetro
         private void Subtitle_Load(object sender, EventArgs e)
         {
             currentListener = "listener1";
-            listener1 = new Listener(deviceNumber, currentListener, this);
-            listener1.startRecording();
-            timer1.Start();
+            mll = new MicLevelListener(this);
+            mll.listenToStream();
+
+            //listener1 = new Listener(deviceNumber, currentListener, this);
+            //listener1.startRecording();
         }
 
         private void Subtitle_FormClosing(object sender, FormClosingEventArgs e)
         {
+            if (listener1 != null) listener1.stop();
+            if (listener2 != null) listener2.stop();
+
             mm.Visible = true;
-            stopListening();
-            timer1.Stop();
+            mll.stop();
         }
 
         //Get list of available devices for recording audio
@@ -97,25 +103,27 @@ namespace LifeSubsMetro
                 this.tbOutput.Text += result + "\r\n";
         }
 
-        private void timer1_Tick(object sender, EventArgs e)
+        public void send()
         {
             switch (currentListener)
             {
                 case "listener1":
-                    Console.WriteLine("listener1 currently recording");
                     //Set next listener
                     currentListener = "listener2";
                     //Create next listener
                     listener2 = new Listener(deviceNumber, currentListener, this);
                     //Start next listener
                     listener2.startRecording();
-                    listener1.stop();
+                    if (listener1 != null)
+                    {
+                        Console.WriteLine("listener1 currently recording");
+                        listener1.stop();
 
-                    //listener1.request();
+                        th = new Thread(listener1.request);
+                        th.Start();
+                        while (!th.IsAlive) ;
+                    }
 
-                    th = new Thread(listener1.request);
-                    th.Start();
-                    while (!th.IsAlive) ;
                     Thread.Sleep(1);
                     if (th2 != null)
                     {
@@ -124,7 +132,6 @@ namespace LifeSubsMetro
                         th2.Join();
                     }
 
-                    //listener1 = null;
                     break;
                 case "listener2":
                     Console.WriteLine("listener2 currently recording");
@@ -135,8 +142,6 @@ namespace LifeSubsMetro
                     //Start next listener
                     listener1.startRecording();
                     listener2.stop();
-
-                    //listener2.request();
 
                     th2 = new Thread(listener2.request);
                     th2.Start();
@@ -149,7 +154,6 @@ namespace LifeSubsMetro
                         th.Join();
                     }
 
-                    //listener2 = null;
                     break;
             }
         }

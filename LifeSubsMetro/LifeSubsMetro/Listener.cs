@@ -154,7 +154,7 @@ namespace LifeSubsMetro
             if (sourceStream != null)
             {
                 sourceStream.StopRecording();
-                sourceStream.Dispose();
+                //sourceStream.Dispose();
                 sourceStream = null;
             }
             if (waveWriter != null)

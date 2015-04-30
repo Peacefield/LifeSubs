@@ -29,18 +29,11 @@
         private void InitializeComponent()
         {
             this.components = new System.ComponentModel.Container();
-            this.timer1 = new System.Windows.Forms.Timer(this.components);
             this.tbOutput = new MetroFramework.Controls.MetroTextBox();
             this.SuspendLayout();
             // 
-            // timer1
-            // 
-            this.timer1.Interval = 5000;
-            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
-            // 
             // tbOutput
             // 
-            this.tbOutput.Enabled = false;
             this.tbOutput.FontSize = MetroFramework.MetroTextBoxSize.Medium;
             this.tbOutput.Lines = new string[0];
             this.tbOutput.Location = new System.Drawing.Point(23, 29);
@@ -73,8 +66,6 @@
         }
 
         #endregion
-
-        private System.Windows.Forms.Timer timer1;
         private MetroFramework.Controls.MetroTextBox tbOutput;
     }
 }
