@@ -28,44 +28,53 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.metroTile1 = new MetroFramework.Controls.MetroTile();
+            this.components = new System.ComponentModel.Container();
+            this.timer1 = new System.Windows.Forms.Timer(this.components);
+            this.tbOutput = new MetroFramework.Controls.MetroTextBox();
             this.SuspendLayout();
             // 
-            // metroTile1
+            // timer1
             // 
-            this.metroTile1.ActiveControl = null;
-            this.metroTile1.Location = new System.Drawing.Point(2, 7);
-            this.metroTile1.Name = "metroTile1";
-            this.metroTile1.Size = new System.Drawing.Size(83, 19);
-            this.metroTile1.TabIndex = 0;
-            this.metroTile1.Text = "metroTile1";
-            this.metroTile1.Theme = MetroFramework.MetroThemeStyle.Light;
-            this.metroTile1.UseSelectable = true;
-            this.metroTile1.Click += new System.EventHandler(this.metroTile1_Click);
+            this.timer1.Interval = 5000;
+            this.timer1.Tick += new System.EventHandler(this.timer1_Tick);
             // 
-            // Form1
+            // tbOutput
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.SuspendLayout();
+            this.tbOutput.Enabled = false;
+            this.tbOutput.FontSize = MetroFramework.MetroTextBoxSize.Medium;
+            this.tbOutput.Lines = new string[0];
+            this.tbOutput.Location = new System.Drawing.Point(23, 29);
+            this.tbOutput.MaxLength = 32767;
+            this.tbOutput.Multiline = true;
+            this.tbOutput.Name = "tbOutput";
+            this.tbOutput.PasswordChar = '\0';
+            this.tbOutput.ScrollBars = System.Windows.Forms.ScrollBars.None;
+            this.tbOutput.SelectedText = "";
+            this.tbOutput.Size = new System.Drawing.Size(254, 214);
+            this.tbOutput.TabIndex = 0;
+            this.tbOutput.UseCustomBackColor = true;
+            this.tbOutput.UseSelectable = true;
             // 
             // Subtitle
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(300, 300);
+            this.Controls.Add(this.tbOutput);
             this.MaximizeBox = false;
             this.Movable = false;
             this.Name = "Subtitle";
             this.Resizable = false;
             this.Style = MetroFramework.MetroColorStyle.Green;
-            this.Text = "Subtitle";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Subtitle_FormClosing);
+            this.Load += new System.EventHandler(this.Subtitle_Load);
             this.ResumeLayout(false);
 
         }
 
         #endregion
 
-        private MetroFramework.Controls.MetroTile metroTile1;
+        private System.Windows.Forms.Timer timer1;
+        private MetroFramework.Controls.MetroTextBox tbOutput;
     }
 }

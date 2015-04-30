@@ -6,6 +6,7 @@ using System.Data;
 using System.Drawing;
 using System.Linq;
 using System.Text;
+using System.Threading;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 
@@ -14,6 +15,15 @@ namespace LifeSubsMetro
     public partial class Subtitle : MetroForm
     {
         MainMenu mm;
+        Listener listener1 = null;
+        Listener listener2 = null;
+
+        Thread th = null;
+        Thread th2 = null;
+
+        String currentListener;
+        int deviceNumber = 0;
+
         public Subtitle(MainMenu mm)
         {
             var screen = System.Windows.Forms.Screen.PrimaryScreen.Bounds;
@@ -27,17 +37,121 @@ namespace LifeSubsMetro
             this.StartPosition = FormStartPosition.Manual;
             this.Location = new Point(0, Screen.PrimaryScreen.Bounds.Height - this.Height);
             this.TopMost = true;
+            
+            this.tbOutput.Width = width - 40;
+            this.tbOutput.Height = 100;
         }
 
-        private void metroTile1_Click(object sender, EventArgs e)
+        private void Subtitle_Load(object sender, EventArgs e)
         {
-            Form f = new GroupConversations(mm);
-            f.Visible = true;
+            currentListener = "listener1";
+            listener1 = new Listener(deviceNumber, currentListener, this);
+            listener1.startRecording();
+            timer1.Start();
         }
 
         private void Subtitle_FormClosing(object sender, FormClosingEventArgs e)
         {
             mm.Visible = true;
+            stopListening();
+            timer1.Stop();
+        }
+
+        //Get list of available devices for recording audio
+        //Gets executed at Load()
+        //Eventually move to settings
+        //public void getDevices()
+        //{
+        //    List<NAudio.Wave.WaveInCapabilities> sources = new List<NAudio.Wave.WaveInCapabilities>();
+
+        //    for (int i = 0; i < NAudio.Wave.WaveIn.DeviceCount; i++)
+        //    {
+        //        sources.Add(NAudio.Wave.WaveIn.GetCapabilities(i));
+        //    }
+
+        //    sourceList.Items.Clear();
+
+        //    foreach (var source in sources)
+        //    {
+        //        ListViewItem item = new ListViewItem(source.ProductName);
+        //        item.SubItems.Add(new ListViewItem.ListViewSubItem(item, source.Channels.ToString()));
+        //        sourceList.Items.Add(item);
+        //    }
+        //}
+
+        private void stopListening()
+        {
+            Console.WriteLine("Stop listening");
+
+            if (listener1 != null) listener1.stop();
+            if (listener2 != null) listener2.stop();
+        }
+
+        public void setResult(string result)
+        {
+            if (result == "") return;
+
+            if (this.tbOutput.InvokeRequired)
+                this.tbOutput.Invoke((MethodInvoker)delegate { this.tbOutput.Text += result + "\r\n"; });
+            else
+                this.tbOutput.Text += result + "\r\n";
+        }
+
+        private void timer1_Tick(object sender, EventArgs e)
+        {
+            switch (currentListener)
+            {
+                case "listener1":
+                    Console.WriteLine("listener1 currently recording");
+                    //Set next listener
+                    currentListener = "listener2";
+                    //Create next listener
+                    listener2 = new Listener(deviceNumber, currentListener, this);
+                    //Start next listener
+                    listener2.startRecording();
+                    listener1.stop();
+
+                    //listener1.request();
+
+                    th = new Thread(listener1.request);
+                    th.Start();
+                    while (!th.IsAlive) ;
+                    Thread.Sleep(1);
+                    if (th2 != null)
+                    {
+                        Console.WriteLine("th2 leeft");
+                        th2.Abort();
+                        th2.Join();
+                    }
+
+                    //listener1 = null;
+                    break;
+                case "listener2":
+                    Console.WriteLine("listener2 currently recording");
+                    //Set next listener
+                    currentListener = "listener1";
+                    //Create next listener
+                    listener1 = new Listener(deviceNumber, currentListener, this);
+                    //Start next listener
+                    listener1.startRecording();
+                    listener2.stop();
+
+                    //listener2.request();
+
+                    th2 = new Thread(listener2.request);
+                    th2.Start();
+                    while (!th2.IsAlive) ;
+                    Thread.Sleep(1);
+                    if (th != null)
+                    {
+                        Console.WriteLine("th leeft");
+                        th.Abort();
+                        th.Join();
+                    }
+
+                    //listener2 = null;
+                    break;
+            }
         }
     }
 }
