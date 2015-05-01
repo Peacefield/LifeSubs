@@ -123,6 +123,36 @@ namespace LifeSubsMetro.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Generic_Text_50 {
+            get {
+                object obj = ResourceManager.GetObject("Generic_Text_50", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Generic_Text_501 {
+            get {
+                object obj = ResourceManager.GetObject("Generic_Text_501", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Geography_50 {
+            get {
+                object obj = ResourceManager.GetObject("Geography_50", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Groups_64 {
             get {
                 object obj = ResourceManager.GetObject("Groups_64", resourceCulture);
@@ -143,9 +173,49 @@ namespace LifeSubsMetro.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Microphone2_50 {
+            get {
+                object obj = ResourceManager.GetObject("Microphone2_50", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Numbered_List_50 {
+            get {
+                object obj = ResourceManager.GetObject("Numbered_List_50", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Save_50 {
+            get {
+                object obj = ResourceManager.GetObject("Save_50", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap settings_21_48 {
             get {
                 object obj = ResourceManager.GetObject("settings_21_48", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Speaker_50 {
+            get {
+                object obj = ResourceManager.GetObject("Speaker_50", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -166,6 +236,16 @@ namespace LifeSubsMetro.Properties {
         internal static System.Drawing.Bitmap text_justify_48 {
             get {
                 object obj = ResourceManager.GetObject("text_justify_48", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Time_50 {
+            get {
+                object obj = ResourceManager.GetObject("Time_50", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

@@ -44,6 +44,9 @@
       <SpecificVersion>False</SpecificVersion>
       <HintPath>DLL\MetroFramework.Fonts.dll</HintPath>
     </Reference>
+    <Reference Include="NAudio">
+      <HintPath>DLL\NAudio.dll</HintPath>
+    </Reference>
     <Reference Include="System" />
     <Reference Include="System.Core" />
     <Reference Include="System.Xml.Linq" />
@@ -70,6 +73,12 @@
     </Compile>
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="SettingsMenu.cs">
+      <SubType>Form</SubType>
+    </Compile>
+    <Compile Include="SettingsMenu.Designer.cs">
+      <DependentUpon>SettingsMenu.cs</DependentUpon>
+    </Compile>
     <Compile Include="Subtitle.cs">
       <SubType>Form</SubType>
     </Compile>
@@ -92,6 +101,9 @@
       <DependentUpon>Resources.resx</DependentUpon>
       <DesignTime>True</DesignTime>
     </Compile>
+    <EmbeddedResource Include="SettingsMenu.resx">
+      <DependentUpon>SettingsMenu.cs</DependentUpon>
+    </EmbeddedResource>
     <EmbeddedResource Include="Subtitle.resx">
       <DependentUpon>Subtitle.cs</DependentUpon>
     </EmbeddedResource>
@@ -130,7 +142,7 @@
     <None Include="icons\Exit\exit-48.png" />
   </ItemGroup>
   <ItemGroup>
-    <Folder Include="Resources\" />
+    <None Include="icons\SettingsMenu\Speaker-50.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="icons\Subtitles\text-justify-48.png" />
@@ -149,6 +161,33 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="icons\Conversations\Add Group-64.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="icons\SettingsMenu\1428589893_engineering.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="icons\SettingsMenu\Ac Dc Converter-50.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="icons\SettingsMenu\Generic Text-50.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="icons\SettingsMenu\Microphone2-50.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Microphone2-50.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="icons\SettingsMenu\Numbered List-50.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="icons\SettingsMenu\Save-50.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="icons\SettingsMenu\Time-50.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="icons\SettingsMenu\Geography-50.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
