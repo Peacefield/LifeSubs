@@ -2,11 +2,12 @@
 using System;
 using System.IO;
 using System.Net;
-
+using System.Drawing;
 namespace LifeSubsMetro
 {
     class Listener
     {
+        String language = "nld-NLD";
         string fileName;
         int deviceNumber = 0;
         Subtitle subtitleForm;
@@ -51,11 +52,11 @@ namespace LifeSubsMetro
                 HttpWebRequest request = (HttpWebRequest)WebRequest.Create("https://dictation.nuancemobility.net/NMDPAsrCmdServlet/dictation?appId=" + appId + "&appKey=" + appKey + "&id=" + id);
 
                 request.Method = "POST";
-                request.ContentType = "audio/x-wav;codec=pcm;bit=16;rate=16000";
+                request.ContentType = "audio/x-wav;codec=pcm;bit=16;rate=8000";
                 request.Accept = "text/plain";
                 request.SendChunked = true;
 
-                request.Headers.Add(HttpRequestHeader.AcceptLanguage, "nld-NLD");
+                request.Headers.Add(HttpRequestHeader.AcceptLanguage, language);
                 //request.Headers.Add(HttpRequestHeader.AcceptLanguage, "eng-USA");
                 request.Headers.Add("Accept-Topic", "Dictation");
                 request.Headers.Add("X-Dictation-NBestListSize", "1");
@@ -71,7 +72,7 @@ namespace LifeSubsMetro
                 //StreamReader sr = new StreamReader((Stream)sourceStream);
 
                 result = sr.ReadToEnd();
-
+                
                 sr.Close();
                 stream.Close();
             }
@@ -86,7 +87,7 @@ namespace LifeSubsMetro
                         {
                             Console.WriteLine("HTTP Status Code: " + (int)response.StatusCode);
                             //result = "500 internal server error: No match found";
-                            result = "";
+                            result = "500";
                         }
                         else
                         {
@@ -110,8 +111,9 @@ namespace LifeSubsMetro
                     result = "";
                 }
             }
-            Console.WriteLine(result);
+            Console.WriteLine(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>" + result);
             subtitleForm.setResult(result);
+            subtitleForm.setSendNoti(Color.LightGreen);
             //return result;
         }
 
@@ -123,7 +125,7 @@ namespace LifeSubsMetro
             //Start audio
             sourceStream = new NAudio.Wave.WaveIn();
             sourceStream.DeviceNumber = deviceNumber;
-            sourceStream.WaveFormat = new NAudio.Wave.WaveFormat(8000, 16, 2);
+            sourceStream.WaveFormat = new NAudio.Wave.WaveFormat(8000, 16, 1);
             //sourceStream.WaveFormat = new NAudio.Wave.WaveFormat(16000, NAudio.Wave.WaveIn.GetCapabilities(deviceNumber).Channels);
 
             sourceStream.DataAvailable += new EventHandler<NAudio.Wave.WaveInEventArgs>(sourceStream_DataAvailable);
@@ -154,7 +156,7 @@ namespace LifeSubsMetro
             if (sourceStream != null)
             {
                 sourceStream.StopRecording();
-                //sourceStream.Dispose();
+                sourceStream.Dispose();
                 sourceStream = null;
             }
             if (waveWriter != null)

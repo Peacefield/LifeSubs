@@ -16,13 +16,10 @@ namespace LifeSubsMetro
     {
         MainMenu mm;
         MicLevelListener mll;
-
         Thread th = null;
         Thread th2 = null;
-
         Listener listener1 = null;
         Listener listener2 = null;
-
         String currentListener;
         int deviceNumber = 0;
 
@@ -46,19 +43,19 @@ namespace LifeSubsMetro
 
         private void Subtitle_Load(object sender, EventArgs e)
         {
-            currentListener = "listener1";
             mll = new MicLevelListener(this);
             mll.listenToStream();
 
+            //Initiate recording
+            currentListener = "listener1";
+            listener1 = new Listener(deviceNumber, currentListener, this);
+            listener1.startRecording();
             //listener1 = new Listener(deviceNumber, currentListener, this);
             //listener1.startRecording();
         }
 
         private void Subtitle_FormClosing(object sender, FormClosingEventArgs e)
         {
-            if (listener1 != null) listener1.stop();
-            if (listener2 != null) listener2.stop();
-
             mm.Visible = true;
             mll.stop();
         }
@@ -85,22 +82,73 @@ namespace LifeSubsMetro
         //    }
         //}
 
-        private void stopListening()
-        {
-            Console.WriteLine("Stop listening");
+        //private void stopListening()
+        //{
+        //    Console.WriteLine("Stop listening");
 
-            if (listener1 != null) listener1.stop();
-            if (listener2 != null) listener2.stop();
-        }
+        //    if (listener1 != null) listener1.stop();
+        //    if (listener2 != null) listener2.stop();
+        //}
 
         public void setResult(string result)
         {
             if (result == "") return;
 
             if (this.tbOutput.InvokeRequired)
-                this.tbOutput.Invoke((MethodInvoker)delegate { this.tbOutput.Text += result + "\r\n"; });
+                this.tbOutput.Invoke((MethodInvoker)delegate { this.tbOutput.AppendText( result + "\r\n"); });
             else
-                this.tbOutput.Text += result + "\r\n";
+                this.tbOutput.AppendText(result + "\r\n");
+        }
+
+        public void setVolumeMeter(int amp)
+        {
+            amp = amp + 150;
+            if (this.volumeMeter.InvokeRequired)
+            {
+                try
+                {
+                    this.volumeMeter.Invoke((MethodInvoker)delegate { this.volumeMeter.Value = amp; });
+                }
+                catch(Exception e)
+                {
+                    Console.WriteLine(e);
+                }
+            }
+        }
+
+        public void setSendNoti(Color color)
+        {
+
+            if (this.sendNotificationPanel.InvokeRequired)
+            {
+                this.sendNotificationPanel.Invoke((MethodInvoker)delegate { this.sendNotificationPanel.BackColor = color; });
+            }
+        }
+
+        private void label1_TextChanged(object sender, EventArgs e)
+        {
+            Console.WriteLine("NIEUWE LABEL TEXT = " + label1.Text);
+            if (label1.Text == "send")
+            {
+                Console.WriteLine("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!send!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
+                send();
+            }
+        }
+
+        public void setLabel(String text)
+        {
+            if (text == "") return;
+
+            if (this.label1.InvokeRequired)
+                this.label1.Invoke((MethodInvoker)delegate { this.label1.Text = text; });
+            else
+                this.label1.Text = text;
+        }
+
+        private void stop()
+        {
+            if (listener1 != null) listener1.stop();
+            if (listener2 != null) listener2.stop();
         }
 
         public void send()
@@ -114,15 +162,12 @@ namespace LifeSubsMetro
                     listener2 = new Listener(deviceNumber, currentListener, this);
                     //Start next listener
                     listener2.startRecording();
-                    if (listener1 != null)
-                    {
-                        Console.WriteLine("listener1 currently recording");
-                        listener1.stop();
-
-                        th = new Thread(listener1.request);
-                        th.Start();
-                        while (!th.IsAlive) ;
-                    }
+                    
+                    Console.WriteLine("listener1 currently recording");
+                    listener1.stop();
+                    th = new Thread(listener1.request);
+                    th.Start();
+                    while (!th.IsAlive) ;
 
                     Thread.Sleep(1);
                     if (th2 != null)
@@ -156,6 +201,9 @@ namespace LifeSubsMetro
 
                     break;
             }
+
         }
+
+        
     }
 }

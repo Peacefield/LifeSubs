@@ -1,6 +1,7 @@
 ﻿using NAudio.Wave;
 using NAudio.Gui;
 using NAudio.Utils;
+using System.Drawing;
 using System;
 using System.Collections.Generic;
 using System.IO;
@@ -23,9 +24,9 @@ namespace LifeSubsMetro
         public MicLevelListener(Subtitle f)
         {
             this.subtitleForm = f;
-            //Initiate listening
-            //listenToStream();
+
         }
+
         public void listenToStream()
         {
             //Get all microphones
@@ -63,42 +64,47 @@ namespace LifeSubsMetro
         {
             int min = -15;
             int max = 15;
-            int sec = 1;
+            int sec = 15;
 
             //1 increment is 1/10th of a second
             //Check if the sound level is between -20 and 20, which means speaker is silent
             if ((i < max) || (i < min))
             {
                 //If the sound level is low enough, add 1 to the count variable
+                subtitleForm.setVolumeMeter(i);
                 count++;
+                Console.WriteLine("STIL");
+                subtitleForm.setLabel("STIL");
             }
             // Sound level is not between -20 and 20, which means speaker is talking
             else 
             {
+                Console.WriteLine("GELUID");
+                subtitleForm.setLabel("GELUID");
                 //Count variable should be set to 0
                 canSend = true;
                 count = 0;
             }
             //If no sound has been recorded for ... seconds, send audio to server
-            if (count > (sec * 10)) 
+            if (count > sec)
             {
+                count = 0;
                 if (canSend)
                 {
-                    Console.WriteLine("<<<<<<<<< Kan sturen >>>>>>>>>>>>");
-                    subtitleForm.send();
-
-                    subtitleForm.Invoke((MethodInvoker)delegate { subtitleForm.send(); });
-                    Console.WriteLine("\\\\\\\\\\\\\\\\\\\\\\ Is verstuurd ///////////////////////////");
-
                     //HTTP request has to be sent from here!!
                     //Count variable should be set to 0
                     canSend = false;
-                    count = 0;
+
+                    Console.WriteLine("<<<<<<<<< Kan sturen >>>>>>>>>>>>");
+                    
+                    subtitleForm.setSendNoti(Color.Red);
+                    subtitleForm.setLabel("send");
+                    Console.WriteLine("\\\\\\\\\\\\\\\\\\\\\\ Is verstuurd ///////////////////////////");
                 }
-                else
-                {
-                    count = 0;
-                }
+                //else
+                //{
+                //    count = 0;
+                //}
 
             }
         }
@@ -124,18 +130,19 @@ namespace LifeSubsMetro
                 break;
             }
 
-            if (act.IsAlive)
-            {
-                act.Abort();
-                act.Join();
-            }
+            //if (act.IsAlive)
+            //{
+            //    act.Abort();
+            //    act.Join();
+            //}
         }
 
         public void waveIn_DataAvailable(object sender, WaveInEventArgs e)
         {
             //Put the functions on another thread, so the GUI will not freeze
-            act = new Thread(() => actThing(sender, e));
-            act.Start();
+            //act = new Thread(() => actThing(sender, e));
+            //act.Start();
+            new Thread(() => actThing(sender, e)).Start();
         }
     }
 }
