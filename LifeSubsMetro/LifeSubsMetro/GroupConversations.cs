@@ -138,17 +138,17 @@ namespace LifeSubsMetro
             mm.Visible = true;
         }
 
-        private void btnSend_Click(object sender, EventArgs e)
+        private void sendTile_Click(object sender, EventArgs e)
         {
             try
             {
                 System.Text.ASCIIEncoding enc = new System.Text.ASCIIEncoding();
                 byte[] msg = new byte[1500];
-                msg = enc.GetBytes(metroTextBox1.Text);
+                msg = enc.GetBytes(tbInput.Text);
 
                 sck.Send(msg);
-                addMessage("IK", metroTextBox1.Text, Color.PowderBlue);
-                metroTextBox1.Text = "";
+                addMessage("IK", tbInput.Text, Color.PowderBlue);
+                tbInput.Text = "";
             }
             catch (Exception exc)
             {

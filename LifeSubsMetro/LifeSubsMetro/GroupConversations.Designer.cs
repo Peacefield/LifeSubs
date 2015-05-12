@@ -31,7 +31,6 @@
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
             this.tbInput = new MetroFramework.Controls.MetroTextBox();
-            this.btnSend = new MetroFramework.Controls.MetroTile();
             this.dataGridOutput = new System.Windows.Forms.DataGridView();
             this.imgColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.msgColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -44,7 +43,8 @@
             this.otherPort = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
+            this.sendTile = new MetroFramework.Controls.MetroTile();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridOutput)).BeginInit();
             this.SuspendLayout();
             // 
             // tbInput
@@ -70,7 +70,7 @@
             this.sendTile.TabIndex = 2;
             this.sendTile.Text = "Verzend";
             this.sendTile.UseSelectable = true;
-            this.sendTile.Click += new System.EventHandler(this.metroTile1_Click);
+            this.sendTile.Click += new System.EventHandler(this.sendTile_Click);
             // 
             // dataGridOutput
             // 
@@ -164,7 +164,6 @@
             this.startBtn.Size = new System.Drawing.Size(75, 47);
             this.startBtn.TabIndex = 8;
             this.startBtn.Text = "Start";
-            this.startBtn.UseVisualStyleBackColor = true;
             this.startBtn.Click += new System.EventHandler(this.startBtn_Click);
             // 
             // ownPort
@@ -213,9 +212,9 @@
             this.Controls.Add(this.friendIpTextBox);
             this.Controls.Add(this.ipLabel);
             this.Controls.Add(this.label1);
-            this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.sendTile);
-            this.Controls.Add(this.metroTextBox1);
+            this.Controls.Add(this.dataGridOutput);
+            this.Controls.Add(this.tbInput);
             this.MaximizeBox = false;
             this.Name = "GroupConversations";
             this.Resizable = false;
@@ -230,7 +229,7 @@
         #endregion
 
         private MetroFramework.Controls.MetroTextBox tbInput;
-        private MetroFramework.Controls.MetroTile btnSend;
+        private MetroFramework.Controls.MetroTile sendTile;
         private System.Windows.Forms.DataGridView dataGridOutput;
         private System.Windows.Forms.DataGridViewTextBoxColumn imgColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn msgColumn;
