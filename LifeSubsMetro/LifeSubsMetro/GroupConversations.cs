@@ -10,65 +10,46 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Collections;
 using System.Net;
+using System.Net.Sockets;
+using System.Threading;
 
 namespace LifeSubsMetro
 {
     public partial class GroupConversations : MetroForm
     {
+        System.Net.Sockets.TcpClient clientSocket = new System.Net.Sockets.TcpClient();
+        NetworkStream serverStream = default(NetworkStream);
+        string readData = null;
         MainMenu mm;
         public GroupConversations(MainMenu mm)
         {
             this.mm = mm;
             InitializeComponent();
-            ArrayList messages = new ArrayList();
 
-            messages.Add("ewfergve");
-            messages.Add("koekjes");
-            messages.Add("egrfgregrtrferfer");
-            messages.Add("fwerfergergregfer");
-            messages.Add("ewfergve");
+            //populating listView:
 
-            //ListViewItem lvi = new ListViewItem();
-            //lvi.SubItems.Add("SubItem");
-            //messagesList.Items.Add(lvi);
+                addMessage("FOTO", "BERICHT", Color.Orange);
+                addMessage("FOTO", "TEST", Color.Blue);
+                addMessage("FOTO", "NOG EEN TESTNOG EEN TESTNOG EEN TESTNOG EEN TESTNOG EEN TEST", Color.Yellow);
 
             
-            //metroGrid1
-            metroGrid1.ColumnCount = 3;
-            metroGrid1.Columns[0].Name = "Product ID";
-            metroGrid1.Columns[1].Name = "Product Name";
-            metroGrid1.Columns[2].Name = "Product Price";
+        }
 
-            string[] row = new string[] { "1", "Product 1", "1000" };
-            string[] row1 = new string[] { " ", " ", " " };
-            string[] row2 = new string[] { "1", "Product 1", "1000" };
-            string[] row3 = new string[] { " ", " ", " " };
-            string[] row4 = new string[] { "1", "Product 1", "1000" };
+        private void addMessage(string sender, string msg, Color c)
+        {
+            DataGridViewRow dr = new DataGridViewRow();
 
-            metroGrid1.Rows.Add(row);
-            metroGrid1.Rows.Add(row1);
-            metroGrid1.Rows.Add(row2);
-            metroGrid1.Rows.Add(row3);
-            metroGrid1.Rows.Add(row4);
+            DataGridViewTextBoxCell cell1 = new DataGridViewTextBoxCell();
+            cell1.Style.BackColor = Color.Wheat;
+            cell1.Value = sender;
+            dr.Cells.Add(cell1);
 
-            for (int i = 0; i < messages.Count; i++)
-            {
-                //First item of 3 - the profile pic of the other
-                //ListViewItem text = new ListViewItem(messages[i].ToString() + " - EERSTE");
-               
-                //string[] row1 = new string[] { "column2 value", "column6 value" };
-                //metroGrid1.Rows.Add("wedwe", "fwefwewef");
-                //Second item of 3 - the (spoken) text of both you and the other
-                //text.SubItems.Add(messages[i].ToString() + " - TWEEDE");
+            DataGridViewTextBoxCell cell2 = new DataGridViewTextBoxCell();
+            cell2.Style.BackColor = c;
+            cell2.Value = msg;
+            dr.Cells.Add(cell2);
 
-                //Third item of 3 - your profile pic
-               // text.SubItems.Add("rgfds - DERDE");
-
-                //Add item and its subitems to the list
-               // messagesList.Items.Add(text);
-
-            }
-               
+            dataGridView1.Rows.Add(dr);
         }
 
         private void toMainMenuButton_Click(object sender, EventArgs e)
@@ -80,5 +61,56 @@ namespace LifeSubsMetro
         {
             mm.Visible = true;
         }
+
+        private void metroTile1_Click(object sender, EventArgs e)
+        {
+            addMessage("U",metroTextBox1.Text, Color.Blue);
+            metroTextBox1.Text = "";
+            byte[] outStream = System.Text.Encoding.ASCII.GetBytes(metroTextBox1.Text + "$");
+            serverStream.Write(outStream, 0, outStream.Length);
+            serverStream.Flush();
+        }
+
+        private void connectBtn_Click(object sender, EventArgs e)
+        {
+            readData = "Conected to Chat Server ...";
+            msg();
+            clientSocket.Connect("127.0.0.1", 8888);
+            serverStream = clientSocket.GetStream();
+
+            byte[] outStream = System.Text.Encoding.ASCII.GetBytes(metroTextBox1.Text + "$");
+            serverStream.Write(outStream, 0, outStream.Length);
+            serverStream.Flush();
+
+            Thread ctThread = new Thread(getMessage);
+            ctThread.Start();
+        }
+
+        private void msg()
+        {
+            if (this.InvokeRequired)
+                this.Invoke(new MethodInvoker(msg));
+            else
+                //textBox1.Text = textBox1.Text + Environment.NewLine + " >> " + readData;
+                addMessage(readData,metroTextBox1.Text,Color.Orange);
+        } 
+
+        private void getMessage()
+        {
+            while (true)
+            {
+                serverStream = clientSocket.GetStream();
+                int buffSize = 0;
+                byte[] inStream = new byte[10025];
+                buffSize = clientSocket.ReceiveBufferSize;
+                serverStream.Read(inStream, 0, buffSize);
+                string returndata = System.Text.Encoding.ASCII.GetString(inStream);
+                readData = "" + returndata;
+                msg();
+            }
+        }
+
+
+        
     }
 }
