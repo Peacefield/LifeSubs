@@ -38,13 +38,37 @@ namespace LifeSubsMetro
             otherPort.Text = "81";
             sendTile.Enabled = false;
             //populating listView:
+            Font font = new System.Drawing.Font("Georgia", 15);
 
+            dataGridOutput.DefaultCellStyle.Font =
+                new Font(font, FontStyle.Regular);
+            dataGridOutput.Columns[0].DefaultCellStyle.Font = new System.Drawing.Font(dataGridOutput.DefaultCellStyle.Font.ToString(), 50);
+
+            //populating listView:
                 addMessage("FOTO", "BERICHT", Color.Orange);
                 addMessage("FOTO", "TEST", Color.Blue);
-                addMessage("FOTO", "NOG EEN TEST", Color.Yellow);
+            addMessage("FOTO", "NOG EEN TESTNOG EEN TESTNOG EEN TESTNOG EEN TESTNOG EEN TEST", Color.Yellow);
+            addMessage("FOTO", "BERICHT", Color.Orange);
+            addMessage("FOTO", "TEST", Color.Blue);
+            addMessage("FOTO", "NOG EEN TESTNOG EEN TESTNOG EEN TESTNOG EEN TESTNOG EEN TEST", Color.Yellow);
 
+            addMessage("Ik verstuur ook zelf iets", Color.Red);
+        }
 
+        private void addMessage(string msg, Color c)
+        {
+            DataGridViewRow dr = new DataGridViewRow();
+
+            DataGridViewTextBoxCell cell1 = new DataGridViewTextBoxCell();
+            dr.Cells.Add(cell1);
             
+            DataGridViewTextBoxCell cell2 = new DataGridViewTextBoxCell();
+            cell2.Style.BackColor = c;
+            cell2.Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+            cell2.Value = msg;
+            dr.Cells.Add(cell2);
+
+            dataGridOutput.Rows.Add(dr);
         }
 
         private string getOwnIp()
@@ -70,7 +94,7 @@ namespace LifeSubsMetro
             try
             {
                 int size = sck2.EndReceiveFrom(aResult, ref epRemote);
-                
+
                 if (size > 0)
                 {
                     byte[] receivedData = new byte[1464];
@@ -98,7 +122,6 @@ namespace LifeSubsMetro
             DataGridViewRow dr = new DataGridViewRow();
 
             DataGridViewTextBoxCell cell1 = new DataGridViewTextBoxCell();
-            cell1.Style.BackColor = Color.Wheat;
             cell1.Value = sender;
             dr.Cells.Add(cell1);
 
@@ -107,7 +130,9 @@ namespace LifeSubsMetro
             cell2.Value = msg;
             dr.Cells.Add(cell2);
 
-            dataGridView1.Rows.Add(dr);
+            dr.Height = 50;
+
+            dataGridOutput.Rows.Add(dr);
         }
 
         private void toMainMenuButton_Click(object sender, EventArgs e)
@@ -120,7 +145,7 @@ namespace LifeSubsMetro
             mm.Visible = true;
         }
 
-        private void metroTile1_Click(object sender, EventArgs e)
+        private void sendTile_Click(object sender, EventArgs e)
         {
             try
             {
@@ -173,7 +198,7 @@ namespace LifeSubsMetro
                 //Console.WriteLine("Socket Error: {0} when sending to {1}",
                 //       e.SocketError,
                 //       _asyncTask.Host);
-            }
+        }
         }
 
         private void startBtn_Click(object sender, EventArgs e)
