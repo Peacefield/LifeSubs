@@ -35,7 +35,6 @@
             this.microphonePanel = new System.Windows.Forms.Panel();
             this.microphoneProgressBar = new MetroFramework.Controls.MetroProgressBar();
             this.fontPanel = new System.Windows.Forms.Panel();
-            this.fontComboBox = new MetroFramework.Controls.MetroComboBox();
             this.fontSizeComboBox = new MetroFramework.Controls.MetroComboBox();
             this.fontLabel = new System.Windows.Forms.Label();
             this.fontButton = new MetroFramework.Controls.MetroButton();
@@ -62,6 +61,10 @@
             this.label2 = new System.Windows.Forms.Label();
             this.delayButton = new MetroFramework.Controls.MetroButton();
             this.languagePanel = new System.Windows.Forms.Panel();
+            this.applicationLanguageComboBox = new MetroFramework.Controls.MetroComboBox();
+            this.metroLabel3 = new MetroFramework.Controls.MetroLabel();
+            this.metroLabel2 = new MetroFramework.Controls.MetroLabel();
+            this.subtitleLanguageComboBox = new MetroFramework.Controls.MetroComboBox();
             this.label3 = new System.Windows.Forms.Label();
             this.languageButton = new MetroFramework.Controls.MetroButton();
             this.languageTile = new MetroFramework.Controls.MetroTile();
@@ -71,11 +74,7 @@
             this.linesTile = new MetroFramework.Controls.MetroTile();
             this.delayTile = new MetroFramework.Controls.MetroTile();
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
-            this.openFileDialog = new System.Windows.Forms.OpenFileDialog();
-            this.subtitleLanguageComboBox = new MetroFramework.Controls.MetroComboBox();
-            this.metroLabel2 = new MetroFramework.Controls.MetroLabel();
-            this.metroLabel3 = new MetroFramework.Controls.MetroLabel();
-            this.applicationLanguageComboBox = new MetroFramework.Controls.MetroComboBox();
+            this.fontComboBox = new LifeSubsMetro.FontComboBox();
             this.microphonePanel.SuspendLayout();
             this.fontPanel.SuspendLayout();
             this.volumePanel.SuspendLayout();
@@ -147,25 +146,11 @@
             this.fontPanel.Size = new System.Drawing.Size(200, 200);
             this.fontPanel.TabIndex = 4;
             // 
-            // fontComboBox
-            // 
-            this.fontComboBox.DropDownHeight = 100;
-            this.fontComboBox.DropDownWidth = 50;
-            this.fontComboBox.FormattingEnabled = true;
-            this.fontComboBox.IntegralHeight = false;
-            this.fontComboBox.ItemHeight = 23;
-            this.fontComboBox.Location = new System.Drawing.Point(5, 34);
-            this.fontComboBox.MaxDropDownItems = 4;
-            this.fontComboBox.Name = "fontComboBox";
-            this.fontComboBox.Size = new System.Drawing.Size(139, 29);
-            this.fontComboBox.TabIndex = 5;
-            this.fontComboBox.UseSelectable = true;
-            // 
             // fontSizeComboBox
             // 
             this.fontSizeComboBox.FormattingEnabled = true;
             this.fontSizeComboBox.ItemHeight = 23;
-            this.fontSizeComboBox.Location = new System.Drawing.Point(142, 34);
+            this.fontSizeComboBox.Location = new System.Drawing.Point(142, 32);
             this.fontSizeComboBox.Margin = new System.Windows.Forms.Padding(4);
             this.fontSizeComboBox.Name = "fontSizeComboBox";
             this.fontSizeComboBox.Size = new System.Drawing.Size(54, 29);
@@ -415,6 +400,44 @@
             this.languagePanel.Size = new System.Drawing.Size(200, 200);
             this.languagePanel.TabIndex = 10;
             // 
+            // applicationLanguageComboBox
+            // 
+            this.applicationLanguageComboBox.FormattingEnabled = true;
+            this.applicationLanguageComboBox.ItemHeight = 23;
+            this.applicationLanguageComboBox.Location = new System.Drawing.Point(81, 99);
+            this.applicationLanguageComboBox.Name = "applicationLanguageComboBox";
+            this.applicationLanguageComboBox.Size = new System.Drawing.Size(107, 29);
+            this.applicationLanguageComboBox.TabIndex = 12;
+            this.applicationLanguageComboBox.UseSelectable = true;
+            // 
+            // metroLabel3
+            // 
+            this.metroLabel3.AutoSize = true;
+            this.metroLabel3.Location = new System.Drawing.Point(5, 99);
+            this.metroLabel3.Name = "metroLabel3";
+            this.metroLabel3.Size = new System.Drawing.Size(70, 19);
+            this.metroLabel3.TabIndex = 11;
+            this.metroLabel3.Text = "Applicatie:";
+            // 
+            // metroLabel2
+            // 
+            this.metroLabel2.AutoSize = true;
+            this.metroLabel2.Location = new System.Drawing.Point(5, 50);
+            this.metroLabel2.Name = "metroLabel2";
+            this.metroLabel2.Size = new System.Drawing.Size(71, 19);
+            this.metroLabel2.TabIndex = 10;
+            this.metroLabel2.Text = "Ondertitel:";
+            // 
+            // subtitleLanguageComboBox
+            // 
+            this.subtitleLanguageComboBox.FormattingEnabled = true;
+            this.subtitleLanguageComboBox.ItemHeight = 23;
+            this.subtitleLanguageComboBox.Location = new System.Drawing.Point(81, 46);
+            this.subtitleLanguageComboBox.Name = "subtitleLanguageComboBox";
+            this.subtitleLanguageComboBox.Size = new System.Drawing.Size(107, 29);
+            this.subtitleLanguageComboBox.TabIndex = 2;
+            this.subtitleLanguageComboBox.UseSelectable = true;
+            // 
             // label3
             // 
             this.label3.AutoSize = true;
@@ -530,47 +553,16 @@
             this.delayTile.UseTileImage = true;
             this.delayTile.Click += new System.EventHandler(this.delayTile_Click);
             // 
-            // openFileDialog
+            // fontComboBox
             // 
-            this.openFileDialog.FileName = "openFileDialog";
-            // 
-            // subtitleLanguageComboBox
-            // 
-            this.subtitleLanguageComboBox.FormattingEnabled = true;
-            this.subtitleLanguageComboBox.ItemHeight = 23;
-            this.subtitleLanguageComboBox.Location = new System.Drawing.Point(81, 46);
-            this.subtitleLanguageComboBox.Name = "subtitleLanguageComboBox";
-            this.subtitleLanguageComboBox.Size = new System.Drawing.Size(107, 29);
-            this.subtitleLanguageComboBox.TabIndex = 2;
-            this.subtitleLanguageComboBox.UseSelectable = true;
-            // 
-            // metroLabel2
-            // 
-            this.metroLabel2.AutoSize = true;
-            this.metroLabel2.Location = new System.Drawing.Point(5, 50);
-            this.metroLabel2.Name = "metroLabel2";
-            this.metroLabel2.Size = new System.Drawing.Size(71, 19);
-            this.metroLabel2.TabIndex = 10;
-            this.metroLabel2.Text = "Ondertitel:";
-            // 
-            // metroLabel3
-            // 
-            this.metroLabel3.AutoSize = true;
-            this.metroLabel3.Location = new System.Drawing.Point(5, 99);
-            this.metroLabel3.Name = "metroLabel3";
-            this.metroLabel3.Size = new System.Drawing.Size(70, 19);
-            this.metroLabel3.TabIndex = 11;
-            this.metroLabel3.Text = "Applicatie:";
-            // 
-            // applicationLanguageComboBox
-            // 
-            this.applicationLanguageComboBox.FormattingEnabled = true;
-            this.applicationLanguageComboBox.ItemHeight = 23;
-            this.applicationLanguageComboBox.Location = new System.Drawing.Point(81, 99);
-            this.applicationLanguageComboBox.Name = "applicationLanguageComboBox";
-            this.applicationLanguageComboBox.Size = new System.Drawing.Size(107, 29);
-            this.applicationLanguageComboBox.TabIndex = 12;
-            this.applicationLanguageComboBox.UseSelectable = true;
+            this.fontComboBox.DropDownStyle = System.Windows.Forms.ComboBoxStyle.DropDown;
+            this.fontComboBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Append;
+            this.fontComboBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.fontComboBox.FormattingEnabled = true;
+            this.fontComboBox.Location = new System.Drawing.Point(5, 33);
+            this.fontComboBox.Name = "fontComboBox";
+            this.fontComboBox.Size = new System.Drawing.Size(130, 23);
+            this.fontComboBox.TabIndex = 6;
             // 
             // SettingsMenu
             // 
@@ -578,24 +570,23 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(647, 506);
             this.Controls.Add(this.microphoneTile);
-            this.Controls.Add(this.fontTile);
-            this.Controls.Add(this.fontPanel);
-            this.Controls.Add(this.microphonePanel);
-            this.Controls.Add(this.saveTile);
-            this.Controls.Add(this.savePanel);
-            this.Controls.Add(this.languageTile);
             this.Controls.Add(this.linesTile);
+            this.Controls.Add(this.delayTile);
+            this.Controls.Add(this.languageTile);
+            this.Controls.Add(this.microphonePanel);
             this.Controls.Add(this.volumePanel);
             this.Controls.Add(this.languagePanel);
-            this.Controls.Add(this.delayTile);
             this.Controls.Add(this.delayPanel);
+            this.Controls.Add(this.saveTile);
+            this.Controls.Add(this.savePanel);
+            this.Controls.Add(this.fontPanel);
+            this.Controls.Add(this.fontTile);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "SettingsMenu";
             this.Padding = new System.Windows.Forms.Padding(27, 74, 27, 25);
             this.Text = "SettingsMenu";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.SettingsMenu_FormClosing);
-            this.Load += new System.EventHandler(this.SettingsMenu_Load);
             this.microphonePanel.ResumeLayout(false);
             this.microphonePanel.PerformLayout();
             this.fontPanel.ResumeLayout(false);
@@ -630,7 +621,6 @@
         private System.Windows.Forms.Label linesLabel;
         private MetroFramework.Controls.MetroProgressBar microphoneProgressBar;
         private System.Windows.Forms.ColorDialog fontColorDialog;
-        private MetroFramework.Controls.MetroComboBox fontComboBox;
         private MetroFramework.Controls.MetroLabel subtitleLinesLabel;
         private MetroFramework.Controls.MetroComboBox subtitleLinesComboBox;
         private MetroFramework.Controls.MetroLabel subtitleBackgroundColorLabel;
@@ -652,7 +642,6 @@
         private MetroFramework.Controls.MetroTile languageTile;
         private MetroFramework.Controls.MetroButton pathButton;
         private System.Windows.Forms.ColorDialog colorDialog1;
-        private System.Windows.Forms.OpenFileDialog openFileDialog;
         private MetroFramework.Controls.MetroTextBox pathTextBox;
         private MetroFramework.Controls.MetroTrackBar delayTrackBar;
         private MetroFramework.Controls.MetroLabel metroLabel1;
@@ -661,5 +650,6 @@
         private MetroFramework.Controls.MetroLabel metroLabel3;
         private MetroFramework.Controls.MetroLabel metroLabel2;
         private MetroFramework.Controls.MetroComboBox subtitleLanguageComboBox;
+        private FontComboBox fontComboBox;
     }
 }

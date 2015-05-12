@@ -19,21 +19,21 @@ namespace LifeSubsMetro
     {
         Thread updateUI = null;
         MainMenu mainMenu;
+        Settings settings;
 
         public SettingsMenu(MainMenu mm)
         {
             this.mainMenu = mm;
             InitializeComponent();
             init();
+            //loadXML();
+            settings = new Settings();
+            loadSettings();
         }
 
         #region Initiate
         private void init() //Load on start
-        {
-            foreach (FontFamily font in System.Drawing.FontFamily.Families)
-            {
-                fontComboBox.Items.Add(font.Name);
-            }
+        {   
             //Load Font sizes
             fontSizeComboBox.Items.Add(6);
             fontSizeComboBox.Items.Add(8);
@@ -68,6 +68,12 @@ namespace LifeSubsMetro
                 microphoneComboBox.Items.Add(source.ProductName);
             }
         }
+        //Bring the main menu back when closing the settings
+        private void SettingsMenu_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            mainMenu.BringToFront();
+        }
+
         #endregion Initiate
 
         #region Metro Tiles open
@@ -202,7 +208,10 @@ namespace LifeSubsMetro
             dt2.Columns.Add(dc4);
             dt2.Columns.Add(dc5);
             dt2.Columns.Add(dc6);
-            dt2.Rows.Add(subtitleLinesComboBox.Text, fontColorPanel.BackColor, fontBackPanel.BackColor);
+
+            string fontColor = fontColorPanel.BackColor.A + "," + fontColorPanel.BackColor.R + "," + fontColorPanel.BackColor.G + "," + fontColorPanel.BackColor.B;
+            string backColor = fontBackPanel.BackColor.A + "," + fontBackPanel.BackColor.R + "," + fontBackPanel.BackColor.G + "," + fontBackPanel.BackColor.B;
+            dt2.Rows.Add(subtitleLinesComboBox.Text, fontColor, backColor);
             ds.Tables.Add(dt2);
 
             //xml datatable save
@@ -238,8 +247,8 @@ namespace LifeSubsMetro
         #endregion Save to XML
 
         #region Subtitle Color
-
-        private void changeClr(Color color)
+        //Change the color panel of the font to the selected color
+        private void changeClrFont(Color color)
         {
             this.Invoke((MethodInvoker)delegate
             {
@@ -255,7 +264,7 @@ namespace LifeSubsMetro
         {
             if (fontColorDialog.ShowDialog() != DialogResult.Cancel)
             {
-                updateUI = new Thread(() => changeClr(fontColorDialog.Color));
+                updateUI = new Thread(() => changeClrFont(fontColorDialog.Color));
                 updateUI.IsBackground = true;
                 updateUI.Start();
             }
@@ -263,7 +272,8 @@ namespace LifeSubsMetro
         #endregion Subtitle Color
 
         #region Subtitle Back Color
-        private void changeClr1(Color color)
+        //Change the color panel of the subtitle background to the selected color
+        private void changeClrBack(Color color)
         {
             this.Invoke((MethodInvoker)delegate
             {
@@ -280,7 +290,7 @@ namespace LifeSubsMetro
         {
             if (backColorDialog.ShowDialog() != DialogResult.Cancel)
             {
-                updateUI = new Thread(() => changeClr1(backColorDialog.Color));
+                updateUI = new Thread(() => changeClrBack(backColorDialog.Color));
                 updateUI.IsBackground = true;
                 updateUI.Start();
             }
@@ -291,32 +301,105 @@ namespace LifeSubsMetro
         #endregion Subtitle Back Color
 
         #region Log Path
-
+        //When clicking on the path button open a SaveFileDialog with a predifined save format
         private void pathButton_Click(object sender, EventArgs e)
         {
-        OpenFileDialog ofd = new OpenFileDialog();
-        ofd.ShowDialog();
-        pathTextBox.Text = ofd.FileName;
+        SaveFileDialog sfd = new SaveFileDialog();
+        sfd.FileName = "Log";
+        sfd.AddExtension = true;
+        sfd.DefaultExt = "txt";
+        sfd.Filter = "Text(*.txt)|*.*";
+        sfd.ShowDialog();
+        pathTextBox.Text = sfd.FileName;
         }
 
         #endregion Log Path
 
         #region Delay
+        //Set the numeric label value of the delay trackbar
         private void delayTrackBar_Scroll(object sender, ScrollEventArgs e)
         {
             delayLabel.Text = delayTrackBar.Value.ToString();
         }
 
-        private void SettingsMenu_FormClosing(object sender, FormClosingEventArgs e)
-        {
-            mainMenu.BringToFront();
-        }
-
-        private void SettingsMenu_Load(object sender, EventArgs e)
-        {
-            UseWaitCursor = false;
-        }
+        
         #endregion delay
 
+        #region readXML
+        //Load the settings from the XML file
+        private void loadXML()
+        {
+            string settingsFile = @"Settings.xml";
+            if(!System.IO.File.Exists(settingsFile)) return;
+
+            DataSet ds = new DataSet();
+            ds.ReadXml("Settings.xml");
+
+            //Load the microphone tile
+            microphoneComboBox.Text = ds.Tables["Microphone"].Rows[0][0].ToString();
+            
+            //Load the font tile
+            
+            //fontComboBox.Text = ds.Tables["Font"].Rows[0][0].ToString(); 
+
+            Console.WriteLine( fontComboBox.Items.Count );
+
+            fontSizeComboBox.Text = ds.Tables["Font"].Rows[0][1].ToString();
+            subtitleLinesComboBox.Text = ds.Tables["Subtitle"].Rows[0][0].ToString(); 
+            
+            //load the subtitle tile
+            string fontColor = ds.Tables["Subtitle"].Rows[0][1].ToString();
+            //Convert the ARGB values correctly 
+            string[] fontList = fontColor.Split(new Char[] { ',' });
+            fontColorPanel.BackColor = System.Drawing.Color.FromArgb(Int32.Parse(fontList[0]), Int32.Parse(fontList[1]), Int32.Parse(fontList[2]), Int32.Parse(fontList[3]));
+            string backColor = ds.Tables["Subtitle"].Rows[0][2].ToString();
+            //Convert the ARGB values correctly
+            string[] backList = backColor.Split(new Char[] { ',' });
+            fontBackPanel.BackColor = System.Drawing.Color.FromArgb(Int32.Parse(backList[0]), Int32.Parse(backList[1]), Int32.Parse(backList[2]), Int32.Parse(backList[3]));
+            
+            //load the save tile
+            pathTextBox.Text = ds.Tables["Save"].Rows[0][0].ToString(); 
+            delayTrackBar.Value = Int32.Parse(ds.Tables["Delay"].Rows[0][0].ToString()); 
+           
+            //load the delay tile
+            delayLabel.Text = ds.Tables["Delay"].Rows[0][0].ToString();
+            subtitleLanguageComboBox.Text = ds.Tables["Language"].Rows[0][0].ToString(); 
+            
+            //load the language tile
+            applicationLanguageComboBox.Text = ds.Tables["Language"].Rows[0][1].ToString();
+        }
+            
+        #endregion readXML
+        
+        private void loadSettings()
+        {
+
+            //Load the microphone tile
+            microphoneComboBox.Text = settings.microphone;
+
+            //Load the font tile
+
+            //fontComboBox.Text = ds.Tables["Font"].Rows[0][0].ToString(); 
+
+            Console.WriteLine(fontComboBox.SelectedItem);
+            fontComboBox.Text = settings.font;
+            fontSizeComboBox.Text = settings.fontsize.ToString();
+            subtitleLinesComboBox.Text = settings.lines.ToString();
+
+            //load the subtitle tile
+            fontColorPanel.BackColor = settings.subColor;
+            fontBackPanel.BackColor = settings.bgColor;
+
+            //load the save tile
+            pathTextBox.Text = settings.savePath;
+            delayTrackBar.Value = settings.delay;
+
+            //load the delay tile
+            delayLabel.Text = settings.delay.ToString();
+            subtitleLanguageComboBox.Text = settings.subLanguage;
+
+            //load the language tile
+            applicationLanguageComboBox.Text = settings.appLanguage;
+        }
     }
 }
