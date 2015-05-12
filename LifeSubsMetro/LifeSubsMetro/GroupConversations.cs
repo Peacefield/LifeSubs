@@ -11,28 +11,79 @@ using System.Windows.Forms;
 using System.Collections;
 using System.Net;
 using System.Net.Sockets;
-using System.Threading;
 
 namespace LifeSubsMetro
 {
     public partial class GroupConversations : MetroForm
     {
-        System.Net.Sockets.TcpClient clientSocket = new System.Net.Sockets.TcpClient();
-        NetworkStream serverStream = default(NetworkStream);
-        string readData = null;
         MainMenu mm;
+        Socket sck;
+        EndPoint epLocal, epRemote;
+        string ownIpAddress;
         public GroupConversations(MainMenu mm)
         {
             this.mm = mm;
             InitializeComponent();
 
+            sck = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
+            sck.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.ReuseAddress, true);
+            ownIpAddress = getOwnIp();
+            ipLabel.Text = ownIpAddress;
+            sendTile.Enabled = false;
             //populating listView:
 
                 addMessage("FOTO", "BERICHT", Color.Orange);
                 addMessage("FOTO", "TEST", Color.Blue);
-                addMessage("FOTO", "NOG EEN TESTNOG EEN TESTNOG EEN TESTNOG EEN TESTNOG EEN TEST", Color.Yellow);
+                addMessage("FOTO", "NOG EEN TEST", Color.Yellow);
+
 
             
+        }
+
+        private string getOwnIp()
+        {
+            IPHostEntry host;
+            host = Dns.GetHostEntry(Dns.GetHostName());
+            Console.WriteLine(host);
+
+            foreach (IPAddress ip in host.AddressList)
+            {
+                if (ip.AddressFamily == AddressFamily.InterNetwork)
+                {
+                    return ip.ToString();
+                }
+            }
+
+            return "127.0.0.1";
+
+        }
+
+        private void messageCallBack(IAsyncResult aResult)
+        {
+            try
+            {
+                int size = sck.EndReceiveFrom(aResult, ref epRemote);
+
+                if (size > 0)
+                {
+                    byte[] receivedData = new byte[1464];
+                    receivedData = (byte[])aResult.AsyncState;
+
+                    ASCIIEncoding eEncoding = new ASCIIEncoding();
+                    string receivedMessage = eEncoding.GetString(receivedData);
+
+                    addMessage("IEMAND", receivedMessage, Color.Orange);
+                }
+
+                byte[] buffer = new byte[1500];
+
+                sck.BeginReceiveFrom(buffer, 0, buffer.Length, SocketFlags.None, ref epRemote, new AsyncCallback(messageCallBack), buffer);
+
+            }
+            catch (Exception e)
+            {
+                addMessage("FOUT", e.ToString(), Color.Red);
+            }
         }
 
         private void addMessage(string sender, string msg, Color c)
@@ -64,50 +115,47 @@ namespace LifeSubsMetro
 
         private void metroTile1_Click(object sender, EventArgs e)
         {
-            addMessage("U",metroTextBox1.Text, Color.Blue);
-            metroTextBox1.Text = "";
-            byte[] outStream = System.Text.Encoding.ASCII.GetBytes(metroTextBox1.Text + "$");
-            serverStream.Write(outStream, 0, outStream.Length);
-            serverStream.Flush();
-        }
-
-        private void connectBtn_Click(object sender, EventArgs e)
-        {
-            readData = "Conected to Chat Server ...";
-            msg();
-            clientSocket.Connect("127.0.0.1", 8888);
-            serverStream = clientSocket.GetStream();
-
-            byte[] outStream = System.Text.Encoding.ASCII.GetBytes(metroTextBox1.Text + "$");
-            serverStream.Write(outStream, 0, outStream.Length);
-            serverStream.Flush();
-
-            Thread ctThread = new Thread(getMessage);
-            ctThread.Start();
-        }
-
-        private void msg()
-        {
-            if (this.InvokeRequired)
-                this.Invoke(new MethodInvoker(msg));
-            else
-                //textBox1.Text = textBox1.Text + Environment.NewLine + " >> " + readData;
-                addMessage(readData,metroTextBox1.Text,Color.Orange);
-        } 
-
-        private void getMessage()
-        {
-            while (true)
+            try
             {
-                serverStream = clientSocket.GetStream();
-                int buffSize = 0;
-                byte[] inStream = new byte[10025];
-                buffSize = clientSocket.ReceiveBufferSize;
-                serverStream.Read(inStream, 0, buffSize);
-                string returndata = System.Text.Encoding.ASCII.GetString(inStream);
-                readData = "" + returndata;
-                msg();
+                System.Text.ASCIIEncoding enc = new System.Text.ASCIIEncoding();
+                byte[] msg = new byte[1500];
+                msg = enc.GetBytes(metroTextBox1.Text);
+
+                sck.Send(msg);
+                addMessage("IK", metroTextBox1.Text, Color.PowderBlue);
+                metroTextBox1.Text = "";
             }
+            catch (Exception exc)
+            {
+                addMessage("FOUT", exc.ToString(), Color.Red);
+            }
+        }
+
+        private void startBtn_Click(object sender, EventArgs e)
+        {
+            startBtn.Text = "Bezig...";
+
+            try
+            {
+                epLocal = new IPEndPoint(IPAddress.Parse(ownIpAddress), Convert.ToInt32(ownPort.Text));
+                sck.Bind(epLocal);
+
+                epRemote = new IPEndPoint(IPAddress.Parse(friendIpTextBox.Text), Convert.ToInt32(otherPort.Text));
+                sck.Bind(epRemote);
+
+                byte[] buffer = new byte[1500];
+                sck.BeginReceiveFrom(buffer, 0, buffer.Length, SocketFlags.None, ref epRemote, new AsyncCallback(messageCallBack), buffer);
+
+                startBtn.Enabled = false;
+                startBtn.Text = "Verbonden!";
+                sendTile.Enabled = true;
+            }
+            catch (Exception ex)
+            {
+                addMessage("FOUT", ex.ToString(), Color.Red);
+                startBtn.Text = "Start";
+            }
+
         }
 
 
