@@ -34,7 +34,6 @@
             this.imgColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.msgColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.label1 = new System.Windows.Forms.Label();
-            this.ipLabel = new System.Windows.Forms.Label();
             this.friendIpTextBox = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
             this.startBtn = new System.Windows.Forms.Button();
@@ -42,6 +41,7 @@
             this.otherPort = new System.Windows.Forms.TextBox();
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
+            this.ipLabel = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridView1)).BeginInit();
             this.SuspendLayout();
             // 
@@ -118,15 +118,6 @@
             this.label1.TabIndex = 4;
             this.label1.Text = "Eigen IP:";
             // 
-            // ipLabel
-            // 
-            this.ipLabel.AutoSize = true;
-            this.ipLabel.Location = new System.Drawing.Point(315, 40);
-            this.ipLabel.Name = "ipLabel";
-            this.ipLabel.Size = new System.Drawing.Size(16, 13);
-            this.ipLabel.TabIndex = 5;
-            this.ipLabel.Text = "...";
-            // 
             // friendIpTextBox
             // 
             this.friendIpTextBox.Location = new System.Drawing.Point(500, 37);
@@ -185,11 +176,19 @@
             this.label4.TabIndex = 12;
             this.label4.Text = "Ander poort";
             // 
+            // ipLabel
+            // 
+            this.ipLabel.Location = new System.Drawing.Point(309, 40);
+            this.ipLabel.Name = "ipLabel";
+            this.ipLabel.Size = new System.Drawing.Size(100, 20);
+            this.ipLabel.TabIndex = 13;
+            // 
             // GroupConversations
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1020, 565);
+            this.Controls.Add(this.ipLabel);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
             this.Controls.Add(this.otherPort);
@@ -197,7 +196,6 @@
             this.Controls.Add(this.startBtn);
             this.Controls.Add(this.label2);
             this.Controls.Add(this.friendIpTextBox);
-            this.Controls.Add(this.ipLabel);
             this.Controls.Add(this.label1);
             this.Controls.Add(this.dataGridView1);
             this.Controls.Add(this.sendTile);
@@ -220,7 +218,6 @@
         private System.Windows.Forms.DataGridViewTextBoxColumn imgColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn msgColumn;
         private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.Label ipLabel;
         private System.Windows.Forms.TextBox friendIpTextBox;
         private System.Windows.Forms.Label label2;
         private System.Windows.Forms.Button startBtn;
@@ -228,6 +225,7 @@
         private System.Windows.Forms.TextBox otherPort;
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
+        private System.Windows.Forms.TextBox ipLabel;
 
 
 

@@ -17,7 +17,7 @@ namespace LifeSubsMetro
     public partial class GroupConversations : MetroForm
     {
         MainMenu mm;
-        Socket sck;
+        Socket sck1, sck2;
         EndPoint epLocal, epRemote;
         string ownIpAddress;
         public GroupConversations(MainMenu mm)
@@ -25,10 +25,17 @@ namespace LifeSubsMetro
             this.mm = mm;
             InitializeComponent();
 
-            sck = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
-            sck.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.ReuseAddress, true);
+            sck1 = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
+            sck1.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.ReuseAddress, true);
+
+            sck2 = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
+            sck2.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.ReuseAddress, true);
+
             ownIpAddress = getOwnIp();
             ipLabel.Text = ownIpAddress;
+            friendIpTextBox.Text = ownIpAddress;
+            ownPort.Text = "80";
+            otherPort.Text = "81";
             sendTile.Enabled = false;
             //populating listView:
 
@@ -62,8 +69,8 @@ namespace LifeSubsMetro
         {
             try
             {
-                int size = sck.EndReceiveFrom(aResult, ref epRemote);
-
+                int size = sck2.EndReceiveFrom(aResult, ref epRemote);
+                
                 if (size > 0)
                 {
                     byte[] receivedData = new byte[1464];
@@ -77,7 +84,7 @@ namespace LifeSubsMetro
 
                 byte[] buffer = new byte[1500];
 
-                sck.BeginReceiveFrom(buffer, 0, buffer.Length, SocketFlags.None, ref epRemote, new AsyncCallback(messageCallBack), buffer);
+                sck2.BeginReceiveFrom(buffer, 0, buffer.Length, SocketFlags.None, ref epRemote, new AsyncCallback(messageCallBack), buffer);
 
             }
             catch (Exception e)
@@ -117,17 +124,55 @@ namespace LifeSubsMetro
         {
             try
             {
+                
+
                 System.Text.ASCIIEncoding enc = new System.Text.ASCIIEncoding();
                 byte[] msg = new byte[1500];
                 msg = enc.GetBytes(metroTextBox1.Text);
+                //sck1.Send(msg);
 
-                sck.Send(msg);
+                /*******************************/
+                SocketAsyncEventArgs h = new SocketAsyncEventArgs();
+                h.SetBuffer(msg, 0, msg.Length);
+                h.Completed += new EventHandler<SocketAsyncEventArgs>(SendCallback);
+
+                bool completedAsync = false;
+
+                try
+                {
+                    completedAsync = sck1.SendAsync(h);
+                }
+                catch (SocketException se)
+                {
+                    Console.WriteLine("Socket Exception: " + se.ErrorCode + " Message: " + se.Message);
+                }
+
+                /*************************************/
                 addMessage("IK", metroTextBox1.Text, Color.PowderBlue);
                 metroTextBox1.Text = "";
             }
             catch (Exception exc)
             {
                 addMessage("FOUT", exc.ToString(), Color.Red);
+                Console.WriteLine(exc);
+            }
+        }
+
+
+        private void SendCallback(object sender, SocketAsyncEventArgs e)
+        {
+            if (e.SocketError == SocketError.Success)
+            {
+                // You may need to specify some type of state and 
+                // pass it into the BeginSend method so you don't start
+                // sending from scratch
+                //BeginSend();
+            }
+            else
+            {
+                //Console.WriteLine("Socket Error: {0} when sending to {1}",
+                //       e.SocketError,
+                //       _asyncTask.Host);
             }
         }
 
@@ -137,14 +182,31 @@ namespace LifeSubsMetro
 
             try
             {
-                epLocal = new IPEndPoint(IPAddress.Parse(ownIpAddress), Convert.ToInt32(ownPort.Text));
-                sck.Bind(epLocal);
 
-                epRemote = new IPEndPoint(IPAddress.Parse(friendIpTextBox.Text), Convert.ToInt32(otherPort.Text));
-                sck.Bind(epRemote);
+
+                epLocal = new IPEndPoint(IPAddress.Parse(ipLabel.Text), int.Parse(ownPort.Text));
+                Console.WriteLine(IPAddress.Parse(ipLabel.Text) + "<------ EIGEN IP");
+                Console.WriteLine(Convert.ToInt32(ownPort.Text) + "<------ EIGEN POORT");
+                sck1.Bind(epLocal);
+
+                epRemote = new IPEndPoint(IPAddress.Parse(friendIpTextBox.Text), int.Parse(otherPort.Text));
+                Console.WriteLine(IPAddress.Parse(friendIpTextBox.Text) + "<------ ANDER IP");
+                Console.WriteLine(Convert.ToInt32(otherPort.Text) + "<------ ANDER POORT");
+                sck2.Bind(epRemote);
 
                 byte[] buffer = new byte[1500];
-                sck.BeginReceiveFrom(buffer, 0, buffer.Length, SocketFlags.None, ref epRemote, new AsyncCallback(messageCallBack), buffer);
+                //sck2.Listen(100);
+                //sck2.Accept();
+                
+                /****************/
+
+                SocketAsyncEventArgs d = new SocketAsyncEventArgs();
+                d.Completed += receiveCompleted;
+                d.SetBuffer(new byte[1024], 0, 1024);
+                if (!sck2.ReceiveAsync(d)) { receiveCompleted(this, d); } 
+                /******************************/
+
+                //sck2.BeginReceiveFrom(buffer, 0, buffer.Length, SocketFlags.None, ref epRemote, new AsyncCallback(messageCallBack), buffer);
 
                 startBtn.Enabled = false;
                 startBtn.Text = "Verbonden!";
@@ -154,11 +216,19 @@ namespace LifeSubsMetro
             {
                 addMessage("FOUT", ex.ToString(), Color.Red);
                 startBtn.Text = "Start";
+                Console.WriteLine(ex);
             }
+
+
 
         }
 
+        public void receiveCompleted(object sender, SocketAsyncEventArgs e)
+        {
+            ////ProcessData(e);
 
+            //if (!Socket.ReceiveAsync(e)) { receiveCompleted(this, e); }
+        }
         
     }
 }
