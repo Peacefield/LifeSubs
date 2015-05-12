@@ -25,14 +25,38 @@ namespace LifeSubsMetro
         {
             this.mm = mm;
             InitializeComponent();
+            
+            Font font = new System.Drawing.Font("Georgia", 15);
+
+            dataGridOutput.DefaultCellStyle.Font =
+                new Font(font, FontStyle.Regular);
+            dataGridOutput.Columns[0].DefaultCellStyle.Font = new System.Drawing.Font(dataGridOutput.DefaultCellStyle.Font.ToString(), 50);
 
             //populating listView:
-
-                addMessage("FOTO", "BERICHT", Color.Orange);
-                addMessage("FOTO", "TEST", Color.Blue);
-                addMessage("FOTO", "NOG EEN TESTNOG EEN TESTNOG EEN TESTNOG EEN TESTNOG EEN TEST", Color.Yellow);
-
+            addMessage("FOTO", "BERICHT", Color.Orange);
+            addMessage("FOTO", "TEST", Color.Blue);
+            addMessage("FOTO", "NOG EEN TESTNOG EEN TESTNOG EEN TESTNOG EEN TESTNOG EEN TEST", Color.Yellow);
+            addMessage("FOTO", "BERICHT", Color.Orange);
+            addMessage("FOTO", "TEST", Color.Blue);
+            addMessage("FOTO", "NOG EEN TESTNOG EEN TESTNOG EEN TESTNOG EEN TESTNOG EEN TEST", Color.Yellow);
             
+            addMessage("Ik verstuur ook zelf iets", Color.Red);
+        }
+
+        private void addMessage(string msg, Color c)
+        {
+            DataGridViewRow dr = new DataGridViewRow();
+
+            DataGridViewTextBoxCell cell1 = new DataGridViewTextBoxCell();
+            dr.Cells.Add(cell1);
+
+            DataGridViewTextBoxCell cell2 = new DataGridViewTextBoxCell();
+            cell2.Style.BackColor = c;
+            cell2.Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+            cell2.Value = msg;
+            dr.Cells.Add(cell2);
+
+            dataGridOutput.Rows.Add(dr);
         }
 
         private void addMessage(string sender, string msg, Color c)
@@ -40,7 +64,6 @@ namespace LifeSubsMetro
             DataGridViewRow dr = new DataGridViewRow();
 
             DataGridViewTextBoxCell cell1 = new DataGridViewTextBoxCell();
-            cell1.Style.BackColor = Color.Wheat;
             cell1.Value = sender;
             dr.Cells.Add(cell1);
 
@@ -49,7 +72,9 @@ namespace LifeSubsMetro
             cell2.Value = msg;
             dr.Cells.Add(cell2);
 
-            dataGridView1.Rows.Add(dr);
+            dr.Height = 50;
+
+            dataGridOutput.Rows.Add(dr);
         }
 
         private void toMainMenuButton_Click(object sender, EventArgs e)
@@ -62,23 +87,24 @@ namespace LifeSubsMetro
             mm.Visible = true;
         }
 
-        private void metroTile1_Click(object sender, EventArgs e)
+        private void btnSend_Click(object sender, EventArgs e)
         {
-            addMessage("U",metroTextBox1.Text, Color.Blue);
-            metroTextBox1.Text = "";
-            byte[] outStream = System.Text.Encoding.ASCII.GetBytes(metroTextBox1.Text + "$");
-            serverStream.Write(outStream, 0, outStream.Length);
-            serverStream.Flush();
+            if (tbInput.Text == "") return;
+            addMessage(tbInput.Text, Color.Red);
+            tbInput.Text = "";
+            //byte[] outStream = System.Text.Encoding.ASCII.GetBytes(metroTextBox1.Text + "$");
+            //serverStream.Write(outStream, 0, outStream.Length);
+            //serverStream.Flush();
         }
 
-        private void connectBtn_Click(object sender, EventArgs e)
+        private void btnConnect_Click(object sender, EventArgs e)
         {
             readData = "Conected to Chat Server ...";
             msg();
             clientSocket.Connect("127.0.0.1", 8888);
             serverStream = clientSocket.GetStream();
 
-            byte[] outStream = System.Text.Encoding.ASCII.GetBytes(metroTextBox1.Text + "$");
+            byte[] outStream = System.Text.Encoding.ASCII.GetBytes(tbInput.Text + "$");
             serverStream.Write(outStream, 0, outStream.Length);
             serverStream.Flush();
 
@@ -92,7 +118,7 @@ namespace LifeSubsMetro
                 this.Invoke(new MethodInvoker(msg));
             else
                 //textBox1.Text = textBox1.Text + Environment.NewLine + " >> " + readData;
-                addMessage(readData,metroTextBox1.Text,Color.Orange);
+                addMessage(readData,tbInput.Text,Color.Orange);
         } 
 
         private void getMessage()
