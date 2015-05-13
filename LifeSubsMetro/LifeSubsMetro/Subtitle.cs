@@ -29,8 +29,11 @@ namespace LifeSubsMetro
             var width = screen.Width;
             this.mm = mm;
 
+            
+
             InitializeComponent();
 
+               
             this.Width = width;
             this.Height = 150;
             this.StartPosition = FormStartPosition.Manual;
@@ -175,7 +178,8 @@ namespace LifeSubsMetro
                         Console.WriteLine("th2 leeft");
                         th2.Abort();
                         th2.Join();
-                    }
+        }
+
                     break;
                 case "listener2":
                     Console.WriteLine("listener2 currently recording");
@@ -202,13 +206,10 @@ namespace LifeSubsMetro
             }
 
         }
-
         private void pictureBox1_Click(object sender, System.EventArgs e)
         {
             SettingsMenu sm = new SettingsMenu(this);
             sm.Show();
         }
-
-        
     }
 }
