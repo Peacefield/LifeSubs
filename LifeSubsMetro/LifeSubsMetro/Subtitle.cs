@@ -219,10 +219,8 @@ namespace LifeSubsMetro
 
         private void pictureBox1_Click(object sender, EventArgs e)
         {
-            
-            
+            SettingsMenu sm = new SettingsMenu(this);
+            sm.Show();
         }
-
-        
     }
 }

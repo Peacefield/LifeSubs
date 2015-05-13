@@ -19,6 +19,7 @@ namespace LifeSubsMetro
     {
         Thread updateUI = null;
         MainMenu mainMenu;
+        Subtitle sub;
         Settings settings;
         MicLevelListener mll;
 
@@ -27,7 +28,17 @@ namespace LifeSubsMetro
             this.mainMenu = mm;
             InitializeComponent();
             init();
-            //loadXML();
+
+            settings = new Settings();
+            loadSettings();
+        }
+
+        public SettingsMenu(Subtitle sub)
+        {
+            this.sub = sub;
+            InitializeComponent();
+            init();
+
             settings = new Settings();
             loadSettings();
         }
@@ -72,7 +83,8 @@ namespace LifeSubsMetro
         //Bring the main menu back when closing the settings
         private void SettingsMenu_FormClosing(object sender, FormClosingEventArgs e)
         {
-            mainMenu.BringToFront();
+            if (sub != null) sub.BringToFront();
+            if (mainMenu!= null) mainMenu.BringToFront();
             if (mll != null) mll.stop();
         }
 
