@@ -360,9 +360,9 @@ namespace LifeSubsMetro
             try
             {
                 if (this.tbOutput.InvokeRequired)
-                    this.tbOutput.Invoke((MethodInvoker)delegate { this.tbOutput.AppendText( result + "\r\n"); });
+                    this.tbOutput.Invoke((MethodInvoker)delegate { this.tbOutput.AppendText( result); });
                 else
-                    this.tbOutput.AppendText(result + "\r\n");
+                    this.tbOutput.AppendText( result );
             }
             catch (ObjectDisposedException)
             {
