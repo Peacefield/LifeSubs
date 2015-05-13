@@ -28,44 +28,75 @@
         /// </summary>
         private void InitializeComponent()
         {
-            this.metroTile1 = new MetroFramework.Controls.MetroTile();
+            this.label1 = new System.Windows.Forms.Label();
+            this.tbOutput = new System.Windows.Forms.TextBox();
+            this.volumeMeter = new System.Windows.Forms.ProgressBar();
+            this.sendNotificationPanel = new System.Windows.Forms.Panel();
             this.SuspendLayout();
             // 
-            // metroTile1
+            // label1
             // 
-            this.metroTile1.ActiveControl = null;
-            this.metroTile1.Location = new System.Drawing.Point(2, 7);
-            this.metroTile1.Name = "metroTile1";
-            this.metroTile1.Size = new System.Drawing.Size(83, 19);
-            this.metroTile1.TabIndex = 0;
-            this.metroTile1.Text = "metroTile1";
-            this.metroTile1.Theme = MetroFramework.MetroThemeStyle.Light;
-            this.metroTile1.UseSelectable = true;
-            this.metroTile1.Click += new System.EventHandler(this.metroTile1_Click);
+            this.label1.AutoSize = true;
+            this.label1.Location = new System.Drawing.Point(38, 15);
+            this.label1.Name = "label1";
+            this.label1.Size = new System.Drawing.Size(35, 13);
+            this.label1.TabIndex = 1;
+            this.label1.Text = "label1";
+            this.label1.TextChanged += new System.EventHandler(this.label1_TextChanged);
             // 
-            // Form1
+            // tbOutput
             // 
-            this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
-            this.SuspendLayout();
+            this.tbOutput.Font = new System.Drawing.Font("Microsoft Sans Serif", 15.75F, System.Drawing.FontStyle.Bold, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.tbOutput.Location = new System.Drawing.Point(24, 46);
+            this.tbOutput.Multiline = true;
+            this.tbOutput.Name = "tbOutput";
+            this.tbOutput.Size = new System.Drawing.Size(253, 231);
+            this.tbOutput.TabIndex = 4;
+            this.tbOutput.TextAlign = System.Windows.Forms.HorizontalAlignment.Center;
+            // 
+            // volumeMeter
+            // 
+            this.volumeMeter.ForeColor = System.Drawing.SystemColors.Desktop;
+            this.volumeMeter.Location = new System.Drawing.Point(77, 15);
+            this.volumeMeter.Maximum = 300;
+            this.volumeMeter.Name = "volumeMeter";
+            this.volumeMeter.Size = new System.Drawing.Size(200, 13);
+            this.volumeMeter.TabIndex = 5;
+            // 
+            // sendNotificationPanel
+            // 
+            this.sendNotificationPanel.BackColor = System.Drawing.Color.LightGreen;
+            this.sendNotificationPanel.Location = new System.Drawing.Point(23, 17);
+            this.sendNotificationPanel.Name = "sendNotificationPanel";
+            this.sendNotificationPanel.Size = new System.Drawing.Size(10, 10);
+            this.sendNotificationPanel.TabIndex = 6;
             // 
             // Subtitle
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(300, 300);
+            this.Controls.Add(this.sendNotificationPanel);
+            this.Controls.Add(this.volumeMeter);
+            this.Controls.Add(this.tbOutput);
+            this.Controls.Add(this.label1);
             this.MaximizeBox = false;
             this.Movable = false;
             this.Name = "Subtitle";
             this.Resizable = false;
             this.Style = MetroFramework.MetroColorStyle.Green;
-            this.Text = "Subtitle";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Subtitle_FormClosing);
+            this.Load += new System.EventHandler(this.Subtitle_Load);
             this.ResumeLayout(false);
+            this.PerformLayout();
 
         }
 
         #endregion
 
-        private MetroFramework.Controls.MetroTile metroTile1;
+        private System.Windows.Forms.Label label1;
+        private System.Windows.Forms.TextBox tbOutput;
+        private System.Windows.Forms.ProgressBar volumeMeter;
+        private System.Windows.Forms.Panel sendNotificationPanel;
     }
 }

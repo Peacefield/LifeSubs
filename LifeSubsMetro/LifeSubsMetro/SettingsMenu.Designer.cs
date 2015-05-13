@@ -35,7 +35,6 @@
             this.microphonePanel = new System.Windows.Forms.Panel();
             this.microphoneProgressBar = new MetroFramework.Controls.MetroProgressBar();
             this.fontPanel = new System.Windows.Forms.Panel();
-            this.fontComboBox = new LifeSubsMetro.FontComboBox();
             this.fontSizeComboBox = new MetroFramework.Controls.MetroComboBox();
             this.fontLabel = new System.Windows.Forms.Label();
             this.fontButton = new MetroFramework.Controls.MetroButton();
@@ -75,6 +74,7 @@
             this.linesTile = new MetroFramework.Controls.MetroTile();
             this.delayTile = new MetroFramework.Controls.MetroTile();
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
+            this.fontComboBox = new LifeSubsMetro.FontComboBox();
             this.microphonePanel.SuspendLayout();
             this.fontPanel.SuspendLayout();
             this.volumePanel.SuspendLayout();
@@ -129,7 +129,7 @@
             // microphoneProgressBar
             // 
             this.microphoneProgressBar.Location = new System.Drawing.Point(5, 72);
-            this.microphoneProgressBar.Minimum = 10;
+            this.microphoneProgressBar.Maximum = 300;
             this.microphoneProgressBar.Name = "microphoneProgressBar";
             this.microphoneProgressBar.Size = new System.Drawing.Size(191, 23);
             this.microphoneProgressBar.TabIndex = 3;
@@ -145,16 +145,6 @@
             this.fontPanel.Name = "fontPanel";
             this.fontPanel.Size = new System.Drawing.Size(200, 200);
             this.fontPanel.TabIndex = 4;
-            // 
-            // fontComboBox
-            // 
-            this.fontComboBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Append;
-            this.fontComboBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.fontComboBox.FormattingEnabled = true;
-            this.fontComboBox.Location = new System.Drawing.Point(5, 33);
-            this.fontComboBox.Name = "fontComboBox";
-            this.fontComboBox.Size = new System.Drawing.Size(130, 23);
-            this.fontComboBox.TabIndex = 6;
             // 
             // fontSizeComboBox
             // 
@@ -235,7 +225,7 @@
             this.subtitleColorLabel.AutoSize = true;
             this.subtitleColorLabel.Location = new System.Drawing.Point(4, 83);
             this.subtitleColorLabel.Name = "subtitleColorLabel";
-            this.subtitleColorLabel.Size = new System.Drawing.Size(101, 19);
+            this.subtitleColorLabel.Size = new System.Drawing.Size(102, 19);
             this.subtitleColorLabel.TabIndex = 8;
             this.subtitleColorLabel.Text = "Kleur ondertitel:";
             // 
@@ -434,7 +424,7 @@
             this.metroLabel2.AutoSize = true;
             this.metroLabel2.Location = new System.Drawing.Point(5, 50);
             this.metroLabel2.Name = "metroLabel2";
-            this.metroLabel2.Size = new System.Drawing.Size(71, 19);
+            this.metroLabel2.Size = new System.Drawing.Size(72, 19);
             this.metroLabel2.TabIndex = 10;
             this.metroLabel2.Text = "Ondertitel:";
             // 
@@ -563,16 +553,24 @@
             this.delayTile.UseTileImage = true;
             this.delayTile.Click += new System.EventHandler(this.delayTile_Click);
             // 
+            // fontComboBox
+            // 
+            this.fontComboBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Append;
+            this.fontComboBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.fontComboBox.FormattingEnabled = true;
+            this.fontComboBox.Location = new System.Drawing.Point(5, 33);
+            this.fontComboBox.Name = "fontComboBox";
+            this.fontComboBox.Size = new System.Drawing.Size(130, 23);
+            this.fontComboBox.TabIndex = 6;
+            // 
             // SettingsMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(647, 506);
-            this.Controls.Add(this.microphoneTile);
             this.Controls.Add(this.linesTile);
             this.Controls.Add(this.delayTile);
             this.Controls.Add(this.languageTile);
-            this.Controls.Add(this.microphonePanel);
             this.Controls.Add(this.volumePanel);
             this.Controls.Add(this.languagePanel);
             this.Controls.Add(this.delayPanel);
@@ -580,6 +578,8 @@
             this.Controls.Add(this.savePanel);
             this.Controls.Add(this.fontTile);
             this.Controls.Add(this.fontPanel);
+            this.Controls.Add(this.microphoneTile);
+            this.Controls.Add(this.microphonePanel);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.Name = "SettingsMenu";

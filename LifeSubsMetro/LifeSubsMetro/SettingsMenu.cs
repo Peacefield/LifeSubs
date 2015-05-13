@@ -20,6 +20,7 @@ namespace LifeSubsMetro
         Thread updateUI = null;
         MainMenu mainMenu;
         Settings settings;
+        MicLevelListener mll;
 
         public SettingsMenu(MainMenu mm)
         {
@@ -80,6 +81,8 @@ namespace LifeSubsMetro
         //Call displaytiles() for the concerning tile
         private void microphoneTile_Click(object sender, EventArgs e) //Microphone tile
         {
+            mll = new MicLevelListener(this);
+            mll.listenToStream();
             displayTiles("mic");
         }
         private void fontTile_Click(object sender, EventArgs e) //Font tile
@@ -146,6 +149,7 @@ namespace LifeSubsMetro
         private void microphoneButton_Click(object sender, EventArgs e)  //Microphone tile
         {
             save();
+            mll.stop();
             microphoneTile.Visible = true;
         }
         private void fontButton_Click(object sender, EventArgs e) //Font tile
@@ -400,6 +404,23 @@ namespace LifeSubsMetro
 
             //load the language tile
             applicationLanguageComboBox.Text = settings.appLanguage;
+        }
+
+        public void setVolumeMeter(int amp)
+        {
+            Console.WriteLine("setvolumemeter");
+            amp = amp + 150;
+            if (this.microphoneProgressBar.InvokeRequired)
+            {
+                try
+                {
+                    this.microphoneProgressBar.Invoke((MethodInvoker)delegate { this.microphoneProgressBar.Value = amp; });
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e);
+                }
+            }
         }
     }
 }
