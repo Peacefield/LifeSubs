@@ -21,7 +21,7 @@ namespace LifeSubsMetro
         Listener listener1 = null;
         Listener listener2 = null;
         String currentListener;
-        int deviceNumber = 0;
+        int deviceNumber = 1;
 
         public Subtitle(MainMenu mm)
         {
@@ -29,10 +29,7 @@ namespace LifeSubsMetro
             var width = screen.Width;
             this.mm = mm;
 
-            
-
             InitializeComponent();
-
                
             this.Width = width;
             this.Height = 150;
@@ -59,6 +56,7 @@ namespace LifeSubsMetro
 
         private void Subtitle_FormClosing(object sender, FormClosingEventArgs e)
         {
+            stop();
             mm.Visible = true;
             mll.stop();
         }
@@ -136,6 +134,10 @@ namespace LifeSubsMetro
                 Console.WriteLine("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!send!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
                 send();
             }
+            else if (label1.Text == "leeg")
+            {
+                empty();
+            }
         }
 
         public void setLabel(String text)
@@ -152,6 +154,36 @@ namespace LifeSubsMetro
         {
             if (listener1 != null) listener1.stop();
             if (listener2 != null) listener2.stop();
+        }
+
+        public void empty()
+        {
+            switch (currentListener)
+            {
+                case "listener1":
+                    //Set next listener
+                    currentListener = "listener2";
+                    //Create next listener
+                    listener2 = new Listener(deviceNumber, currentListener, this);
+                    //Start next listener
+                    listener2.startRecording();
+
+                    Console.WriteLine("listener1 currently recording");
+                    listener1.stop();
+
+                    break;
+                case "listener2":
+                    Console.WriteLine("listener2 currently recording");
+                    //Set next listener
+                    currentListener = "listener1";
+                    //Create next listener
+                    listener1 = new Listener(deviceNumber, currentListener, this);
+                    //Start next listener
+                    listener1.startRecording();
+                    listener2.stop();
+
+                    break;
+            }
         }
 
         public void send()
@@ -178,7 +210,7 @@ namespace LifeSubsMetro
                         Console.WriteLine("th2 leeft");
                         th2.Abort();
                         th2.Join();
-        }
+                    }
 
                     break;
                 case "listener2":
@@ -210,6 +242,11 @@ namespace LifeSubsMetro
         {
             SettingsMenu sm = new SettingsMenu(this);
             sm.Show();
+        }
+
+        public void changeFontSize(int size)
+        {
+            this.tbOutput.Font = new Font(tbOutput.Font.FontFamily, size);
         }
     }
 }

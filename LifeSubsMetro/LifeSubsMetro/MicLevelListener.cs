@@ -19,7 +19,7 @@ namespace LifeSubsMetro
         WaveIn waveIn;
         Subtitle subtitleForm = null;
         SettingsMenu settingsMenu = null;
-        Thread act;
+        //Thread act;
         Boolean canSend = false;
         int count = 0;
 
@@ -75,8 +75,10 @@ namespace LifeSubsMetro
 
             //1 increment is 1/10th of a second
             //Check if the sound level is between -20 and 20, which means speaker is silent
-            if ((i < max) || (i < min))
+            //if ((i < max) || (i < min))
+            if (i < max && i > min)
             {
+                Console.WriteLine("i is --------- " + i);
                 //If the sound level is low enough, add 1 to the count variable
                 if (subtitleForm != null) subtitleForm.setVolumeMeter(i);
                 if (settingsMenu != null) settingsMenu.setVolumeMeter(i);
@@ -96,23 +98,25 @@ namespace LifeSubsMetro
             //If no sound has been recorded for ... seconds, send audio to server
             if (count > sec)
             {
+                if (subtitleForm == null) return;
                 count = 0;
                 if (canSend)
                 {
                     //HTTP request has to be sent from here!!
                     //Count variable should be set to 0
                     canSend = false;
-                    if (subtitleForm == null) return;
                     Console.WriteLine("<<<<<<<<< Kan sturen >>>>>>>>>>>>");
                     
                     subtitleForm.setSendNoti(Color.Red);
                     subtitleForm.setLabel("send");
                     Console.WriteLine("\\\\\\\\\\\\\\\\\\\\\\ Is verstuurd ///////////////////////////");
                 }
-                //else
-                //{
-                //    count = 0;
-                //}
+                else
+                {
+                    subtitleForm.setSendNoti(Color.Yellow);
+                    subtitleForm.setLabel("leeg");
+                    subtitleForm.setSendNoti(Color.LightGreen);
+                }
 
             }
         }
@@ -137,12 +141,6 @@ namespace LifeSubsMetro
                 //We only want the first byte from the array, so the loop can be cut off 
                 break;
             }
-
-            //if (act.IsAlive)
-            //{
-            //    act.Abort();
-            //    act.Join();
-            //}
         }
 
         public void waveIn_DataAvailable(object sender, WaveInEventArgs e)

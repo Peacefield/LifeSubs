@@ -46,27 +46,6 @@ namespace LifeSubsMetro
         #region Initiate
         private void init() //Load on start
         {   
-            //Load Font sizes
-            fontSizeComboBox.Items.Add(6);
-            fontSizeComboBox.Items.Add(8);
-            fontSizeComboBox.Items.Add(10);
-            fontSizeComboBox.Items.Add(12);
-            fontSizeComboBox.Items.Add(14);
-            fontSizeComboBox.Items.Add(16);
-
-            //Load Subtitle number of lines
-            subtitleLinesComboBox.Items.Add(1);
-            subtitleLinesComboBox.Items.Add(2);
-            subtitleLinesComboBox.Items.Add(3);
-            subtitleLinesComboBox.Items.Add(4);
-
-            //Load Languages of subtitling and the application
-            subtitleLanguageComboBox.Items.Add("Nederlands");
-            subtitleLanguageComboBox.Items.Add("Engels");
-            subtitleLanguageComboBox.Items.Add("Duits");
-            subtitleLanguageComboBox.Items.Add("Frans");
-            applicationLanguageComboBox.Items.Add("Nederlands");
-
             //Load Input devices
             List<NAudio.Wave.WaveInCapabilities> sources = new List<NAudio.Wave.WaveInCapabilities>();
 
@@ -86,6 +65,11 @@ namespace LifeSubsMetro
             if (sub != null) sub.BringToFront();
             if (mainMenu!= null) mainMenu.BringToFront();
             if (mll != null) mll.stop();
+
+            if (sub != null)
+            {
+                sub.changeFontSize(10);
+            }
         }
 
         #endregion Initiate
@@ -325,13 +309,13 @@ namespace LifeSubsMetro
         //When clicking on the path button open a SaveFileDialog with a predifined save format
         private void pathButton_Click(object sender, EventArgs e)
         {
-        SaveFileDialog sfd = new SaveFileDialog();
-        sfd.FileName = "Log";
-        sfd.AddExtension = true;
-        sfd.DefaultExt = "txt";
-        sfd.Filter = "Text(*.txt)|*.*";
-        sfd.ShowDialog();
-        pathTextBox.Text = sfd.FileName;
+            SaveFileDialog sfd = new SaveFileDialog();
+            sfd.FileName = "Log";
+            sfd.AddExtension = true;
+            sfd.DefaultExt = "txt";
+            sfd.Filter = "Text(*.txt)|*.*";
+            sfd.ShowDialog();
+            pathTextBox.Text = sfd.FileName;
         }
 
         #endregion Log Path

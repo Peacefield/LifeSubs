@@ -157,6 +157,13 @@
             this.fontSizeComboBox.Size = new System.Drawing.Size(54, 29);
             this.fontSizeComboBox.TabIndex = 3;
             this.fontSizeComboBox.UseSelectable = true;
+            this.fontSizeComboBox.Items.AddRange(new object[] {
+            "6",
+            "8",
+            "10",
+            "12",
+            "14",
+            "16"});
             // 
             // fontLabel
             // 
@@ -249,6 +256,11 @@
             this.subtitleLinesComboBox.Size = new System.Drawing.Size(54, 29);
             this.subtitleLinesComboBox.TabIndex = 6;
             this.subtitleLinesComboBox.UseSelectable = true;
+            this.subtitleLinesComboBox.Items.AddRange(new object[] {
+            "1",
+            "2",
+            "3",
+            "4"});
             // 
             // linesLabel
             // 
@@ -410,6 +422,8 @@
             this.applicationLanguageComboBox.Size = new System.Drawing.Size(107, 29);
             this.applicationLanguageComboBox.TabIndex = 12;
             this.applicationLanguageComboBox.UseSelectable = true;
+            this.applicationLanguageComboBox.Items.AddRange(new object[] {
+            "Nederlands"});
             // 
             // metroLabel3
             // 
@@ -438,6 +452,11 @@
             this.subtitleLanguageComboBox.Size = new System.Drawing.Size(107, 29);
             this.subtitleLanguageComboBox.TabIndex = 2;
             this.subtitleLanguageComboBox.UseSelectable = true;
+            this.subtitleLanguageComboBox.Items.AddRange(new object[] {
+            "Nederlands",
+            "Engels",
+            "Duits",
+            "Frans"});
             // 
             // label3
             // 
