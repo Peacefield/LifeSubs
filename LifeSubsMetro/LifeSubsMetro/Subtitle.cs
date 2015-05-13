@@ -22,15 +22,20 @@ namespace LifeSubsMetro
         Listener listener2 = null;
         String currentListener;
         int deviceNumber = 0;
+        
+        
 
         public Subtitle(MainMenu mm)
         {
             var screen = System.Windows.Forms.Screen.PrimaryScreen.Bounds;
             var width = screen.Width;
             this.mm = mm;
+           
+            
 
             InitializeComponent();
-
+          
+               
             this.Width = width;
             this.Height = 150;
             this.StartPosition = FormStartPosition.Manual;
@@ -210,6 +215,12 @@ namespace LifeSubsMetro
                     break;
             }
 
+        }
+
+        private void pictureBox1_Click(object sender, EventArgs e)
+        {
+            
+            
         }
 
         

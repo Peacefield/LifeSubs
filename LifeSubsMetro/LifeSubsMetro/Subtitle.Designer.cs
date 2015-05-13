@@ -32,6 +32,8 @@
             this.tbOutput = new System.Windows.Forms.TextBox();
             this.volumeMeter = new System.Windows.Forms.ProgressBar();
             this.sendNotificationPanel = new System.Windows.Forms.Panel();
+            this.settingsPB = new System.Windows.Forms.PictureBox();
+            ((System.ComponentModel.ISupportInitialize)(this.settingsPB)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -71,11 +73,25 @@
             this.sendNotificationPanel.Size = new System.Drawing.Size(10, 10);
             this.sendNotificationPanel.TabIndex = 6;
             // 
+            // settingsPB
+            // 
+            this.settingsPB.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.settingsPB.Image = global::LifeSubsMetro.Properties.Resources._1428589893_engineering_48;
+            this.settingsPB.Location = new System.Drawing.Point(225, 10);
+            this.settingsPB.Margin = new System.Windows.Forms.Padding(2, 2, 2, 2);
+            this.settingsPB.Name = "settingsPB";
+            this.settingsPB.Size = new System.Drawing.Size(13, 14);
+            this.settingsPB.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.settingsPB.TabIndex = 7;
+            this.settingsPB.TabStop = false;
+            this.settingsPB.Click += new System.EventHandler(this.pictureBox1_Click);
+            // 
             // Subtitle
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(300, 300);
+            this.Controls.Add(this.settingsPB);
             this.Controls.Add(this.sendNotificationPanel);
             this.Controls.Add(this.volumeMeter);
             this.Controls.Add(this.tbOutput);
@@ -87,6 +103,7 @@
             this.Style = MetroFramework.MetroColorStyle.Green;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Subtitle_FormClosing);
             this.Load += new System.EventHandler(this.Subtitle_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.settingsPB)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -98,5 +115,6 @@
         private System.Windows.Forms.TextBox tbOutput;
         private System.Windows.Forms.ProgressBar volumeMeter;
         private System.Windows.Forms.Panel sendNotificationPanel;
+        private System.Windows.Forms.PictureBox settingsPB;
     }
 }
