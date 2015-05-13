@@ -158,7 +158,6 @@
             this.fontSizeComboBox.TabIndex = 3;
             this.fontSizeComboBox.UseSelectable = true;
             this.fontSizeComboBox.Items.AddRange(new object[] {
-            "16",
             "18",
             "20",
             "22",

@@ -22,36 +22,112 @@ namespace LifeSubsMetro
         Listener listener1 = null;
         Listener listener2 = null;
         String currentListener;
+        Settings settings;
         int deviceNumber = 0;
         string path = @"C:\audiotest";
+        int lines;
 
         public Subtitle(MainMenu mm)
         {
             InitializeComponent();
 
             createDir();
+            setStyle();
             this.mm = mm;
             var screen = System.Windows.Forms.Screen.PrimaryScreen.Bounds;
             var width = screen.Width;
-
             this.Width = width;
-            this.Height = 200;
+            this.tbOutput.Width = width - 40;
             this.StartPosition = FormStartPosition.Manual;
-            this.Location = new Point(0, Screen.PrimaryScreen.Bounds.Height - this.Height);
             this.TopMost = true;
             
-            this.tbOutput.Width = width - 40;
-            this.tbOutput.Height = this.Height - 50;
-
-            setStyle();
         }
 
         public void setStyle()
         {
-            Settings settings = new Settings();
+            settings = new Settings();
+            int additionalSpacing;
+
             this.tbOutput.Font = new Font(settings.font, settings.fontsize);
             this.tbOutput.BackColor = settings.bgColor;
             this.tbOutput.ForeColor = settings.subColor;
+            this.lines = settings.lines;
+
+            additionalSpacing = calcAdditionalSpacing(this.tbOutput.Font);
+
+            int fontsize = Int32.Parse(tbOutput.Font.Size.ToString());
+            this.tbOutput.Height = (fontsize * lines) + additionalSpacing;
+            this.Height = tbOutput.Height + 50;
+            this.Location = new Point(0, Screen.PrimaryScreen.Bounds.Height - this.Height);
+        }
+        
+        private int calcAdditionalSpacing(Font font)
+        {
+            int additionalSpacing = 40;
+
+            switch (font.Name)
+            {
+                case "Arial": 
+                    if (font.Size < 24)
+                    {
+                        additionalSpacing = 40;
+                    }
+                    else if(font.Size == 24)
+                    {
+                        additionalSpacing = 60;
+                    }
+                    else
+                    {
+                        additionalSpacing = 70;
+                    }
+
+                    if (lines == 1) additionalSpacing -= 10;
+                    break;
+                case "Calibri":
+                    if (font.Size < 24)
+                    {
+                        additionalSpacing = 50;
+                    }
+                    else if (font.Size == 24)
+                    {
+                        additionalSpacing = 60;
+                    }
+                    else
+                    {
+                        additionalSpacing = 70;
+                    }
+
+                    if (lines == 4) additionalSpacing += 15;
+                    if (lines == 1) additionalSpacing -= 10;
+
+                    break;
+                case "Constantia":
+                    additionalSpacing = 40;
+                    break;
+                case "Georgia":
+                    additionalSpacing = 40;
+                    break;
+                case "Gill Sans MT":
+                    additionalSpacing = 40;
+                    break;
+                case "Impact":
+                    additionalSpacing = 40;
+                    break;
+                case "Rockwell":
+                    additionalSpacing = 40;
+                    break;
+                case "Segoe WP":
+                    additionalSpacing = 40;
+                    break;
+                case "Times New Roman":
+                    additionalSpacing = 40;
+                    break;
+                case "Verdana":
+                    additionalSpacing = 40;
+                    break;
+            }
+
+            return additionalSpacing;
         }
 
         #region Directory Handling
