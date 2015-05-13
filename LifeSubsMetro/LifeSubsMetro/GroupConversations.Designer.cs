@@ -28,12 +28,11 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle2 = new System.Windows.Forms.DataGridViewCellStyle();
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
-            this.tbInput = new MetroFramework.Controls.MetroTextBox();
             this.dataGridOutput = new System.Windows.Forms.DataGridView();
             this.imgColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.msgColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.tbInput = new MetroFramework.Controls.MetroTextBox();
             this.label1 = new System.Windows.Forms.Label();
             this.friendIpTextBox = new System.Windows.Forms.TextBox();
             this.label2 = new System.Windows.Forms.Label();
@@ -46,6 +45,56 @@
             ((System.ComponentModel.ISupportInitialize)(this.dataGridOutput)).BeginInit();
             this.ipLabel = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
+            // 
+            // dataGridOutput
+            // 
+            this.dataGridOutput.AllowUserToResizeColumns = false;
+            this.dataGridOutput.AllowUserToResizeRows = false;
+            this.dataGridOutput.AllowUserToDeleteRows = false;
+            this.dataGridOutput.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
+            this.dataGridOutput.BackgroundColor = System.Drawing.SystemColors.Window;
+            this.dataGridOutput.BorderStyle = System.Windows.Forms.BorderStyle.None;
+            this.dataGridOutput.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.RaisedHorizontal;
+            this.dataGridOutput.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
+            this.dataGridOutput.ColumnHeadersVisible = false;
+            this.dataGridOutput.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.imgColumn,
+            this.msgColumn});
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.Transparent;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataGridOutput.DefaultCellStyle = dataGridViewCellStyle1;
+            this.dataGridOutput.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
+            this.dataGridOutput.EnableHeadersVisualStyles = false;
+            this.dataGridOutput.Location = new System.Drawing.Point(23, 63);
+            this.dataGridOutput.Name = "dataGridOutput";
+            this.dataGridOutput.ReadOnly = true;
+            this.dataGridOutput.RowHeadersVisible = false;
+            this.dataGridOutput.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
+            this.dataGridOutput.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
+            this.dataGridOutput.Size = new System.Drawing.Size(974, 362);
+            this.dataGridOutput.TabIndex = 3;
+            // 
+            // imgColumn
+            // 
+            this.imgColumn.DividerWidth = 0;
+            this.imgColumn.HeaderText = "imgColumn";
+            this.imgColumn.Name = "imgColumn";
+            this.imgColumn.ReadOnly = true;
+            this.imgColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
+            this.imgColumn.Width = 200;
+            // 
+            // msgColumn
+            // 
+            this.msgColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
+            this.msgColumn.HeaderText = "msgColumn";
+            this.msgColumn.Name = "msgColumn";
+            this.msgColumn.ReadOnly = true;
+            this.msgColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
             // 
             // tbInput
             // 
@@ -60,68 +109,6 @@
             this.tbInput.Size = new System.Drawing.Size(858, 59);
             this.tbInput.TabIndex = 1;
             this.tbInput.UseSelectable = true;
-            // 
-            // sendTile
-            // 
-            this.sendTile.ActiveControl = null;
-            this.sendTile.Location = new System.Drawing.Point(885, 483);
-            this.sendTile.Name = "sendTile";
-            this.sendTile.Size = new System.Drawing.Size(112, 59);
-            this.sendTile.TabIndex = 2;
-            this.sendTile.Text = "Verzend";
-            this.sendTile.UseSelectable = true;
-            this.sendTile.Click += new System.EventHandler(this.sendTile_Click);
-            // 
-            // dataGridOutput
-            // 
-            this.dataGridOutput.AllowUserToDeleteRows = false;
-            this.dataGridOutput.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
-            this.dataGridOutput.BackgroundColor = System.Drawing.SystemColors.Window;
-            this.dataGridOutput.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.dataGridOutput.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
-            this.dataGridOutput.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
-            this.dataGridOutput.ColumnHeadersVisible = false;
-            this.dataGridOutput.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.imgColumn,
-            this.msgColumn});
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.Transparent;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.Color.Transparent;
-
-            dataGridViewCellStyle2.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleLeft;
-            dataGridViewCellStyle2.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle2.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle2.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle2.SelectionBackColor = System.Drawing.Color.Transparent;
-            dataGridViewCellStyle2.SelectionForeColor = System.Drawing.Color.Transparent;
-            dataGridViewCellStyle2.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataGridOutput.DefaultCellStyle = dataGridViewCellStyle2;
-            this.dataGridOutput.EditMode = System.Windows.Forms.DataGridViewEditMode.EditProgrammatically;
-            this.dataGridOutput.EnableHeadersVisualStyles = false;
-            this.dataGridOutput.Location = new System.Drawing.Point(23, 63);
-            this.dataGridOutput.Name = "dataGridOutput";
-            this.dataGridOutput.ReadOnly = true;
-            this.dataGridOutput.RowHeadersVisible = false;
-            this.dataGridOutput.Size = new System.Drawing.Size(974, 362);
-            this.dataGridOutput.TabIndex = 3;
-            // 
-            // imgColumn
-            // 
-            this.imgColumn.DefaultCellStyle = dataGridViewCellStyle1;
-            this.imgColumn.DividerWidth = 1;
-            this.imgColumn.HeaderText = "imgColumn";
-            this.imgColumn.Name = "imgColumn";
-            this.imgColumn.ReadOnly = true;
-            this.imgColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
-            this.imgColumn.Width = 200;
-            // 
-            // msgColumn
-            // 
-            this.msgColumn.AutoSizeMode = System.Windows.Forms.DataGridViewAutoSizeColumnMode.Fill;
-            this.msgColumn.HeaderText = "msgColumn";
-            this.msgColumn.Name = "msgColumn";
-            this.msgColumn.ReadOnly = true;
-            this.msgColumn.Resizable = System.Windows.Forms.DataGridViewTriState.True;
             // 
             // label1
             // 
@@ -188,6 +175,17 @@
             this.label4.Size = new System.Drawing.Size(62, 13);
             this.label4.TabIndex = 12;
             this.label4.Text = "Ander poort";
+            // 
+            // sendTile
+            // 
+            this.sendTile.ActiveControl = null;
+            this.sendTile.Location = new System.Drawing.Point(885, 483);
+            this.sendTile.Name = "sendTile";
+            this.sendTile.Size = new System.Drawing.Size(112, 59);
+            this.sendTile.TabIndex = 2;
+            this.sendTile.Text = "Verzend";
+            this.sendTile.UseSelectable = true;
+            this.sendTile.Click += new System.EventHandler(this.sendTile_Click);
             // 
             // ipLabel
             // 

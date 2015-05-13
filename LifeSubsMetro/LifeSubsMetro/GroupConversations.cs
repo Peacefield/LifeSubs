@@ -39,11 +39,11 @@ namespace LifeSubsMetro
             ownPort.Text = "11000";
             otherPort.Text = "11001";
             //populating listView:
-            Font font = new System.Drawing.Font("Georgia", 15);
 
-            dataGridOutput.DefaultCellStyle.Font =
-                new Font(font, FontStyle.Regular);
+            Font font = new System.Drawing.Font("Impact", 15);
+            dataGridOutput.DefaultCellStyle.Font = new Font(font, FontStyle.Regular);
             dataGridOutput.Columns[0].DefaultCellStyle.Font = new System.Drawing.Font(dataGridOutput.DefaultCellStyle.Font.ToString(), 50);
+
 
             //populating listView:
             //    addMessage("FOTO", "BERICHT", Color.Orange);
@@ -90,7 +90,7 @@ namespace LifeSubsMetro
 
         }
 
-        
+
 
         private void addMessage(string sender, string msg, Color c)
         {
@@ -117,19 +117,19 @@ namespace LifeSubsMetro
 
         private void sendTile_Click(object sender, EventArgs e)
         {
-            addMessage(tbInput.Text, Color.PowderBlue);
-        }
-
+                addMessage(tbInput.Text, Color.PowderBlue);
+            }
+                
 
         private void startBtn_Click(object sender, EventArgs e)
         {
-            
 
 
 
-        }
 
-        
+            }
+
+
         
     }
 }
