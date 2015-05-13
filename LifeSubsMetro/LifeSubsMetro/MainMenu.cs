@@ -87,6 +87,8 @@ namespace LifeSubsMetro
             this.tileExit.Style = MetroFramework.MetroColorStyle.Green;
         }
 
+        #endregion
+
         private void tileJoinRoom_Click(object sender, EventArgs e)
         {
             this.tileJoinRoom.Visible = false;
@@ -101,9 +103,6 @@ namespace LifeSubsMetro
             this.Visible = false;
             groupWindow.Visible = true;
         }
-
-
-        #endregion
 
         private void tileSettings_Click(object sender, EventArgs e)
         {

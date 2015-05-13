@@ -367,7 +367,7 @@ namespace LifeSubsMetro
             catch (ObjectDisposedException)
             {
                 Console.WriteLine("Textbox niet kunnen vinden");
-                Console.WriteLine(result);
+                Console.WriteLine(result); //Misschien wel toevoegen aan log?
             }
         }
 
@@ -429,11 +429,11 @@ namespace LifeSubsMetro
 
         private void label1_TextChanged(object sender, EventArgs e)
         {
-            Console.WriteLine("NIEUWE LABEL TEXT = " + label1.Text);
+            //Console.WriteLine("NIEUWE LABEL TEXT = " + label1.Text);
             if (label1.Text == "send")
             {
-                Console.WriteLine("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!send!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
                 send();
+                Console.WriteLine("\\\\\\\\\\\\\\\\\\\\\\ Is verstuurd ///////////////////////////");
             }
             else if (label1.Text == "leeg")
             {
@@ -453,6 +453,7 @@ namespace LifeSubsMetro
             switch (currentListener)
             {
                 case "listener1":
+                    Console.WriteLine("listener1 currently recording");
                     //Set next listener
                     currentListener = "listener2";
                     //Create next listener
@@ -460,7 +461,7 @@ namespace LifeSubsMetro
                     //Start next listener
                     listener2.startRecording();
 
-                    Console.WriteLine("listener1 currently recording");
+                    Console.WriteLine("Stop listener1");
                     listener1.stop();
 
                     break;
@@ -472,6 +473,8 @@ namespace LifeSubsMetro
                     listener1 = new Listener(deviceNumber, currentListener, this);
                     //Start next listener
                     listener1.startRecording();
+
+                    Console.WriteLine("Stop listener2");
                     listener2.stop();
 
                     break;
@@ -483,15 +486,16 @@ namespace LifeSubsMetro
             switch (currentListener)
             {
                 case "listener1":
+                    Console.WriteLine("listener1 currently recording");
                     //Set next listener
                     currentListener = "listener2";
                     //Create next listener
                     listener2 = new Listener(deviceNumber, currentListener, this);
                     //Start next listener
                     listener2.startRecording();
-                    
-                    Console.WriteLine("listener1 currently recording");
+                    Console.WriteLine("Stop listener1");
                     listener1.stop();
+
                     th = new Thread(listener1.request);
                     th.Start();
                     while (!th.IsAlive) ;
@@ -513,6 +517,7 @@ namespace LifeSubsMetro
                     listener1 = new Listener(deviceNumber, currentListener, this);
                     //Start next listener
                     listener1.startRecording();
+                    Console.WriteLine("Stop listener2");
                     listener2.stop();
 
                     th2 = new Thread(listener2.request);

@@ -399,8 +399,8 @@ namespace LifeSubsMetro
             pathTextBox.Text = settings.savePath;
 
             //load the delay tile
-            delayLabel.Text = settings.delay.ToString();
             delayTrackBar.Value = settings.delay;
+            delayLabel.Text = delayTrackBar.Value.ToString();
 
             //load the language tile
             subtitleLanguageComboBox.Text = settings.subLanguage;
@@ -444,6 +444,66 @@ namespace LifeSubsMetro
         {
             if (microphoneTile.Visible == false) return;
             if (mll != null) mll.stop();
+        }
+
+        private void microphoneTile_MouseEnter(object sender, EventArgs e)
+        {
+            this.microphoneTile.Style = MetroFramework.MetroColorStyle.Teal;
+        }
+
+        private void microphoneTile_MouseLeave(object sender, EventArgs e)
+        {
+            this.microphoneTile.Style = MetroFramework.MetroColorStyle.Default;
+        }
+
+        private void delayTile_MouseLeave(object sender, System.EventArgs e)
+        {
+            this.delayTile.Style = MetroFramework.MetroColorStyle.Default;
+        }
+
+        private void delayTile_MouseEnter(object sender, System.EventArgs e)
+        {
+            this.delayTile.Style = MetroFramework.MetroColorStyle.Teal;
+        }
+
+        private void linesTile_MouseLeave(object sender, System.EventArgs e)
+        {
+            this.linesTile.Style = MetroFramework.MetroColorStyle.Default;
+        }
+
+        private void linesTile_MouseEnter(object sender, System.EventArgs e)
+        {
+            this.linesTile.Style = MetroFramework.MetroColorStyle.Teal;
+        }
+
+        private void saveTile_MouseLeave(object sender, System.EventArgs e)
+        {
+            this.saveTile.Style = MetroFramework.MetroColorStyle.Default;
+        }
+
+        private void saveTile_MouseEnter(object sender, System.EventArgs e)
+        {
+            this.saveTile.Style = MetroFramework.MetroColorStyle.Teal;
+        }
+
+        private void fontTile_MouseLeave(object sender, System.EventArgs e)
+        {
+            this.fontTile.Style = MetroFramework.MetroColorStyle.Default;
+        }
+
+        private void fontTile_MouseEnter(object sender, System.EventArgs e)
+        {
+            this.fontTile.Style = MetroFramework.MetroColorStyle.Teal;
+        }
+
+        private void languageTile_MouseLeave(object sender, System.EventArgs e)
+        {
+            this.languageTile.Style = MetroFramework.MetroColorStyle.Default;
+        }
+
+        private void languageTile_MouseEnter(object sender, System.EventArgs e)
+        {
+            this.languageTile.Style = MetroFramework.MetroColorStyle.Teal;
         }
     }
 }
