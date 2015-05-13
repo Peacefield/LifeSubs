@@ -59,6 +59,8 @@
     <Reference Include="System.Xml" />
   </ItemGroup>
   <ItemGroup>
+    <Compile Include="IMClient.cs" />
+    <Compile Include="IMEvents.cs" />
     <Compile Include="Listener.cs" />
     <Compile Include="MainMenu.cs">
       <SubType>Form</SubType>

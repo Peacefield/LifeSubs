@@ -3,7 +3,7 @@ using System.Collections.Generic;
 using System.Linq;
 using System.Text;
 
-namespace InstantMessenger
+namespace LifeSubsMetro
 {
     public enum IMError : byte
     {

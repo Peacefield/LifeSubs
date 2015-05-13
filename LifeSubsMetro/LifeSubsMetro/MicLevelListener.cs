@@ -62,8 +62,9 @@ namespace LifeSubsMetro
 
         private void countLowVoiceLevelBits(int i)
         {
-            int min = -15;
-            int max = 15;
+            int min = -100;
+            int max = 100;
+
             int sec = 15;
 
             //1 increment is 1/10th of a second

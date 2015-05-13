@@ -10,7 +10,7 @@ using System.Security.Cryptography;
 using System.Net.Security;
 using System.Security.Cryptography.X509Certificates;
 
-namespace InstantMessenger
+namespace LifeSubsMetro
 {
     public class IMClient
     {
@@ -29,8 +29,9 @@ namespace InstantMessenger
         public string Password { get { return _pass; } }
 
         // Start connection thread and login or register.
-        void connect(string user, string password, bool register)
+        public void connect(string user, string password, bool register)
         {
+            Console.WriteLine("CONNECT IMCLIENT");
             if (!_conn)
             {
                 _conn = true;
@@ -83,7 +84,7 @@ namespace InstantMessenger
         public event EventHandler Disconnected;
         public event IMAvailEventHandler UserAvailable;
         public event IMReceivedEventHandler MessageReceived;
-        
+
         virtual protected void OnLoginOK()
         {
             if (LoginOK != null)
@@ -120,14 +121,14 @@ namespace InstantMessenger
                 MessageReceived(this, e);
         }
 
-        
+
         TcpClient client;
         NetworkStream netStream;
         SslStream ssl;
         BinaryReader br;
         BinaryWriter bw;
 
-        void SetupConn()  // Setup connection and login
+        public void SetupConn()  // Setup connection and login
         {
             client = new TcpClient(Server, Port);  // Connect to the server.
             netStream = client.GetStream();
@@ -222,7 +223,7 @@ namespace InstantMessenger
         public const byte IM_IsAvailable = 8;  // Is user available?
         public const byte IM_Send = 9;         // Send message
         public const byte IM_Received = 10;    // Message received
-        
+
         public static bool ValidateCert(object sender, X509Certificate certificate, X509Chain chain, SslPolicyErrors sslPolicyErrors)
         {
             // Uncomment this lines to disallow untrusted certificates.

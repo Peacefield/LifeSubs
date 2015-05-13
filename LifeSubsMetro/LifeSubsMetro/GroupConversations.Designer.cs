@@ -42,15 +42,19 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.sendTile = new MetroFramework.Controls.MetroTile();
-            ((System.ComponentModel.ISupportInitialize)(this.dataGridOutput)).BeginInit();
             this.ipLabel = new System.Windows.Forms.TextBox();
+            this.usnBox = new System.Windows.Forms.TextBox();
+            this.label5 = new System.Windows.Forms.Label();
+            this.label6 = new System.Windows.Forms.Label();
+            this.button1 = new System.Windows.Forms.Button();
+            ((System.ComponentModel.ISupportInitialize)(this.dataGridOutput)).BeginInit();
             this.SuspendLayout();
             // 
             // dataGridOutput
             // 
+            this.dataGridOutput.AllowUserToDeleteRows = false;
             this.dataGridOutput.AllowUserToResizeColumns = false;
             this.dataGridOutput.AllowUserToResizeRows = false;
-            this.dataGridOutput.AllowUserToDeleteRows = false;
             this.dataGridOutput.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dataGridOutput.BackgroundColor = System.Drawing.SystemColors.Window;
             this.dataGridOutput.BorderStyle = System.Windows.Forms.BorderStyle.None;
@@ -81,7 +85,6 @@
             // 
             // imgColumn
             // 
-            this.imgColumn.DividerWidth = 0;
             this.imgColumn.HeaderText = "imgColumn";
             this.imgColumn.Name = "imgColumn";
             this.imgColumn.ReadOnly = true;
@@ -194,11 +197,50 @@
             this.ipLabel.Size = new System.Drawing.Size(100, 20);
             this.ipLabel.TabIndex = 13;
             // 
+            // usnBox
+            // 
+            this.usnBox.Location = new System.Drawing.Point(53, 431);
+            this.usnBox.Name = "usnBox";
+            this.usnBox.Size = new System.Drawing.Size(100, 20);
+            this.usnBox.TabIndex = 14;
+            // 
+            // label5
+            // 
+            this.label5.AutoSize = true;
+            this.label5.Location = new System.Drawing.Point(0, 0);
+            this.label5.Name = "label5";
+            this.label5.Size = new System.Drawing.Size(35, 13);
+            this.label5.TabIndex = 15;
+            this.label5.Text = "label5";
+            // 
+            // label6
+            // 
+            this.label6.AutoSize = true;
+            this.label6.Location = new System.Drawing.Point(23, 434);
+            this.label6.Name = "label6";
+            this.label6.Size = new System.Drawing.Size(24, 13);
+            this.label6.TabIndex = 16;
+            this.label6.Text = "usn";
+            // 
+            // button1
+            // 
+            this.button1.Location = new System.Drawing.Point(159, 429);
+            this.button1.Name = "button1";
+            this.button1.Size = new System.Drawing.Size(75, 23);
+            this.button1.TabIndex = 17;
+            this.button1.Text = "register";
+            this.button1.UseVisualStyleBackColor = true;
+            this.button1.Click += new System.EventHandler(this.button1_Click);
+            // 
             // GroupConversations
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1020, 565);
+            this.Controls.Add(this.button1);
+            this.Controls.Add(this.label6);
+            this.Controls.Add(this.label5);
+            this.Controls.Add(this.usnBox);
             this.Controls.Add(this.ipLabel);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
@@ -238,6 +280,10 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox ipLabel;
+        private System.Windows.Forms.TextBox usnBox;
+        private System.Windows.Forms.Label label5;
+        private System.Windows.Forms.Label label6;
+        private System.Windows.Forms.Button button1;
 
 
 

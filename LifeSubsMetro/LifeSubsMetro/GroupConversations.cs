@@ -17,17 +17,9 @@ namespace LifeSubsMetro
     public partial class GroupConversations : MetroForm
     {
         MainMenu mm;
-        
+        IMClient ic;
         string ownIpAddress;
-        public delegate void IMErrorEventHandler(object sender, IMErrorEventArgs e);
-        public enum IMError : byte
-        {
-            TooUserName = IMClient.IM_TooUsername,
-            TooPassword = IMClient.IM_TooPassword,
-            Exists = IMClient.IM_Exists,
-            NoExists = IMClient.IM_NoExists,
-            WrongPassword = IMClient.IM_WrongPass
-        }
+        
 
         public GroupConversations(MainMenu mm)
         {
@@ -37,8 +29,6 @@ namespace LifeSubsMetro
             //listenSocket = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
             //listenSocket.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.ReuseAddress, true);
 
-            sendSocket = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
-            sendSocket.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.ReuseAddress, true);
 
             ownIpAddress = getOwnIp();
             ipLabel.Text = ownIpAddress;
@@ -125,16 +115,39 @@ namespace LifeSubsMetro
         private void sendTile_Click(object sender, EventArgs e)
         {
                 addMessage(tbInput.Text, Color.PowderBlue);
-            }
+                try
+                {
+                    ic.SendMessage("127.0.0.1",tbInput.Text);
+                }
+                catch (Exception excx)
+                {
+                    Console.WriteLine(excx);
+                }
+                
+        }
                 
 
         private void startBtn_Click(object sender, EventArgs e)
         {
 
-
-
-
+            try
+            {
+                ic = new IMClient();
+                ic.SetupConn();
             }
+            catch (Exception exx)
+            {
+                Console.WriteLine(exx);
+            }
+
+
+        }
+
+        private void button1_Click(object sender, EventArgs e)
+        {
+            ic = new IMClient();
+            ic.connect(usnBox.Text, "koek", false);
+        }
 
 
         
