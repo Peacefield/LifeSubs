@@ -4,6 +4,7 @@ using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
 using System.Drawing;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading;
@@ -21,26 +22,44 @@ namespace LifeSubsMetro
         Listener listener1 = null;
         Listener listener2 = null;
         String currentListener;
-        int deviceNumber = 1;
+        int deviceNumber = 0;
+        string path = @"C:\audiotest";
 
         public Subtitle(MainMenu mm)
         {
-            var screen = System.Windows.Forms.Screen.PrimaryScreen.Bounds;
-            var width = screen.Width;
-            this.mm = mm;
 
             InitializeComponent();
-               
+
+            createDir();
+            this.mm = mm;
+            var screen = System.Windows.Forms.Screen.PrimaryScreen.Bounds;
+            var width = screen.Width;
+
             this.Width = width;
-            this.Height = 150;
+            this.Height = 200;
             this.StartPosition = FormStartPosition.Manual;
             this.Location = new Point(0, Screen.PrimaryScreen.Bounds.Height - this.Height);
             this.TopMost = true;
             
             this.tbOutput.Width = width - 40;
-            this.tbOutput.Height = 100;
+            this.tbOutput.Height = this.Height - 50;
         }
 
+        #region Directory Handling
+        private void createDir()
+        {
+            bool folderExists = Directory.Exists(path);
+            if (!folderExists) Directory.CreateDirectory(path);
+        }
+
+        private void deleteDir()
+        {
+            bool folderExists = Directory.Exists(path);
+            if (folderExists) Directory.Delete(path, true);
+        }
+        #endregion
+
+        #region form opening/closing handling
         private void Subtitle_Load(object sender, EventArgs e)
         {
             mll = new MicLevelListener(this);
@@ -50,8 +69,6 @@ namespace LifeSubsMetro
             currentListener = "listener1";
             listener1 = new Listener(deviceNumber, currentListener, this);
             listener1.startRecording();
-            //listener1 = new Listener(deviceNumber, currentListener, this);
-            //listener1.startRecording();
         }
 
         private void Subtitle_FormClosing(object sender, FormClosingEventArgs e)
@@ -59,8 +76,8 @@ namespace LifeSubsMetro
             stop();
             mm.Visible = true;
             mll.stop();
+            deleteDir();
         }
-
         //Get list of available devices for recording audio
         //Gets executed at Load()
         //Eventually move to settings
@@ -82,49 +99,82 @@ namespace LifeSubsMetro
         //        sourceList.Items.Add(item);
         //    }
         //}
+        #endregion
 
-        //private void stopListening()
-        //{
-        //    Console.WriteLine("Stop listening");
-
-        //    if (listener1 != null) listener1.stop();
-        //    if (listener2 != null) listener2.stop();
-        //}
-
+        #region setters to call from other threads
         public void setResult(string result)
         {
-            if (result == "") return;
+            if (result == "" || result == "500") return;
 
-            if (this.tbOutput.InvokeRequired)
-                this.tbOutput.Invoke((MethodInvoker)delegate { this.tbOutput.AppendText( result + "\r\n"); });
-            else
-                this.tbOutput.AppendText(result + "\r\n");
+            try
+            {
+                if (this.tbOutput.InvokeRequired)
+                    this.tbOutput.Invoke((MethodInvoker)delegate { this.tbOutput.AppendText( result + "\r\n"); });
+                else
+                    this.tbOutput.AppendText(result + "\r\n");
+            }
+            catch (ObjectDisposedException)
+            {
+                Console.WriteLine("Textbox niet kunnen vinden");
+                Console.WriteLine(result);
+            }
         }
 
         public void setVolumeMeter(int amp)
         {
             amp = amp + 150;
-            if (this.volumeMeter.InvokeRequired)
+            try
             {
-                try
+                if (this.volumeMeter.InvokeRequired)
                 {
-                    this.volumeMeter.Invoke((MethodInvoker)delegate { this.volumeMeter.Value = amp; });
-                }
-                catch(Exception e)
-                {
-                    Console.WriteLine(e);
+                    try
+                    {
+                        this.volumeMeter.Invoke((MethodInvoker)delegate { this.volumeMeter.Value = amp; });
+                    }
+                    catch (Exception e)
+                    {
+                        Console.WriteLine(e);
+                    }
                 }
             }
+            catch (ObjectDisposedException)
+            {
+                Console.WriteLine("VolumeMeter niet kunnen vinden");
+            }
+            
         }
 
         public void setSendNoti(Color color)
         {
-
-            if (this.sendNotificationPanel.InvokeRequired)
+            try
             {
-                this.sendNotificationPanel.Invoke((MethodInvoker)delegate { this.sendNotificationPanel.BackColor = color; });
+                if (this.sendNotificationPanel.InvokeRequired)
+                {
+                    this.sendNotificationPanel.Invoke((MethodInvoker)delegate { this.sendNotificationPanel.BackColor = color; });
+                }
+            }
+            catch (ObjectDisposedException)
+            {
+                Console.WriteLine("NotificationPanel niet kunnen vinden");
             }
         }
+
+        public void setLabel(String text)
+        {
+            if (text == "") return;
+            try
+            {
+                if (this.label1.InvokeRequired)
+                    this.label1.Invoke((MethodInvoker)delegate { this.label1.Text = text; });
+                else
+                    this.label1.Text = text;
+            }
+            catch (ObjectDisposedException)
+            {
+                Console.WriteLine("Label niet kunnen vinden");
+            }
+        }
+        #endregion
 
         private void label1_TextChanged(object sender, EventArgs e)
         {
@@ -140,16 +190,7 @@ namespace LifeSubsMetro
             }
         }
 
-        public void setLabel(String text)
-        {
-            if (text == "") return;
-
-            if (this.label1.InvokeRequired)
-                this.label1.Invoke((MethodInvoker)delegate { this.label1.Text = text; });
-            else
-                this.label1.Text = text;
-        }
-
+        #region Listenhandlers
         private void stop()
         {
             if (listener1 != null) listener1.stop();
@@ -238,6 +279,8 @@ namespace LifeSubsMetro
             }
 
         }
+        #endregion
+
         private void settingsPB_Click(object sender, System.EventArgs e)
         {
             SettingsMenu sm = new SettingsMenu(this);

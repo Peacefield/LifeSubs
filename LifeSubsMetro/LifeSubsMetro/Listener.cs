@@ -19,8 +19,10 @@ namespace LifeSubsMetro
             this.fileName = "C:\\audiotest\\" + fileName + ".wav";
         }
 
-        //request with hardcoded file location to sent to dragon server
-        //returns into textBox1
+        /// <summary>
+        /// Request to dragon server by sending a file located at a (user) specified location.
+        /// sets result in Subtitle's tbOutput
+        /// </summary>
         public void request()
         {
             //form.setResult("request started: " + fileName);
@@ -117,6 +119,7 @@ namespace LifeSubsMetro
             //return result;
         }
 
+        #region NAudio handlers
         public void startRecording()
         {
             //form.setResult("Start Recording: " + fileName);
@@ -146,13 +149,13 @@ namespace LifeSubsMetro
             waveWriter.WriteData(e.Buffer, 0, e.BytesRecorded);
             waveWriter.Flush();
         }
-
+        #endregion
+        
+        /// <summary>
+        /// Stops the listenerobject from recording
+        /// </summary>
         public void stop()
         {
-            //form.setResult("Stop Recording: " + fileName);
-
-            Console.WriteLine("Stop recording: " + fileName);
-
             if (sourceStream != null)
             {
                 sourceStream.StopRecording();
