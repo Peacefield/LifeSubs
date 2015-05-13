@@ -84,7 +84,7 @@
             this.settingsPB.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
             this.settingsPB.TabIndex = 7;
             this.settingsPB.TabStop = false;
-            this.settingsPB.Click += new System.EventHandler(this.pictureBox1_Click);
+            this.settingsPB.Click += new System.EventHandler(this.settingsPB_Click);
             this.sendNotificationPanel.BackColor = System.Drawing.Color.LightGreen;
             this.sendNotificationPanel.Location = new System.Drawing.Point(23, 17);
             this.sendNotificationPanel.Name = "sendNotificationPanel";

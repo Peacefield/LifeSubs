@@ -206,7 +206,7 @@ namespace LifeSubsMetro
             }
 
         }
-        private void pictureBox1_Click(object sender, System.EventArgs e)
+        private void settingsPB_Click(object sender, System.EventArgs e)
         {
             SettingsMenu sm = new SettingsMenu(this);
             sm.Show();
