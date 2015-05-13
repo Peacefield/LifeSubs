@@ -64,12 +64,8 @@ namespace LifeSubsMetro
         {
             if (sub != null) sub.BringToFront();
             if (mainMenu!= null) mainMenu.BringToFront();
-            if (mll != null) mll.stop();
 
-            if (sub != null)
-            {
-                sub.changeFontSize(10);
-            }
+            if (mll != null) mll.stop();
         }
 
         #endregion Initiate
@@ -93,7 +89,6 @@ namespace LifeSubsMetro
         private void linesTile_Click(object sender, EventArgs e) //Lines tile
         {
             displayTiles("lines");
-
         }
         private void saveTile_Click(object sender, EventArgs e) //Save tile
         {
@@ -145,12 +140,12 @@ namespace LifeSubsMetro
         }
         #endregion Metro Tiles open
 
-        #region Metro Tiles close
+        #region Metro Tiles close on save button click
         //Calls the save to XML and sets the concerning tiles on visible = true
         private void microphoneButton_Click(object sender, EventArgs e)  //Microphone tile
         {
+            if (mll != null) mll.stop();
             save();
-            mll.stop();
             microphoneTile.Visible = true;
         }
         private void fontButton_Click(object sender, EventArgs e) //Font tile
@@ -186,14 +181,15 @@ namespace LifeSubsMetro
 
         #region Save to XML
         private void save()
-    {
-         DataSet ds = new DataSet("Settings");
+        {
+            DataSet ds = new DataSet("Settings");
 
             //xml datatable microphone
             DataTable dt = new DataTable("Microphone"); 
             DataColumn dc1 = new DataColumn("InputDevice");
             dt.Columns.Add(dc1);
-            dt.Rows.Add(microphoneComboBox.Text);
+            //dt.Rows.Add(microphoneComboBox.Text);
+            dt.Rows.Add(microphoneComboBox.SelectedIndex);
             ds.Tables.Add(dt);
 
             //xml datatable font
@@ -247,6 +243,7 @@ namespace LifeSubsMetro
             //ds.Merge(buffer);
 
             ds.WriteXml("Settings.xml");
+            sub.setStyle();
     }
                    
         #endregion Save to XML
@@ -378,15 +375,18 @@ namespace LifeSubsMetro
         
         private void loadSettings()
         {
-
             //Load the microphone tile
-            microphoneComboBox.Text = settings.microphone;
+            //microphoneComboBox.Text = settings.microphone;
+            try
+            {
+                microphoneComboBox.SelectedIndex = settings.microphone;
+            }
+            catch (ArgumentOutOfRangeException)
+            {
+                microphoneComboBox.SelectedIndex = -1;
+            }
 
             //Load the font tile
-
-            //fontComboBox.Text = ds.Tables["Font"].Rows[0][0].ToString(); 
-
-            Console.WriteLine(fontComboBox.SelectedItem);
             fontComboBox.Text = settings.font;
             fontSizeComboBox.Text = settings.fontsize.ToString();
             subtitleLinesComboBox.Text = settings.lines.ToString();
@@ -397,13 +397,13 @@ namespace LifeSubsMetro
 
             //load the save tile
             pathTextBox.Text = settings.savePath;
-            delayTrackBar.Value = settings.delay;
 
             //load the delay tile
             delayLabel.Text = settings.delay.ToString();
-            subtitleLanguageComboBox.Text = settings.subLanguage;
+            delayTrackBar.Value = settings.delay;
 
             //load the language tile
+            subtitleLanguageComboBox.Text = settings.subLanguage;
             applicationLanguageComboBox.Text = settings.appLanguage;
         }
 
@@ -442,7 +442,6 @@ namespace LifeSubsMetro
 
         private void microphoneTile_VisibleChanged(object sender, EventArgs e)
         {
-            Console.WriteLine(microphoneTile.Visible);
             if (microphoneTile.Visible == false) return;
             if (mll != null) mll.stop();
         }

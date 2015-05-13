@@ -27,7 +27,6 @@ namespace LifeSubsMetro
 
         public Subtitle(MainMenu mm)
         {
-
             InitializeComponent();
 
             createDir();
@@ -43,6 +42,16 @@ namespace LifeSubsMetro
             
             this.tbOutput.Width = width - 40;
             this.tbOutput.Height = this.Height - 50;
+
+            setStyle();
+        }
+
+        public void setStyle()
+        {
+            Settings settings = new Settings();
+            this.tbOutput.Font = new Font(settings.font, settings.fontsize);
+            this.tbOutput.BackColor = settings.bgColor;
+            this.tbOutput.ForeColor = settings.subColor;
         }
 
         #region Directory Handling

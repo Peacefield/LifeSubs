@@ -1,6 +1,7 @@
 ﻿using System;
 using System.Collections.Generic;
 using System.Data;
+using System.IO;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
@@ -9,7 +10,8 @@ namespace LifeSubsMetro
 {
     class Settings
     {
-        public string microphone { get; set; }
+        //public string microphone { get; set; }  //TODO: Change to selectedindex        
+        public int microphone { get; set; }  //TODO: Change to selectedindex
         public string font { get; set; }
         public int fontsize { get; set; }
         public int lines { get; set; }
@@ -19,23 +21,46 @@ namespace LifeSubsMetro
         public int delay { get; set; }
         public string subLanguage { get; set; }
         public string appLanguage { get; set; }
+        string settingsFile = @"Settings.xml";
 
         public Settings()
         {
-            loadXML();
+            try
+            {
+                loadXML();
+            }
+            catch (FileNotFoundException)
+            {
+                createDefault();
+            }
+        }
+
+        /// <summary>
+        /// Function to give the application default settings
+        /// </summary>
+        private void createDefault()
+        {
+            this.microphone = -1;
+            this.font = "Arial";
+            this.fontsize = 12;
+            this.lines = 3;
+            this.subColor = System.Drawing.Color.Black;
+            this.bgColor = System.Drawing.Color.White;
+            this.savePath = @"log.txt";
+            this.delay = 1;
+            this.subLanguage = "Nederlands";
+            this.appLanguage = "Nederlands";
         }
 
         private void loadXML()
         {
             Console.WriteLine("start loading");
-            string settingsFile = @"Settings.xml";
-            if (!System.IO.File.Exists(settingsFile)) return;
 
             DataSet ds = new DataSet();
-            ds.ReadXml("Settings.xml");
+            ds.ReadXml(settingsFile);
 
             //Load the microphone tile
-            this.microphone = ds.Tables["Microphone"].Rows[0][0].ToString();
+            this.microphone = Int32.Parse(ds.Tables["Microphone"].Rows[0][0].ToString());
 
             //Load the font tile
             this.font = ds.Tables["Font"].Rows[0][0].ToString(); 
@@ -45,20 +70,20 @@ namespace LifeSubsMetro
             string fontColor = ds.Tables["Subtitle"].Rows[0][1].ToString();
             //Convert the ARGB values correctly 
             string[] fontList = fontColor.Split(new Char[] { ',' });
-            subColor = System.Drawing.Color.FromArgb(Int32.Parse(fontList[0]), Int32.Parse(fontList[1]), Int32.Parse(fontList[2]), Int32.Parse(fontList[3]));
+            this.subColor = System.Drawing.Color.FromArgb(Int32.Parse(fontList[0]), Int32.Parse(fontList[1]), Int32.Parse(fontList[2]), Int32.Parse(fontList[3]));
             string backColor = ds.Tables["Subtitle"].Rows[0][2].ToString();
             //Convert the ARGB values correctly
             string[] backList = backColor.Split(new Char[] { ',' });
-            bgColor = System.Drawing.Color.FromArgb(Int32.Parse(backList[0]), Int32.Parse(backList[1]), Int32.Parse(backList[2]), Int32.Parse(backList[3]));
+            this.bgColor = System.Drawing.Color.FromArgb(Int32.Parse(backList[0]), Int32.Parse(backList[1]), Int32.Parse(backList[2]), Int32.Parse(backList[3]));
 
             //load the save tile
-            savePath = ds.Tables["Save"].Rows[0][0].ToString();
+            this.savePath = ds.Tables["Save"].Rows[0][0].ToString();
             //load the delay tile
-            delay = Int32.Parse(ds.Tables["Delay"].Rows[0][0].ToString());
-            subLanguage = ds.Tables["Language"].Rows[0][0].ToString();
+            this.delay = Int32.Parse(ds.Tables["Delay"].Rows[0][0].ToString());
+            this.subLanguage = ds.Tables["Language"].Rows[0][0].ToString();
 
             //load the language tile
-            appLanguage = ds.Tables["Language"].Rows[0][1].ToString();
+            this.appLanguage = ds.Tables["Language"].Rows[0][1].ToString();
             Console.WriteLine("done loading");
         }
     }
