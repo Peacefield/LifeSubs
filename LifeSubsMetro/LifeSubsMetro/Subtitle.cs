@@ -97,7 +97,15 @@ namespace LifeSubsMetro
             if (this.tbOutput.InvokeRequired)
                 this.tbOutput.Invoke((MethodInvoker)delegate { this.tbOutput.AppendText( result + "\r\n"); });
             else
-                this.tbOutput.AppendText(result + "\r\n");
+                try
+                {
+                    this.tbOutput.AppendText(result + "\r\n");
+                }
+                catch (Exception exx)
+                {
+                    Console.WriteLine(exx);
+                }
+                
         }
 
         public void setVolumeMeter(int amp)

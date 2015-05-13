@@ -42,8 +42,8 @@
             this.label3 = new System.Windows.Forms.Label();
             this.label4 = new System.Windows.Forms.Label();
             this.sendTile = new MetroFramework.Controls.MetroTile();
-            this.ipLabel = new System.Windows.Forms.TextBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridOutput)).BeginInit();
+            this.ipLabel = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // dataGridOutput

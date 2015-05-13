@@ -17,26 +17,29 @@ namespace LifeSubsMetro
     public partial class GroupConversations : MetroForm
     {
         MainMenu mm;
-        Socket sck1, sck2;
+        Socket listenSocket, sendSocket;
         EndPoint epLocal, epRemote;
+        UdpListener listener;
         string ownIpAddress;
         public GroupConversations(MainMenu mm)
         {
             this.mm = mm;
             InitializeComponent();
 
-            sck1 = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
-            sck1.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.ReuseAddress, true);
+            //listenSocket = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
+            //listenSocket.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.ReuseAddress, true);
 
-            sck2 = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
-            sck2.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.ReuseAddress, true);
+            sendSocket = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
+            sendSocket.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.ReuseAddress, true);
 
             sendTile.Enabled = false;
             ownIpAddress = getOwnIp();
             ipLabel.Text = ownIpAddress;
             friendIpTextBox.Text = ownIpAddress;
-            ownPort.Text = "80";
-            otherPort.Text = "81";
+            ownPort.Text = "11000";
+            otherPort.Text = "11001";
+            sendTile.Enabled = false;
+            //populating listView:
 
             Font font = new System.Drawing.Font("Impact", 15);
             dataGridOutput.DefaultCellStyle.Font = new Font(font, FontStyle.Regular);
@@ -44,8 +47,8 @@ namespace LifeSubsMetro
 
 
             //populating listView:
-            addMessage("FOTO", "BERICHT", Color.Orange);
-            //addMessage("FOTO", "TEST", Color.Blue);
+            //    addMessage("FOTO", "BERICHT", Color.Orange);
+            //    addMessage("FOTO", "TEST", Color.Blue);
             //addMessage("FOTO", "NOG EEN TESTNOG EEN TESTNOG EEN TESTNOG EEN TESTNOG EEN TEST", Color.Yellow);
             //addMessage("FOTO", "BERICHT", Color.Orange);
             //addMessage("FOTO", "TEST", Color.Blue);
@@ -90,9 +93,10 @@ namespace LifeSubsMetro
 
         private void messageCallBack(IAsyncResult aResult)
         {
+            addMessage("--->", "DATA ONTVANGEN", Color.Green);
             try
             {
-                int size = sck2.EndReceiveFrom(aResult, ref epRemote);
+                int size = sendSocket.EndReceiveFrom(aResult, ref epRemote);
 
                 if (size > 0)
                 {
@@ -107,8 +111,8 @@ namespace LifeSubsMetro
 
                 byte[] buffer = new byte[1500];
 
-                sck2.BeginReceiveFrom(buffer, 0, buffer.Length, SocketFlags.None, ref epRemote, new AsyncCallback(messageCallBack), buffer);
-
+                sendSocket.BeginReceiveFrom(buffer, 0, buffer.Length, SocketFlags.None, ref epRemote, new AsyncCallback(messageCallBack), buffer);
+                Console.WriteLine("BINNENGEKREGEN");
             }
             catch (Exception e)
             {
@@ -134,11 +138,6 @@ namespace LifeSubsMetro
             dataGridOutput.Rows.Add(dr);
         }
 
-        private void toMainMenuButton_Click(object sender, EventArgs e)
-        {
-            mm.Visible = true;
-        }
-
         private void GroupConversations_FormClosed(object sender, FormClosedEventArgs e)
         {
             mm.Visible = true;
@@ -148,23 +147,23 @@ namespace LifeSubsMetro
         {
             try
             {
-                
-
                 System.Text.ASCIIEncoding enc = new System.Text.ASCIIEncoding();
                 byte[] msg = new byte[1500];
                 msg = enc.GetBytes(tbInput.Text);
                 //sck1.Send(msg);
-
+                string msgtext = tbInput.Text;
                 /*******************************/
                 SocketAsyncEventArgs h = new SocketAsyncEventArgs();
                 h.SetBuffer(msg, 0, msg.Length);
                 h.Completed += new EventHandler<SocketAsyncEventArgs>(SendCallback);
 
-                bool completedAsync = false;
+                //bool completedAsync = false;
 
                 try
                 {
-                    completedAsync = sck1.SendAsync(h);
+                    sendSocket.SendAsync(h);
+                    Console.WriteLine("async gelukt");
+                    
                 }
                 catch (SocketException se)
                 {
@@ -187,6 +186,7 @@ namespace LifeSubsMetro
         {
             if (e.SocketError == SocketError.Success)
             {
+                addMessage("ANDER", "test", Color.Green);
                 // You may need to specify some type of state and 
                 // pass it into the BeginSend method so you don't start
                 // sending from scratch
@@ -197,6 +197,7 @@ namespace LifeSubsMetro
                 //Console.WriteLine("Socket Error: {0} when sending to {1}",
                 //       e.SocketError,
                 //       _asyncTask.Host);
+                
         }
         }
 
@@ -208,18 +209,21 @@ namespace LifeSubsMetro
             {
 
 
-                epLocal = new IPEndPoint(IPAddress.Parse(ipLabel.Text), int.Parse(ownPort.Text));
-                Console.WriteLine(IPAddress.Parse(ipLabel.Text) + "<------ EIGEN IP");
-                Console.WriteLine(Convert.ToInt32(ownPort.Text) + "<------ EIGEN POORT");
-                sck1.Bind(epLocal);
+                //epLocal = new IPEndPoint(IPAddress.Parse(ipLabel.Text), Convert.ToInt32(ownPort.Text));
+                //Console.WriteLine(IPAddress.Parse(ipLabel.Text) + "<------ EIGEN IP");
+                //Console.WriteLine(Convert.ToInt32(ownPort.Text) + "<------ EIGEN POORT");
+                //listenSocket.Bind(epLocal);
 
-                epRemote = new IPEndPoint(IPAddress.Parse(friendIpTextBox.Text), int.Parse(otherPort.Text));
+                listener = new UdpListener(int.Parse(ownPort.Text), ipLabel.Text);
+                epRemote = new IPEndPoint(IPAddress.Parse(friendIpTextBox.Text), Convert.ToInt32(otherPort.Text));
                 Console.WriteLine(IPAddress.Parse(friendIpTextBox.Text) + "<------ ANDER IP");
                 Console.WriteLine(Convert.ToInt32(otherPort.Text) + "<------ ANDER POORT");
-                sck2.Bind(epRemote);
+                sendSocket.Bind(epRemote);
 
-                byte[] buffer = new byte[1500];
-                //sck2.Listen(100);
+                byte[] buffer = new byte[1024];
+                sendSocket.BeginReceiveFrom(buffer, 0, buffer.Length, SocketFlags.None, ref epRemote, new AsyncCallback(messageCallBack), buffer);
+
+
                 //sck2.Accept();
                 
                 /****************/
@@ -227,10 +231,18 @@ namespace LifeSubsMetro
                 SocketAsyncEventArgs d = new SocketAsyncEventArgs();
                 d.Completed += receiveCompleted;
                 d.SetBuffer(new byte[1024], 0, 1024);
-                if (!sck2.ReceiveAsync(d)) { receiveCompleted(this, d); } 
+                if (!sendSocket.ReceiveAsync(d)) 
+                { 
+                    receiveCompleted(this, d);
+                } 
+                else
+                {
+                    Console.WriteLine("<<ONTVANGEN>>");
+                    Console.WriteLine(d.ToString());
+                }
                 /******************************/
 
-                //sck2.BeginReceiveFrom(buffer, 0, buffer.Length, SocketFlags.None, ref epRemote, new AsyncCallback(messageCallBack), buffer);
+                
 
                 startBtn.Enabled = false;
                 startBtn.Text = "Verbonden!";
@@ -249,8 +261,8 @@ namespace LifeSubsMetro
 
         public void receiveCompleted(object sender, SocketAsyncEventArgs e)
         {
-            ////ProcessData(e);
-
+            //ProcessData(e);
+            addMessage("TEST", "|TEST", Color.GhostWhite);
             //if (!Socket.ReceiveAsync(e)) { receiveCompleted(this, e); }
         }
         
