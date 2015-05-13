@@ -31,28 +31,27 @@ namespace LifeSubsMetro
             sck2 = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
             sck2.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.ReuseAddress, true);
 
+            sendTile.Enabled = false;
             ownIpAddress = getOwnIp();
             ipLabel.Text = ownIpAddress;
             friendIpTextBox.Text = ownIpAddress;
             ownPort.Text = "80";
             otherPort.Text = "81";
-            sendTile.Enabled = false;
-            //populating listView:
-            Font font = new System.Drawing.Font("Georgia", 15);
 
-            dataGridOutput.DefaultCellStyle.Font =
-                new Font(font, FontStyle.Regular);
+            Font font = new System.Drawing.Font("Impact", 15);
+            dataGridOutput.DefaultCellStyle.Font = new Font(font, FontStyle.Regular);
             dataGridOutput.Columns[0].DefaultCellStyle.Font = new System.Drawing.Font(dataGridOutput.DefaultCellStyle.Font.ToString(), 50);
 
-            //populating listView:
-                addMessage("FOTO", "BERICHT", Color.Orange);
-                addMessage("FOTO", "TEST", Color.Blue);
-            addMessage("FOTO", "NOG EEN TESTNOG EEN TESTNOG EEN TESTNOG EEN TESTNOG EEN TEST", Color.Yellow);
-            addMessage("FOTO", "BERICHT", Color.Orange);
-            addMessage("FOTO", "TEST", Color.Blue);
-            addMessage("FOTO", "NOG EEN TESTNOG EEN TESTNOG EEN TESTNOG EEN TESTNOG EEN TEST", Color.Yellow);
 
-            addMessage("Ik verstuur ook zelf iets", Color.Red);
+            //populating listView:
+            addMessage("FOTO", "BERICHT", Color.Orange);
+            //addMessage("FOTO", "TEST", Color.Blue);
+            //addMessage("FOTO", "NOG EEN TESTNOG EEN TESTNOG EEN TESTNOG EEN TESTNOG EEN TEST", Color.Yellow);
+            //addMessage("FOTO", "BERICHT", Color.Orange);
+            //addMessage("FOTO", "TEST", Color.Blue);
+            //addMessage("FOTO", "NOG EEN TESTNOG EEN TESTNOG EEN TESTNOG EEN TESTNOG EEN TEST", Color.Yellow);
+
+            //addMessage("Ik verstuur ook zelf iets", Color.Red);
         }
 
         private void addMessage(string msg, Color c)
@@ -153,7 +152,7 @@ namespace LifeSubsMetro
 
                 System.Text.ASCIIEncoding enc = new System.Text.ASCIIEncoding();
                 byte[] msg = new byte[1500];
-                msg = enc.GetBytes(metroTextBox1.Text);
+                msg = enc.GetBytes(tbInput.Text);
                 //sck1.Send(msg);
 
                 /*******************************/
@@ -173,8 +172,8 @@ namespace LifeSubsMetro
                 }
 
                 /*************************************/
-                addMessage("IK", metroTextBox1.Text, Color.PowderBlue);
-                metroTextBox1.Text = "";
+                addMessage(tbInput.Text, Color.PowderBlue);
+                tbInput.Text = "";
             }
             catch (Exception exc)
             {
