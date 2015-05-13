@@ -15,6 +15,7 @@ namespace LifeSubsMetro
 {
     class MicLevelListener
     {
+        public int deviceNumber { get; set; }
         WaveIn waveIn;
         Subtitle subtitleForm = null;
         SettingsMenu settingsMenu = null;
@@ -25,6 +26,7 @@ namespace LifeSubsMetro
         public MicLevelListener(Subtitle f)
         {
             this.subtitleForm = f;
+            deviceNumber = 0;
         }
 
         public MicLevelListener(SettingsMenu f)
@@ -48,7 +50,7 @@ namespace LifeSubsMetro
             waveIn = new WaveIn();
 
             //set microphone
-            waveIn.DeviceNumber = 0;
+            waveIn.DeviceNumber = deviceNumber;
 
             //check if data is being recorded and set the properties of the waveIn object
             waveIn.DataAvailable += waveIn_DataAvailable;

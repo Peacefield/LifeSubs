@@ -73,6 +73,7 @@ namespace LifeSubsMetro
         private void SettingsMenu_FormClosing(object sender, FormClosingEventArgs e)
         {
             mainMenu.BringToFront();
+            if (mll != null) mll.stop();
         }
 
         #endregion Initiate
@@ -81,8 +82,12 @@ namespace LifeSubsMetro
         //Call displaytiles() for the concerning tile
         private void microphoneTile_Click(object sender, EventArgs e) //Microphone tile
         {
-            mll = new MicLevelListener(this);
-            mll.listenToStream();
+            if (microphoneComboBox.SelectedIndex >= 0)
+            {
+                mll = new MicLevelListener(this);
+                mll.deviceNumber = microphoneComboBox.SelectedIndex;
+                mll.listenToStream();
+            }
             displayTiles("mic");
         }
         private void fontTile_Click(object sender, EventArgs e) //Font tile
@@ -408,7 +413,6 @@ namespace LifeSubsMetro
 
         public void setVolumeMeter(int amp)
         {
-            Console.WriteLine("setvolumemeter");
             amp = amp + 150;
             if (this.microphoneProgressBar.InvokeRequired)
             {
@@ -421,6 +425,30 @@ namespace LifeSubsMetro
                     Console.WriteLine(e);
                 }
             }
+        }
+
+        private void microphoneComboBox_SelectedIndexChanged(object sender, EventArgs e)
+        {
+            if (mll != null)
+            {
+                mll.stop();
+                mll.deviceNumber = microphoneComboBox.SelectedIndex;
+                mll.listenToStream();
+            }
+            else
+            {
+                mll = new MicLevelListener(this);
+                mll.deviceNumber = microphoneComboBox.SelectedIndex;
+                mll.listenToStream();
+            }
+            
+        }
+
+        private void microphoneTile_VisibleChanged(object sender, EventArgs e)
+        {
+            Console.WriteLine(microphoneTile.Visible);
+            if (microphoneTile.Visible == false) return;
+            if (mll != null) mll.stop();
         }
     }
 }

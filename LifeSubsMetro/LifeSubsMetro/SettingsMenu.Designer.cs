@@ -104,6 +104,7 @@
             this.microphoneComboBox.Size = new System.Drawing.Size(192, 29);
             this.microphoneComboBox.TabIndex = 2;
             this.microphoneComboBox.UseSelectable = true;
+            this.microphoneComboBox.SelectedIndexChanged += new System.EventHandler(this.microphoneComboBox_SelectedIndexChanged);
             // 
             // microphoneLabel
             // 
@@ -504,6 +505,7 @@
             this.microphoneTile.TileTextFontSize = MetroFramework.MetroTileTextSize.Tall;
             this.microphoneTile.UseSelectable = true;
             this.microphoneTile.UseTileImage = true;
+            this.microphoneTile.VisibleChanged += new System.EventHandler(this.microphoneTile_VisibleChanged);
             this.microphoneTile.Click += new System.EventHandler(this.microphoneTile_Click);
             // 
             // saveTile
