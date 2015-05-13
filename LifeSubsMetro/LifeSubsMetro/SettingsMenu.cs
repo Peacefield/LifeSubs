@@ -243,7 +243,7 @@ namespace LifeSubsMetro
             //ds.Merge(buffer);
 
             ds.WriteXml("Settings.xml");
-            sub.setStyle();
+            if (sub != null) sub.setStyle();
     }
                    
         #endregion Save to XML
