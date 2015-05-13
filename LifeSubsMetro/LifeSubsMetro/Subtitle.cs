@@ -22,20 +22,15 @@ namespace LifeSubsMetro
         Listener listener2 = null;
         String currentListener;
         int deviceNumber = 0;
-        
-        
 
         public Subtitle(MainMenu mm)
         {
             var screen = System.Windows.Forms.Screen.PrimaryScreen.Bounds;
             var width = screen.Width;
             this.mm = mm;
-           
-            
 
             InitializeComponent();
-          
-               
+
             this.Width = width;
             this.Height = 150;
             this.StartPosition = FormStartPosition.Manual;
@@ -102,15 +97,7 @@ namespace LifeSubsMetro
             if (this.tbOutput.InvokeRequired)
                 this.tbOutput.Invoke((MethodInvoker)delegate { this.tbOutput.AppendText( result + "\r\n"); });
             else
-                try
-                {
-                    this.tbOutput.AppendText(result + "\r\n");
-                }
-                catch (Exception exx)
-                {
-                    Console.WriteLine(exx);
-                }
-                
+                this.tbOutput.AppendText(result + "\r\n");
         }
 
         public void setVolumeMeter(int amp)
@@ -189,7 +176,6 @@ namespace LifeSubsMetro
                         th2.Abort();
                         th2.Join();
                     }
-
                     break;
                 case "listener2":
                     Console.WriteLine("listener2 currently recording");
@@ -217,10 +203,12 @@ namespace LifeSubsMetro
 
         }
 
-        private void pictureBox1_Click(object sender, EventArgs e)
+        private void pictureBox1_Click(object sender, System.EventArgs e)
         {
             SettingsMenu sm = new SettingsMenu(this);
             sm.Show();
         }
+
+        
     }
 }

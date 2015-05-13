@@ -85,6 +85,11 @@
             this.settingsPB.TabIndex = 7;
             this.settingsPB.TabStop = false;
             this.settingsPB.Click += new System.EventHandler(this.pictureBox1_Click);
+            this.sendNotificationPanel.BackColor = System.Drawing.Color.LightGreen;
+            this.sendNotificationPanel.Location = new System.Drawing.Point(23, 17);
+            this.sendNotificationPanel.Name = "sendNotificationPanel";
+            this.sendNotificationPanel.Size = new System.Drawing.Size(10, 10);
+            this.sendNotificationPanel.TabIndex = 6;
             // 
             // Subtitle
             // 
