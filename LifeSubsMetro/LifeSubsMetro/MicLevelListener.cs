@@ -15,8 +15,10 @@ namespace LifeSubsMetro
 {
     class MicLevelListener
     {
+        public int deviceNumber { get; set; }
         WaveIn waveIn;
-        Subtitle subtitleForm;
+        Subtitle subtitleForm = null;
+        SettingsMenu settingsMenu = null;
         Thread act;
         Boolean canSend = false;
         int count = 0;
@@ -24,7 +26,12 @@ namespace LifeSubsMetro
         public MicLevelListener(Subtitle f)
         {
             this.subtitleForm = f;
+            deviceNumber = 0;
+        }
 
+        public MicLevelListener(SettingsMenu f)
+        {
+            this.settingsMenu = f;
         }
 
         public void listenToStream()
@@ -43,7 +50,7 @@ namespace LifeSubsMetro
             waveIn = new WaveIn();
 
             //set microphone
-            waveIn.DeviceNumber = 0;
+            waveIn.DeviceNumber = deviceNumber;
 
             //check if data is being recorded and set the properties of the waveIn object
             waveIn.DataAvailable += waveIn_DataAvailable;
@@ -71,16 +78,17 @@ namespace LifeSubsMetro
             if ((i < max) || (i < min))
             {
                 //If the sound level is low enough, add 1 to the count variable
-                subtitleForm.setVolumeMeter(i);
+                if (subtitleForm != null) subtitleForm.setVolumeMeter(i);
+                if (settingsMenu != null) settingsMenu.setVolumeMeter(i);
                 count++;
                 Console.WriteLine("STIL");
-                subtitleForm.setLabel("STIL");
+                if (subtitleForm != null) subtitleForm.setLabel("STIL");
             }
             // Sound level is not between -20 and 20, which means speaker is talking
             else 
             {
                 Console.WriteLine("GELUID");
-                subtitleForm.setLabel("GELUID");
+                if (subtitleForm != null) subtitleForm.setLabel("GELUID");
                 //Count variable should be set to 0
                 canSend = true;
                 count = 0;
@@ -94,7 +102,7 @@ namespace LifeSubsMetro
                     //HTTP request has to be sent from here!!
                     //Count variable should be set to 0
                     canSend = false;
-
+                    if (subtitleForm == null) return;
                     Console.WriteLine("<<<<<<<<< Kan sturen >>>>>>>>>>>>");
                     
                     subtitleForm.setSendNoti(Color.Red);

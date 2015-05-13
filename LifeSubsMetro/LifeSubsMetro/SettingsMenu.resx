@@ -117,62 +117,42 @@
   <resheader name="writer">
     <value>System.Resources.ResXResourceWriter, System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089</value>
   </resheader>
-  <assembly alias="System.Windows.Forms" name="System.Windows.Forms, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089" />
-  <data name="close_window_48" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\icons\Exit\close-window-48.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  <metadata name="fontColorDialog.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>17, 17</value>
+  </metadata>
+  <metadata name="backColorDialog.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>156, 17</value>
+  </metadata>
+  <assembly alias="System.Drawing" name="System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a" />
+  <data name="microphoneTile.TileImage" type="System.Drawing.Bitmap, System.Drawing" mimetype="application/x-microsoft.net.object.bytearray.base64">
+    <value>
+        iVBORw0KGgoAAAANSUhEUgAAADIAAAAyCAYAAAAeP4ixAAAABGdBTUEAALGPC/xhBQAABHhJREFUaEPN
+        mk2oDlEYx+8CURbkKsnCwsLCQlxlYWFhIR8l3QVlQVEWFsRCkpSFJFlIQpGoqyRiYWFBWfpKFhaKZGFh
+        QUmSxfX7n3nOvWc+zrwz731n5v3Vv+6c5znnPM98nHnmvHekCyYnJzeiS+gD+o7EV/QSnUTLzXU4IcAx
+        dB314gs6gRZZ1+GBoPYjnfE63EObbIjuIZhdLqw0T9FetB6tROPoPNLtFvIDLbOhuoMg1qE3isj4iA6Z
+        OQe25egc+oU8N9Bsc+kGAtDt4fmMVpupFPz2uB7T7DVT+zC5VqcQneUNZu4JvuFJ0C0210ztwsRFK1Tl
+        ZPAbNX/PDjO1CxPreSiiTjIvXI+ES9bcHkw6B/100xej1WmXuUfB54LzTpiw5vZg0lnJ3KX0vDLY9f7x
+        PLPm9mDSfeivm76c0iuD7ZTzSrhjze3AhHpIfQ1VheiVof2B80i4aM3twITh5FXJJcPxAvRHRqO9coXJ
+        DiVz9kUqGf5+7FoTVB3PMlOzMNFqFJ7BfnDJIJXzIdtsmmZhovko9t6oi5L5l/zpuGnTNA+TTSRzTqEr
+        cxYdRu/V0Ce6pRbYNM3CROFaL7L3uq6WaqW6qNYatWGahYlWIQXuSSXhoa3Kl6FHS/e4dW0eJtOZDm+b
+        WBJ6y6uEL0J9ZFNNpSug8n2+dW0eJlMtdRmFnDXzFLTNVbuz5rmK1phrNxCAHuIsuSWStouJKYWuQncf
+        Sh6C0DofLo+ee+bi4Lgoibdohbl0B0EsQd8UUQS/N6WAsyixdt7OZRDEUnRXEdXkHTpgw3QPwVxxYdVD
+        V2h4dg4J5rgLqx7DcSt5CKZog60MrUo9P2NbhYC0pVO0QsUo3bvCpsXiGFJtppepvhD1IlRbM+UIA2vT
+        WWe3Ks/QEuuegna93U+jsjJf9dh+6zI4GFQlSLgdU4YWgsLngXaNE34k9WLw2z4M2isZ3XZle7l1TkbI
+        4D+kGDQWjG6TaJWKLdZPyav+0helbl+tbtnnUBXwzLdIGSRVRnCcDaqw0vVgiyWhqiC3GNC2zVnTbDRz
+        fzCACkKdodTZ5tgHN5MkVppbDmzZ5yhXTVeGzgeTMRyxZMbsMIfZaychsGtVC3lgpnrQUb8cZZdHJVOp
+        WsWv7yQEPjed9zRnzFQdOi1G9133aX6jo+ZSCn76pSkbiFCttdXcouCzBX1Sh4DdZq4OncJbynPSzKXg
+        N9Mrobd99rdDPYf13/R0uua6T6MSYqGZo+ATuxKvUM93AT5r0EN1yHDEXOpBx+dJ/yl2mikKPrEkXqPt
+        5hYFn7XokTpkuIXmmVs96JitqUp/EsbexO0k1FZYr1WCztndwM1myoFNV6Jo97DbJAQDZG8RBZraX+JY
+        2/wqt4sq4u6TEAyi/0LIouBUE+lFpURjJXilJAR+Rc/UYJIQDKTvhScatSYKovL2Dr7ZZ2twSXgYUD+Z
+        xbY2i7iNau+U08cnM/gkPBoYqawu+5JTEDP6XqC/kmkmiRBNgrTRphejPmF1b2snZZW5DBEjI/8BKXRa
+        UrSg5QwAAAAASUVORK5CYII=
+</value>
   </data>
-  <data name="exit_48" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\icons\Exit\exit-48.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="settings_21_48" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\icons\Settings\settings-21-48.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="_1428589893_engineering_48" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\icons\Settings\1428589893_engineering_48.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="_1428591099_logout_48" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\icons\Exit\1428591099_logout_48.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="text_center_64" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\icons\Subtitles\text-center-64.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="text_justify_48" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\icons\Subtitles\text-justify-48.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Add_Group_64" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\icons\Conversations\Add Group-64.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="broken_lines" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\icons\Subtitles\broken_lines.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Groups_64" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\icons\Conversations\Groups-64.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Groups_Filled_64" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\icons\Conversations\Groups Filled-64.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Generic_Text_50" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\icons\SettingsMenu\Generic Text-50.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Generic_Text_501" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\icons\SettingsMenu\Generic Text-50.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Microphone2_50" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\icons\SettingsMenu\Microphone2-50.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Speaker_50" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\icons\SettingsMenu\Speaker-50.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Numbered_List_50" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\icons\SettingsMenu\Numbered List-50.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Geography_50" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\icons\SettingsMenu\Geography-50.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Save_50" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\icons\SettingsMenu\Save-50.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
-  <data name="Time_50" type="System.Resources.ResXFileRef, System.Windows.Forms">
-    <value>..\icons\SettingsMenu\Time-50.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
-  </data>
+  <metadata name="colorDialog1.TrayLocation" type="System.Drawing.Point, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a">
+    <value>461, 17</value>
+  </metadata>
+  <metadata name="$this.TrayHeight" type="System.Int32, mscorlib, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b77a5c561934e089">
+    <value>32</value>
+  </metadata>
 </root>

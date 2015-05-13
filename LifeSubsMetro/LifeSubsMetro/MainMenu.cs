@@ -104,5 +104,10 @@ namespace LifeSubsMetro
 
 
         #endregion
+
+        private void tileSettings_Click(object sender, EventArgs e)
+        {
+            new SettingsMenu(this).Visible = true;
+        }
     }
 }
