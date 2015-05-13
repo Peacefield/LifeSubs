@@ -17,10 +17,17 @@ namespace LifeSubsMetro
     public partial class GroupConversations : MetroForm
     {
         MainMenu mm;
-        Socket listenSocket, sendSocket;
-        EndPoint epLocal, epRemote;
-
+        
         string ownIpAddress;
+        public delegate void IMErrorEventHandler(object sender, IMErrorEventArgs e);
+        public enum IMError : byte
+        {
+            TooUserName = IMClient.IM_TooUsername,
+            TooPassword = IMClient.IM_TooPassword,
+            Exists = IMClient.IM_Exists,
+            NoExists = IMClient.IM_NoExists,
+            WrongPassword = IMClient.IM_WrongPass
+        }
 
         public GroupConversations(MainMenu mm)
         {
