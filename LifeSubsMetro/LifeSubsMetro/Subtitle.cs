@@ -82,6 +82,7 @@ namespace LifeSubsMetro
                     }
 
                     if (lines == 1) additionalSpacing -= 10;
+
                     break;
                 case "Calibri":
                     if (font.Size < 24)
@@ -102,28 +103,193 @@ namespace LifeSubsMetro
 
                     break;
                 case "Constantia":
-                    additionalSpacing = 40;
+                    if (font.Size == 18)
+                    {
+                        additionalSpacing = 50;
+                    }
+                    else if (font.Size == 20)
+                    {
+                        additionalSpacing = 60;
+                    }
+                    else if (font.Size == 22)
+                    {
+                        additionalSpacing = 65;
+                    }
+                    else if (font.Size == 30)
+                    {
+                        additionalSpacing = 90;
+                    }
+                    else
+                    {
+                        additionalSpacing = 70;
+                    }
+                    if (lines == 1) additionalSpacing -= 20;
+
                     break;
-                case "Georgia":
-                    additionalSpacing = 40;
+                case "Georgia": 
+                    if (font.Size == 18)
+                    {
+                        additionalSpacing = 50;
+                    }
+                    else if (font.Size == 20)
+                    {
+                        additionalSpacing = 60;
+                    }
+                    else if (font.Size == 22)
+                    {
+                        additionalSpacing = 65;
+                    }
+                    else if (font.Size == 30)
+                    {
+                        additionalSpacing = 90;
+                    }
+                    else
+                    {
+                        additionalSpacing = 70;
+                    }
+                    if (lines == 1) additionalSpacing = 40;
+                    if (lines == 2) additionalSpacing -= 10;
+
                     break;
                 case "Gill Sans MT":
-                    additionalSpacing = 40;
+                    if (font.Size == 18)
+                    {
+                        additionalSpacing = 50;
+                    }
+                    else if (font.Size == 20)
+                    {
+                        additionalSpacing = 60;
+                    }
+                    else if (font.Size == 22)
+                    {
+                        additionalSpacing = 80;
+                    }
+                    else if (font.Size == 24)
+                    {
+                        additionalSpacing = 90;
+                    }
+                    else if (font.Size == 26)
+                    {
+                        additionalSpacing = 100;
+                    }
+                    else if (font.Size == 28)
+                    {
+                        additionalSpacing = 105;
+                    }
+                    else if (font.Size == 30)
+                    {
+                        additionalSpacing = 110;
+                    }
+
+                    if (lines == 1) additionalSpacing = 40;
+                    if (lines == 2) additionalSpacing -= 10;
+
                     break;
                 case "Impact":
-                    additionalSpacing = 40;
+                    if (font.Size == 18)
+                    {
+                        additionalSpacing = 55;
+                    }
+                    else if (font.Size <= 24)
+                    {
+                        additionalSpacing = 70;
+                    }
+                    else
+                    {
+                        additionalSpacing = 80;
+                    }
+
+                    if (lines == 1) additionalSpacing -= 20;
+
                     break;
                 case "Rockwell":
-                    additionalSpacing = 40;
+                    if (font.Size < 24)
+                    {
+                        additionalSpacing = 50;
+                    }
+                    else if (font.Size < 28)
+                    {
+                        additionalSpacing = 60;
+                    }
+                    else if (font.Size >= 28)
+                    {
+                        additionalSpacing = 70;
+                    }
+
+                    if (lines == 1) additionalSpacing -= 10;
+
                     break;
                 case "Segoe WP":
-                    additionalSpacing = 40;
+                    if (font.Size == 18)
+                    {
+                        additionalSpacing = 65;
+                    }
+                    else if (font.Size < 24)
+                    {
+                        additionalSpacing = 80;
+                    }
+                    else if (font.Size < 28)
+                    {
+                        additionalSpacing = 90;
+                    }
+                    else if (font.Size == 28)
+                    {
+                        additionalSpacing = 100;
+                    }
+                    else if (font.Size == 30)
+                    {
+                        additionalSpacing = 110;
+                    }
+
+                    if (lines == 1) additionalSpacing -= 10;
                     break;
                 case "Times New Roman":
-                    additionalSpacing = 40;
+                    if (font.Size <= 24)
+                    {
+                        additionalSpacing = 60;   
+                    }
+                    else if (font.Size == 26)
+                    {
+                        additionalSpacing = 75;
+                    }
+                    else if (font.Size > 24)
+                    {
+                        additionalSpacing = 80;
+                    }
+
+                    if (lines == 1) additionalSpacing -= 20;
                     break;
                 case "Verdana":
-                    additionalSpacing = 40;
+                    if (font.Size == 18)
+                    {
+                        additionalSpacing = 50;
+                    }
+                    else if (font.Size == 20)
+                    {
+                        additionalSpacing = 55;                        
+                    }
+                    else if (font.Size == 22)
+                    {
+                        additionalSpacing = 60;
+                    }
+                    else if (font.Size == 24)
+                    {
+                        additionalSpacing = 65;
+                    }
+                    else if (font.Size == 26)
+                    {
+                        additionalSpacing = 70;
+                    }
+                    else if (font.Size == 28)
+                    {
+                        additionalSpacing = 75;
+                    }
+                    else if (font.Size == 30)
+                    {
+                        additionalSpacing = 80;
+                    }
+
+                    if (lines == 1) additionalSpacing -= 10;
                     break;
             }
 
