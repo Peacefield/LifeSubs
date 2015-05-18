@@ -4,19 +4,23 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Threading;
 
 namespace LifeSubsMetro
 {
     public partial class MainMenu : MetroForm
     {
+        Thread serverThread;
         public MainMenu()
         {
             InitializeComponent();
+            
         }
 
         private void tileSubtitle_Click(object sender, EventArgs e)
@@ -25,6 +29,7 @@ namespace LifeSubsMetro
 
             //if (dr == DialogResult.OK)
             //{
+                
                 Subtitle subtitle = new Subtitle(this);
                 subtitle.Visible = true;
                 this.Visible = false;
@@ -95,6 +100,8 @@ namespace LifeSubsMetro
 
         private void joinRoomButton_Click(object sender, EventArgs e)
         {
+            IMClient ic = new IMClient();
+            ic.connect("jeremy", "koek", false);
             this.tileJoinRoom.Visible = true;
             this.joinRoomPanel.Visible = false;
             GroupConversations groupWindow = new GroupConversations(this);
@@ -104,5 +111,17 @@ namespace LifeSubsMetro
 
 
         #endregion
+
+        private void tileCreateRoom_Click(object sender, EventArgs e)
+        {
+            serverThread = new Thread(() => new InstantMessengerServer.Program());
+            serverThread.Start();
+        }
+
+        private void MainMenu_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            serverThread.Abort();
+            serverThread.Join();
+        }
     }
 }

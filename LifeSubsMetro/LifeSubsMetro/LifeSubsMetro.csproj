@@ -157,6 +157,12 @@
   <ItemGroup>
     <None Include="icons\Conversations\Add Group-64.png" />
   </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="server\InstantMessengerServer.csproj">
+      <Project>{4c59e561-37a5-4ac9-a88b-9de7744fb916}</Project>
+      <Name>InstantMessengerServer</Name>
+    </ProjectReference>
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.

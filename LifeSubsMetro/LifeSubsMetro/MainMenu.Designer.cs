@@ -83,6 +83,7 @@
             this.tileCreateRoom.TileTextFontWeight = MetroFramework.MetroTileTextWeight.Regular;
             this.tileCreateRoom.UseSelectable = true;
             this.tileCreateRoom.UseTileImage = true;
+            this.tileCreateRoom.Click += new System.EventHandler(this.tileCreateRoom_Click);
             this.tileCreateRoom.MouseEnter += new System.EventHandler(this.tileCreateRoom_MouseEnter);
             this.tileCreateRoom.MouseLeave += new System.EventHandler(this.tileCreateRoom_MouseLeave);
             // 
@@ -223,6 +224,7 @@
             this.ShadowType = MetroFramework.Forms.MetroFormShadowType.DropShadow;
             this.Style = MetroFramework.MetroColorStyle.Green;
             this.Text = "LifeSubs";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.MainMenu_FormClosed);
             this.joinRoomPanel.ResumeLayout(false);
             this.joinRoomPanel.PerformLayout();
             this.ResumeLayout(false);
