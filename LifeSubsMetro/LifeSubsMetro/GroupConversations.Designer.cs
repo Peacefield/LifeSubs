@@ -43,10 +43,8 @@
             this.label4 = new System.Windows.Forms.Label();
             this.sendTile = new MetroFramework.Controls.MetroTile();
             this.ipLabel = new System.Windows.Forms.TextBox();
-            this.usnBox = new System.Windows.Forms.TextBox();
             this.label5 = new System.Windows.Forms.Label();
-            this.label6 = new System.Windows.Forms.Label();
-            this.button1 = new System.Windows.Forms.Button();
+            this.startGroupListenerBtn = new MetroFramework.Controls.MetroTile();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridOutput)).BeginInit();
             this.SuspendLayout();
             // 
@@ -184,7 +182,7 @@
             this.sendTile.ActiveControl = null;
             this.sendTile.Location = new System.Drawing.Point(885, 483);
             this.sendTile.Name = "sendTile";
-            this.sendTile.Size = new System.Drawing.Size(112, 59);
+            this.sendTile.Size = new System.Drawing.Size(67, 59);
             this.sendTile.TabIndex = 2;
             this.sendTile.Text = "Verzend";
             this.sendTile.UseSelectable = true;
@@ -197,13 +195,6 @@
             this.ipLabel.Size = new System.Drawing.Size(100, 20);
             this.ipLabel.TabIndex = 13;
             // 
-            // usnBox
-            // 
-            this.usnBox.Location = new System.Drawing.Point(53, 431);
-            this.usnBox.Name = "usnBox";
-            this.usnBox.Size = new System.Drawing.Size(100, 20);
-            this.usnBox.TabIndex = 14;
-            // 
             // label5
             // 
             this.label5.AutoSize = true;
@@ -213,34 +204,27 @@
             this.label5.TabIndex = 15;
             this.label5.Text = "label5";
             // 
-            // label6
+            // startGroupListenerBtn
             // 
-            this.label6.AutoSize = true;
-            this.label6.Location = new System.Drawing.Point(23, 434);
-            this.label6.Name = "label6";
-            this.label6.Size = new System.Drawing.Size(24, 13);
-            this.label6.TabIndex = 16;
-            this.label6.Text = "usn";
-            // 
-            // button1
-            // 
-            this.button1.Location = new System.Drawing.Point(159, 429);
-            this.button1.Name = "button1";
-            this.button1.Size = new System.Drawing.Size(75, 23);
-            this.button1.TabIndex = 17;
-            this.button1.Text = "register";
-            this.button1.UseVisualStyleBackColor = true;
-            this.button1.Click += new System.EventHandler(this.button1_Click);
+            this.startGroupListenerBtn.ActiveControl = null;
+            this.startGroupListenerBtn.Location = new System.Drawing.Point(958, 483);
+            this.startGroupListenerBtn.Name = "startGroupListenerBtn";
+            this.startGroupListenerBtn.Size = new System.Drawing.Size(47, 59);
+            this.startGroupListenerBtn.TabIndex = 16;
+            this.startGroupListenerBtn.TileImage = global::LifeSubsMetro.Properties.Resources.Microphone_50;
+            this.startGroupListenerBtn.TileImageAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.startGroupListenerBtn.TileTextFontSize = MetroFramework.MetroTileTextSize.Small;
+            this.startGroupListenerBtn.UseSelectable = true;
+            this.startGroupListenerBtn.UseTileImage = true;
+            this.startGroupListenerBtn.Click += new System.EventHandler(this.startGroupListenerBtn_Click);
             // 
             // GroupConversations
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1020, 565);
-            this.Controls.Add(this.button1);
-            this.Controls.Add(this.label6);
+            this.Controls.Add(this.startGroupListenerBtn);
             this.Controls.Add(this.label5);
-            this.Controls.Add(this.usnBox);
             this.Controls.Add(this.ipLabel);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
@@ -280,10 +264,8 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox ipLabel;
-        private System.Windows.Forms.TextBox usnBox;
         private System.Windows.Forms.Label label5;
-        private System.Windows.Forms.Label label6;
-        private System.Windows.Forms.Button button1;
+        private MetroFramework.Controls.MetroTile startGroupListenerBtn;
 
 
 

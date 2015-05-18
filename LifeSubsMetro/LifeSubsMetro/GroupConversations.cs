@@ -19,7 +19,8 @@ namespace LifeSubsMetro
         MainMenu mm;
         IMClient ic;
         string ownIpAddress;
-        
+        MicLevelListener mll;
+        Listener currentListener;
 
         public GroupConversations(MainMenu mm)
         {
@@ -143,10 +144,17 @@ namespace LifeSubsMetro
 
         }
 
-        private void button1_Click(object sender, EventArgs e)
+        private void startGroupListenerBtn_Click(object sender, EventArgs e)
         {
-            ic = new IMClient();
-            ic.connect(usnBox.Text, "koek", false);
+            //mll = new MicLevelListener(this);
+            //mll.listenToStream();
+
+            ////Initiate recording
+            //currentListener = "listener1";
+            //listener1 = new Listener(deviceNumber, currentListener, this);
+            //listener1.startRecording();
+            ////listener1 = new Listener(deviceNumber, currentListener, this);
+            ////listener1.startRecording();
         }
 
 

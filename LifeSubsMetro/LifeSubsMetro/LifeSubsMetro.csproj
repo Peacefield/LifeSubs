@@ -136,9 +136,7 @@
   <ItemGroup>
     <None Include="icons\Exit\exit-48.png" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Resources\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="icons\Subtitles\text-justify-48.png" />
   </ItemGroup>
@@ -162,6 +160,12 @@
       <Project>{4c59e561-37a5-4ac9-a88b-9de7744fb916}</Project>
       <Name>InstantMessengerServer</Name>
     </ProjectReference>
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Microphone-50 %281%29.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="icons\Conversations\Microphone-50.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
