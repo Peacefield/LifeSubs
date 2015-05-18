@@ -131,6 +131,12 @@ namespace LifeSubsMetro
         public void SetupConn()  // Setup connection and login
         {
             client = new TcpClient(Server, Port);  // Connect to the server.
+
+            //HIER MICHAEL
+            //IPAddress ipa = IPAddress.Parse("145.44.48.180");
+            //IPEndPoint ep = new IPEndPoint(ipa, 2000);
+            //client = new TcpClient(ep);
+
             netStream = client.GetStream();
             ssl = new SslStream(netStream, false, new RemoteCertificateValidationCallback(ValidateCert));
             ssl.AuthenticateAsClient("InstantMessengerServer");
