@@ -235,7 +235,7 @@ namespace LifeSubsMetro
             DataColumn dc10 = new DataColumn("Application");
             dt5.Columns.Add(dc9);
             dt5.Columns.Add(dc10);
-            dt5.Rows.Add(subtitleLanguageComboBox.Text, applicationLanguageComboBox.Text);
+            dt5.Rows.Add(subtitleLanguage(), applicationLanguageComboBox.Text);
             ds.Tables.Add(dt5);
 
             //buffer.ReadXml("Settings.xml");
@@ -245,6 +245,25 @@ namespace LifeSubsMetro
             ds.WriteXml("Settings.xml");
             if (sub != null) sub.setStyle();
     }
+
+        private string subtitleLanguage()
+        {
+            switch (subtitleLanguageComboBox.Text)
+            {
+                case "Nederlands":
+                    return "nld-NLD";
+                case "Duits":
+                    return "deu-DEU";
+                case "Frans":
+                    return "fra-FRA";
+                case "Engels (US)":
+                    return "eng-USA";
+                case "Engels (GB)":
+                    return "eng-GBR";
+                default:
+                    return "nld-NLD";
+            }
+        }
                    
         #endregion Save to XML
 
@@ -326,53 +345,7 @@ namespace LifeSubsMetro
 
         
         #endregion delay
-
-        #region readXML
-        //Load the settings from the XML file
-        private void loadXML()
-        {
-            string settingsFile = @"Settings.xml";
-            if(!System.IO.File.Exists(settingsFile)) return;
-
-            DataSet ds = new DataSet();
-            ds.ReadXml("Settings.xml");
-
-            //Load the microphone tile
-            microphoneComboBox.Text = ds.Tables["Microphone"].Rows[0][0].ToString();
-            
-            //Load the font tile
-            
-            //fontComboBox.Text = ds.Tables["Font"].Rows[0][0].ToString(); 
-
-            Console.WriteLine( fontComboBox.Items.Count );
-
-            fontSizeComboBox.Text = ds.Tables["Font"].Rows[0][1].ToString();
-            subtitleLinesComboBox.Text = ds.Tables["Subtitle"].Rows[0][0].ToString(); 
-            
-            //load the subtitle tile
-            string fontColor = ds.Tables["Subtitle"].Rows[0][1].ToString();
-            //Convert the ARGB values correctly 
-            string[] fontList = fontColor.Split(new Char[] { ',' });
-            fontColorPanel.BackColor = System.Drawing.Color.FromArgb(Int32.Parse(fontList[0]), Int32.Parse(fontList[1]), Int32.Parse(fontList[2]), Int32.Parse(fontList[3]));
-            string backColor = ds.Tables["Subtitle"].Rows[0][2].ToString();
-            //Convert the ARGB values correctly
-            string[] backList = backColor.Split(new Char[] { ',' });
-            fontBackPanel.BackColor = System.Drawing.Color.FromArgb(Int32.Parse(backList[0]), Int32.Parse(backList[1]), Int32.Parse(backList[2]), Int32.Parse(backList[3]));
-            
-            //load the save tile
-            pathTextBox.Text = ds.Tables["Save"].Rows[0][0].ToString(); 
-            delayTrackBar.Value = Int32.Parse(ds.Tables["Delay"].Rows[0][0].ToString()); 
-           
-            //load the delay tile
-            delayLabel.Text = ds.Tables["Delay"].Rows[0][0].ToString();
-            subtitleLanguageComboBox.Text = ds.Tables["Language"].Rows[0][0].ToString(); 
-            
-            //load the language tile
-            applicationLanguageComboBox.Text = ds.Tables["Language"].Rows[0][1].ToString();
-        }
-            
-        #endregion readXML
-        
+                
         private void loadSettings()
         {
             //Load the microphone tile
@@ -403,10 +376,27 @@ namespace LifeSubsMetro
             delayLabel.Text = delayTrackBar.Value.ToString();
 
             //load the language tile
-            subtitleLanguageComboBox.Text = settings.subLanguage;
+            subtitleLanguageComboBox.Text = subtitleLanguage(settings.subLanguage);
             applicationLanguageComboBox.Text = settings.appLanguage;
         }
-
+        private string subtitleLanguage(string language)
+        {
+            switch (language)
+            {
+                case "nld-NLD":
+                    return "Nederlands";
+                case "deu-DEU":
+                    return "Duits";
+                case "fra-FRA":
+                    return "Frans";
+                case "eng-USA":
+                    return "Engels (US)";
+                case "eng-GBR":
+                    return "Engels (GB)";
+                default:
+                    return "Nederlands";
+            }
+        }
         public void setVolumeMeter(int amp)
         {
             amp = amp + 150;
@@ -423,6 +413,7 @@ namespace LifeSubsMetro
             }
         }
 
+        #region eventhandlers
         private void microphoneComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (mll != null)
@@ -505,5 +496,6 @@ namespace LifeSubsMetro
         {
             this.languageTile.Style = MetroFramework.MetroColorStyle.Teal;
         }
+        #endregion
     }
 }

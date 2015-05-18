@@ -461,7 +461,8 @@
             this.subtitleLanguageComboBox.ItemHeight = 23;
             this.subtitleLanguageComboBox.Items.AddRange(new object[] {
             "Nederlands",
-            "Engels",
+            "Engels (US)",
+            "Engels (GB)",
             "Duits",
             "Frans"});
             this.subtitleLanguageComboBox.Location = new System.Drawing.Point(81, 46);

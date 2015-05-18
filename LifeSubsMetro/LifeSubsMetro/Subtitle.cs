@@ -23,7 +23,7 @@ namespace LifeSubsMetro
         Listener listener2 = null;
         String currentListener;
         Settings settings;
-        int deviceNumber = 0;
+        int deviceNumber = -1;
         string path = @"C:\audiotest";
         int lines;
 
@@ -46,6 +46,7 @@ namespace LifeSubsMetro
         public void setStyle()
         {
             settings = new Settings();
+
             int additionalSpacing;
 
             this.tbOutput.Font = new Font(settings.font, settings.fontsize);
@@ -59,6 +60,8 @@ namespace LifeSubsMetro
             this.tbOutput.Height = (fontsize * lines) + additionalSpacing;
             this.Height = tbOutput.Height + 50;
             this.Location = new Point(0, Screen.PrimaryScreen.Bounds.Height - this.Height);
+
+            this.deviceNumber = settings.microphone;
         }
         
         private int calcAdditionalSpacing(Font font)
@@ -327,7 +330,7 @@ namespace LifeSubsMetro
             stop();
             mm.Visible = true;
             mll.stop();
-            deleteDir();
+            //deleteDir();
         }
         //Get list of available devices for recording audio
         //Gets executed at Load()
@@ -498,7 +501,7 @@ namespace LifeSubsMetro
                     
                     Console.WriteLine("listener1 currently recording");
                     listener1.stop();
-                    th = new Thread(listener1.googleRequest);
+                    th = new Thread(listener1.request);
                     th.Start();
                     while (!th.IsAlive) ;
 
@@ -522,7 +525,7 @@ namespace LifeSubsMetro
                     Console.WriteLine("Stop listener2");
                     listener2.stop();
 
-                    th2 = new Thread(listener2.googleRequest);
+                    th2 = new Thread(listener2.request);
                     th2.Start();
                     while (!th2.IsAlive) ;
                     Thread.Sleep(1);

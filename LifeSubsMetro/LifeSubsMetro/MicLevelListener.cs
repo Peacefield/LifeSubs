@@ -74,8 +74,8 @@ namespace LifeSubsMetro
 
         private void countLowVoiceLevelBits(int i)
         {
-            int min = -15;
-            int max = 15;
+            int min = -5;
+            int max = 5;
 
             //1 increment is 1/10th of a second
             //Check if the sound level is between -20 and 20, which means speaker is silent

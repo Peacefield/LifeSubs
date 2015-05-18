@@ -14,6 +14,7 @@ namespace LifeSubsMetro
 {
     public partial class MainMenu : MetroForm
     {
+
         public MainMenu()
         {
             InitializeComponent();
@@ -21,14 +22,15 @@ namespace LifeSubsMetro
 
         private void tileSubtitle_Click(object sender, EventArgs e)
         {
-            //DialogResult dr = MetroMessageBox.Show(this, "Start Subtitling?", "Confirm", MessageBoxButtons.OKCancel, MessageBoxIcon.Question);
-
-            //if (dr == DialogResult.OK)
-            //{
-                Subtitle subtitle = new Subtitle(this);
-                subtitle.Visible = true;
-                this.Visible = false;
-            //}
+            Settings settings = new Settings();
+            if (!checkMic(settings.microphone))
+            {
+                MetroMessageBox.Show(this, "Microfoon niet gevonden", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+            Subtitle subtitle = new Subtitle(this);
+            subtitle.Show();
+            this.Visible = false;
         }
 
         private void tileExit_Click(object sender, EventArgs e)
@@ -107,6 +109,30 @@ namespace LifeSubsMetro
         private void tileSettings_Click(object sender, EventArgs e)
         {
             new SettingsMenu(this).Visible = true;
+        }
+
+        private bool checkMic(int deviceNumber)
+        {
+            //Load Input devices
+            System.Collections.Generic.List<NAudio.Wave.WaveInCapabilities> sources = new System.Collections.Generic.List<NAudio.Wave.WaveInCapabilities>();
+
+            for (int i = 0; i < NAudio.Wave.WaveIn.DeviceCount; i++)
+            {
+                sources.Add(NAudio.Wave.WaveIn.GetCapabilities(i));
+            }
+
+            if (sources.Count == 0)
+            {
+                return false;
+            }
+            else if (deviceNumber >= sources.Count)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
         }
     }
 }

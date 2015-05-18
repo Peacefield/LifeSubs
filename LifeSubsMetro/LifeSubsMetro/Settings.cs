@@ -54,7 +54,7 @@ namespace LifeSubsMetro
 
         private void loadXML()
         {
-            Console.WriteLine("start loading");
+            Console.WriteLine("start loading settings");
 
             DataSet ds = new DataSet();
             ds.ReadXml(settingsFile);
@@ -84,7 +84,7 @@ namespace LifeSubsMetro
 
             //load the language tile
             this.appLanguage = ds.Tables["Language"].Rows[0][1].ToString();
-            Console.WriteLine("done loading");
+            Console.WriteLine("done loading settings");
         }
     }
 }
