@@ -119,6 +119,97 @@ namespace LifeSubsMetro
             //return result;
         }
 
+        /// <summary>
+        /// Request to dragon server by sending a file located at a (user) specified location.
+        /// sets result in Subtitle's tbOutput
+        /// </summary>
+        public void googleRequest()
+        {
+            //form.setResult("request started: " + fileName);
+
+            Console.WriteLine("request started: " + fileName);
+            //form.setResult("request started: " + fileName);
+            string result;
+            try
+            {
+                string lang = "nl-NL";
+                string maxresults = "1";
+                byte[] data = null;
+
+
+                using (WaveFileReader reader = new WaveFileReader(fileName))
+                {
+                    //Assert.AreEqual(16, reader.WaveFormat.BitsPerSample, "Only works with 16 bit audio");
+
+                    byte[] buffer = new byte[reader.Length];
+                    int read = reader.Read(buffer, 0, buffer.Length);
+                    short[] sampleBuffer = new short[read / 2];
+                    Buffer.BlockCopy(buffer, 0, sampleBuffer, 0, read);
+                    data = buffer;
+                }
+
+                HttpWebRequest request = (HttpWebRequest)WebRequest.Create("https://www.google.com/speech-api/v1/recognize?client=chromium" + "&lang=" + lang + "&maxresults=" + maxresults);
+
+                request.Method = "POST";
+                request.ContentType = "audio/x-flac; rate=16000;";
+                request.UserAgent = "Mozilla/5.0 (Macintosh; Intel Mac OS X 10_6_8) AppleWebKit/535.7 (KHTML, like Gecko) Chrome/16.0.912.77 Safari/535.7";
+
+                Stream stream = request.GetRequestStream();
+                stream.Write(data, 0, data.Length);
+                stream.Close();
+
+                WebResponse response = request.GetResponse();
+                stream = response.GetResponseStream();
+
+                StreamReader sr = new StreamReader(stream);
+                //StreamReader sr = new StreamReader((Stream)sourceStream);
+
+                result = sr.ReadToEnd();
+
+                sr.Close();
+                stream.Close();
+            }
+            catch (WebException ex)
+            {
+                if (ex.Status == WebExceptionStatus.ProtocolError)
+                {
+                    var response = ex.Response as HttpWebResponse;
+                    if (response != null)
+                    {
+                        if ((int)response.StatusCode == 500)
+                        {
+                            Console.WriteLine("HTTP Status Code: " + (int)response.StatusCode);
+                            //result = "500 internal server error: No match found";
+                            result = "500";
+                        }
+                        else
+                        {
+                            Console.WriteLine("HTTP Status Code: " + (int)response.StatusCode);
+                            //result = "HTTP Status Code: " + (int)response.StatusCode;
+                            result = "";
+                        }
+                    }
+                    else
+                    {
+                        // no http status code available
+                        Console.WriteLine("ProtocolError: " + ex.Status);
+                        //result = "ProtocolError: " + ex.Status;
+                        result = "";
+                    }
+                }
+                else
+                {
+                    // no http status code available
+                    Console.WriteLine(ex.Status.ToString());
+                    result = "";
+                }
+            }
+            Console.WriteLine(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>" + result);
+            subtitleForm.setResult(result);
+            subtitleForm.setSendNoti(Color.LightGreen);
+            //return result;
+        }
+
         #region NAudio handlers
         public void startRecording()
         {

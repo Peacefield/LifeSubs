@@ -250,7 +250,7 @@ namespace LifeSubsMetro
                     
                     Console.WriteLine("listener1 currently recording");
                     listener1.stop();
-                    th = new Thread(listener1.request);
+                    th = new Thread(listener1.googleRequest);
                     th.Start();
                     while (!th.IsAlive) ;
 
@@ -273,7 +273,7 @@ namespace LifeSubsMetro
                     listener1.startRecording();
                     listener2.stop();
 
-                    th2 = new Thread(listener2.request);
+                    th2 = new Thread(listener2.googleRequest);
                     th2.Start();
                     while (!th2.IsAlive) ;
                     Thread.Sleep(1);
