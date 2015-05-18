@@ -11,6 +11,7 @@ namespace LifeSubsMetro
         string fileName;
         int deviceNumber = 0;
         Subtitle subtitleForm;
+        GroupConversations grpConv;
 
         public Listener(int deviceNumber, string fileName, Subtitle subtitleForm)
         {
@@ -18,6 +19,14 @@ namespace LifeSubsMetro
             this.deviceNumber = deviceNumber;
             this.fileName = "C:\\audiotest\\" + fileName + ".wav";
         }
+
+        public Listener(int deviceNumber, string fileName, GroupConversations grp)
+        {
+            this.grpConv = grp;
+            this.deviceNumber = deviceNumber;
+            this.fileName = "C:\\audiotest\\" + fileName + ".wav";
+        }
+
 
         /// <summary>
         /// Request to dragon server by sending a file located at a (user) specified location.
@@ -114,8 +123,13 @@ namespace LifeSubsMetro
                 }
             }
             Console.WriteLine(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>" + result);
-            subtitleForm.setResult(result);
-            subtitleForm.setSendNoti(Color.LightGreen);
+            if (subtitleForm != null)
+            { 
+                subtitleForm.setResult(result);
+                subtitleForm.setSendNoti(Color.LightGreen);
+            }
+            if (grpConv != null) { grpConv.addMessage("ik", result, Color.Green); Console.WriteLine("-----------_______---------------_________________----------------------"); }
+            
             //return result;
         }
 
@@ -145,7 +159,7 @@ namespace LifeSubsMetro
         private void sourceStream_DataAvailable(object sender, NAudio.Wave.WaveInEventArgs e)
         {
             if (waveWriter == null) return;
-
+            Console.WriteLine("dataavailable");
             waveWriter.WriteData(e.Buffer, 0, e.BytesRecorded);
             waveWriter.Flush();
         }

@@ -64,6 +64,7 @@
     </Compile>
     <Compile Include="IMClient.cs" />
     <Compile Include="IMEvents.cs" />
+    <Compile Include="InstantMessengerServer.cs" />
     <Compile Include="Listener.cs" />
     <Compile Include="MainMenu.cs">
       <SubType>Form</SubType>
@@ -149,7 +150,6 @@
   <ItemGroup>
     <None Include="icons\Exit\exit-48.png" />
   </ItemGroup>
-  <ItemGroup />
   <ItemGroup>
     <None Include="icons\SettingsMenu\Speaker-50.png" />
   </ItemGroup>
@@ -184,9 +184,6 @@
     <None Include="icons\SettingsMenu\Microphone2-50.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="Resources\Microphone2-50.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="icons\SettingsMenu\Numbered List-50.png" />
   </ItemGroup>
   <ItemGroup>
@@ -197,6 +194,18 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="icons\SettingsMenu\Geography-50.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="Resources\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="icons\Conversations\Microphone-50.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <ProjectReference Include="server\InstantMessengerServer.csproj">
+      <Project>{4c59e561-37a5-4ac9-a88b-9de7744fb916}</Project>
+      <Name>InstantMessengerServer</Name>
+    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -11,19 +11,26 @@ using System.Windows.Forms;
 using System.Collections;
 using System.Net;
 using System.Net.Sockets;
+using System.IO;
+
 
 namespace LifeSubsMetro
 {
     public partial class GroupConversations : MetroForm
     {
+        string path = @"C:\audiotest";
         MainMenu mm;
         IMClient ic;
         string ownIpAddress;
         MicLevelListener mll;
-        Listener currentListener;
+        string currentListener;
+        Listener listener1 = null;
+        Listener listener2 = null;
+        Settings settings;
 
         public GroupConversations(MainMenu mm)
         {
+            settings = new Settings();
             this.mm = mm;
             InitializeComponent();
 
@@ -54,7 +61,7 @@ namespace LifeSubsMetro
             //addMessage("Ik verstuur ook zelf iets", Color.Red);
         }
 
-        private void addMessage(string msg, Color c)
+        public void addMessage(string msg, Color c)
         {
             DataGridViewRow dr = new DataGridViewRow();
 
@@ -90,7 +97,7 @@ namespace LifeSubsMetro
 
 
 
-        private void addMessage(string sender, string msg, Color c)
+        public void addMessage(string sender, string msg, Color c)
         {
             DataGridViewRow dr = new DataGridViewRow();
 
@@ -146,18 +153,31 @@ namespace LifeSubsMetro
 
         private void startGroupListenerBtn_Click(object sender, EventArgs e)
         {
-            //mll = new MicLevelListener(this);
-            //mll.listenToStream();
+            mll = new MicLevelListener(this);
+            mll.listenToStream();
+            int deviceNumber = settings.microphone;
 
-            ////Initiate recording
-            //currentListener = "listener1";
+            //Initiate recording
+            currentListener = "listener1";
+            listener1 = new Listener(deviceNumber, currentListener, this);
+            listener1.startRecording();
             //listener1 = new Listener(deviceNumber, currentListener, this);
             //listener1.startRecording();
-            ////listener1 = new Listener(deviceNumber, currentListener, this);
-            ////listener1.startRecording();
         }
 
+        #region Directory Handling
+        private void createDir()
+        {
+            bool folderExists = Directory.Exists(path);
+            if (!folderExists) Directory.CreateDirectory(path);
+        }
 
+        private void deleteDir()
+        {
+            bool folderExists = Directory.Exists(path);
+            if (folderExists) Directory.Delete(path, true);
+        }
+        #endregion
         
     }
 }

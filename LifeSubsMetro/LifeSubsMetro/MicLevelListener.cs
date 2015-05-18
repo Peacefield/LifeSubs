@@ -16,6 +16,7 @@ namespace LifeSubsMetro
     class MicLevelListener
     {
         public int deviceNumber { get; set; }
+        GroupConversations grpConv;
         WaveIn waveIn;
         Subtitle subtitleForm = null;
         SettingsMenu settingsMenu = null;
@@ -36,6 +37,12 @@ namespace LifeSubsMetro
         public MicLevelListener(SettingsMenu f)
         {
             this.settingsMenu = f;
+            this.sec = settings.delay * 10;
+        }
+
+        public MicLevelListener(GroupConversations grp)
+        {
+            this.grpConv = grp;
             this.sec = settings.delay * 10;
         }
 

@@ -111,7 +111,7 @@
             this.metroLabel2.AutoSize = true;
             this.metroLabel2.Location = new System.Drawing.Point(-3, 51);
             this.metroLabel2.Name = "metroLabel2";
-            this.metroLabel2.Size = new System.Drawing.Size(87, 19);
+            this.metroLabel2.Size = new System.Drawing.Size(86, 19);
             this.metroLabel2.TabIndex = 7;
             this.metroLabel2.Text = "Wachtwoord:";
             // 

@@ -29,6 +29,7 @@
         private void InitializeComponent()
         {
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(GroupConversations));
             this.dataGridOutput = new System.Windows.Forms.DataGridView();
             this.imgColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.msgColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
@@ -43,7 +44,6 @@
             this.label4 = new System.Windows.Forms.Label();
             this.sendTile = new MetroFramework.Controls.MetroTile();
             this.ipLabel = new System.Windows.Forms.TextBox();
-            this.label5 = new System.Windows.Forms.Label();
             this.startGroupListenerBtn = new MetroFramework.Controls.MetroTile();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridOutput)).BeginInit();
             this.SuspendLayout();
@@ -195,15 +195,6 @@
             this.ipLabel.Size = new System.Drawing.Size(100, 20);
             this.ipLabel.TabIndex = 13;
             // 
-            // label5
-            // 
-            this.label5.AutoSize = true;
-            this.label5.Location = new System.Drawing.Point(0, 0);
-            this.label5.Name = "label5";
-            this.label5.Size = new System.Drawing.Size(35, 13);
-            this.label5.TabIndex = 15;
-            this.label5.Text = "label5";
-            // 
             // startGroupListenerBtn
             // 
             this.startGroupListenerBtn.ActiveControl = null;
@@ -211,7 +202,7 @@
             this.startGroupListenerBtn.Name = "startGroupListenerBtn";
             this.startGroupListenerBtn.Size = new System.Drawing.Size(47, 59);
             this.startGroupListenerBtn.TabIndex = 16;
-            this.startGroupListenerBtn.TileImage = global::LifeSubsMetro.Properties.Resources.Microphone_50;
+            this.startGroupListenerBtn.TileImage = ((System.Drawing.Image)(resources.GetObject("startGroupListenerBtn.TileImage")));
             this.startGroupListenerBtn.TileImageAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.startGroupListenerBtn.TileTextFontSize = MetroFramework.MetroTileTextSize.Small;
             this.startGroupListenerBtn.UseSelectable = true;
@@ -224,7 +215,6 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1020, 565);
             this.Controls.Add(this.startGroupListenerBtn);
-            this.Controls.Add(this.label5);
             this.Controls.Add(this.ipLabel);
             this.Controls.Add(this.label4);
             this.Controls.Add(this.label3);
@@ -264,7 +254,6 @@
         private System.Windows.Forms.Label label3;
         private System.Windows.Forms.Label label4;
         private System.Windows.Forms.TextBox ipLabel;
-        private System.Windows.Forms.Label label5;
         private MetroFramework.Controls.MetroTile startGroupListenerBtn;
 
 

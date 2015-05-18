@@ -11,6 +11,8 @@ using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Threading;
+//using LifeSubsMetro.Properties
+using InstantMessengerServer;
 
 namespace LifeSubsMetro
 {
@@ -112,8 +114,6 @@ namespace LifeSubsMetro
         }
 
 
-        #endregion
-
         private void tileCreateRoom_Click(object sender, EventArgs e)
         {
             serverThread = new Thread(() => new InstantMessengerServer.Program());
@@ -124,6 +124,12 @@ namespace LifeSubsMetro
         {
             serverThread.Abort();
             serverThread.Join();
+        }
+
+        private void tileSettings_Click(object sender, EventArgs e)
+        {
+            SettingsMenu sm = new SettingsMenu(this);
+            sm.Show();
         }
     }
 }
