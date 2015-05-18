@@ -31,7 +31,7 @@ namespace LifeSubsMetro
         // Start connection thread and login or register.
         public void connect(string user, string password, bool register)
         {
-            Console.WriteLine("CONNECT IMCLIENT");
+            Console.WriteLine("CONNECT IMCLIENT <=============");
             if (!_conn)
             {
                 _conn = true;

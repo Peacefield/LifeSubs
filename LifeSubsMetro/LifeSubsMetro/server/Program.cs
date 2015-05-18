@@ -28,7 +28,7 @@ namespace InstantMessengerServer
         public X509Certificate2 cert = new X509Certificate2("server.pfx", "instant");
 
         // IP of this computer. If you are running all clients at the same computer you can use 127.0.0.1 (localhost). 
-        public IPAddress ip = IPAddress.Parse("127.0.0.1");
+        public IPAddress ip = IPAddress.Parse("145.44.48.180");
         public int port = 2000;
         public bool running = true;
         public TcpListener server;

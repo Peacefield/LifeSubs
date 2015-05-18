@@ -122,8 +122,16 @@ namespace LifeSubsMetro
 
         private void MainMenu_FormClosed(object sender, FormClosedEventArgs e)
         {
-            serverThread.Abort();
-            serverThread.Join();
+            try
+            {
+                serverThread.Abort();
+                serverThread.Join();
+            }
+            catch (Exception eex)
+            {
+                Console.WriteLine(eex); ;
+            }
+            
         }
 
         private void tileSettings_Click(object sender, EventArgs e)
