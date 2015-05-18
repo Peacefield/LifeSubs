@@ -22,36 +22,278 @@ namespace LifeSubsMetro
         Listener listener1 = null;
         Listener listener2 = null;
         String currentListener;
+        Settings settings;
         int deviceNumber = 0;
         string path = @"C:\audiotest";
+        int lines;
 
         public Subtitle(MainMenu mm)
         {
             InitializeComponent();
 
             createDir();
+            setStyle();
             this.mm = mm;
             var screen = System.Windows.Forms.Screen.PrimaryScreen.Bounds;
             var width = screen.Width;
-
             this.Width = width;
-            this.Height = 200;
+            this.tbOutput.Width = width - 40;
             this.StartPosition = FormStartPosition.Manual;
-            this.Location = new Point(0, Screen.PrimaryScreen.Bounds.Height - this.Height);
             this.TopMost = true;
             
-            this.tbOutput.Width = width - 40;
-            this.tbOutput.Height = this.Height - 50;
-
-            setStyle();
         }
 
         public void setStyle()
         {
-            Settings settings = new Settings();
+            settings = new Settings();
+            int additionalSpacing;
+
             this.tbOutput.Font = new Font(settings.font, settings.fontsize);
             this.tbOutput.BackColor = settings.bgColor;
             this.tbOutput.ForeColor = settings.subColor;
+            this.lines = settings.lines;
+
+            additionalSpacing = calcAdditionalSpacing(this.tbOutput.Font);
+
+            int fontsize = Int32.Parse(tbOutput.Font.Size.ToString());
+            this.tbOutput.Height = (fontsize * lines) + additionalSpacing;
+            this.Height = tbOutput.Height + 50;
+            this.Location = new Point(0, Screen.PrimaryScreen.Bounds.Height - this.Height);
+        }
+        
+        private int calcAdditionalSpacing(Font font)
+        {
+            int additionalSpacing = 40;
+
+            switch (font.Name)
+            {
+                case "Arial": 
+                    if (font.Size < 24)
+                    {
+                        additionalSpacing = 40;
+                    }
+                    else if(font.Size == 24)
+                    {
+                        additionalSpacing = 60;
+                    }
+                    else
+                    {
+                        additionalSpacing = 70;
+                    }
+
+                    if (lines == 1) additionalSpacing -= 10;
+
+                    break;
+                case "Calibri":
+                    if (font.Size < 24)
+                    {
+                        additionalSpacing = 50;
+                    }
+                    else if (font.Size == 24)
+                    {
+                        additionalSpacing = 60;
+                    }
+                    else
+                    {
+                        additionalSpacing = 70;
+                    }
+
+                    if (lines == 4) additionalSpacing += 15;
+                    if (lines == 1) additionalSpacing -= 10;
+
+                    break;
+                case "Constantia":
+                    if (font.Size == 18)
+                    {
+                        additionalSpacing = 50;
+        }
+                    else if (font.Size == 20)
+                    {
+                        additionalSpacing = 60;
+                    }
+                    else if (font.Size == 22)
+                    {
+                        additionalSpacing = 65;
+                    }
+                    else if (font.Size == 30)
+                    {
+                        additionalSpacing = 90;
+                    }
+                    else
+                    {
+                        additionalSpacing = 70;
+                    }
+                    if (lines == 1) additionalSpacing -= 20;
+
+                    break;
+                case "Georgia": 
+                    if (font.Size == 18)
+                    {
+                        additionalSpacing = 50;
+                    }
+                    else if (font.Size == 20)
+                    {
+                        additionalSpacing = 60;
+                    }
+                    else if (font.Size == 22)
+                    {
+                        additionalSpacing = 65;
+                    }
+                    else if (font.Size == 30)
+                    {
+                        additionalSpacing = 90;
+                    }
+                    else
+                    {
+                        additionalSpacing = 70;
+                    }
+                    if (lines == 1) additionalSpacing = 40;
+                    if (lines == 2) additionalSpacing -= 10;
+
+                    break;
+                case "Gill Sans MT":
+                    if (font.Size == 18)
+                    {
+                        additionalSpacing = 50;
+                    }
+                    else if (font.Size == 20)
+                    {
+                        additionalSpacing = 60;
+                    }
+                    else if (font.Size == 22)
+                    {
+                        additionalSpacing = 80;
+                    }
+                    else if (font.Size == 24)
+                    {
+                        additionalSpacing = 90;
+                    }
+                    else if (font.Size == 26)
+                    {
+                        additionalSpacing = 100;
+                    }
+                    else if (font.Size == 28)
+                    {
+                        additionalSpacing = 105;
+                    }
+                    else if (font.Size == 30)
+                    {
+                        additionalSpacing = 110;
+                    }
+
+                    if (lines == 1) additionalSpacing = 40;
+                    if (lines == 2) additionalSpacing -= 10;
+
+                    break;
+                case "Impact":
+                    if (font.Size == 18)
+                    {
+                        additionalSpacing = 55;
+                    }
+                    else if (font.Size <= 24)
+                    {
+                        additionalSpacing = 70;
+                    }
+                    else
+                    {
+                        additionalSpacing = 80;
+                    }
+
+                    if (lines == 1) additionalSpacing -= 20;
+
+                    break;
+                case "Rockwell":
+                    if (font.Size < 24)
+                    {
+                        additionalSpacing = 50;
+                    }
+                    else if (font.Size < 28)
+                    {
+                        additionalSpacing = 60;
+                    }
+                    else if (font.Size >= 28)
+                    {
+                        additionalSpacing = 70;
+                    }
+
+                    if (lines == 1) additionalSpacing -= 10;
+
+                    break;
+                case "Segoe WP":
+                    if (font.Size == 18)
+                    {
+                        additionalSpacing = 65;
+                    }
+                    else if (font.Size < 24)
+                    {
+                        additionalSpacing = 80;
+                    }
+                    else if (font.Size < 28)
+                    {
+                        additionalSpacing = 90;
+                    }
+                    else if (font.Size == 28)
+                    {
+                        additionalSpacing = 100;
+                    }
+                    else if (font.Size == 30)
+                    {
+                        additionalSpacing = 110;
+                    }
+
+                    if (lines == 1) additionalSpacing -= 10;
+                    break;
+                case "Times New Roman":
+                    if (font.Size <= 24)
+                    {
+                        additionalSpacing = 60;   
+                    }
+                    else if (font.Size == 26)
+                    {
+                        additionalSpacing = 75;
+                    }
+                    else if (font.Size > 24)
+                    {
+                        additionalSpacing = 80;
+                    }
+
+                    if (lines == 1) additionalSpacing -= 20;
+                    break;
+                case "Verdana":
+                    if (font.Size == 18)
+                    {
+                        additionalSpacing = 50;
+                    }
+                    else if (font.Size == 20)
+                    {
+                        additionalSpacing = 55;                        
+                    }
+                    else if (font.Size == 22)
+                    {
+                        additionalSpacing = 60;
+                    }
+                    else if (font.Size == 24)
+                    {
+                        additionalSpacing = 65;
+                    }
+                    else if (font.Size == 26)
+                    {
+                        additionalSpacing = 70;
+                    }
+                    else if (font.Size == 28)
+                    {
+                        additionalSpacing = 75;
+                    }
+                    else if (font.Size == 30)
+                    {
+                        additionalSpacing = 80;
+                    }
+
+                    if (lines == 1) additionalSpacing -= 10;
+                    break;
+            }
+
+            return additionalSpacing;
         }
 
         #region Directory Handling
@@ -118,14 +360,14 @@ namespace LifeSubsMetro
             try
             {
                 if (this.tbOutput.InvokeRequired)
-                    this.tbOutput.Invoke((MethodInvoker)delegate { this.tbOutput.AppendText( result + "\r\n"); });
+                    this.tbOutput.Invoke((MethodInvoker)delegate { this.tbOutput.AppendText( result); });
                 else
-                    this.tbOutput.AppendText(result + "\r\n");
+                    this.tbOutput.AppendText( result );
             }
             catch (ObjectDisposedException)
             {
                 Console.WriteLine("Textbox niet kunnen vinden");
-                Console.WriteLine(result);
+                Console.WriteLine(result); //Misschien wel toevoegen aan log?
             }
         }
 
@@ -187,11 +429,11 @@ namespace LifeSubsMetro
 
         private void label1_TextChanged(object sender, EventArgs e)
         {
-            Console.WriteLine("NIEUWE LABEL TEXT = " + label1.Text);
+            //Console.WriteLine("NIEUWE LABEL TEXT = " + label1.Text);
             if (label1.Text == "send")
             {
-                Console.WriteLine("!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!send!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!!");
                 send();
+                Console.WriteLine("\\\\\\\\\\\\\\\\\\\\\\ Is verstuurd ///////////////////////////");
             }
             else if (label1.Text == "leeg")
             {
@@ -211,6 +453,7 @@ namespace LifeSubsMetro
             switch (currentListener)
             {
                 case "listener1":
+                    Console.WriteLine("listener1 currently recording");
                     //Set next listener
                     currentListener = "listener2";
                     //Create next listener
@@ -218,7 +461,7 @@ namespace LifeSubsMetro
                     //Start next listener
                     listener2.startRecording();
 
-                    Console.WriteLine("listener1 currently recording");
+                    Console.WriteLine("Stop listener1");
                     listener1.stop();
 
                     break;
@@ -230,6 +473,8 @@ namespace LifeSubsMetro
                     listener1 = new Listener(deviceNumber, currentListener, this);
                     //Start next listener
                     listener1.startRecording();
+
+                    Console.WriteLine("Stop listener2");
                     listener2.stop();
 
                     break;
@@ -241,12 +486,15 @@ namespace LifeSubsMetro
             switch (currentListener)
             {
                 case "listener1":
+                    Console.WriteLine("listener1 currently recording");
                     //Set next listener
                     currentListener = "listener2";
                     //Create next listener
                     listener2 = new Listener(deviceNumber, currentListener, this);
                     //Start next listener
                     listener2.startRecording();
+                    Console.WriteLine("Stop listener1");
+                    listener1.stop();
                     
                     Console.WriteLine("listener1 currently recording");
                     listener1.stop();
@@ -271,6 +519,7 @@ namespace LifeSubsMetro
                     listener1 = new Listener(deviceNumber, currentListener, this);
                     //Start next listener
                     listener1.startRecording();
+                    Console.WriteLine("Stop listener2");
                     listener2.stop();
 
                     th2 = new Thread(listener2.googleRequest);

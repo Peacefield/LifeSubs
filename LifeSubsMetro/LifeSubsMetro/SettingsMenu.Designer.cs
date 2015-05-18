@@ -35,6 +35,7 @@
             this.microphonePanel = new System.Windows.Forms.Panel();
             this.microphoneProgressBar = new MetroFramework.Controls.MetroProgressBar();
             this.fontPanel = new System.Windows.Forms.Panel();
+            this.fontComboBox = new LifeSubsMetro.FontComboBox();
             this.fontSizeComboBox = new MetroFramework.Controls.MetroComboBox();
             this.fontLabel = new System.Windows.Forms.Label();
             this.fontButton = new MetroFramework.Controls.MetroButton();
@@ -74,7 +75,6 @@
             this.linesTile = new MetroFramework.Controls.MetroTile();
             this.delayTile = new MetroFramework.Controls.MetroTile();
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
-            this.fontComboBox = new LifeSubsMetro.FontComboBox();
             this.microphonePanel.SuspendLayout();
             this.fontPanel.SuspendLayout();
             this.volumePanel.SuspendLayout();
@@ -147,23 +147,34 @@
             this.fontPanel.Size = new System.Drawing.Size(200, 200);
             this.fontPanel.TabIndex = 4;
             // 
+            // fontComboBox
+            // 
+            this.fontComboBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Append;
+            this.fontComboBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.fontComboBox.FormattingEnabled = true;
+            this.fontComboBox.Location = new System.Drawing.Point(5, 33);
+            this.fontComboBox.Name = "fontComboBox";
+            this.fontComboBox.Size = new System.Drawing.Size(130, 23);
+            this.fontComboBox.TabIndex = 6;
+            // 
             // fontSizeComboBox
             // 
             this.fontSizeComboBox.FormattingEnabled = true;
             this.fontSizeComboBox.ItemHeight = 23;
+            this.fontSizeComboBox.Items.AddRange(new object[] {
+            "18",
+            "20",
+            "22",
+            "24",
+            "26",
+            "28",
+            "30"});
             this.fontSizeComboBox.Location = new System.Drawing.Point(142, 32);
             this.fontSizeComboBox.Margin = new System.Windows.Forms.Padding(4);
             this.fontSizeComboBox.Name = "fontSizeComboBox";
             this.fontSizeComboBox.Size = new System.Drawing.Size(54, 29);
             this.fontSizeComboBox.TabIndex = 3;
             this.fontSizeComboBox.UseSelectable = true;
-            this.fontSizeComboBox.Items.AddRange(new object[] {
-            "6",
-            "8",
-            "10",
-            "12",
-            "14",
-            "16"});
             // 
             // fontLabel
             // 
@@ -250,17 +261,17 @@
             // 
             this.subtitleLinesComboBox.FormattingEnabled = true;
             this.subtitleLinesComboBox.ItemHeight = 23;
+            this.subtitleLinesComboBox.Items.AddRange(new object[] {
+            "1",
+            "2",
+            "3",
+            "4"});
             this.subtitleLinesComboBox.Location = new System.Drawing.Point(138, 42);
             this.subtitleLinesComboBox.Margin = new System.Windows.Forms.Padding(4);
             this.subtitleLinesComboBox.Name = "subtitleLinesComboBox";
             this.subtitleLinesComboBox.Size = new System.Drawing.Size(54, 29);
             this.subtitleLinesComboBox.TabIndex = 6;
             this.subtitleLinesComboBox.UseSelectable = true;
-            this.subtitleLinesComboBox.Items.AddRange(new object[] {
-            "1",
-            "2",
-            "3",
-            "4"});
             // 
             // linesLabel
             // 
@@ -372,6 +383,7 @@
             this.delayTrackBar.BackColor = System.Drawing.Color.Transparent;
             this.delayTrackBar.Location = new System.Drawing.Point(5, 47);
             this.delayTrackBar.Maximum = 3;
+            this.delayTrackBar.Minimum = 1;
             this.delayTrackBar.Name = "delayTrackBar";
             this.delayTrackBar.Size = new System.Drawing.Size(139, 23);
             this.delayTrackBar.TabIndex = 2;
@@ -417,13 +429,13 @@
             // 
             this.applicationLanguageComboBox.FormattingEnabled = true;
             this.applicationLanguageComboBox.ItemHeight = 23;
+            this.applicationLanguageComboBox.Items.AddRange(new object[] {
+            "Nederlands"});
             this.applicationLanguageComboBox.Location = new System.Drawing.Point(81, 99);
             this.applicationLanguageComboBox.Name = "applicationLanguageComboBox";
             this.applicationLanguageComboBox.Size = new System.Drawing.Size(107, 29);
             this.applicationLanguageComboBox.TabIndex = 12;
             this.applicationLanguageComboBox.UseSelectable = true;
-            this.applicationLanguageComboBox.Items.AddRange(new object[] {
-            "Nederlands"});
             // 
             // metroLabel3
             // 
@@ -447,16 +459,16 @@
             // 
             this.subtitleLanguageComboBox.FormattingEnabled = true;
             this.subtitleLanguageComboBox.ItemHeight = 23;
-            this.subtitleLanguageComboBox.Location = new System.Drawing.Point(81, 46);
-            this.subtitleLanguageComboBox.Name = "subtitleLanguageComboBox";
-            this.subtitleLanguageComboBox.Size = new System.Drawing.Size(107, 29);
-            this.subtitleLanguageComboBox.TabIndex = 2;
-            this.subtitleLanguageComboBox.UseSelectable = true;
             this.subtitleLanguageComboBox.Items.AddRange(new object[] {
             "Nederlands",
             "Engels",
             "Duits",
             "Frans"});
+            this.subtitleLanguageComboBox.Location = new System.Drawing.Point(81, 46);
+            this.subtitleLanguageComboBox.Name = "subtitleLanguageComboBox";
+            this.subtitleLanguageComboBox.Size = new System.Drawing.Size(107, 29);
+            this.subtitleLanguageComboBox.TabIndex = 2;
+            this.subtitleLanguageComboBox.UseSelectable = true;
             // 
             // label3
             // 
@@ -494,6 +506,8 @@
             this.languageTile.UseSelectable = true;
             this.languageTile.UseTileImage = true;
             this.languageTile.Click += new System.EventHandler(this.languageTile_Click);
+            this.languageTile.MouseEnter += new System.EventHandler(this.languageTile_MouseEnter);
+            this.languageTile.MouseLeave += new System.EventHandler(this.languageTile_MouseLeave);
             // 
             // fontTile
             // 
@@ -509,6 +523,8 @@
             this.fontTile.UseSelectable = true;
             this.fontTile.UseTileImage = true;
             this.fontTile.Click += new System.EventHandler(this.fontTile_Click);
+            this.fontTile.MouseEnter += new System.EventHandler(this.fontTile_MouseEnter);
+            this.fontTile.MouseLeave += new System.EventHandler(this.fontTile_MouseLeave);
             // 
             // microphoneTile
             // 
@@ -526,6 +542,8 @@
             this.microphoneTile.UseTileImage = true;
             this.microphoneTile.VisibleChanged += new System.EventHandler(this.microphoneTile_VisibleChanged);
             this.microphoneTile.Click += new System.EventHandler(this.microphoneTile_Click);
+            this.microphoneTile.MouseEnter += new System.EventHandler(this.microphoneTile_MouseEnter);
+            this.microphoneTile.MouseLeave += new System.EventHandler(this.microphoneTile_MouseLeave);
             // 
             // saveTile
             // 
@@ -542,6 +560,8 @@
             this.saveTile.UseSelectable = true;
             this.saveTile.UseTileImage = true;
             this.saveTile.Click += new System.EventHandler(this.saveTile_Click);
+            this.saveTile.MouseEnter += new System.EventHandler(this.saveTile_MouseEnter);
+            this.saveTile.MouseLeave += new System.EventHandler(this.saveTile_MouseLeave);
             // 
             // linesTile
             // 
@@ -557,6 +577,8 @@
             this.linesTile.UseSelectable = true;
             this.linesTile.UseTileImage = true;
             this.linesTile.Click += new System.EventHandler(this.linesTile_Click);
+            this.linesTile.MouseEnter += new System.EventHandler(this.linesTile_MouseEnter);
+            this.linesTile.MouseLeave += new System.EventHandler(this.linesTile_MouseLeave);
             // 
             // delayTile
             // 
@@ -573,16 +595,8 @@
             this.delayTile.UseSelectable = true;
             this.delayTile.UseTileImage = true;
             this.delayTile.Click += new System.EventHandler(this.delayTile_Click);
-            // 
-            // fontComboBox
-            // 
-            this.fontComboBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Append;
-            this.fontComboBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.fontComboBox.FormattingEnabled = true;
-            this.fontComboBox.Location = new System.Drawing.Point(5, 33);
-            this.fontComboBox.Name = "fontComboBox";
-            this.fontComboBox.Size = new System.Drawing.Size(130, 23);
-            this.fontComboBox.TabIndex = 6;
+            this.delayTile.MouseEnter += new System.EventHandler(this.delayTile_MouseEnter);
+            this.delayTile.MouseLeave += new System.EventHandler(this.delayTile_MouseLeave);
             // 
             // SettingsMenu
             // 
@@ -590,22 +604,25 @@
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(647, 506);
             this.Controls.Add(this.linesTile);
-            this.Controls.Add(this.delayTile);
             this.Controls.Add(this.languageTile);
             this.Controls.Add(this.volumePanel);
             this.Controls.Add(this.languagePanel);
-            this.Controls.Add(this.delayPanel);
             this.Controls.Add(this.saveTile);
             this.Controls.Add(this.savePanel);
             this.Controls.Add(this.fontTile);
             this.Controls.Add(this.fontPanel);
             this.Controls.Add(this.microphoneTile);
             this.Controls.Add(this.microphonePanel);
+            this.Controls.Add(this.delayTile);
+            this.Controls.Add(this.delayPanel);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(4);
+            this.MaximizeBox = false;
+            this.MinimizeBox = false;
             this.Name = "SettingsMenu";
             this.Padding = new System.Windows.Forms.Padding(27, 74, 27, 25);
-            this.Text = "SettingsMenu";
+            this.Resizable = false;
+            this.Text = "Settings";
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.SettingsMenu_FormClosing);
             this.microphonePanel.ResumeLayout(false);
             this.microphonePanel.PerformLayout();
@@ -622,7 +639,7 @@
             this.ResumeLayout(false);
 
         }
-
+        
         #endregion
 
         private MetroFramework.Controls.MetroTile microphoneTile;

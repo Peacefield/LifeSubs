@@ -42,7 +42,7 @@ namespace LifeSubsMetro
         {
             this.microphone = -1;
             this.font = "Arial";
-            this.fontsize = 12;
+            this.fontsize = 20;
             this.lines = 3;
             this.subColor = System.Drawing.Color.Black;
             this.bgColor = System.Drawing.Color.White;

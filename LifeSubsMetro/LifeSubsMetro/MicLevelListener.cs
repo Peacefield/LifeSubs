@@ -23,15 +23,20 @@ namespace LifeSubsMetro
         Boolean canSend = false;
         int count = 0;
 
+        Settings settings = new Settings();
+        int sec;
+
         public MicLevelListener(Subtitle f)
         {
             this.subtitleForm = f;
             deviceNumber = 0;
+            this.sec = settings.delay * 10;
         }
 
         public MicLevelListener(SettingsMenu f)
         {
             this.settingsMenu = f;
+            this.sec = settings.delay * 10;
         }
 
         public void listenToStream()
@@ -71,25 +76,23 @@ namespace LifeSubsMetro
         {
             int min = -15;
             int max = 15;
-            int sec = 15;
 
             //1 increment is 1/10th of a second
             //Check if the sound level is between -20 and 20, which means speaker is silent
             //if ((i < max) || (i < min))
             if (i < max && i > min)
             {
-                Console.WriteLine("i is --------- " + i);
                 //If the sound level is low enough, add 1 to the count variable
                 if (subtitleForm != null) subtitleForm.setVolumeMeter(i);
                 if (settingsMenu != null) settingsMenu.setVolumeMeter(i);
                 count++;
-                Console.WriteLine("STIL");
+                //Console.WriteLine("STIL");
                 if (subtitleForm != null) subtitleForm.setLabel("STIL");
             }
             // Sound level is not between -20 and 20, which means speaker is talking
             else 
             {
-                Console.WriteLine("GELUID");
+                //Console.WriteLine("GELUID");
                 if (subtitleForm != null) subtitleForm.setLabel("GELUID");
                 //Count variable should be set to 0
                 canSend = true;
@@ -105,11 +108,10 @@ namespace LifeSubsMetro
                     //HTTP request has to be sent from here!!
                     //Count variable should be set to 0
                     canSend = false;
-                    Console.WriteLine("<<<<<<<<< Kan sturen >>>>>>>>>>>>");
+                    //Console.WriteLine("<<<<<<<<< Kan sturen >>>>>>>>>>>>");
                     
                     subtitleForm.setSendNoti(Color.Red);
                     subtitleForm.setLabel("send");
-                    Console.WriteLine("\\\\\\\\\\\\\\\\\\\\\\ Is verstuurd ///////////////////////////");
                 }
                 else
                 {
