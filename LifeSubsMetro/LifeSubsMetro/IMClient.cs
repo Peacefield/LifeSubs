@@ -9,6 +9,7 @@ using System.IO;
 using System.Security.Cryptography;
 using System.Net.Security;
 using System.Security.Cryptography.X509Certificates;
+using MetroFramework;
 
 namespace LifeSubsMetro
 {
@@ -21,12 +22,32 @@ namespace LifeSubsMetro
         string _pass;          // Password
         bool reg;              // Register mode
 
+
         public string Server { get { return "localhost"; } }  // Address of server. In this case - local IP address.
         public int Port { get { return 2000; } }
 
         public bool IsLoggedIn { get { return _logged; } }
         public string UserName { get { return _user; } }
         public string Password { get { return _pass; } }
+
+        long IP2Long(IPAddress addr)
+        {
+            try
+            {
+                String[] ipbytes;
+                double num = 0;
+
+                ipbytes = addr.ToString().Split('.');
+                for (int i = ipbytes.Length - 1; i >= 0; i--)
+                    num += ((int.Parse(ipbytes[i]) % 256) * Math.Pow(256, (3 - i)));
+
+                return (long)num;
+            }
+            catch
+            {
+                return -1;
+            }
+        }
 
         // Start connection thread and login or register.
         public void connect(string user, string password, bool register)
@@ -130,12 +151,26 @@ namespace LifeSubsMetro
 
         public void SetupConn()  // Setup connection and login
         {
-            client = new TcpClient(Server, Port);  // Connect to the server.
+            //client = new TcpClient(Server, Port);  // Connect to the server.
 
-            //HIER MICHAEL
-            //long test = long.Parse("145.44.48.180");
-            //IPEndPoint ooo = new IPEndPoint(test, 2000);
-            //client = new TcpClient(ooo);
+            //EXTERNAL CALL
+            IPAddress ip = IPAddress.Parse("145.44.48.180");
+            IPEndPoint ipe = new IPEndPoint(IP2Long(ip), 2000);
+
+            Socket socket = new Socket(ipe.AddressFamily, SocketType.Stream, ProtocolType.Tcp);
+
+            client = new TcpClient();
+            client.Client = socket;
+
+            try
+            {
+                client.Connect(ip, 2000);
+            }
+            catch (Exception e)
+            {
+                Console.WriteLine(e);
+            }
+            
 
             netStream = client.GetStream();
             ssl = new SslStream(netStream, false, new RemoteCertificateValidationCallback(ValidateCert));
