@@ -15,6 +15,7 @@ namespace InstantMessengerServer
 {
     public class Program
     {
+        //Socket s;
         static void Main(string[] args)
         {
             Program p = new Program();
@@ -28,7 +29,7 @@ namespace InstantMessengerServer
         public X509Certificate2 cert = new X509Certificate2("server.pfx", "instant");
 
         // IP of this computer. If you are running all clients at the same computer you can use 127.0.0.1 (localhost). 
-        public IPAddress ip = IPAddress.Parse("145.44.48.180");
+        public IPAddress ip = IPAddress.Any;
         public int port = 2000;
         public bool running = true;
         public TcpListener server;
@@ -41,11 +42,10 @@ namespace InstantMessengerServer
             Console.WriteLine("----- InstantMessenger Server -----");
             LoadUsers();
             Console.WriteLine("[{0}] Starting server...", DateTime.Now);
-
+            //server = new TcpListener()
             server = new TcpListener(ip, port);
             server.Start();
             Console.WriteLine("[{0}] Server is running properly!", DateTime.Now);
-            
             Listen();
         }
 
@@ -53,6 +53,8 @@ namespace InstantMessengerServer
         {
             while (running)
             {
+                //s = server.AcceptSocket();
+                Console.WriteLine("Listening....");
                 TcpClient tcpClient = server.AcceptTcpClient();  // Accept incoming connection.
                 Client client = new Client(this, tcpClient);     // Handle in another thread.
             }

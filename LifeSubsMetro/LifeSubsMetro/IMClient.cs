@@ -55,6 +55,7 @@ namespace LifeSubsMetro
             Console.WriteLine("CONNECT IMCLIENT <=============");
             if (!_conn)
             {
+                Console.WriteLine(user + " | " + password + " | " + register);
                 _conn = true;
                 _user = user;
                 _pass = password;
