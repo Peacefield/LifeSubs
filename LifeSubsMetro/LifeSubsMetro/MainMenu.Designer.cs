@@ -111,7 +111,7 @@
             this.metroLabel2.AutoSize = true;
             this.metroLabel2.Location = new System.Drawing.Point(-3, 51);
             this.metroLabel2.Name = "metroLabel2";
-            this.metroLabel2.Size = new System.Drawing.Size(86, 19);
+            this.metroLabel2.Size = new System.Drawing.Size(87, 19);
             this.metroLabel2.TabIndex = 7;
             this.metroLabel2.Text = "Wachtwoord:";
             // 
@@ -166,6 +166,7 @@
             this.tileSettings.TileTextFontWeight = MetroFramework.MetroTileTextWeight.Regular;
             this.tileSettings.UseSelectable = true;
             this.tileSettings.UseTileImage = true;
+            this.tileSettings.Click += new System.EventHandler(this.tileSettings_Click);
             this.tileSettings.MouseEnter += new System.EventHandler(this.tileSettings_MouseEnter);
             this.tileSettings.MouseLeave += new System.EventHandler(this.tileSettings_MouseLeave);
             // 

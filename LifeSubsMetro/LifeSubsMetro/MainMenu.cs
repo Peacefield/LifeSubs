@@ -92,6 +92,8 @@ namespace LifeSubsMetro
             this.tileExit.Style = MetroFramework.MetroColorStyle.Green;
         }
 
+        #endregion
+
         private void tileJoinRoom_Click(object sender, EventArgs e)
         {
             this.tileJoinRoom.Visible = false;

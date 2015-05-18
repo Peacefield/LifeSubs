@@ -15,16 +15,28 @@ namespace LifeSubsMetro
 {
     class MicLevelListener
     {
+        public int deviceNumber { get; set; }
         WaveIn waveIn;
-        Subtitle subtitleForm;
-        Thread act;
+        Subtitle subtitleForm = null;
+        SettingsMenu settingsMenu = null;
+        //Thread act;
         Boolean canSend = false;
         int count = 0;
+
+        Settings settings = new Settings();
+        int sec;
 
         public MicLevelListener(Subtitle f)
         {
             this.subtitleForm = f;
+            deviceNumber = 0;
+            this.sec = settings.delay * 10;
+        }
 
+        public MicLevelListener(SettingsMenu f)
+        {
+            this.settingsMenu = f;
+            this.sec = settings.delay * 10;
         }
 
         public void listenToStream()
@@ -43,7 +55,7 @@ namespace LifeSubsMetro
             waveIn = new WaveIn();
 
             //set microphone
-            waveIn.DeviceNumber = 0;
+            waveIn.DeviceNumber = deviceNumber;
 
             //check if data is being recorded and set the properties of the waveIn object
             waveIn.DataAvailable += waveIn_DataAvailable;
@@ -62,26 +74,26 @@ namespace LifeSubsMetro
 
         private void countLowVoiceLevelBits(int i)
         {
-            int min = -100;
-            int max = 100;
-
-            int sec = 15;
+            int min = -15;
+            int max = 15;
 
             //1 increment is 1/10th of a second
             //Check if the sound level is between -20 and 20, which means speaker is silent
-            if ((i < max) || (i < min))
+            //if ((i < max) || (i < min))
+            if (i < max && i > min)
             {
                 //If the sound level is low enough, add 1 to the count variable
-                subtitleForm.setVolumeMeter(i);
+                if (subtitleForm != null) subtitleForm.setVolumeMeter(i);
+                if (settingsMenu != null) settingsMenu.setVolumeMeter(i);
                 count++;
-                Console.WriteLine("STIL");
-                subtitleForm.setLabel("STIL");
+                //Console.WriteLine("STIL");
+                if (subtitleForm != null) subtitleForm.setLabel("STIL");
             }
             // Sound level is not between -20 and 20, which means speaker is talking
             else 
             {
-                Console.WriteLine("GELUID");
-                subtitleForm.setLabel("GELUID");
+                //Console.WriteLine("GELUID");
+                if (subtitleForm != null) subtitleForm.setLabel("GELUID");
                 //Count variable should be set to 0
                 canSend = true;
                 count = 0;
@@ -89,23 +101,24 @@ namespace LifeSubsMetro
             //If no sound has been recorded for ... seconds, send audio to server
             if (count > sec)
             {
+                if (subtitleForm == null) return;
                 count = 0;
                 if (canSend)
                 {
                     //HTTP request has to be sent from here!!
                     //Count variable should be set to 0
                     canSend = false;
-
-                    Console.WriteLine("<<<<<<<<< Kan sturen >>>>>>>>>>>>");
+                    //Console.WriteLine("<<<<<<<<< Kan sturen >>>>>>>>>>>>");
                     
                     subtitleForm.setSendNoti(Color.Red);
                     subtitleForm.setLabel("send");
-                    Console.WriteLine("\\\\\\\\\\\\\\\\\\\\\\ Is verstuurd ///////////////////////////");
                 }
-                //else
-                //{
-                //    count = 0;
-                //}
+                else
+                {
+                    subtitleForm.setSendNoti(Color.Yellow);
+                    subtitleForm.setLabel("leeg");
+                    subtitleForm.setSendNoti(Color.LightGreen);
+                }
 
             }
         }
@@ -130,12 +143,6 @@ namespace LifeSubsMetro
                 //We only want the first byte from the array, so the loop can be cut off 
                 break;
             }
-
-            //if (act.IsAlive)
-            //{
-            //    act.Abort();
-            //    act.Join();
-            //}
         }
 
         public void waveIn_DataAvailable(object sender, WaveInEventArgs e)
