@@ -41,7 +41,7 @@ namespace LifeSubsMetro
             this.position = "bottom";
 
             createDir();
-            setStyle();
+            //setStyle();
             setPosition(position);  
         }
 
@@ -73,6 +73,7 @@ namespace LifeSubsMetro
 
         public void setPosition(string pos)
         {
+            setStyle();
             if (pos == "") pos = position;
             switch (pos)
             {
@@ -575,12 +576,7 @@ namespace LifeSubsMetro
         {
             new SettingsMenu(this).ShowDialog();
         }
-
-        public void changeFontSize(int size)
-        {
-            this.tbOutput.Font = new Font(tbOutput.Font.FontFamily, size);
-        }
-
+        
         private void snapPB_Click(object sender, EventArgs e)
         {
             switch (position)

@@ -26,7 +26,6 @@ namespace LifeSubsMetro
 
         public Settings()
         {
-            this.screenIndex = 0;
             try
             {
                 loadXML();

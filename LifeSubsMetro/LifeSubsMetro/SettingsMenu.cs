@@ -252,7 +252,6 @@ namespace LifeSubsMetro
             ds.WriteXml("Settings.xml");
             if (sub != null)
             {
-                sub.setStyle();
                 sub.setPosition("");
             }
     }
@@ -354,13 +353,11 @@ namespace LifeSubsMetro
             delayLabel.Text = delayTrackBar.Value.ToString();
         }
 
-        
         #endregion delay
                 
         private void loadSettings()
         {
-            //Load the microphone tile
-            //microphoneComboBox.Text = settings.microphone;
+            //Load the devices tile
             try
             {
                 microphoneComboBox.SelectedIndex = settings.microphone;
@@ -369,6 +366,7 @@ namespace LifeSubsMetro
             {
                 microphoneComboBox.SelectedIndex = -1;
             }
+
             try
             {
                 monitorComboBox.SelectedIndex = settings.screenIndex;
@@ -398,6 +396,7 @@ namespace LifeSubsMetro
             subtitleLanguageComboBox.Text = subtitleLanguage(settings.subLanguage);
             applicationLanguageComboBox.Text = settings.appLanguage;
         }
+
         private string subtitleLanguage(string language)
         {
             switch (language)
@@ -416,6 +415,7 @@ namespace LifeSubsMetro
                     return "Nederlands";
             }
         }
+
         public void setVolumeMeter(int amp)
         {
             amp = amp + 150;
