@@ -85,13 +85,14 @@ namespace LifeSubsMetro
             int max = 15;
 
             //1 increment is 1/10th of a second
-            //Check if the sound level is between -20 and 20, which means speaker is silent
+            //Check if the sound level is between min and max, which means speaker is silent
             //if ((i < max) || (i < min))
             if (i < max && i > min)
             {
                 //If the sound level is low enough, add 1 to the count variable
                 if (subtitleForm != null) subtitleForm.setVolumeMeter(i);
                 if (settingsMenu != null) settingsMenu.setVolumeMeter(i);
+                if (grpConv != null) grpConv.setVolumeMeter(i);
                 count++;
                 //Console.WriteLine("STIL");
                 if (subtitleForm != null) subtitleForm.setLabel("STIL");
@@ -108,7 +109,7 @@ namespace LifeSubsMetro
             //If no sound has been recorded for ... seconds, send audio to server
             if (count > sec)
             {
-                if (subtitleForm == null) return;
+                //if (subtitleForm == null) return;
                 count = 0;
                 if (canSend)
                 {
@@ -116,15 +117,27 @@ namespace LifeSubsMetro
                     //Count variable should be set to 0
                     canSend = false;
                     //Console.WriteLine("<<<<<<<<< Kan sturen >>>>>>>>>>>>");
-                    
-                    subtitleForm.setSendNoti(Color.Red);
-                    subtitleForm.setLabel("send");
+                    if (subtitleForm != null)
+                    {
+                        subtitleForm.setSendNoti(Color.Red);
+                        subtitleForm.setLabel("send");                        
+                    }
+                    if (grpConv != null)
+                    {
+                        grpConv.setCanSendPanel(false);
+                        this.stop();
+                    }
+
                 }
                 else
                 {
-                    subtitleForm.setSendNoti(Color.Yellow);
-                    subtitleForm.setLabel("leeg");
-                    subtitleForm.setSendNoti(Color.LightGreen);
+                    if (subtitleForm != null)
+                    {
+                        subtitleForm.setSendNoti(Color.Yellow);
+                        subtitleForm.setLabel("leeg");
+                        subtitleForm.setSendNoti(Color.LightGreen);
+                    }
+                    
                 }
 
             }

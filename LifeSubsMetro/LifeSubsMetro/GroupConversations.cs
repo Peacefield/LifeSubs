@@ -7,6 +7,7 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Threading;
 using System.Windows.Forms;
 using System.Collections;
 using System.Net;
@@ -22,10 +23,11 @@ namespace LifeSubsMetro
         MainMenu mm;
         IMClient ic;
         string ownIpAddress;
+        Thread th;
+        Thread th2;
         MicLevelListener mll;
         string currentListener;
         Listener listener1 = null;
-        Listener listener2 = null;
         Settings settings;
 
         public GroupConversations(MainMenu mm)
@@ -34,31 +36,15 @@ namespace LifeSubsMetro
             this.mm = mm;
             InitializeComponent();
 
-            //listenSocket = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
-            //listenSocket.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.ReuseAddress, true);
 
 
             ownIpAddress = getOwnIp();
-            ipLabel.Text = ownIpAddress;
-            friendIpTextBox.Text = ownIpAddress;
-            ownPort.Text = "11000";
-            otherPort.Text = "11001";
-            //populating listView:
 
             Font font = new System.Drawing.Font("Impact", 15);
             dataGridOutput.DefaultCellStyle.Font = new Font(font, FontStyle.Regular);
             dataGridOutput.Columns[0].DefaultCellStyle.Font = new System.Drawing.Font(dataGridOutput.DefaultCellStyle.Font.ToString(), 50);
 
 
-            //populating listView:
-            //    addMessage("FOTO", "BERICHT", Color.Orange);
-            //    addMessage("FOTO", "TEST", Color.Blue);
-            //addMessage("FOTO", "NOG EEN TESTNOG EEN TESTNOG EEN TESTNOG EEN TESTNOG EEN TEST", Color.Yellow);
-            //addMessage("FOTO", "BERICHT", Color.Orange);
-            //addMessage("FOTO", "TEST", Color.Blue);
-            //addMessage("FOTO", "NOG EEN TESTNOG EEN TESTNOG EEN TESTNOG EEN TESTNOG EEN TEST", Color.Yellow);
-
-            //addMessage("Ik verstuur ook zelf iets", Color.Red);
         }
 
         public void addMessage(string msg, Color c)
@@ -95,10 +81,148 @@ namespace LifeSubsMetro
 
         }
 
+        public void send()
+        {
 
+                    Console.WriteLine("listener1 currently recording");
+                    //Stop listener
+                    Console.WriteLine("Stop listener1");
+                    listener1.stop();
+
+                    th = new Thread(listener1.request);
+                    th.Start();
+                    while (!th.IsAlive) ;
+
+                    Thread.Sleep(1);
+                    if (th2 != null)
+                    {
+                        Console.WriteLine("th2 leeft");
+                        th2.Abort();
+                        th2.Join();
+                    }
+
+        }
+
+        #region set properties from other thread
+
+        //this.startGroupListenerBtn.Style = MetroFramework.MetroColorStyle.Lime;
+        public void setCanSendPanel(Boolean sent)
+        {
+            try
+            {
+                if (this.canSendPanelGrp.InvokeRequired)
+                {
+                    try
+                    {
+                        if (sent == false)
+                        {
+                            this.canSendPanelGrp.Invoke((MethodInvoker)delegate { canSendPanelGrp.Visible = true; });
+                        }
+                        if (sent == true)
+                        {
+                            this.canSendPanelGrp.Invoke((MethodInvoker)delegate { canSendPanelGrp.Visible = false; });
+                        }
+                        
+                    }
+                    catch (Exception e)
+                    {
+                        Console.WriteLine(e.Message);
+                    }
+                }
+            }
+            catch (ObjectDisposedException)
+            {
+                Console.WriteLine("Knop niet kunnen vinden");
+            }
+
+        }
+
+        public void setListenButton(Boolean show)
+        {
+            try
+            {
+                if (this.startGroupListenerBtn.InvokeRequired)
+                {
+                    try
+                    {
+                        if (show == false)
+                        {
+                            this.startGroupListenerBtn.Invoke((MethodInvoker)delegate { startGroupListenerBtn.Visible = true; });
+                        }
+                        if (show == true)
+                        {
+                            this.startGroupListenerBtn.Invoke((MethodInvoker)delegate { startGroupListenerBtn.Visible = false; });
+                        }
+
+                    }
+                    catch (Exception e)
+                    {
+                        Console.WriteLine(e.Message);
+                    }
+                }
+            }
+            catch (ObjectDisposedException)
+            {
+                Console.WriteLine("Knop niet kunnen vinden");
+            }
+
+        }
+
+
+        public void setVolumeMeter(int amp)
+        {
+            amp = amp + 50;
+            try
+            {
+                if (this.volumemeterGrp.InvokeRequired)
+                {
+                    try
+                    {
+                        this.volumemeterGrp.Invoke((MethodInvoker)delegate { this.volumemeterGrp.Value = amp; });
+                        Console.WriteLine("AMP = " + amp);
+                    }
+                    catch (Exception e)
+                    {
+                        Console.WriteLine(e.Message);
+                    }
+                }
+            }
+            catch (ObjectDisposedException)
+            {
+                Console.WriteLine("VolumeMeter niet kunnen vinden");
+            }
+
+        }
+
+        public void addMessageFromThread(string msg, Color c)
+        {
+
+            try
+            {
+                if (this.dataGridOutput.InvokeRequired)
+                {
+                    try
+                    {
+                        dataGridOutput.Invoke((MethodInvoker)(() => addMessage(msg, c)));
+                    }
+                    catch (Exception e)
+                    {
+                        Console.WriteLine(e.Message);
+                    }
+                }
+            }
+            catch (ObjectDisposedException)
+            {
+                Console.WriteLine("VolumeMeter niet kunnen vinden");
+            }
+
+        }
+
+        #endregion
 
         public void addMessage(string sender, string msg, Color c)
         {
+            setListenButton(false);
             DataGridViewRow dr = new DataGridViewRow();
 
             DataGridViewTextBoxCell cell1 = new DataGridViewTextBoxCell();
@@ -111,12 +235,16 @@ namespace LifeSubsMetro
             dr.Cells.Add(cell2);
 
             dr.Height = 50;
-
+            
             dataGridOutput.Rows.Add(dr);
         }
 
         private void GroupConversations_FormClosed(object sender, FormClosedEventArgs e)
         {
+            try { deleteDir(); }
+            catch (Exception direx) { Console.WriteLine(direx.Message); }
+            
+            
             mm.Visible = true;
         }
 
@@ -153,8 +281,12 @@ namespace LifeSubsMetro
 
         private void startGroupListenerBtn_Click(object sender, EventArgs e)
         {
+            startGroupListenerBtn.Visible = false;
+            volumemeterGrp.Visible = true;
+            createDir();
             mll = new MicLevelListener(this);
             mll.listenToStream();
+
             int deviceNumber = settings.microphone;
 
             //Initiate recording
@@ -178,6 +310,18 @@ namespace LifeSubsMetro
             if (folderExists) Directory.Delete(path, true);
         }
         #endregion
+
+        private void canSendPanelGrp_VisibleChanged(object sender, EventArgs e)
+        {
+            if (canSendPanelGrp.Visible == true)
+            {
+                Console.WriteLine("VERSTUUR");
+                send();
+                //canSendPanelGrp.Visible = false;
+                volumemeterGrp.Visible = false;
+
+            }
+        }
         
     }
 }

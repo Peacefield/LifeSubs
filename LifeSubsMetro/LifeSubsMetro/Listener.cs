@@ -128,7 +128,13 @@ namespace LifeSubsMetro
                 subtitleForm.setResult(result);
                 subtitleForm.setSendNoti(Color.LightGreen);
             }
-            if (grpConv != null) { grpConv.addMessage("ik", result, Color.Green); Console.WriteLine("-----------_______---------------_________________----------------------"); }
+            if (grpConv != null) 
+            {
+                grpConv.setCanSendPanel(true);    
+                grpConv.addMessageFromThread(result, Color.Orange);
+                grpConv.setListenButton(false);
+                Console.WriteLine("gestopt");
+            }
             
             //return result;
         }

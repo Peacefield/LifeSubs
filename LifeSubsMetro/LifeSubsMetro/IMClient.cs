@@ -153,7 +153,7 @@ namespace LifeSubsMetro
         public void SetupConn()  // Setup connection and login
         {
             //client = new TcpClient(Server, Port);  // Connect to the server.
-
+            Console.WriteLine("SETUP CONNECTION <====");
             //EXTERNAL CALL
             IPAddress ip = IPAddress.Parse("145.44.48.180");
             IPEndPoint ipe = new IPEndPoint(IP2Long(ip), 2000);
@@ -166,10 +166,11 @@ namespace LifeSubsMetro
             try
             {
                 client.Connect(ip, 2000);
+                Console.WriteLine("Connect successfully executed");
             }
             catch (Exception e)
             {
-                Console.WriteLine(e);
+                Console.WriteLine("Er is iets misgegaan: " + e.Message);
             }
             
 

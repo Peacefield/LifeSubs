@@ -48,6 +48,7 @@ namespace InstantMessengerServer
                 bw.Write(IM_Hello);
                 bw.Flush();
                 int hello = br.ReadInt32();
+                Console.WriteLine("BEN BIJ HALLOO==============");
                 if (hello == IM_Hello)
                 {
                     // Hello packet is OK. Time to wait for login or register.
