@@ -108,7 +108,7 @@ namespace LifeSubsMetro
 
         private void tileSettings_Click(object sender, EventArgs e)
         {
-            new SettingsMenu(this).Visible = true;
+            new SettingsMenu(this).ShowDialog();
         }
 
     }

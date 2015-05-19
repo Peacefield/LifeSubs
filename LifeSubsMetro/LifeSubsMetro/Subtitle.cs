@@ -78,18 +78,13 @@ namespace LifeSubsMetro
             {
                 //switch snap to top
                 case "top":
-                    setStyle();
                     this.snapPB.Image = global::LifeSubsMetro.Properties.Resources.Down_Circular_32;
-                    //this.Location = new Point(0, 0);
                     this.Location = new Point(screen.Bounds.X, screen.Bounds.Y);
                     position = "top";
                     break;
                 //switch snap to bottom
                 case "bottom":
-                    setStyle();
                     this.snapPB.Image = global::LifeSubsMetro.Properties.Resources.Up_Circular_32;
-                    //this.Location = new Point(0, Screen.PrimaryScreen.Bounds.Height - this.Height);
-                    MessageBox.Show(screen.Bounds.Height.ToString());
                     this.Location = new Point(screen.Bounds.X, screen.Bounds.Height - this.Height);
                     position = "bottom";
                     break;
@@ -578,8 +573,7 @@ namespace LifeSubsMetro
 
         private void settingsPB_Click(object sender, System.EventArgs e)
         {
-            SettingsMenu sm = new SettingsMenu(this);
-            sm.Show();
+            new SettingsMenu(this).ShowDialog();
         }
 
         public void changeFontSize(int size)
