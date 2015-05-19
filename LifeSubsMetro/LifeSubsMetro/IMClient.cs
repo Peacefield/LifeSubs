@@ -155,7 +155,7 @@ namespace LifeSubsMetro
             //client = new TcpClient(Server, Port);  // Connect to the server.
             Console.WriteLine("SETUP CONNECTION <====");
             //EXTERNAL CALL
-            IPAddress ip = IPAddress.Parse("145.44.48.180");
+            IPAddress ip = IPAddress.Parse("86.86.32.112");
             IPEndPoint ipe = new IPEndPoint(IP2Long(ip), 2000);
 
             Socket socket = new Socket(ipe.AddressFamily, SocketType.Stream, ProtocolType.Tcp);
