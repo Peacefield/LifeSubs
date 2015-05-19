@@ -55,13 +55,16 @@ namespace LifeSubsMetro
             Console.WriteLine("CONNECT IMCLIENT <=============");
             if (!_conn)
             {
-                Console.WriteLine(user + " | " + password + " | " + register);
                 _conn = true;
                 _user = user;
                 _pass = password;
                 reg = register;
                 tcpThread = new Thread(new ThreadStart(SetupConn));
                 tcpThread.Start();
+            }
+            else
+            {
+                Console.WriteLine("NIET _CONN");
             }
         }
         public void Login(string user, string password)
@@ -158,21 +161,20 @@ namespace LifeSubsMetro
             IPAddress ip = IPAddress.Parse("86.86.32.112");
             IPEndPoint ipe = new IPEndPoint(IP2Long(ip), 2000);
 
-            Socket socket = new Socket(ipe.AddressFamily, SocketType.Stream, ProtocolType.Tcp);
+            //Socket socket = new Socket(ipe.AddressFamily, SocketType.Stream, ProtocolType.Tcp);
 
             client = new TcpClient();
-            client.Client = socket;
+            //client.Client = socket;
 
             try
             {
-                client.Connect(ip, 2000);
-                Console.WriteLine("Connect successfully executed");
+                client.Connect(ip.ToString(), 2000);
+                Console.WriteLine(">>>>> Connect successfully executed");
             }
             catch (Exception e)
             {
-                Console.WriteLine("Er is iets misgegaan: " + e.Message);
+                Console.WriteLine(">>>>> Er is iets misgegaan: " + e.Message);
             }
-            
 
             netStream = client.GetStream();
             ssl = new SslStream(netStream, false, new RemoteCertificateValidationCallback(ValidateCert));

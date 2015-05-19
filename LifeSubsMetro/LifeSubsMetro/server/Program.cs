@@ -54,6 +54,7 @@ namespace InstantMessengerServer
             while (running)
             {
                 //s = server.AcceptSocket();
+                //server.AcceptSocket();
                 Console.WriteLine("Listening....");
                 TcpClient tcpClient = server.AcceptTcpClient();  // Accept incoming connection.
                 Client client = new Client(this, tcpClient);     // Handle in another thread.

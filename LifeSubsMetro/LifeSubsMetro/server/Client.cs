@@ -12,14 +12,7 @@ namespace InstantMessengerServer
 {
     public class Client
     {
-        public Client(Program p, TcpClient c)
-        {
-            prog = p;
-            client = c;
-
-            // Handle client in another thread.
-            (new Thread(new ThreadStart(SetupConn))).Start();
-        }
+        
 
         Program prog;
         public TcpClient client;
@@ -29,7 +22,17 @@ namespace InstantMessengerServer
         public BinaryWriter bw;
 
         UserInfo userInfo;  // Information about current user.
-        
+
+        public Client(Program p, TcpClient c)
+        {
+            Console.WriteLine(p +" || "+ c);
+            prog = p;
+            client = c;
+
+            // Handle client in another thread.
+            (new Thread(new ThreadStart(SetupConn))).Start();
+        }
+
         void SetupConn()  // Setup connection and login or register.
         {
             try

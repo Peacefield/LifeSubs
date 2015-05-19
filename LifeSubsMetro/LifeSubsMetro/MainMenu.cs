@@ -105,7 +105,7 @@ namespace LifeSubsMetro
         private void joinRoomButton_Click(object sender, EventArgs e)
         {
             IMClient ic = new IMClient();
-            ic.connect("jeremy", "koek", true);
+            ic.Login("jeremy","koek");
             this.tileJoinRoom.Visible = true;
             this.joinRoomPanel.Visible = false;
             GroupConversations groupWindow = new GroupConversations(this);
