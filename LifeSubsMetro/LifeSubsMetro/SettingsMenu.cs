@@ -53,10 +53,20 @@ namespace LifeSubsMetro
             {
                 sources.Add(NAudio.Wave.WaveIn.GetCapabilities(i));
             }
-
             foreach (var source in sources)
             {
                 microphoneComboBox.Items.Add(source.ProductName);
+            }
+
+            List<Screen> screens = new List<Screen>();
+
+            foreach (Screen screen in Screen.AllScreens)
+            {
+                screens.Add(screen);
+            }
+            foreach (var screen in screens)
+            {
+                monitorComboBox.Items.Add(screen.DeviceName);
             }
         }
         //Bring the main menu back when closing the settings
@@ -185,11 +195,12 @@ namespace LifeSubsMetro
             DataSet ds = new DataSet("Settings");
 
             //xml datatable microphone
-            DataTable dt = new DataTable("Microphone"); 
-            DataColumn dc1 = new DataColumn("InputDevice");
+            DataTable dt = new DataTable("Devices");
+            DataColumn dc1 = new DataColumn("Microphone");
+            DataColumn monitorColumn = new DataColumn("Monitor");
             dt.Columns.Add(dc1);
-            //dt.Rows.Add(microphoneComboBox.Text);
-            dt.Rows.Add(microphoneComboBox.SelectedIndex);
+            dt.Columns.Add(monitorColumn);
+            dt.Rows.Add(microphoneComboBox.SelectedIndex, monitorComboBox.SelectedIndex);
             ds.Tables.Add(dt);
 
             //xml datatable font
@@ -238,12 +249,12 @@ namespace LifeSubsMetro
             dt5.Rows.Add(subtitleLanguage(), applicationLanguageComboBox.Text);
             ds.Tables.Add(dt5);
 
-            //buffer.ReadXml("Settings.xml");
-
-            //ds.Merge(buffer);
-
             ds.WriteXml("Settings.xml");
-            if (sub != null) sub.setStyle();
+            if (sub != null)
+            {
+                sub.setStyle();
+                sub.setPosition("");
+            }
     }
 
         private string subtitleLanguage()
@@ -357,6 +368,14 @@ namespace LifeSubsMetro
             catch (ArgumentOutOfRangeException)
             {
                 microphoneComboBox.SelectedIndex = -1;
+            }
+            try
+            {
+                monitorComboBox.SelectedIndex = settings.screenIndex;
+            }
+            catch (ArgumentOutOfRangeException)
+            {
+                monitorComboBox.SelectedIndex = 0;
             }
 
             //Load the font tile

@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace LifeSubsMetro
 {
-    class Settings
+    public class Settings
     {
         //public string microphone { get; set; }  //TODO: Change to selectedindex        
         public int microphone { get; set; }  //TODO: Change to selectedindex
@@ -21,10 +21,12 @@ namespace LifeSubsMetro
         public int delay { get; set; }
         public string subLanguage { get; set; }
         public string appLanguage { get; set; }
+        public int screenIndex { get; set; }
         string settingsFile = @"Settings.xml";
 
         public Settings()
         {
+            this.screenIndex = 0;
             try
             {
                 loadXML();
@@ -50,6 +52,7 @@ namespace LifeSubsMetro
             this.delay = 1;
             this.subLanguage = "Nederlands";
             this.appLanguage = "Nederlands";
+            this.screenIndex = 0;
         }
 
         private void loadXML()
@@ -59,8 +62,10 @@ namespace LifeSubsMetro
             DataSet ds = new DataSet();
             ds.ReadXml(settingsFile);
 
-            //Load the microphone tile
-            this.microphone = Int32.Parse(ds.Tables["Microphone"].Rows[0][0].ToString());
+            //Load the devices tile
+            this.microphone = Int32.Parse(ds.Tables["Devices"].Rows[0][0].ToString());
+            this.screenIndex = Int32.Parse(ds.Tables["Devices"].Rows[0][1].ToString());
+            if (!checkMic(microphone)) this.microphone = -1;
 
             //Load the font tile
             this.font = ds.Tables["Font"].Rows[0][0].ToString(); 
@@ -84,7 +89,32 @@ namespace LifeSubsMetro
 
             //load the language tile
             this.appLanguage = ds.Tables["Language"].Rows[0][1].ToString();
+
             Console.WriteLine("done loading settings");
+        }
+
+        private bool checkMic(int deviceNumber)
+        {
+            //Load Input devices
+            System.Collections.Generic.List<NAudio.Wave.WaveInCapabilities> sources = new System.Collections.Generic.List<NAudio.Wave.WaveInCapabilities>();
+
+            for (int i = 0; i < NAudio.Wave.WaveIn.DeviceCount; i++)
+            {
+                sources.Add(NAudio.Wave.WaveIn.GetCapabilities(i));
+            }
+
+            if (sources.Count == 0)
+            {
+                return false;
+            }
+            else if (deviceNumber >= sources.Count)
+            {
+                return false;
+            }
+            else
+            {
+                return true;
+            }
         }
     }
 }

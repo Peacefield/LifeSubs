@@ -175,4 +175,19 @@
   <data name="Time_50" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\icons\SettingsMenu\Time-50.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="Down_Circular_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\icons\Subtitles\Down Circular-32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Monitor_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\icons\Subtitles\Monitor-32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Resize_Four_Directions_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\icons\Subtitles\Resize Four Directions-32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="Up_Circular_32" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\icons\Subtitles\Up Circular-32.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
+  <data name="devices" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\icons\SettingsMenu\devices.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
 </root>

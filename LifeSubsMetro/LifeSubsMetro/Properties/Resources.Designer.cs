@@ -113,6 +113,26 @@ namespace LifeSubsMetro.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap devices {
+            get {
+                object obj = ResourceManager.GetObject("devices", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Down_Circular_32 {
+            get {
+                object obj = ResourceManager.GetObject("Down_Circular_32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap exit_48 {
             get {
                 object obj = ResourceManager.GetObject("exit_48", resourceCulture);
@@ -183,9 +203,29 @@ namespace LifeSubsMetro.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Monitor_32 {
+            get {
+                object obj = ResourceManager.GetObject("Monitor_32", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Numbered_List_50 {
             get {
                 object obj = ResourceManager.GetObject("Numbered_List_50", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Resize_Four_Directions_32 {
+            get {
+                object obj = ResourceManager.GetObject("Resize_Four_Directions_32", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -246,6 +286,16 @@ namespace LifeSubsMetro.Properties {
         internal static System.Drawing.Bitmap Time_50 {
             get {
                 object obj = ResourceManager.GetObject("Time_50", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
+        internal static System.Drawing.Bitmap Up_Circular_32 {
+            get {
+                object obj = ResourceManager.GetObject("Up_Circular_32", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

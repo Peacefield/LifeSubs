@@ -23,7 +23,7 @@ namespace LifeSubsMetro
         private void tileSubtitle_Click(object sender, EventArgs e)
         {
             Settings settings = new Settings();
-            if (!checkMic(settings.microphone))
+            if (settings.microphone == -1)
             {
                 MetroMessageBox.Show(this, "Microfoon niet gevonden", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
@@ -111,28 +111,5 @@ namespace LifeSubsMetro
             new SettingsMenu(this).Visible = true;
         }
 
-        private bool checkMic(int deviceNumber)
-        {
-            //Load Input devices
-            System.Collections.Generic.List<NAudio.Wave.WaveInCapabilities> sources = new System.Collections.Generic.List<NAudio.Wave.WaveInCapabilities>();
-
-            for (int i = 0; i < NAudio.Wave.WaveIn.DeviceCount; i++)
-            {
-                sources.Add(NAudio.Wave.WaveIn.GetCapabilities(i));
-            }
-
-            if (sources.Count == 0)
-            {
-                return false;
-            }
-            else if (deviceNumber >= sources.Count)
-            {
-                return false;
-            }
-            else
-            {
-                return true;
-            }
-        }
     }
 }

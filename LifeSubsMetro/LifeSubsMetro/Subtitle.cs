@@ -26,28 +26,36 @@ namespace LifeSubsMetro
         int deviceNumber = -1;
         string path = @"C:\audiotest";
         int lines;
+        public string position;
+        // Drag form
+        private bool dragging;
+        private Point dragAt = Point.Empty;
+        private Screen screen;
 
         public Subtitle(MainMenu mm)
         {
+
             InitializeComponent();
+            this.StartPosition = FormStartPosition.Manual;
+            this.mm = mm;
+            this.position = "bottom";
 
             createDir();
             setStyle();
-            this.mm = mm;
-            var screen = System.Windows.Forms.Screen.PrimaryScreen.Bounds;
-            var width = screen.Width;
-            this.Width = width;
-            this.tbOutput.Width = width - 40;
-            this.StartPosition = FormStartPosition.Manual;
-            this.TopMost = true;
-            
+            setPosition(position);  
         }
 
         public void setStyle()
         {
-            settings = new Settings();
+            settings = new Settings(); 
 
             int additionalSpacing;
+
+            this.screen = Screen.AllScreens[settings.screenIndex];
+            var width = screen.Bounds.Width;
+            this.Width = width;
+            this.tbOutput.Width = width - 40;
+            this.TopMost = true;
 
             this.tbOutput.Font = new Font(settings.font, settings.fontsize);
             this.tbOutput.BackColor = settings.bgColor;
@@ -59,11 +67,36 @@ namespace LifeSubsMetro
             int fontsize = Int32.Parse(tbOutput.Font.Size.ToString());
             this.tbOutput.Height = (fontsize * lines) + additionalSpacing;
             this.Height = tbOutput.Height + 50;
-            this.Location = new Point(0, Screen.PrimaryScreen.Bounds.Height - this.Height);
 
             this.deviceNumber = settings.microphone;
         }
-        
+
+        public void setPosition(string pos)
+        {
+            if (pos == "") pos = position;
+            switch (pos)
+            {
+                //switch snap to top
+                case "top":
+                    setStyle();
+                    this.snapPB.Image = global::LifeSubsMetro.Properties.Resources.Down_Circular_32;
+                    //this.Location = new Point(0, 0);
+                    this.Location = new Point(screen.Bounds.X, screen.Bounds.Y);
+                    position = "top";
+                    break;
+                //switch snap to bottom
+                case "bottom":
+                    setStyle();
+                    this.snapPB.Image = global::LifeSubsMetro.Properties.Resources.Up_Circular_32;
+                    //this.Location = new Point(0, Screen.PrimaryScreen.Bounds.Height - this.Height);
+                    MessageBox.Show(screen.Bounds.Height.ToString());
+                    this.Location = new Point(screen.Bounds.X, screen.Bounds.Height - this.Height);
+                    position = "bottom";
+                    break;
+            }
+        }
+
+        #region Responsive to font-changes
         private int calcAdditionalSpacing(Font font)
         {
             int additionalSpacing = 40;
@@ -109,7 +142,7 @@ namespace LifeSubsMetro
                     if (font.Size == 18)
                     {
                         additionalSpacing = 50;
-        }
+                    }
                     else if (font.Size == 20)
                     {
                         additionalSpacing = 60;
@@ -298,6 +331,7 @@ namespace LifeSubsMetro
 
             return additionalSpacing;
         }
+        #endregion
 
         #region Directory Handling
         private void createDir()
@@ -551,6 +585,72 @@ namespace LifeSubsMetro
         public void changeFontSize(int size)
         {
             this.tbOutput.Font = new Font(tbOutput.Font.FontFamily, size);
+        }
+
+        private void snapPB_Click(object sender, EventArgs e)
+        {
+            switch (position)
+            {
+                case "top":
+                    position = "bottom";
+                    break;
+                case "bottom":
+                    position = "top";
+                    break;
+            }
+            setPosition(position);
+        }
+
+        /// <summary>
+        /// Activate the form draggable modus when the left mousebutton is pressed.
+        /// </summary>
+        private void dragPB_MouseDown(object sender, MouseEventArgs e)
+        {
+            this.dragPB.Cursor = Cursors.SizeAll;
+
+            if (e.Button == MouseButtons.Left)
+            {
+                this.dragging = true;
+                this.dragAt = new Point(e.X, e.Y);
+                ((Control)sender).Capture = true;
+            }
+        }
+
+        /// <summary>
+        /// Stops moving the form when the mousebutton is released.
+        /// </summary>
+        private void dragPB_MouseUp(object sender, MouseEventArgs e)
+        {
+            this.dragPB.Cursor = Cursors.Default;
+
+            this.dragging = false;
+            ((Control)sender).Capture = false;
+        }
+
+        /// <summary>
+        /// Moves the form when the left mousebutton is pressed and the mouse moves.
+        /// </summary>
+        private void dragPB_MouseMove(object sender, MouseEventArgs e)
+        {
+            if (dragging && e.Button == MouseButtons.Left)
+            {
+                if (this.tbOutput.InvokeRequired)
+                {
+                    this.Invoke((MethodInvoker)delegate { 
+                        this.Left = e.X + Left - dragAt.X;
+                        this.Top = e.Y + Top - dragAt.Y; 
+                    });
+                }
+                else
+                {
+                    this.Left = e.X + Left - dragAt.X;
+                    this.Top = e.Y + Top - dragAt.Y;
+                }
+            }
+            else
+            {
+                this.dragAt = new Point(e.X, e.Y);
+            }
         }
     }
 }

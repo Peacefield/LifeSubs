@@ -196,6 +196,21 @@
   <ItemGroup>
     <None Include="icons\SettingsMenu\Geography-50.png" />
   </ItemGroup>
+  <ItemGroup>
+    <None Include="icons\Subtitles\Down Circular-32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="icons\Subtitles\Up Circular-32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="icons\Subtitles\Resize Four Directions-32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="icons\Subtitles\Monitor-32.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="icons\SettingsMenu\devices.png" />
+  </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
        Other similar extension points exist, see Microsoft.Common.targets.
