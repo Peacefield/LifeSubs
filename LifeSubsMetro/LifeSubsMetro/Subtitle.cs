@@ -34,7 +34,6 @@ namespace LifeSubsMetro
 
         public Subtitle(MainMenu mm)
         {
-
             InitializeComponent();
             this.StartPosition = FormStartPosition.Manual;
             this.mm = mm;
@@ -45,7 +44,10 @@ namespace LifeSubsMetro
             setPosition(position);  
         }
 
-        public void setStyle()
+        /// <summary>
+        /// Sets the style of the form according to the settings class
+        /// </summary>
+        private void setStyle()
         {
             settings = new Settings(); 
 
@@ -71,6 +73,11 @@ namespace LifeSubsMetro
             this.deviceNumber = settings.microphone;
         }
 
+        /// <summary>
+        /// Sets the position of the subtitle form according to the specified string
+        /// </summary>
+        /// <param name="pos">Desired position of the subtitle form. 
+        /// If empty it defaults to bottom if this hasn't been changed by the user during the running of the application</param>
         public void setPosition(string pos)
         {
             setStyle();
@@ -93,6 +100,11 @@ namespace LifeSubsMetro
         }
 
         #region Responsive to font-changes
+        /// <summary>
+        /// Calculates the additonal spacing needed for the desired font and fontsize to be displayed correctly
+        /// </summary>
+        /// <param name="font">Font selected by user</param>
+        /// <returns>additionalSpacing</returns>
         private int calcAdditionalSpacing(Font font)
         {
             int additionalSpacing = 40;
@@ -330,20 +342,33 @@ namespace LifeSubsMetro
         #endregion
 
         #region Directory Handling
+        /// <summary>
+        /// Create directory defined in string path if it does not exist yet
+        /// </summary>
         private void createDir()
         {
             bool folderExists = Directory.Exists(path);
             if (!folderExists) Directory.CreateDirectory(path);
         }
 
+        /// <summary>
+        /// Delete directory defined in string path if it exists
+        /// </summary>
         private void deleteDir()
         {
             bool folderExists = Directory.Exists(path);
             if (folderExists) Directory.Delete(path, true);
-        }
+        }   
         #endregion
 
         #region form opening/closing handling
+        /// <summary>
+        /// Event handler for loading of form
+        /// Start MicLevelListener
+        /// Starts listening on default listener1
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Subtitle_Load(object sender, EventArgs e)
         {
             mll = new MicLevelListener(this);
@@ -355,37 +380,30 @@ namespace LifeSubsMetro
             listener1.startRecording();
         }
 
+        /// <summary>
+        /// Event handler for closing of form
+        /// Stops listeners
+        /// Stops MicLevelListener
+        /// Returns MainMenu
+        /// Deletes directory with temporary audiofiles
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void Subtitle_FormClosing(object sender, FormClosingEventArgs e)
         {
             stop();
-            mm.Visible = true;
             mll.stop();
+            mm.Visible = true;
+            //TODO: Uncomment deleteDir()
             //deleteDir();
         }
-        //Get list of available devices for recording audio
-        //Gets executed at Load()
-        //Eventually move to settings
-        //public void getDevices()
-        //{
-        //    List<NAudio.Wave.WaveInCapabilities> sources = new List<NAudio.Wave.WaveInCapabilities>();
-
-        //    for (int i = 0; i < NAudio.Wave.WaveIn.DeviceCount; i++)
-        //    {
-        //        sources.Add(NAudio.Wave.WaveIn.GetCapabilities(i));
-        //    }
-
-        //    sourceList.Items.Clear();
-
-        //    foreach (var source in sources)
-        //    {
-        //        ListViewItem item = new ListViewItem(source.ProductName);
-        //        item.SubItems.Add(new ListViewItem.ListViewSubItem(item, source.Channels.ToString()));
-        //        sourceList.Items.Add(item);
-        //    }
-        //}
         #endregion
 
         #region setters to call from other threads
+        /// <summary>
+        /// Adds the returned message from the Http request to the textbox tbOutput
+        /// </summary>
+        /// <param name="result">Returned message from Http request</param>
         public void setResult(string result)
         {
             if (result == "" || result == "500") return;
@@ -404,6 +422,10 @@ namespace LifeSubsMetro
             }
         }
 
+        /// <summary>
+        /// Sets the volumemeter to give the user feedback on his current volume
+        /// </summary>
+        /// <param name="amp"></param>
         public void setVolumeMeter(int amp)
         {
             amp = amp + 150;

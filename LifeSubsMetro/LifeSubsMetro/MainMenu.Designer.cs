@@ -71,9 +71,9 @@
             // tileCreateRoom
             // 
             this.tileCreateRoom.ActiveControl = null;
-            this.tileCreateRoom.Location = new System.Drawing.Point(400, 60);
+            this.tileCreateRoom.Location = new System.Drawing.Point(380, 60);
             this.tileCreateRoom.Name = "tileCreateRoom";
-            this.tileCreateRoom.Size = new System.Drawing.Size(175, 80);
+            this.tileCreateRoom.Size = new System.Drawing.Size(175, 85);
             this.tileCreateRoom.Style = MetroFramework.MetroColorStyle.Green;
             this.tileCreateRoom.TabIndex = 3;
             this.tileCreateRoom.Text = "Creëer kamer";
@@ -124,7 +124,7 @@
             this.joinRoomPanel.HorizontalScrollbarBarColor = true;
             this.joinRoomPanel.HorizontalScrollbarHighlightOnWheel = false;
             this.joinRoomPanel.HorizontalScrollbarSize = 10;
-            this.joinRoomPanel.Location = new System.Drawing.Point(222, 62);
+            this.joinRoomPanel.Location = new System.Drawing.Point(212, 62);
             this.joinRoomPanel.Name = "joinRoomPanel";
             this.joinRoomPanel.Size = new System.Drawing.Size(150, 171);
             this.joinRoomPanel.TabIndex = 8;
@@ -136,7 +136,7 @@
             // tileExit
             // 
             this.tileExit.ActiveControl = null;
-            this.tileExit.Location = new System.Drawing.Point(491, 150);
+            this.tileExit.Location = new System.Drawing.Point(470, 150);
             this.tileExit.Name = "tileExit";
             this.tileExit.Size = new System.Drawing.Size(85, 85);
             this.tileExit.Style = MetroFramework.MetroColorStyle.Green;
@@ -154,7 +154,7 @@
             // tileSettings
             // 
             this.tileSettings.ActiveControl = null;
-            this.tileSettings.Location = new System.Drawing.Point(400, 150);
+            this.tileSettings.Location = new System.Drawing.Point(380, 150);
             this.tileSettings.Name = "tileSettings";
             this.tileSettings.Size = new System.Drawing.Size(85, 85);
             this.tileSettings.Style = MetroFramework.MetroColorStyle.Green;
@@ -191,7 +191,7 @@
             // tileJoinRoom
             // 
             this.tileJoinRoom.ActiveControl = null;
-            this.tileJoinRoom.Location = new System.Drawing.Point(210, 60);
+            this.tileJoinRoom.Location = new System.Drawing.Point(200, 60);
             this.tileJoinRoom.Name = "tileJoinRoom";
             this.tileJoinRoom.Size = new System.Drawing.Size(175, 175);
             this.tileJoinRoom.Style = MetroFramework.MetroColorStyle.Green;
@@ -211,7 +211,7 @@
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(587, 250);
+            this.ClientSize = new System.Drawing.Size(570, 250);
             this.Controls.Add(this.tileJoinRoom);
             this.Controls.Add(this.tileExit);
             this.Controls.Add(this.tileCreateRoom);
