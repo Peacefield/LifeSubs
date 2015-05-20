@@ -9,9 +9,8 @@ using System.Threading.Tasks;
 namespace LifeSubsMetro
 {
     public class Settings
-    {
-        //public string microphone { get; set; }  //TODO: Change to selectedindex        
-        public int microphone { get; set; }  //TODO: Change to selectedindex
+    {      
+        public int microphone { get; set; } 
         public string font { get; set; }
         public int fontsize { get; set; }
         public int lines { get; set; }

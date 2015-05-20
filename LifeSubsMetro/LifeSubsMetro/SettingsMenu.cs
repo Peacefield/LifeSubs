@@ -23,6 +23,10 @@ namespace LifeSubsMetro
         Settings settings;
         MicLevelListener mll;
 
+        /// <summary>
+        /// Constructor for calling SettingsMenu from MainMenu class
+        /// </summary>
+        /// <param name="mm"></param>
         public SettingsMenu(MainMenu mm)
         {
             this.mainMenu = mm;
@@ -33,6 +37,10 @@ namespace LifeSubsMetro
             loadSettings();
         }
 
+        /// <summary>
+        /// Constructor for calling SettingsMenu from Subtitle class
+        /// </summary>
+        /// <param name="sub"></param>
         public SettingsMenu(Subtitle sub)
         {
             this.sub = sub;
@@ -44,7 +52,10 @@ namespace LifeSubsMetro
         }
 
         #region Initiate
-        private void init() //Load on start
+        /// <summary>
+        /// Function to fill microphone- and monitor comboboxes to available devices
+        /// </summary>
+        private void init() 
         {   
             //Load Input devices
             List<NAudio.Wave.WaveInCapabilities> sources = new List<NAudio.Wave.WaveInCapabilities>();
@@ -69,7 +80,13 @@ namespace LifeSubsMetro
                 monitorComboBox.Items.Add(screen.DeviceName);
             }
         }
-        //Bring the main menu back when closing the settings
+        
+        /// <summary>
+        /// Bring the main menu back when closing the SettingsMenu from MainMenu class
+        /// Bring the subtitle screen back to front when closing SettingsMenu from Subtitles class
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void SettingsMenu_FormClosing(object sender, FormClosingEventArgs e)
         {
             if (sub != null) sub.BringToFront();
@@ -80,8 +97,12 @@ namespace LifeSubsMetro
 
         #endregion Initiate
 
-        #region Metro Tiles open
-        //Call displaytiles() for the concerning tile
+        #region Metro Tiles event handlers
+        /// <summary>
+        /// Stops micLevelListener if this was initiated successfully 
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void microphoneTile_Click(object sender, EventArgs e) //Microphone tile
         {
             if (microphoneComboBox.SelectedIndex >= 0)
@@ -92,30 +113,61 @@ namespace LifeSubsMetro
             }
             displayTiles("mic");
         }
+
+        /// <summary>
+        /// Font tile click event handler
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void fontTile_Click(object sender, EventArgs e) //Font tile
         {
             displayTiles("font");
         }
+
+        /// <summary>
+        /// Lines tile click event handler
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void linesTile_Click(object sender, EventArgs e) //Lines tile
         {
             displayTiles("lines");
         }
+
+        /// <summary>
+        /// Save location tile click event handler
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void saveTile_Click(object sender, EventArgs e) //Save tile
         {
             displayTiles("save");
         }
+
+        /// <summary>
+        /// Delay tile click event handler
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void delayTile_Click(object sender, EventArgs e) //Delay tile
         {
             displayTiles("delay");
         }
+
+        /// <summary>
+        /// Language tile click event handler
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void languageTile_Click(object sender, EventArgs e) //Language tile
         {
             displayTiles("language");
         }
 
-
-
-        //Set the called "displayTiles" tile visible = False so the panel becomes visible
+        /// <summary>
+        /// Function to hide all tiles and then show tile that was clicked
+        /// </summary>
+        /// <param name="naam">Name of the clicked tile</param>
         private void displayTiles(string naam) 
         {
             foreach (Control c in this.Controls)
@@ -190,6 +242,9 @@ namespace LifeSubsMetro
         #endregion Metro Tiles close
 
         #region Save to XML
+        /// <summary>
+        /// Function to save entered settings to .XML
+        /// </summary>
         private void save()
         {
             DataSet ds = new DataSet("Settings");
@@ -254,8 +309,12 @@ namespace LifeSubsMetro
             {
                 sub.setPosition("");
             }
-    }
+        }
 
+        /// <summary>
+        /// Switch entered preferred language to string necessary for dragon dictation http client
+        /// </summary>
+        /// <returns></returns>
         private string subtitleLanguage()
         {
             switch (subtitleLanguageComboBox.Text)
@@ -278,7 +337,10 @@ namespace LifeSubsMetro
         #endregion Save to XML
 
         #region Subtitle Color
-        //Change the color panel of the font to the selected color
+        /// <summary>
+        /// Functon to change the backgroundcolor of the subtitle-fontpanel to the selected color
+        /// </summary>
+        /// <param name="color"></param>
         private void changeClrFont(Color color)
         {
             this.Invoke((MethodInvoker)delegate
@@ -291,6 +353,12 @@ namespace LifeSubsMetro
             });
             
         }
+
+        /// <summary>
+        /// Click event handler for font color panel fontColorPanel
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void fontColorPanel_Click(object sender, EventArgs e)
         {
             if (fontColorDialog.ShowDialog() != DialogResult.Cancel)
@@ -300,10 +368,11 @@ namespace LifeSubsMetro
                 updateUI.Start();
             }
         }
-        #endregion Subtitle Color
 
-        #region Subtitle Back Color
-        //Change the color panel of the subtitle background to the selected color
+        /// <summary>
+        /// function to change the backgroundcolor of the subtitle-backgroundpanel to the selected color
+        /// </summary>
+        /// <param name="color"></param>
         private void changeClrBack(Color color)
         {
             this.Invoke((MethodInvoker)delegate
@@ -316,7 +385,11 @@ namespace LifeSubsMetro
             });
 
         }
-        
+        /// <summary>
+        /// Click event handler for backgroundcolor panel fontBackPanel
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void fontBackPanel_Click(object sender, EventArgs e)
         {
             if (backColorDialog.ShowDialog() != DialogResult.Cancel)
@@ -325,39 +398,15 @@ namespace LifeSubsMetro
                 updateUI.IsBackground = true;
                 updateUI.Start();
             }
-
-
         }
 
-        #endregion Subtitle Back Color
+        #endregion
 
-        #region Log Path
-        //When clicking on the path button open a SaveFileDialog with a predifined save format
-        private void pathButton_Click(object sender, EventArgs e)
-        {
-            SaveFileDialog sfd = new SaveFileDialog();
-            sfd.FileName = "Log";
-            sfd.AddExtension = true;
-            sfd.DefaultExt = "txt";
-            sfd.Filter = "Text(*.txt)|*.*";
-            sfd.ShowDialog();
-            pathTextBox.Text = sfd.FileName;
-        }
-
-        #endregion Log Path
-
-        #region Delay
-        //Set the numeric label value of the delay trackbar
-        private void delayTrackBar_Scroll(object sender, ScrollEventArgs e)
-        {
-            delayLabel.Text = delayTrackBar.Value.ToString();
-        }
-
-        #endregion delay
-                
+        /// <summary>
+        /// Function to load the settings for the Settings.cs into the SettingsMenu
+        /// </summary>
         private void loadSettings()
         {
-            //Load the devices tile
             try
             {
                 microphoneComboBox.SelectedIndex = settings.microphone;
@@ -397,6 +446,11 @@ namespace LifeSubsMetro
             applicationLanguageComboBox.Text = settings.appLanguage;
         }
 
+        /// <summary>
+        /// Function to switch the language settings in the settings file to user-friendly values
+        /// </summary>
+        /// <param name="language">language returned from Settings.cs</param>
+        /// <returns></returns>
         private string subtitleLanguage(string language)
         {
             switch (language)
@@ -416,6 +470,11 @@ namespace LifeSubsMetro
             }
         }
 
+        /// <summary>
+        /// Function to set the volumeMeter of the devices tile from another thread
+        /// This gives the user direct feedback on the selected microphone
+        /// </summary>
+        /// <param name="amp"></param>
         public void setVolumeMeter(int amp)
         {
             amp = amp + 150;
@@ -432,7 +491,39 @@ namespace LifeSubsMetro
             }
         }
 
-        #region eventhandlers
+        #region other eventhandlers
+        /// <summary>
+        /// Functio to set the numeric label value of the delay trackbar
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void delayTrackBar_Scroll(object sender, ScrollEventArgs e)
+        {
+            delayLabel.Text = delayTrackBar.Value.ToString();
+        }
+
+        /// <summary>
+        /// Click event handler for path button to open a SaveFileDialog with a predifined save format
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void pathButton_Click(object sender, EventArgs e)
+        {
+            SaveFileDialog sfd = new SaveFileDialog();
+            sfd.FileName = "Log";
+            sfd.AddExtension = true;
+            sfd.DefaultExt = "txt";
+            sfd.Filter = "Text(*.txt)|*.*";
+            sfd.ShowDialog();
+            pathTextBox.Text = sfd.FileName;
+        }
+
+        /// <summary>
+        /// Stop current miclevellistener and start a new one on indexChange
+        /// This makes the volumeMeter display the volume of the currently selected microphone
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void microphoneComboBox_SelectedIndexChanged(object sender, EventArgs e)
         {
             if (mll != null)
@@ -450,12 +541,20 @@ namespace LifeSubsMetro
             
         }
 
+        /// <summary>
+        /// Stop miclevellistener when the microphone tile is overlayed
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void microphoneTile_VisibleChanged(object sender, EventArgs e)
         {
             if (microphoneTile.Visible == false) return;
             if (mll != null) mll.stop();
         }
+        #endregion
 
+        #region hover events
+        //Event handlers to handle mouseEnter and mouseLeave
         private void microphoneTile_MouseEnter(object sender, EventArgs e)
         {
             this.microphoneTile.Style = MetroFramework.MetroColorStyle.Teal;
