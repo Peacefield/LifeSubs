@@ -48,12 +48,13 @@
             this.passwordBox.Location = new System.Drawing.Point(0, 83);
             this.passwordBox.MaxLength = 32767;
             this.passwordBox.Name = "passwordBox";
-            this.passwordBox.PasswordChar = '\0';
+            this.passwordBox.PasswordChar = '●';
             this.passwordBox.ScrollBars = System.Windows.Forms.ScrollBars.None;
             this.passwordBox.SelectedText = "";
             this.passwordBox.Size = new System.Drawing.Size(147, 23);
             this.passwordBox.TabIndex = 1;
             this.passwordBox.UseSelectable = true;
+            this.passwordBox.UseSystemPasswordChar = true;
             // 
             // roomNameBox
             // 
