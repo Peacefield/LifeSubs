@@ -450,6 +450,10 @@ namespace LifeSubsMetro
             
         }
 
+        /// <summary>
+        /// Sets the color of sendNotificationPanel to give the user feedback on the current state of the listener
+        /// </summary>
+        /// <param name="color"></param>
         public void setSendNoti(Color color)
         {
             try
@@ -465,6 +469,10 @@ namespace LifeSubsMetro
             }
         }
 
+        /// <summary>
+        /// Changes text of label1 in order to perform a TextChanged event 
+        /// </summary>
+        /// <param name="text"></param>
         public void setLabel(String text)
         {
             if (text == "") return;
@@ -482,13 +490,16 @@ namespace LifeSubsMetro
         }
         #endregion
 
+        /// <summary>
+        /// TextChanged eventhandler to call the appropriate functions
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void label1_TextChanged(object sender, EventArgs e)
         {
-            //Console.WriteLine("NIEUWE LABEL TEXT = " + label1.Text);
             if (label1.Text == "send")
             {
                 send();
-                Console.WriteLine("\\\\\\\\\\\\\\\\\\\\\\ Is verstuurd ///////////////////////////");
             }
             else if (label1.Text == "leeg")
             {
@@ -497,12 +508,20 @@ namespace LifeSubsMetro
         }
 
         #region Listenhandlers
+        /// <summary>
+        /// Stops the listeners if they're active
+        /// </summary>
         private void stop()
         {
             if (listener1 != null) listener1.stop();
             if (listener2 != null) listener2.stop();
         }
 
+        /// <summary>
+        /// Changes the listeners if there was no sound detected
+        /// This prevents the audiofile from containing a lot of silence
+        /// Switches Listeners to switch the currently in use-audio file
+        /// </summary>
         public void empty()
         {
             switch (currentListener)
@@ -536,6 +555,10 @@ namespace LifeSubsMetro
             }
         }
 
+        /// <summary>
+        /// Sends the audiofile if there was sound detected during the recording
+        /// Switches Listeners to switch the currently in use-audio file
+        /// </summary>
         public void send()
         {
             switch (currentListener)
@@ -594,11 +617,23 @@ namespace LifeSubsMetro
         }
         #endregion
 
+        #region mousehandlers
+        /// <summary>
+        /// Clickevent on picturebox with settignsicon opens a new SettingsMenu, as Dialog
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void settingsPB_Click(object sender, System.EventArgs e)
         {
             new SettingsMenu(this).ShowDialog();
         }
         
+        /// <summary>
+        /// Clickevent on picturebox with snapicon, arrow up or down, sets position for currently running application
+        /// Does not get saved to .xml so it will not be remembered for later use
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void snapPB_Click(object sender, EventArgs e)
         {
             switch (position)
@@ -664,5 +699,6 @@ namespace LifeSubsMetro
                 this.dragAt = new Point(e.X, e.Y);
             }
         }
+        #endregion
     }
 }
