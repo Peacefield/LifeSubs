@@ -16,6 +16,7 @@ namespace LifeSubsMetro
     class MicLevelListener
     {
         public int deviceNumber { get; set; }
+        public string noiseLevel { get; set; }
         WaveIn waveIn;
         Subtitle subtitleForm = null;
         SettingsMenu settingsMenu = null;
@@ -76,6 +77,22 @@ namespace LifeSubsMetro
             int min = -5;
             int max = 5;
 
+            switch (noiseLevel)
+            {
+                case "Luidruchtig": 
+                    min = -10;
+                    max = 10;
+                    break;
+                case "Normaal":
+                    min = -20;
+                    max = 20;
+                    break;
+                case "Rustig":
+                    min = -30;
+                    max = 30;
+                    break;
+            }
+
             //1 increment is 1/10th of a second
             //Check if the sound level is between -20 and 20, which means speaker is silent
             //if ((i < max) || (i < min))
@@ -88,7 +105,7 @@ namespace LifeSubsMetro
                 //Console.WriteLine("STIL");
                 if (subtitleForm != null) subtitleForm.setLabel("STIL");
             }
-            // Sound level is not between -20 and 20, which means speaker is talking
+            // Sound level is not between min and max, which means speaker is talking
             else 
             {
                 //Console.WriteLine("GELUID");

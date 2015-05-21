@@ -71,13 +71,13 @@
             this.label3 = new System.Windows.Forms.Label();
             this.languageButton = new MetroFramework.Controls.MetroButton();
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
-            this.fontComboBox = new LifeSubsMetro.FontComboBox();
             this.linesTile = new MetroFramework.Controls.MetroTile();
             this.languageTile = new MetroFramework.Controls.MetroTile();
             this.saveTile = new MetroFramework.Controls.MetroTile();
             this.fontTile = new MetroFramework.Controls.MetroTile();
             this.microphoneTile = new MetroFramework.Controls.MetroTile();
             this.delayTile = new MetroFramework.Controls.MetroTile();
+            this.fontComboBox = new LifeSubsMetro.FontComboBox();
             this.microphonePanel.SuspendLayout();
             this.fontPanel.SuspendLayout();
             this.volumePanel.SuspendLayout();
@@ -267,7 +267,7 @@
             // subtitleLinesLabel
             // 
             this.subtitleLinesLabel.AutoSize = true;
-            this.subtitleLinesLabel.Location = new System.Drawing.Point(4, 42);
+            this.subtitleLinesLabel.Location = new System.Drawing.Point(5, 52);
             this.subtitleLinesLabel.Name = "subtitleLinesLabel";
             this.subtitleLinesLabel.Size = new System.Drawing.Size(88, 19);
             this.subtitleLinesLabel.TabIndex = 7;
@@ -382,11 +382,11 @@
             // metroLabel4
             // 
             this.metroLabel4.AutoSize = true;
-            this.metroLabel4.Location = new System.Drawing.Point(3, 106);
+            this.metroLabel4.Location = new System.Drawing.Point(3, 105);
             this.metroLabel4.Name = "metroLabel4";
-            this.metroLabel4.Size = new System.Drawing.Size(73, 19);
+            this.metroLabel4.Size = new System.Drawing.Size(69, 19);
             this.metroLabel4.TabIndex = 8;
-            this.metroLabel4.Text = "Ruis niveau";
+            this.metroLabel4.Text = "Ruisniveau";
             // 
             // noiseComboBox
             // 
@@ -396,7 +396,7 @@
             "Rustig",
             "Normaal",
             "Luidruchtig"});
-            this.noiseComboBox.Location = new System.Drawing.Point(9, 128);
+            this.noiseComboBox.Location = new System.Drawing.Point(9, 125);
             this.noiseComboBox.Name = "noiseComboBox";
             this.noiseComboBox.Size = new System.Drawing.Size(176, 29);
             this.noiseComboBox.TabIndex = 7;
@@ -413,11 +413,11 @@
             // metroLabel1
             // 
             this.metroLabel1.AutoSize = true;
-            this.metroLabel1.Location = new System.Drawing.Point(69, 76);
+            this.metroLabel1.Location = new System.Drawing.Point(20, 76);
             this.metroLabel1.Name = "metroLabel1";
-            this.metroLabel1.Size = new System.Drawing.Size(66, 19);
+            this.metroLabel1.Size = new System.Drawing.Size(74, 19);
             this.metroLabel1.TabIndex = 5;
-            this.metroLabel1.Text = "Seconden";
+            this.metroLabel1.Text = "Seconde(n)";
             // 
             // delayTrackBar
             // 
@@ -436,11 +436,11 @@
             // 
             this.label2.AutoSize = true;
             this.label2.Font = new System.Drawing.Font("Microsoft Sans Serif", 18F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            this.label2.Location = new System.Drawing.Point(4, 1);
+            this.label2.Location = new System.Drawing.Point(4, 2);
             this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(121, 29);
+            this.label2.Size = new System.Drawing.Size(183, 29);
             this.label2.TabIndex = 0;
-            this.label2.Text = "Tijdsduur:";
+            this.label2.Text = "Tijdsduur stiltes";
             // 
             // delayButton
             // 
@@ -532,16 +532,6 @@
             this.languageButton.Text = "Opslaan";
             this.languageButton.UseSelectable = true;
             this.languageButton.Click += new System.EventHandler(this.languageButton_Click);
-            // 
-            // fontComboBox
-            // 
-            this.fontComboBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Append;
-            this.fontComboBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.fontComboBox.FormattingEnabled = true;
-            this.fontComboBox.Location = new System.Drawing.Point(5, 33);
-            this.fontComboBox.Name = "fontComboBox";
-            this.fontComboBox.Size = new System.Drawing.Size(130, 23);
-            this.fontComboBox.TabIndex = 6;
             // 
             // linesTile
             // 
@@ -650,22 +640,32 @@
             this.delayTile.MouseEnter += new System.EventHandler(this.delayTile_MouseEnter);
             this.delayTile.MouseLeave += new System.EventHandler(this.delayTile_MouseLeave);
             // 
+            // fontComboBox
+            // 
+            this.fontComboBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Append;
+            this.fontComboBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.fontComboBox.FormattingEnabled = true;
+            this.fontComboBox.Location = new System.Drawing.Point(5, 33);
+            this.fontComboBox.Name = "fontComboBox";
+            this.fontComboBox.Size = new System.Drawing.Size(130, 23);
+            this.fontComboBox.TabIndex = 6;
+            // 
             // SettingsMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(647, 506);
-            this.Controls.Add(this.linesTile);
-            this.Controls.Add(this.languageTile);
-            this.Controls.Add(this.saveTile);
             this.Controls.Add(this.fontTile);
             this.Controls.Add(this.microphoneTile);
-            this.Controls.Add(this.volumePanel);
-            this.Controls.Add(this.languagePanel);
-            this.Controls.Add(this.savePanel);
             this.Controls.Add(this.fontPanel);
             this.Controls.Add(this.microphonePanel);
+            this.Controls.Add(this.linesTile);
+            this.Controls.Add(this.volumePanel);
             this.Controls.Add(this.delayTile);
+            this.Controls.Add(this.saveTile);
+            this.Controls.Add(this.savePanel);
+            this.Controls.Add(this.languageTile);
+            this.Controls.Add(this.languagePanel);
             this.Controls.Add(this.delayPanel);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(4);

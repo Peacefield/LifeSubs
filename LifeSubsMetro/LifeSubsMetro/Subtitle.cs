@@ -69,6 +69,15 @@ namespace LifeSubsMetro
             this.Height = tbOutput.Height + 50;
 
             this.deviceNumber = settings.microphone;
+
+            if (mll != null)
+            {
+                mll.stop();
+                mll = new MicLevelListener(this);
+                mll.deviceNumber = settings.microphone;
+                mll.noiseLevel = settings.noiseLevel;
+                mll.listenToStream();
+            }
         }
 
         /// <summary>
@@ -378,6 +387,7 @@ namespace LifeSubsMetro
             settings = new Settings();
             mll = new MicLevelListener(this);
             mll.deviceNumber = settings.microphone;
+            mll.noiseLevel = settings.noiseLevel;
             mll.listenToStream();
 
             //Initiate recording
