@@ -20,6 +20,13 @@ namespace LifeSubsMetro
             InitializeComponent();
         }
 
+        #region Tile click eventhandlers
+        /// <summary>
+        /// Starts subtitle mode
+        /// If no valid michrophone was selected the user gets prompted that no mic has been found
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void tileSubtitle_Click(object sender, EventArgs e)
         {
             Settings settings = new Settings();
@@ -33,10 +40,51 @@ namespace LifeSubsMetro
             this.Visible = false;
         }
 
+        /// <summary>
+        /// Close application
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void tileExit_Click(object sender, EventArgs e)
         {
             Application.Exit();
         }
+
+        /// <summary>
+        /// Hides tileJoinRoom to show joinRoomPanel
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void tileJoinRoom_Click(object sender, EventArgs e)
+        {
+            this.tileJoinRoom.Visible = false;
+            this.joinRoomPanel.Visible = true;
+        }
+
+        /// <summary>
+        /// Start groupconversation
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void joinRoomButton_Click(object sender, EventArgs e)
+        {
+            this.tileJoinRoom.Visible = true;
+            this.joinRoomPanel.Visible = false;
+            GroupConversations groupWindow = new GroupConversations(this);
+            this.Visible = false;
+            groupWindow.Visible = true;
+        }
+
+        /// <summary>
+        /// Start settingsmenu
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void tileSettings_Click(object sender, EventArgs e)
+        {
+            new SettingsMenu(this).ShowDialog();
+        }
+        #endregion
 
         #region hoverEvents
         private void tileSubtitle_MouseEnter(object sender, EventArgs e)
@@ -90,26 +138,6 @@ namespace LifeSubsMetro
         }
 
         #endregion
-
-        private void tileJoinRoom_Click(object sender, EventArgs e)
-        {
-            this.tileJoinRoom.Visible = false;
-            this.joinRoomPanel.Visible = true;
-        }
-
-        private void joinRoomButton_Click(object sender, EventArgs e)
-        {
-            this.tileJoinRoom.Visible = true;
-            this.joinRoomPanel.Visible = false;
-            GroupConversations groupWindow = new GroupConversations(this);
-            this.Visible = false;
-            groupWindow.Visible = true;
-        }
-
-        private void tileSettings_Click(object sender, EventArgs e)
-        {
-            new SettingsMenu(this).ShowDialog();
-        }
 
     }
 }

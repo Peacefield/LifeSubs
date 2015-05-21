@@ -12,6 +12,12 @@ namespace LifeSubsMetro
         int deviceNumber;
         Subtitle subtitleForm;
 
+        /// <summary>
+        /// Constructor to create a new Listener object
+        /// </summary>
+        /// <param name="deviceNumber">Index of the selected microphone</param>
+        /// <param name="fileName">Filename for the (temporary) audiofile</param>
+        /// <param name="subtitleForm">SubtitleForm that shows the returned message</param>
         public Listener(int deviceNumber, string fileName, Subtitle subtitleForm)
         {
             Settings settings = new Settings();
@@ -120,11 +126,12 @@ namespace LifeSubsMetro
         }
         
         #region NAudio handlers
-
+        /// <summary>
+        /// Starts recording an audiofile at a rate of 8000hz, 16-bit, mono
+        /// </summary>
         public void startRecording()
         {
-            //form.setResult("Start Recording: " + fileName);
-            Console.WriteLine("Start recording: " + fileName);
+            //Console.WriteLine("Start recording: " + fileName);
 
             //Start audio
             sourceStream = new NAudio.Wave.WaveIn();
@@ -142,7 +149,12 @@ namespace LifeSubsMetro
         NAudio.Wave.WaveIn sourceStream = null;
         NAudio.Wave.WaveFileWriter waveWriter = null;
 
-        //Write audio to sourceStream
+        /// <summary>
+        /// Write audio from sourceStream to waveWriter
+        /// WaveWriter is the one that creates/saves the audiofile
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void sourceStream_DataAvailable(object sender, NAudio.Wave.WaveInEventArgs e)
         {
             if (waveWriter == null) return;

@@ -49,8 +49,6 @@ namespace LifeSubsMetro
         /// </summary>
         private void setStyle()
         {
-            settings = new Settings(); 
-
             int additionalSpacing;
 
             this.screen = Screen.AllScreens[settings.screenIndex];
@@ -80,7 +78,9 @@ namespace LifeSubsMetro
         /// If empty it defaults to bottom if this hasn't been changed by the user during the running of the application</param>
         public void setPosition(string pos)
         {
+            settings = new Settings(); 
             setStyle();
+
             if (pos == "") pos = position;
             switch (pos)
             {
@@ -112,9 +112,13 @@ namespace LifeSubsMetro
             switch (font.Name)
             {
                 case "Arial": 
-                    if (font.Size < 24)
+                    if (font.Size == 20)
                     {
-                        additionalSpacing = 40;
+                        additionalSpacing = 60;
+                    }
+                    else if (font.Size < 24)
+                    {
+                        additionalSpacing = 50;
                     }
                     else if(font.Size == 24)
                     {
@@ -371,7 +375,9 @@ namespace LifeSubsMetro
         /// <param name="e"></param>
         private void Subtitle_Load(object sender, EventArgs e)
         {
+            settings = new Settings();
             mll = new MicLevelListener(this);
+            mll.deviceNumber = settings.microphone;
             mll.listenToStream();
 
             //Initiate recording

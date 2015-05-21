@@ -18,6 +18,7 @@ namespace LifeSubsMetro
         public System.Drawing.Color bgColor { get; set; }
         public string savePath { get; set; }
         public int delay { get; set; }
+        public string noiseLevel { get; set; }
         public string subLanguage { get; set; }
         public string appLanguage { get; set; }
         public int screenIndex { get; set; }
@@ -48,6 +49,7 @@ namespace LifeSubsMetro
             this.bgColor = System.Drawing.Color.White;
             this.savePath = @"log.txt";
             this.delay = 1;
+            this.noiseLevel = "Normaal";
             this.subLanguage = "Nederlands";
             this.appLanguage = "Nederlands";
             this.screenIndex = 0;
@@ -83,6 +85,7 @@ namespace LifeSubsMetro
             this.savePath = ds.Tables["Save"].Rows[0][0].ToString();
             //load the delay tile
             this.delay = Int32.Parse(ds.Tables["Delay"].Rows[0][0].ToString());
+            this.noiseLevel = ds.Tables["Delay"].Rows[0][1].ToString();
             this.subLanguage = ds.Tables["Language"].Rows[0][0].ToString();
 
             //load the language tile

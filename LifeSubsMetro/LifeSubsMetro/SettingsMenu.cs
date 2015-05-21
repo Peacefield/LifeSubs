@@ -291,8 +291,10 @@ namespace LifeSubsMetro
             //xml datatable delay
             DataTable dt4 = new DataTable("Delay");
             DataColumn dc8 = new DataColumn("SubtitleDelay");
+            DataColumn noiseColumn = new DataColumn("Noise_Situation");
             dt4.Columns.Add(dc8);
-            dt4.Rows.Add(delayTrackBar.Value);
+            dt4.Columns.Add(noiseColumn);
+            dt4.Rows.Add(delayTrackBar.Value, noiseComboBox.SelectedItem.ToString());
             ds.Tables.Add(dt4);
 
             //xml datatable language
@@ -440,6 +442,7 @@ namespace LifeSubsMetro
             //load the delay tile
             delayTrackBar.Value = settings.delay;
             delayLabel.Text = delayTrackBar.Value.ToString();
+            noiseComboBox.SelectedItem = settings.noiseLevel;
 
             //load the language tile
             subtitleLanguageComboBox.Text = subtitleLanguage(settings.subLanguage);

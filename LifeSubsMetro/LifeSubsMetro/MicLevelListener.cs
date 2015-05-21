@@ -29,7 +29,6 @@ namespace LifeSubsMetro
         public MicLevelListener(Subtitle f)
         {
             this.subtitleForm = f;
-            deviceNumber = 0;
             this.sec = settings.delay * 10;
         }
 
