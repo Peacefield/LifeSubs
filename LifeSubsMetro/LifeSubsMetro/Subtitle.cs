@@ -25,6 +25,7 @@ namespace LifeSubsMetro
         Settings settings;
         int deviceNumber = -1;
         string path = @"C:\audiotest";
+        string logPath;
         int lines;
         public string position;
         // Drag form
@@ -394,6 +395,9 @@ namespace LifeSubsMetro
             mll.noiseLevel = settings.noiseLevel;
             mll.listenToStream();
 
+            this.logPath = saveLogPath();
+            Console.WriteLine(logPath);
+
             //Initiate recording
             currentListener = "listener1";
             listener1 = new Listener(deviceNumber, currentListener, this);
@@ -431,9 +435,10 @@ namespace LifeSubsMetro
             try
             {
                 if (this.tbOutput.InvokeRequired)
-                    this.tbOutput.Invoke((MethodInvoker)delegate { this.tbOutput.AppendText( result); });
+                    this.tbOutput.Invoke((MethodInvoker)delegate { this.tbOutput.AppendText(result); });
                 else
-                    this.tbOutput.AppendText( result );
+                    this.tbOutput.AppendText(result);
+                    //this.tbOutput.AppendText( result );a
             }
             catch (ObjectDisposedException)
             {
@@ -508,6 +513,31 @@ namespace LifeSubsMetro
                 Console.WriteLine("Label niet kunnen vinden");
             }
         }
+
+        public void updateLog(String text)
+        {
+            Console.WriteLine(logPath);
+            try
+            {
+                if (this.tbOutput.InvokeRequired)
+                    this.tbOutput.Invoke((MethodInvoker)delegate
+                    {
+                        using (StreamWriter sw = File.AppendText(logPath))
+                        {
+                            sw.WriteLine(text);
+                        }
+                    });
+                else
+                    using (StreamWriter sw = File.AppendText(logPath))
+                    {
+                        sw.WriteLine(text);
+                    }
+            }
+            catch (FileNotFoundException fnfe)
+            {
+                Console.WriteLine("File not found: " + fnfe.Message);
+            }
+        }
         #endregion
 
         /// <summary>
@@ -525,6 +555,33 @@ namespace LifeSubsMetro
             {
                 empty();
             }
+        }
+
+        /// <summary>
+        /// Create a path for the saved log location
+        /// Uses a timestamp to make it unique
+        /// 
+        /// Call at start-up form
+        /// </summary>
+        /// <returns>Timestamp in format yyyy-mm-dd_hhmmss</returns>
+        private string saveLogPath()
+        {
+            string savePath = settings.savePath;
+            DateTime datetime = DateTime.Now;
+            string month = datetime.Month.ToString();
+            string hour = datetime.Hour.ToString();
+            string minute = datetime.Minute.ToString();
+            string seconds = datetime.Second.ToString();
+
+            if (datetime.Month < 10) month = "0" + datetime.Month;
+            if (datetime.Hour < 10) hour = "0" + datetime.Hour;
+            if (datetime.Minute < 10) minute = "0" + datetime.Minute;
+            if (datetime.Second < 10) seconds = "0" + datetime.Second;
+
+            string date = datetime.Year + "-" + month + "-" + datetime.Day + "_" + hour +  minute + seconds;
+            savePath += date + ".txt";
+
+            return savePath;
         }
 
         #region Listenhandlers
@@ -630,7 +687,6 @@ namespace LifeSubsMetro
                         th.Abort();
                         th.Join();
                     }
-
                     break;
             }
 

@@ -122,6 +122,7 @@ namespace LifeSubsMetro
             Console.WriteLine(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>" + result);
             subtitleForm.setResult(result);
             subtitleForm.setSendNoti(Color.LightGreen);
+            subtitleForm.updateLog(result);
             //return result;
         }
         
