@@ -621,5 +621,12 @@ namespace LifeSubsMetro
             this.languageTile.Style = MetroFramework.MetroColorStyle.Teal;
         }
         #endregion
+
+        private void openFolderTile_Click(object sender, EventArgs e)
+        {
+            string savedPath = pathTextBox.Text;
+            bool folderExists = System.IO.Directory.Exists(savedPath);
+            if (folderExists) System.Diagnostics.Process.Start(savedPath);
+        }
     }
 }

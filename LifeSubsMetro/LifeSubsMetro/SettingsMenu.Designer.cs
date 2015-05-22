@@ -36,6 +36,7 @@
             this.monitorComboBox = new MetroFramework.Controls.MetroComboBox();
             this.microphoneProgressBar = new MetroFramework.Controls.MetroProgressBar();
             this.fontPanel = new System.Windows.Forms.Panel();
+            this.fontComboBox = new LifeSubsMetro.FontComboBox();
             this.fontSizeComboBox = new MetroFramework.Controls.MetroComboBox();
             this.fontLabel = new System.Windows.Forms.Label();
             this.fontButton = new MetroFramework.Controls.MetroButton();
@@ -51,6 +52,7 @@
             this.fontColorDialog = new System.Windows.Forms.ColorDialog();
             this.backColorDialog = new System.Windows.Forms.ColorDialog();
             this.savePanel = new System.Windows.Forms.Panel();
+            this.openFolderTile = new MetroFramework.Controls.MetroTile();
             this.pathTextBox = new MetroFramework.Controls.MetroTextBox();
             this.pathButton = new MetroFramework.Controls.MetroButton();
             this.label1 = new System.Windows.Forms.Label();
@@ -71,13 +73,12 @@
             this.label3 = new System.Windows.Forms.Label();
             this.languageButton = new MetroFramework.Controls.MetroButton();
             this.colorDialog1 = new System.Windows.Forms.ColorDialog();
-            this.linesTile = new MetroFramework.Controls.MetroTile();
-            this.languageTile = new MetroFramework.Controls.MetroTile();
-            this.saveTile = new MetroFramework.Controls.MetroTile();
             this.fontTile = new MetroFramework.Controls.MetroTile();
             this.microphoneTile = new MetroFramework.Controls.MetroTile();
+            this.linesTile = new MetroFramework.Controls.MetroTile();
             this.delayTile = new MetroFramework.Controls.MetroTile();
-            this.fontComboBox = new LifeSubsMetro.FontComboBox();
+            this.languageTile = new MetroFramework.Controls.MetroTile();
+            this.saveTile = new MetroFramework.Controls.MetroTile();
             this.microphonePanel.SuspendLayout();
             this.fontPanel.SuspendLayout();
             this.volumePanel.SuspendLayout();
@@ -172,6 +173,16 @@
             this.fontPanel.Name = "fontPanel";
             this.fontPanel.Size = new System.Drawing.Size(200, 200);
             this.fontPanel.TabIndex = 4;
+            // 
+            // fontComboBox
+            // 
+            this.fontComboBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Append;
+            this.fontComboBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.fontComboBox.FormattingEnabled = true;
+            this.fontComboBox.Location = new System.Drawing.Point(5, 33);
+            this.fontComboBox.Name = "fontComboBox";
+            this.fontComboBox.Size = new System.Drawing.Size(130, 23);
+            this.fontComboBox.TabIndex = 6;
             // 
             // fontSizeComboBox
             // 
@@ -312,6 +323,7 @@
             // 
             // savePanel
             // 
+            this.savePanel.Controls.Add(this.openFolderTile);
             this.savePanel.Controls.Add(this.pathTextBox);
             this.savePanel.Controls.Add(this.pathButton);
             this.savePanel.Controls.Add(this.label1);
@@ -320,6 +332,21 @@
             this.savePanel.Name = "savePanel";
             this.savePanel.Size = new System.Drawing.Size(200, 200);
             this.savePanel.TabIndex = 4;
+            // 
+            // openFolderTile
+            // 
+            this.openFolderTile.ActiveControl = null;
+            this.openFolderTile.Location = new System.Drawing.Point(175, 47);
+            this.openFolderTile.Name = "openFolderTile";
+            this.openFolderTile.Size = new System.Drawing.Size(23, 23);
+            this.openFolderTile.Style = MetroFramework.MetroColorStyle.Silver;
+            this.openFolderTile.TabIndex = 4;
+            this.openFolderTile.Theme = MetroFramework.MetroThemeStyle.Light;
+            this.openFolderTile.TileImage = global::LifeSubsMetro.Properties.Resources.Folder_20;
+            this.openFolderTile.TileImageAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.openFolderTile.UseSelectable = true;
+            this.openFolderTile.UseTileImage = true;
+            this.openFolderTile.Click += new System.EventHandler(this.openFolderTile_Click);
             // 
             // pathTextBox
             // 
@@ -330,15 +357,15 @@
             this.pathTextBox.PasswordChar = '\0';
             this.pathTextBox.ScrollBars = System.Windows.Forms.ScrollBars.None;
             this.pathTextBox.SelectedText = "";
-            this.pathTextBox.Size = new System.Drawing.Size(166, 23);
+            this.pathTextBox.Size = new System.Drawing.Size(140, 23);
             this.pathTextBox.TabIndex = 3;
             this.pathTextBox.UseSelectable = true;
             // 
             // pathButton
             // 
-            this.pathButton.Location = new System.Drawing.Point(177, 47);
+            this.pathButton.Location = new System.Drawing.Point(150, 47);
             this.pathButton.Name = "pathButton";
-            this.pathButton.Size = new System.Drawing.Size(19, 23);
+            this.pathButton.Size = new System.Drawing.Size(23, 23);
             this.pathButton.TabIndex = 2;
             this.pathButton.Text = "...";
             this.pathButton.UseSelectable = true;
@@ -533,59 +560,6 @@
             this.languageButton.UseSelectable = true;
             this.languageButton.Click += new System.EventHandler(this.languageButton_Click);
             // 
-            // linesTile
-            // 
-            this.linesTile.ActiveControl = null;
-            this.linesTile.Location = new System.Drawing.Point(429, 79);
-            this.linesTile.Name = "linesTile";
-            this.linesTile.Size = new System.Drawing.Size(200, 200);
-            this.linesTile.TabIndex = 5;
-            this.linesTile.Text = "Ondertiteling";
-            this.linesTile.TileImage = global::LifeSubsMetro.Properties.Resources.Numbered_List_50;
-            this.linesTile.TileImageAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.linesTile.TileTextFontSize = MetroFramework.MetroTileTextSize.Tall;
-            this.linesTile.UseSelectable = true;
-            this.linesTile.UseTileImage = true;
-            this.linesTile.Click += new System.EventHandler(this.linesTile_Click);
-            this.linesTile.MouseEnter += new System.EventHandler(this.linesTile_MouseEnter);
-            this.linesTile.MouseLeave += new System.EventHandler(this.linesTile_MouseLeave);
-            // 
-            // languageTile
-            // 
-            this.languageTile.ActiveControl = null;
-            this.languageTile.Location = new System.Drawing.Point(429, 286);
-            this.languageTile.Margin = new System.Windows.Forms.Padding(4);
-            this.languageTile.Name = "languageTile";
-            this.languageTile.Size = new System.Drawing.Size(200, 200);
-            this.languageTile.TabIndex = 11;
-            this.languageTile.Text = "Taal";
-            this.languageTile.TileImage = global::LifeSubsMetro.Properties.Resources.Geography_50;
-            this.languageTile.TileImageAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.languageTile.TileTextFontSize = MetroFramework.MetroTileTextSize.Tall;
-            this.languageTile.UseSelectable = true;
-            this.languageTile.UseTileImage = true;
-            this.languageTile.Click += new System.EventHandler(this.languageTile_Click);
-            this.languageTile.MouseEnter += new System.EventHandler(this.languageTile_MouseEnter);
-            this.languageTile.MouseLeave += new System.EventHandler(this.languageTile_MouseLeave);
-            // 
-            // saveTile
-            // 
-            this.saveTile.ActiveControl = null;
-            this.saveTile.Location = new System.Drawing.Point(16, 285);
-            this.saveTile.Margin = new System.Windows.Forms.Padding(4);
-            this.saveTile.Name = "saveTile";
-            this.saveTile.Size = new System.Drawing.Size(200, 200);
-            this.saveTile.TabIndex = 7;
-            this.saveTile.Text = "Opslag";
-            this.saveTile.TileImage = global::LifeSubsMetro.Properties.Resources.Save_50;
-            this.saveTile.TileImageAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.saveTile.TileTextFontSize = MetroFramework.MetroTileTextSize.Tall;
-            this.saveTile.UseSelectable = true;
-            this.saveTile.UseTileImage = true;
-            this.saveTile.Click += new System.EventHandler(this.saveTile_Click);
-            this.saveTile.MouseEnter += new System.EventHandler(this.saveTile_MouseEnter);
-            this.saveTile.MouseLeave += new System.EventHandler(this.saveTile_MouseLeave);
-            // 
             // fontTile
             // 
             this.fontTile.ActiveControl = null;
@@ -622,6 +596,23 @@
             this.microphoneTile.MouseEnter += new System.EventHandler(this.microphoneTile_MouseEnter);
             this.microphoneTile.MouseLeave += new System.EventHandler(this.microphoneTile_MouseLeave);
             // 
+            // linesTile
+            // 
+            this.linesTile.ActiveControl = null;
+            this.linesTile.Location = new System.Drawing.Point(429, 79);
+            this.linesTile.Name = "linesTile";
+            this.linesTile.Size = new System.Drawing.Size(200, 200);
+            this.linesTile.TabIndex = 5;
+            this.linesTile.Text = "Ondertiteling";
+            this.linesTile.TileImage = global::LifeSubsMetro.Properties.Resources.Numbered_List_50;
+            this.linesTile.TileImageAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.linesTile.TileTextFontSize = MetroFramework.MetroTileTextSize.Tall;
+            this.linesTile.UseSelectable = true;
+            this.linesTile.UseTileImage = true;
+            this.linesTile.Click += new System.EventHandler(this.linesTile_Click);
+            this.linesTile.MouseEnter += new System.EventHandler(this.linesTile_MouseEnter);
+            this.linesTile.MouseLeave += new System.EventHandler(this.linesTile_MouseLeave);
+            // 
             // delayTile
             // 
             this.delayTile.ActiveControl = null;
@@ -640,15 +631,41 @@
             this.delayTile.MouseEnter += new System.EventHandler(this.delayTile_MouseEnter);
             this.delayTile.MouseLeave += new System.EventHandler(this.delayTile_MouseLeave);
             // 
-            // fontComboBox
+            // languageTile
             // 
-            this.fontComboBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Append;
-            this.fontComboBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.fontComboBox.FormattingEnabled = true;
-            this.fontComboBox.Location = new System.Drawing.Point(5, 33);
-            this.fontComboBox.Name = "fontComboBox";
-            this.fontComboBox.Size = new System.Drawing.Size(130, 23);
-            this.fontComboBox.TabIndex = 6;
+            this.languageTile.ActiveControl = null;
+            this.languageTile.Location = new System.Drawing.Point(429, 286);
+            this.languageTile.Margin = new System.Windows.Forms.Padding(4);
+            this.languageTile.Name = "languageTile";
+            this.languageTile.Size = new System.Drawing.Size(200, 200);
+            this.languageTile.TabIndex = 11;
+            this.languageTile.Text = "Taal";
+            this.languageTile.TileImage = global::LifeSubsMetro.Properties.Resources.Geography_50;
+            this.languageTile.TileImageAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.languageTile.TileTextFontSize = MetroFramework.MetroTileTextSize.Tall;
+            this.languageTile.UseSelectable = true;
+            this.languageTile.UseTileImage = true;
+            this.languageTile.Click += new System.EventHandler(this.languageTile_Click);
+            this.languageTile.MouseEnter += new System.EventHandler(this.languageTile_MouseEnter);
+            this.languageTile.MouseLeave += new System.EventHandler(this.languageTile_MouseLeave);
+            // 
+            // saveTile
+            // 
+            this.saveTile.ActiveControl = null;
+            this.saveTile.Location = new System.Drawing.Point(16, 285);
+            this.saveTile.Margin = new System.Windows.Forms.Padding(4);
+            this.saveTile.Name = "saveTile";
+            this.saveTile.Size = new System.Drawing.Size(200, 200);
+            this.saveTile.TabIndex = 7;
+            this.saveTile.Text = "Opslag";
+            this.saveTile.TileImage = global::LifeSubsMetro.Properties.Resources.Save_50;
+            this.saveTile.TileImageAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.saveTile.TileTextFontSize = MetroFramework.MetroTileTextSize.Tall;
+            this.saveTile.UseSelectable = true;
+            this.saveTile.UseTileImage = true;
+            this.saveTile.Click += new System.EventHandler(this.saveTile_Click);
+            this.saveTile.MouseEnter += new System.EventHandler(this.saveTile_MouseEnter);
+            this.saveTile.MouseLeave += new System.EventHandler(this.saveTile_MouseLeave);
             // 
             // SettingsMenu
             // 
@@ -744,5 +761,6 @@
         private MetroFramework.Controls.MetroComboBox monitorComboBox;
         private MetroFramework.Controls.MetroComboBox noiseComboBox;
         private MetroFramework.Controls.MetroLabel metroLabel4;
+        private MetroFramework.Controls.MetroTile openFolderTile;
     }
 }

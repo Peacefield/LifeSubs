@@ -143,6 +143,16 @@ namespace LifeSubsMetro.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
+        internal static System.Drawing.Bitmap Folder_20 {
+            get {
+                object obj = ResourceManager.GetObject("Folder_20", resourceCulture);
+                return ((System.Drawing.Bitmap)(obj));
+            }
+        }
+        
+        /// <summary>
+        ///   Looks up a localized resource of type System.Drawing.Bitmap.
+        /// </summary>
         internal static System.Drawing.Bitmap Generic_Text_50 {
             get {
                 object obj = ResourceManager.GetObject("Generic_Text_50", resourceCulture);

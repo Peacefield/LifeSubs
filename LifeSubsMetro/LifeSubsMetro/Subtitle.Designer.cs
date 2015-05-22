@@ -43,11 +43,12 @@
             // label1
             // 
             this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(38, 15);
+            this.label1.Location = new System.Drawing.Point(23, 30);
             this.label1.Name = "label1";
             this.label1.Size = new System.Drawing.Size(35, 13);
             this.label1.TabIndex = 1;
             this.label1.Text = "label1";
+            this.label1.Visible = false;
             this.label1.TextChanged += new System.EventHandler(this.label1_TextChanged);
             // 
             // tbOutput
@@ -63,18 +64,18 @@
             // volumeMeter
             // 
             this.volumeMeter.ForeColor = System.Drawing.SystemColors.Desktop;
-            this.volumeMeter.Location = new System.Drawing.Point(77, 15);
+            this.volumeMeter.Location = new System.Drawing.Point(44, 14);
             this.volumeMeter.Maximum = 300;
             this.volumeMeter.Name = "volumeMeter";
-            this.volumeMeter.Size = new System.Drawing.Size(200, 13);
+            this.volumeMeter.Size = new System.Drawing.Size(200, 15);
             this.volumeMeter.TabIndex = 5;
             // 
             // sendNotificationPanel
             // 
             this.sendNotificationPanel.BackColor = System.Drawing.Color.LightGreen;
-            this.sendNotificationPanel.Location = new System.Drawing.Point(23, 17);
+            this.sendNotificationPanel.Location = new System.Drawing.Point(23, 14);
             this.sendNotificationPanel.Name = "sendNotificationPanel";
-            this.sendNotificationPanel.Size = new System.Drawing.Size(10, 10);
+            this.sendNotificationPanel.Size = new System.Drawing.Size(15, 15);
             this.sendNotificationPanel.TabIndex = 6;
             // 
             // dragPB

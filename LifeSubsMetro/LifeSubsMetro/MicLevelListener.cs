@@ -99,17 +99,25 @@ namespace LifeSubsMetro
             if (i < max && i > min)
             {
                 //If the sound level is low enough, add 1 to the count variable
-                if (subtitleForm != null) subtitleForm.setVolumeMeter(i);
-                if (settingsMenu != null) settingsMenu.setVolumeMeter(i);
                 count++;
-                //Console.WriteLine("STIL");
-                if (subtitleForm != null) subtitleForm.setLabel("STIL");
+
+                if (subtitleForm != null)
+                {
+                    subtitleForm.setVolumeMeter(i);
+                    subtitleForm.setSendNoti(Color.SkyBlue);
+                    subtitleForm.setLabel("STIL");
+                }
+                if (settingsMenu != null) settingsMenu.setVolumeMeter(i);
             }
             // Sound level is not between min and max, which means speaker is talking
             else 
             {
                 //Console.WriteLine("GELUID");
-                if (subtitleForm != null) subtitleForm.setLabel("GELUID");
+                if (subtitleForm != null)
+                {
+                    subtitleForm.setSendNoti(Color.Green);
+                    subtitleForm.setLabel("GELUID");
+                }
                 //Count variable should be set to 0
                 canSend = true;
                 count = 0;
@@ -117,23 +125,24 @@ namespace LifeSubsMetro
             //If no sound has been recorded for ... seconds, send audio to server
             if (count > sec)
             {
-                if (subtitleForm == null) return;
-                count = 0;
-                if (canSend)
+                if (subtitleForm != null)
                 {
-                    //HTTP request has to be sent from here!!
-                    //Count variable should be set to 0
-                    canSend = false;
-                    //Console.WriteLine("<<<<<<<<< Kan sturen >>>>>>>>>>>>");
-                    
-                    subtitleForm.setSendNoti(Color.Red);
-                    subtitleForm.setLabel("send");
-                }
-                else
-                {
-                    subtitleForm.setSendNoti(Color.Yellow);
-                    subtitleForm.setLabel("leeg");
-                    subtitleForm.setSendNoti(Color.LightGreen);
+                    count = 0;
+                    if (canSend)
+                    {
+                        //HTTP request has to be sent from here!!
+                        //Count variable should be set to 0
+                        canSend = false;
+                        //Console.WriteLine("<<<<<<<<< Kan sturen >>>>>>>>>>>>");
+
+                        subtitleForm.setSendNoti(Color.Red);
+                        subtitleForm.setLabel("send");
+                    }
+                    else
+                    {
+                        subtitleForm.setSendNoti(Color.Yellow);
+                        subtitleForm.setLabel("leeg");
+                    }
                 }
             }
         }
