@@ -512,13 +512,16 @@ namespace LifeSubsMetro
         /// <param name="e"></param>
         private void pathButton_Click(object sender, EventArgs e)
         {
-            SaveFileDialog sfd = new SaveFileDialog();
-            sfd.FileName = "Log";
-            sfd.AddExtension = true;
-            sfd.DefaultExt = "txt";
-            sfd.Filter = "Text(*.txt)|*.*";
-            sfd.ShowDialog();
-            pathTextBox.Text = sfd.FileName;
+            string path;
+            FolderBrowserDialog fbd = new FolderBrowserDialog();
+            fbd.RootFolder = Environment.SpecialFolder.Desktop;
+            DialogResult result = fbd.ShowDialog();
+
+            if (result != DialogResult.OK) return;
+
+            path = fbd.SelectedPath + @"\";
+
+            pathTextBox.Text = path;
         }
 
         /// <summary>

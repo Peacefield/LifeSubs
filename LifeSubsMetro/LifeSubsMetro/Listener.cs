@@ -7,7 +7,7 @@ namespace LifeSubsMetro
 {
     class Listener
     {
-        String language;
+        public String language { get; set; }
         string fileName;
         int deviceNumber;
         Subtitle subtitleForm;

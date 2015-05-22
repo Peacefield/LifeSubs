@@ -662,11 +662,11 @@
             this.Controls.Add(this.linesTile);
             this.Controls.Add(this.volumePanel);
             this.Controls.Add(this.delayTile);
-            this.Controls.Add(this.saveTile);
-            this.Controls.Add(this.savePanel);
             this.Controls.Add(this.languageTile);
             this.Controls.Add(this.languagePanel);
             this.Controls.Add(this.delayPanel);
+            this.Controls.Add(this.saveTile);
+            this.Controls.Add(this.savePanel);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;

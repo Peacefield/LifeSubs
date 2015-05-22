@@ -17,6 +17,7 @@ namespace LifeSubsMetro
     {
         public int deviceNumber { get; set; }
         public string noiseLevel { get; set; }
+        public int sec { get; set; }
         WaveIn waveIn;
         Subtitle subtitleForm = null;
         SettingsMenu settingsMenu = null;
@@ -25,7 +26,6 @@ namespace LifeSubsMetro
         int count = 0;
 
         Settings settings = new Settings();
-        int sec;
 
         public MicLevelListener(Subtitle f)
         {
@@ -94,7 +94,7 @@ namespace LifeSubsMetro
             }
 
             //1 increment is 1/10th of a second
-            //Check if the sound level is between -20 and 20, which means speaker is silent
+            //Check if the sound level is between min and max, which means speaker is silent
             //if ((i < max) || (i < min))
             if (i < max && i > min)
             {
@@ -135,7 +135,6 @@ namespace LifeSubsMetro
                     subtitleForm.setLabel("leeg");
                     subtitleForm.setSendNoti(Color.LightGreen);
                 }
-
             }
         }
 

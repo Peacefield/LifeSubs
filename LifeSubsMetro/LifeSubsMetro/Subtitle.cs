@@ -76,6 +76,7 @@ namespace LifeSubsMetro
                 mll = new MicLevelListener(this);
                 mll.deviceNumber = settings.microphone;
                 mll.noiseLevel = settings.noiseLevel;
+                mll.sec = settings.delay;
                 mll.listenToStream();
             }
         }
@@ -90,7 +91,10 @@ namespace LifeSubsMetro
             settings = new Settings(); 
             setStyle();
 
+            if (listener1 != null) listener1.language = settings.subLanguage;
+            if (listener2 != null) listener2.language = settings.subLanguage;
             if (pos == "") pos = position;
+
             switch (pos)
             {
                 //switch snap to top
