@@ -86,7 +86,7 @@ namespace LifeSubsMetro
 
             //1 increment is 1/10th of a second
             //Check if the sound level is between min and max, which means speaker is silent
-            //if ((i < max) || (i < min))
+
             if (i < max && i > min)
             {
                 //If the sound level is low enough, add 1 to the count variable
@@ -94,13 +94,12 @@ namespace LifeSubsMetro
                 if (settingsMenu != null) settingsMenu.setVolumeMeter(i);
                 if (grpConv != null) grpConv.setVolumeMeter(i);
                 count++;
-                //Console.WriteLine("STIL");
                 if (subtitleForm != null) subtitleForm.setLabel("STIL");
             }
             // Sound level is not between -20 and 20, which means speaker is talking
             else 
             {
-                //Console.WriteLine("GELUID");
+
                 if (subtitleForm != null) subtitleForm.setLabel("GELUID");
                 //Count variable should be set to 0
                 canSend = true;
@@ -109,14 +108,14 @@ namespace LifeSubsMetro
             //If no sound has been recorded for ... seconds, send audio to server
             if (count > sec)
             {
-                //if (subtitleForm == null) return;
+
                 count = 0;
                 if (canSend)
                 {
                     //HTTP request has to be sent from here!!
                     //Count variable should be set to 0
                     canSend = false;
-                    //Console.WriteLine("<<<<<<<<< Kan sturen >>>>>>>>>>>>");
+
                     if (subtitleForm != null)
                     {
                         subtitleForm.setSendNoti(Color.Red);
@@ -168,8 +167,7 @@ namespace LifeSubsMetro
         public void waveIn_DataAvailable(object sender, WaveInEventArgs e)
         {
             //Put the functions on another thread, so the GUI will not freeze
-            //act = new Thread(() => actThing(sender, e));
-            //act.Start();
+
             new Thread(() => actThing(sender, e)).Start();
         }
     }

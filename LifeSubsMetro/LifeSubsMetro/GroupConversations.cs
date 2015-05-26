@@ -21,7 +21,6 @@ namespace LifeSubsMetro
     {
         string path = @"C:\audiotest";
         MainMenu mm;
-        IMClient ic;
         string ownIpAddress;
         Thread th;
         Thread th2;
@@ -250,31 +249,14 @@ namespace LifeSubsMetro
 
         private void sendTile_Click(object sender, EventArgs e)
         {
-                addMessage(tbInput.Text, Color.PowderBlue);
-                try
-                {
-                    ic.SendMessage("127.0.0.1",tbInput.Text);
-                }
-                catch (Exception excx)
-                {
-                    Console.WriteLine(excx);
-                }
-                
+
         }
                 
 
         private void startBtn_Click(object sender, EventArgs e)
         {
 
-            try
-            {
-                ic = new IMClient();
-                ic.SetupConn();
-            }
-            catch (Exception exx)
-            {
-                Console.WriteLine(exx);
-            }
+          
 
 
         }

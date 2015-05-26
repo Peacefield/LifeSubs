@@ -62,8 +62,6 @@
     <Compile Include="FontComboBox.cs">
       <SubType>Component</SubType>
     </Compile>
-    <Compile Include="IMClient.cs" />
-    <Compile Include="IMEvents.cs" />
     <Compile Include="Listener.cs" />
     <Compile Include="MainMenu.cs">
       <SubType>Form</SubType>

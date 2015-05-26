@@ -5,8 +5,6 @@ VisualStudioVersion = 12.0.31101.0
 MinimumVisualStudioVersion = 10.0.40219.1
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "LifeSubsMetro", "LifeSubsMetro\LifeSubsMetro.csproj", "{45115A15-1E4F-4628-B2A2-EE5537F6B3BE}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "InstantMessengerServer", "LifeSubsMetro\server\InstantMessengerServer.csproj", "{4C59E561-37A5-4AC9-A88B-9DE7744FB916}"
-EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -27,16 +25,6 @@ Global
 		{45115A15-1E4F-4628-B2A2-EE5537F6B3BE}.Release|Mixed Platforms.ActiveCfg = Release|Any CPU
 		{45115A15-1E4F-4628-B2A2-EE5537F6B3BE}.Release|Mixed Platforms.Build.0 = Release|Any CPU
 		{45115A15-1E4F-4628-B2A2-EE5537F6B3BE}.Release|x86.ActiveCfg = Release|Any CPU
-		{4C59E561-37A5-4AC9-A88B-9DE7744FB916}.Debug|Any CPU.ActiveCfg = Debug|x86
-		{4C59E561-37A5-4AC9-A88B-9DE7744FB916}.Debug|Mixed Platforms.ActiveCfg = Debug|x86
-		{4C59E561-37A5-4AC9-A88B-9DE7744FB916}.Debug|Mixed Platforms.Build.0 = Debug|x86
-		{4C59E561-37A5-4AC9-A88B-9DE7744FB916}.Debug|x86.ActiveCfg = Debug|x86
-		{4C59E561-37A5-4AC9-A88B-9DE7744FB916}.Debug|x86.Build.0 = Debug|x86
-		{4C59E561-37A5-4AC9-A88B-9DE7744FB916}.Release|Any CPU.ActiveCfg = Release|x86
-		{4C59E561-37A5-4AC9-A88B-9DE7744FB916}.Release|Mixed Platforms.ActiveCfg = Release|x86
-		{4C59E561-37A5-4AC9-A88B-9DE7744FB916}.Release|Mixed Platforms.Build.0 = Release|x86
-		{4C59E561-37A5-4AC9-A88B-9DE7744FB916}.Release|x86.ActiveCfg = Release|x86
-		{4C59E561-37A5-4AC9-A88B-9DE7744FB916}.Release|x86.Build.0 = Release|x86
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE

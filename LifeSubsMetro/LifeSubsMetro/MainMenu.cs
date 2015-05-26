@@ -104,8 +104,6 @@ namespace LifeSubsMetro
 
         private void joinRoomButton_Click(object sender, EventArgs e)
         {
-            IMClient ic = new IMClient();
-            ic.Login("jeremy","koek");
             this.tileJoinRoom.Visible = true;
             this.joinRoomPanel.Visible = false;
             GroupConversations groupWindow = new GroupConversations(this);
@@ -116,8 +114,7 @@ namespace LifeSubsMetro
 
         private void tileCreateRoom_Click(object sender, EventArgs e)
         {
-            serverThread = new Thread(() => new InstantMessengerServer.Program());
-            serverThread.Start();
+
         }
 
         private void MainMenu_FormClosed(object sender, FormClosedEventArgs e)
