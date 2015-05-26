@@ -4,11 +4,17 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
+using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
+using System.Net;
+using System.Security.Cryptography;
 using System.Text;
 using System.Threading.Tasks;
 using System.Windows.Forms;
+using System.Threading;
+//using LifeSubsMetro.Properties
+using InstantMessengerServer;
 
 namespace LifeSubsMetro
 {
@@ -18,6 +24,7 @@ namespace LifeSubsMetro
         public MainMenu()
         {
             InitializeComponent();
+            
         }
 
         #region Tile click eventhandlers
@@ -35,9 +42,9 @@ namespace LifeSubsMetro
                 MetroMessageBox.Show(this, "Microfoon niet gevonden", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            Subtitle subtitle = new Subtitle(this);
+                Subtitle subtitle = new Subtitle(this);
             subtitle.Show();
-            this.Visible = false;
+                this.Visible = false;
         }
 
         /// <summary>
@@ -138,6 +145,83 @@ namespace LifeSubsMetro
         }
 
         #endregion
+
+        private string toMD5(string pass)
+        {
+            // byte array representation of that string
+            byte[] encodedPassword = new UTF8Encoding().GetBytes(pass);
+
+            // need MD5 to calculate the hash
+            byte[] hash = ((HashAlgorithm)CryptoConfig.CreateFromName("MD5")).ComputeHash(encodedPassword);
+
+            // string representation (similar to UNIX format)
+            string encoded = BitConverter.ToString(hash)
+                // without dashes
+               .Replace("-", string.Empty)
+                // make lowercase
+               .ToLower();
+
+            // encoded contains the hash you are wanting
+
+            return encoded;
+        }
+
+        private void addRoomBtn_Click(object sender, EventArgs e)
+        {
+            string roomName = roomNameCreateTextbox.Text;
+            string roomPass = roomPassCreateRoomTextbox.Text;
+            string roomUsername = usernameCreateRoomTextbox.Text;
+            
+            string response;
+            bool error;
+
+            string roomPassMD5 = toMD5(roomPass);
+
+            string url = "http://lifesubs.windesheim.nl/api/addRoomTest.php?func=addRoom&name=" + roomName + "&ip=[IPADRES_AANMAKER]&usn=" + roomUsername + "&key=" + roomPassMD5;
+
+            using (var wb = new WebClient())
+        {
+                response = wb.DownloadString(url);
+        }
+
+            error = response.Contains("error");
+
+            if (error)
+            {
+                string [] returnParts = response.Split('|');
+                MetroMessageBox.Show(this, returnParts[1], "Oeps! Er is iets foutgegaan:", MessageBoxButtons.OK, MessageBoxIcon.Error);
+            }
+            else
+        {
+                MetroMessageBox.Show(this, "De kamernaam is: " + response + ".\r\nHet wachtwoord is: " + roomPass + "\r\n\r\nNoteer deze gegevens - ze zijn nodig voor het inloggen in de zojuist aangemaakte kamer!", "Kamer succesvol aangemaakt!", MessageBoxButtons.OK, MessageBoxIcon.Question);
+            }
+
+            //tileCreateRoom.Visible = true;
+
+        }
+
+
+
+        private void MainMenu_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            try
+            {
+                //serverThread.Abort();
+                //serverThread.Join();
+            }
+            catch (Exception eex)
+            {
+                Console.WriteLine(eex); ;
+            }
+            
+        }
+
+        private void tileCreateRoom_Click(object sender, EventArgs e)
+        {
+            SettingsMenu sm = new SettingsMenu(this);
+            sm.Show();
+            tileCreateRoom.Visible = false;
+        }
 
     }
 }

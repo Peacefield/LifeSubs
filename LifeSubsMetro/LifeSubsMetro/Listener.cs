@@ -11,6 +11,7 @@ namespace LifeSubsMetro
         string fileName;
         int deviceNumber;
         Subtitle subtitleForm;
+        GroupConversations grpConv;
 
         /// <summary>
         /// Constructor to create a new Listener object
@@ -27,7 +28,14 @@ namespace LifeSubsMetro
             this.fileName = "C:\\audiotest\\" + fileName + ".wav";
         }
 
-        #region HttpRequest
+        public Listener(int deviceNumber, string fileName, GroupConversations grp)
+        {
+            this.grpConv = grp;
+            this.deviceNumber = deviceNumber;
+            this.fileName = "C:\\audiotest\\" + fileName + ".wav";
+        }
+
+        #region request
         /// <summary>
         /// Request to dragon server by sending a file located at a (user) specified location.
         /// sets result in Subtitle's tbOutput
@@ -121,13 +129,24 @@ namespace LifeSubsMetro
                 }
             }
             Console.WriteLine(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>" + result);
+            if (subtitleForm != null)
+            { 
             subtitleForm.setResult(result);
             subtitleForm.setSendNoti(Color.LightGreen);
+            }
+            if (grpConv != null) 
+            {
+                grpConv.setCanSendPanel(true);    
+                grpConv.addMessageFromThread(result, Color.Orange);
+                grpConv.setListenButton(false);
+                Console.WriteLine("gestopt");
+            }
+            
             subtitleForm.updateLog(result);
             //return result;
         }
         #endregion
-
+        
         #region NAudio handlers
         /// <summary>
         /// Starts recording an audiofile at a rate of 8000hz, 16-bit, mono
@@ -161,7 +180,7 @@ namespace LifeSubsMetro
         private void sourceStream_DataAvailable(object sender, NAudio.Wave.WaveInEventArgs e)
         {
             if (waveWriter == null) return;
-
+            Console.WriteLine("dataavailable");
             waveWriter.WriteData(e.Buffer, 0, e.BytesRecorded);
             waveWriter.Flush();
         }
