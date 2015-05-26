@@ -180,9 +180,10 @@ namespace LifeSubsMetro
             string url = "http://lifesubs.windesheim.nl/api/addRoomTest.php?func=addRoom&name=" + roomName + "&ip=[IPADRES_AANMAKER]&usn=" + roomUsername + "&key=" + roomPassMD5;
 
             using (var wb = new WebClient())
-        {
+            {
                 response = wb.DownloadString(url);
-        }
+                Console.WriteLine(response);
+            }
 
             error = response.Contains("error");
 
@@ -192,15 +193,13 @@ namespace LifeSubsMetro
                 MetroMessageBox.Show(this, returnParts[1], "Oeps! Er is iets foutgegaan:", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             else
-        {
+            {
                 MetroMessageBox.Show(this, "De kamernaam is: " + response + ".\r\nHet wachtwoord is: " + roomPass + "\r\n\r\nNoteer deze gegevens - ze zijn nodig voor het inloggen in de zojuist aangemaakte kamer!", "Kamer succesvol aangemaakt!", MessageBoxButtons.OK, MessageBoxIcon.Question);
             }
 
             //tileCreateRoom.Visible = true;
 
         }
-
-
 
         private void MainMenu_FormClosed(object sender, FormClosedEventArgs e)
         {
@@ -218,8 +217,6 @@ namespace LifeSubsMetro
 
         private void tileCreateRoom_Click(object sender, EventArgs e)
         {
-            SettingsMenu sm = new SettingsMenu(this);
-            sm.Show();
             tileCreateRoom.Visible = false;
         }
 

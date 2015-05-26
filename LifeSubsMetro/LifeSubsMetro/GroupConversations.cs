@@ -33,6 +33,7 @@ namespace LifeSubsMetro
         string currentListener;
         Listener listener1 = null;
         Settings settings;
+        bool active = true;
 
         public GroupConversations(MainMenu mm, String ip)
         {
@@ -57,11 +58,12 @@ namespace LifeSubsMetro
             {
                 //Change localhost to IP owner room/host
                 socketForServer = new TcpClient(hostIp, 10);
+                active = true;
             }
             catch
             {
-                Console.WriteLine(
-                "Failed to connect to server at {0}:999", "localhost");
+                Console.WriteLine("Failed to connect to server at {0}:999", "localhost");
+                MetroFramework.MetroMessageBox.Show(mm, "Failed to connect to server at " + hostIp + ":999", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
 
@@ -73,19 +75,6 @@ namespace LifeSubsMetro
 
         private void sendMessage(string msg, Color c)
         {
-            DataGridViewRow dr = new DataGridViewRow();
-
-            DataGridViewTextBoxCell cell1 = new DataGridViewTextBoxCell();
-            dr.Cells.Add(cell1);
-            
-            DataGridViewTextBoxCell cell2 = new DataGridViewTextBoxCell();
-            cell2.Style.BackColor = c;
-            cell2.Style.Alignment = DataGridViewContentAlignment.MiddleRight;
-            cell2.Value = msg;
-            dr.Cells.Add(cell2);
-
-            dataGridOutput.Rows.Add(dr);
-
             try
             {
                 //string outputString;
@@ -99,12 +88,26 @@ namespace LifeSubsMetro
                     streamWriter.WriteLine(str);
                     streamWriter.Flush();
 
+                    DataGridViewRow dr = new DataGridViewRow();
+
+                    DataGridViewTextBoxCell cell1 = new DataGridViewTextBoxCell();
+                    dr.Cells.Add(cell1);
+
+                    DataGridViewTextBoxCell cell2 = new DataGridViewTextBoxCell();
+                    cell2.Style.BackColor = c;
+                    cell2.Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+                    cell2.Value = msg;
+                    dr.Cells.Add(cell2);
+
+                    dataGridOutput.Rows.Add(dr);
+
                     tbInput.Text = "";
                 }
             }
             catch
             {
                 Console.WriteLine("Exception reading from Server");
+                MetroFramework.MetroMessageBox.Show(this, "Kan geen verbinding maken met de server", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
         }
 
@@ -148,8 +151,15 @@ namespace LifeSubsMetro
 
             if (streamWriter != null)
             {
-                streamWriter.WriteLine("exit");
-                streamWriter.Flush();
+                try
+                {
+                    streamWriter.WriteLine("exit");
+                    streamWriter.Flush();
+                }
+                catch (Exception ex)
+                {
+                    Console.WriteLine(ex.Message);
+                }
             }
             if (networkStream != null) networkStream.Close();
 
@@ -163,7 +173,6 @@ namespace LifeSubsMetro
             sendMessage(tbInput.Text, Color.PowderBlue);
         }
 
-        
         public void send()
         {
             Console.WriteLine("listener1 currently recording");
@@ -181,7 +190,6 @@ namespace LifeSubsMetro
                 th2.Abort();
                 th2.Join();
             }
-
         }
 
         #region set properties from other thread
@@ -336,7 +344,6 @@ namespace LifeSubsMetro
                 send();
                 //canSendPanelGrp.Visible = false;
                 volumemeterGrp.Visible = false;
-
             }
         }
         
