@@ -33,24 +33,15 @@
             this.imgColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.msgColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tbInput = new MetroFramework.Controls.MetroTextBox();
-            this.label1 = new System.Windows.Forms.Label();
-            this.friendIpTextBox = new System.Windows.Forms.TextBox();
-            this.label2 = new System.Windows.Forms.Label();
-            this.startBtn = new System.Windows.Forms.Button();
-            this.ownPort = new System.Windows.Forms.TextBox();
-            this.otherPort = new System.Windows.Forms.TextBox();
-            this.label3 = new System.Windows.Forms.Label();
-            this.label4 = new System.Windows.Forms.Label();
             this.sendTile = new MetroFramework.Controls.MetroTile();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridOutput)).BeginInit();
-            this.ipLabel = new System.Windows.Forms.TextBox();
             this.SuspendLayout();
             // 
             // dataGridOutput
             // 
+            this.dataGridOutput.AllowUserToDeleteRows = false;
             this.dataGridOutput.AllowUserToResizeColumns = false;
             this.dataGridOutput.AllowUserToResizeRows = false;
-            this.dataGridOutput.AllowUserToDeleteRows = false;
             this.dataGridOutput.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dataGridOutput.BackgroundColor = System.Drawing.SystemColors.Window;
             this.dataGridOutput.BorderStyle = System.Windows.Forms.BorderStyle.None;
@@ -81,7 +72,6 @@
             // 
             // imgColumn
             // 
-            this.imgColumn.DividerWidth = 0;
             this.imgColumn.HeaderText = "imgColumn";
             this.imgColumn.Name = "imgColumn";
             this.imgColumn.ReadOnly = true;
@@ -110,72 +100,6 @@
             this.tbInput.TabIndex = 1;
             this.tbInput.UseSelectable = true;
             // 
-            // label1
-            // 
-            this.label1.AutoSize = true;
-            this.label1.Location = new System.Drawing.Point(259, 40);
-            this.label1.Name = "label1";
-            this.label1.Size = new System.Drawing.Size(50, 13);
-            this.label1.TabIndex = 4;
-            this.label1.Text = "Eigen IP:";
-            // 
-            // friendIpTextBox
-            // 
-            this.friendIpTextBox.Location = new System.Drawing.Point(500, 37);
-            this.friendIpTextBox.Name = "friendIpTextBox";
-            this.friendIpTextBox.Size = new System.Drawing.Size(136, 20);
-            this.friendIpTextBox.TabIndex = 6;
-            // 
-            // label2
-            // 
-            this.label2.AutoSize = true;
-            this.label2.Location = new System.Drawing.Point(446, 40);
-            this.label2.Name = "label2";
-            this.label2.Size = new System.Drawing.Size(48, 13);
-            this.label2.TabIndex = 7;
-            this.label2.Text = "Ander IP";
-            // 
-            // startBtn
-            // 
-            this.startBtn.Location = new System.Drawing.Point(666, 10);
-            this.startBtn.Name = "startBtn";
-            this.startBtn.Size = new System.Drawing.Size(75, 47);
-            this.startBtn.TabIndex = 8;
-            this.startBtn.Text = "Start";
-            this.startBtn.Click += new System.EventHandler(this.startBtn_Click);
-            // 
-            // ownPort
-            // 
-            this.ownPort.Location = new System.Drawing.Point(309, 17);
-            this.ownPort.Name = "ownPort";
-            this.ownPort.Size = new System.Drawing.Size(33, 20);
-            this.ownPort.TabIndex = 9;
-            // 
-            // otherPort
-            // 
-            this.otherPort.Location = new System.Drawing.Point(500, 15);
-            this.otherPort.Name = "otherPort";
-            this.otherPort.Size = new System.Drawing.Size(34, 20);
-            this.otherPort.TabIndex = 10;
-            // 
-            // label3
-            // 
-            this.label3.AutoSize = true;
-            this.label3.Location = new System.Drawing.Point(259, 22);
-            this.label3.Name = "label3";
-            this.label3.Size = new System.Drawing.Size(50, 13);
-            this.label3.TabIndex = 11;
-            this.label3.Text = "Own port";
-            // 
-            // label4
-            // 
-            this.label4.AutoSize = true;
-            this.label4.Location = new System.Drawing.Point(432, 20);
-            this.label4.Name = "label4";
-            this.label4.Size = new System.Drawing.Size(62, 13);
-            this.label4.TabIndex = 12;
-            this.label4.Text = "Ander poort";
-            // 
             // sendTile
             // 
             this.sendTile.ActiveControl = null;
@@ -187,27 +111,11 @@
             this.sendTile.UseSelectable = true;
             this.sendTile.Click += new System.EventHandler(this.sendTile_Click);
             // 
-            // ipLabel
-            // 
-            this.ipLabel.Location = new System.Drawing.Point(309, 40);
-            this.ipLabel.Name = "ipLabel";
-            this.ipLabel.Size = new System.Drawing.Size(100, 20);
-            this.ipLabel.TabIndex = 13;
-            // 
             // GroupConversations
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1020, 565);
-            this.Controls.Add(this.ipLabel);
-            this.Controls.Add(this.label4);
-            this.Controls.Add(this.label3);
-            this.Controls.Add(this.otherPort);
-            this.Controls.Add(this.ownPort);
-            this.Controls.Add(this.startBtn);
-            this.Controls.Add(this.label2);
-            this.Controls.Add(this.friendIpTextBox);
-            this.Controls.Add(this.label1);
             this.Controls.Add(this.sendTile);
             this.Controls.Add(this.dataGridOutput);
             this.Controls.Add(this.tbInput);
@@ -218,7 +126,6 @@
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.GroupConversations_FormClosed);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridOutput)).EndInit();
             this.ResumeLayout(false);
-            this.PerformLayout();
 
         }
 
@@ -229,15 +136,6 @@
         private System.Windows.Forms.DataGridView dataGridOutput;
         private System.Windows.Forms.DataGridViewTextBoxColumn imgColumn;
         private System.Windows.Forms.DataGridViewTextBoxColumn msgColumn;
-        private System.Windows.Forms.Label label1;
-        private System.Windows.Forms.TextBox friendIpTextBox;
-        private System.Windows.Forms.Label label2;
-        private System.Windows.Forms.Button startBtn;
-        private System.Windows.Forms.TextBox ownPort;
-        private System.Windows.Forms.TextBox otherPort;
-        private System.Windows.Forms.Label label3;
-        private System.Windows.Forms.Label label4;
-        private System.Windows.Forms.TextBox ipLabel;
 
 
 

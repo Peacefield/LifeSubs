@@ -70,7 +70,7 @@ namespace LifeSubsMetro
         {
             this.tileJoinRoom.Visible = true;
             this.joinRoomPanel.Visible = false;
-            GroupConversations groupWindow = new GroupConversations(this);
+            GroupConversations groupWindow = new GroupConversations(this, "localHost");
             this.Visible = false;
             groupWindow.Visible = true;
         }

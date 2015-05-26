@@ -27,6 +27,7 @@ namespace LifeSubsMetro
             this.fileName = "C:\\audiotest\\" + fileName + ".wav";
         }
 
+        #region HttpRequest
         /// <summary>
         /// Request to dragon server by sending a file located at a (user) specified location.
         /// sets result in Subtitle's tbOutput
@@ -125,7 +126,8 @@ namespace LifeSubsMetro
             subtitleForm.updateLog(result);
             //return result;
         }
-        
+        #endregion
+
         #region NAudio handlers
         /// <summary>
         /// Starts recording an audiofile at a rate of 8000hz, 16-bit, mono
