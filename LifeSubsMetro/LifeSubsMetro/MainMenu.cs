@@ -218,8 +218,6 @@ namespace LifeSubsMetro
 
         private void tileCreateRoom_Click(object sender, EventArgs e)
         {
-            SettingsMenu sm = new SettingsMenu(this);
-            sm.Show();
             tileCreateRoom.Visible = false;
         }
 
