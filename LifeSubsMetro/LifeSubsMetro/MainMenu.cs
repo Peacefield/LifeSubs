@@ -4,7 +4,6 @@ using System;
 using System.Collections.Generic;
 using System.ComponentModel;
 using System.Data;
-using System.Diagnostics;
 using System.Drawing;
 using System.Linq;
 using System.Net;
@@ -20,11 +19,10 @@ namespace LifeSubsMetro
 {
     public partial class MainMenu : MetroForm
     {
-
+        ServerSocket ss = null;
         public MainMenu()
         {
             InitializeComponent();
-            
         }
 
         #region Tile click eventhandlers
@@ -42,9 +40,10 @@ namespace LifeSubsMetro
                 MetroMessageBox.Show(this, "Microfoon niet gevonden", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-                Subtitle subtitle = new Subtitle(this);
+            
+            Subtitle subtitle = new Subtitle(this);
             subtitle.Show();
-                this.Visible = false;
+            this.Visible = false;
         }
 
         /// <summary>
@@ -77,7 +76,11 @@ namespace LifeSubsMetro
         {
             this.tileJoinRoom.Visible = true;
             this.joinRoomPanel.Visible = false;
-            GroupConversations groupWindow = new GroupConversations(this, "localHost");
+
+            string iptojoin = getOwnIp();
+            //string iptojoin = "localHost";
+
+            GroupConversations groupWindow = new GroupConversations(this, iptojoin);
             this.Visible = false;
             groupWindow.Visible = true;
         }
@@ -197,21 +200,21 @@ namespace LifeSubsMetro
                 MetroMessageBox.Show(this, "De kamernaam is: " + response + ".\r\nHet wachtwoord is: " + roomPass + "\r\n\r\nNoteer deze gegevens - ze zijn nodig voor het inloggen in de zojuist aangemaakte kamer!", "Kamer succesvol aangemaakt!", MessageBoxButtons.OK, MessageBoxIcon.Question);
             }
 
-            //tileCreateRoom.Visible = true;
-
+            tileCreateRoom.Visible = true;
+            ss = new ServerSocket(this);
         }
 
         private void MainMenu_FormClosed(object sender, FormClosedEventArgs e)
         {
-            try
-            {
-                //serverThread.Abort();
-                //serverThread.Join();
-            }
-            catch (Exception eex)
-            {
-                Console.WriteLine(eex); ;
-            }
+            //try
+            //{
+            //    //serverThread.Abort();
+            //    //serverThread.Join();
+            //}
+            //catch (Exception eex)
+            //{
+            //    Console.WriteLine(eex); ;
+            //}
             
         }
 
@@ -220,5 +223,31 @@ namespace LifeSubsMetro
             tileCreateRoom.Visible = false;
         }
 
+
+
+
+
+
+
+
+
+
+
+        //REMOVE
+        private string getOwnIp()
+        {
+            IPHostEntry host;
+            host = Dns.GetHostEntry(Dns.GetHostName());
+            Console.WriteLine(host);
+
+            foreach (IPAddress ip in host.AddressList)
+            {
+                if (ip.AddressFamily == System.Net.Sockets.AddressFamily.InterNetwork)
+                {
+                    return ip.ToString();
+                }
+            }
+            return "127.0.0.1";
+        }
     }
 }

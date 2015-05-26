@@ -33,13 +33,13 @@ namespace LifeSubsMetro
         string currentListener;
         Listener listener1 = null;
         Settings settings;
-        bool active = true;
 
         public GroupConversations(MainMenu mm, String ip)
         {
             settings = new Settings();
             this.mm = mm;
             this.hostIp = ip;
+            //this.hostIp = getOwnIp();
             InitializeComponent();
 
             ownIpAddress = getOwnIp();
@@ -47,18 +47,15 @@ namespace LifeSubsMetro
             Font font = new System.Drawing.Font("Arial", 18);
             dataGridOutput.DefaultCellStyle.Font = new Font(font, FontStyle.Regular);
             dataGridOutput.Columns[0].DefaultCellStyle.Font = new System.Drawing.Font(dataGridOutput.DefaultCellStyle.Font.ToString(), 50);
-
             createClient();
         }
-
+        
         private void createClient()
         {
             TcpClient socketForServer;
             try
             {
-                //Change localhost to IP owner room/host
                 socketForServer = new TcpClient(hostIp, 10);
-                active = true;
             }
             catch
             {
