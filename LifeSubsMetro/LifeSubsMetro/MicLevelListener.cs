@@ -18,6 +18,7 @@ namespace LifeSubsMetro
         public int deviceNumber { get; set; }
         public string noiseLevel { get; set; }
         public int sec { get; set; }
+        GroupConversations grpConv;
         WaveIn waveIn;
         Subtitle subtitleForm = null;
         SettingsMenu settingsMenu = null;
@@ -36,6 +37,12 @@ namespace LifeSubsMetro
         public MicLevelListener(SettingsMenu f)
         {
             this.settingsMenu = f;
+            this.sec = settings.delay * 10;
+        }
+
+        public MicLevelListener(GroupConversations grp)
+        {
+            this.grpConv = grp;
             this.sec = settings.delay * 10;
         }
 
@@ -108,6 +115,9 @@ namespace LifeSubsMetro
                     subtitleForm.setLabel("STIL");
                 }
                 if (settingsMenu != null) settingsMenu.setVolumeMeter(i);
+                if (grpConv != null) grpConv.setVolumeMeter(i);
+                count++;
+                if (subtitleForm != null) subtitleForm.setLabel("STIL");
             }
             // Sound level is not between min and max, which means speaker is talking
             else 
@@ -127,23 +137,36 @@ namespace LifeSubsMetro
             {
                 if (subtitleForm != null)
                 {
-                    count = 0;
-                    if (canSend)
-                    {
-                        //HTTP request has to be sent from here!!
-                        //Count variable should be set to 0
-                        canSend = false;
-                        //Console.WriteLine("<<<<<<<<< Kan sturen >>>>>>>>>>>>");
 
-                        subtitleForm.setSendNoti(Color.Red);
-                        subtitleForm.setLabel("send");
-                    }
-                    else
+                count = 0;
+                if (canSend)
+                {
+                    //HTTP request has to be sent from here!!
+                    //Count variable should be set to 0
+                    canSend = false;
+                    
+                    if (subtitleForm != null)
                     {
-                        subtitleForm.setSendNoti(Color.Yellow);
-                        subtitleForm.setLabel("leeg");
+                    subtitleForm.setSendNoti(Color.Red);
+                    subtitleForm.setLabel("send");
+                }
+                    if (grpConv != null)
+                    {
+                        grpConv.setCanSendPanel(false);
+                        this.stop();
+                    }
+
+                }
+                else
+                {
+                    if (subtitleForm != null)
+                    {
+                    subtitleForm.setSendNoti(Color.Yellow);
+                    subtitleForm.setLabel("leeg");
                     }
                 }
+            }
+
             }
         }
 
@@ -172,8 +195,7 @@ namespace LifeSubsMetro
         public void waveIn_DataAvailable(object sender, WaveInEventArgs e)
         {
             //Put the functions on another thread, so the GUI will not freeze
-            //act = new Thread(() => actThing(sender, e));
-            //act.Start();
+
             new Thread(() => actThing(sender, e)).Start();
         }
     }

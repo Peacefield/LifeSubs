@@ -311,6 +311,7 @@
             this.ShadowType = MetroFramework.Forms.MetroFormShadowType.DropShadow;
             this.Style = MetroFramework.MetroColorStyle.Green;
             this.Text = "LifeSubs";
+            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.MainMenu_FormClosed);
             this.joinRoomPanel.ResumeLayout(false);
             this.joinRoomPanel.PerformLayout();
             this.makeRoomPanel.ResumeLayout(false);

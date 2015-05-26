@@ -7,57 +7,46 @@ using System.Drawing;
 using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
+using System.Threading;
 using System.Windows.Forms;
 using System.Collections;
 using System.Net;
 using System.Net.Sockets;
+using System.IO;
+
 
 namespace LifeSubsMetro
 {
     public partial class GroupConversations : MetroForm
     {
+        string path = @"C:\audiotest";
         MainMenu mm;
-        Socket listenSocket, sendSocket;
-        EndPoint epLocal, epRemote;
-        UdpListener listener;
         string ownIpAddress;
+        Thread th;
+        Thread th2;
+        MicLevelListener mll;
+        string currentListener;
+        Listener listener1 = null;
+        Settings settings;
+
         public GroupConversations(MainMenu mm)
         {
+            settings = new Settings();
             this.mm = mm;
             InitializeComponent();
 
-            //listenSocket = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
-            //listenSocket.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.ReuseAddress, true);
 
-            sendSocket = new Socket(AddressFamily.InterNetwork, SocketType.Dgram, ProtocolType.Udp);
-            sendSocket.SetSocketOption(SocketOptionLevel.Socket, SocketOptionName.ReuseAddress, true);
 
-            sendTile.Enabled = false;
             ownIpAddress = getOwnIp();
-            ipLabel.Text = ownIpAddress;
-            friendIpTextBox.Text = ownIpAddress;
-            ownPort.Text = "11000";
-            otherPort.Text = "11001";
-            sendTile.Enabled = false;
-            //populating listView:
 
             Font font = new System.Drawing.Font("Impact", 15);
             dataGridOutput.DefaultCellStyle.Font = new Font(font, FontStyle.Regular);
             dataGridOutput.Columns[0].DefaultCellStyle.Font = new System.Drawing.Font(dataGridOutput.DefaultCellStyle.Font.ToString(), 50);
 
 
-            //populating listView:
-            //    addMessage("FOTO", "BERICHT", Color.Orange);
-            //    addMessage("FOTO", "TEST", Color.Blue);
-            //addMessage("FOTO", "NOG EEN TESTNOG EEN TESTNOG EEN TESTNOG EEN TESTNOG EEN TEST", Color.Yellow);
-            //addMessage("FOTO", "BERICHT", Color.Orange);
-            //addMessage("FOTO", "TEST", Color.Blue);
-            //addMessage("FOTO", "NOG EEN TESTNOG EEN TESTNOG EEN TESTNOG EEN TESTNOG EEN TEST", Color.Yellow);
-
-            //addMessage("Ik verstuur ook zelf iets", Color.Red);
         }
 
-        private void addMessage(string msg, Color c)
+        public void addMessage(string msg, Color c)
         {
             DataGridViewRow dr = new DataGridViewRow();
 
@@ -91,37 +80,148 @@ namespace LifeSubsMetro
 
         }
 
-        private void messageCallBack(IAsyncResult aResult)
+        public void send()
         {
-            addMessage("--->", "DATA ONTVANGEN", Color.Green);
-            try
-            {
-                int size = sendSocket.EndReceiveFrom(aResult, ref epRemote);
 
-                if (size > 0)
-                {
-                    byte[] receivedData = new byte[1464];
-                    receivedData = (byte[])aResult.AsyncState;
+                    Console.WriteLine("listener1 currently recording");
+                    //Stop listener
+                    Console.WriteLine("Stop listener1");
+                    listener1.stop();
 
-                    ASCIIEncoding eEncoding = new ASCIIEncoding();
-                    string receivedMessage = eEncoding.GetString(receivedData);
+                    th = new Thread(listener1.request);
+                    th.Start();
+                    while (!th.IsAlive) ;
 
-                    addMessage("IEMAND", receivedMessage, Color.Orange);
-                }
+                    Thread.Sleep(1);
+                    if (th2 != null)
+                    {
+                        Console.WriteLine("th2 leeft");
+                        th2.Abort();
+                        th2.Join();
+                    }
 
-                byte[] buffer = new byte[1500];
-
-                sendSocket.BeginReceiveFrom(buffer, 0, buffer.Length, SocketFlags.None, ref epRemote, new AsyncCallback(messageCallBack), buffer);
-                Console.WriteLine("BINNENGEKREGEN");
-            }
-            catch (Exception e)
-            {
-                addMessage("FOUT", e.ToString(), Color.Red);
-            }
         }
 
-        private void addMessage(string sender, string msg, Color c)
+        #region set properties from other thread
+
+        //this.startGroupListenerBtn.Style = MetroFramework.MetroColorStyle.Lime;
+        public void setCanSendPanel(Boolean sent)
         {
+            try
+            {
+                if (this.canSendPanelGrp.InvokeRequired)
+                {
+                    try
+                    {
+                        if (sent == false)
+                        {
+                            this.canSendPanelGrp.Invoke((MethodInvoker)delegate { canSendPanelGrp.Visible = true; });
+                        }
+                        if (sent == true)
+                        {
+                            this.canSendPanelGrp.Invoke((MethodInvoker)delegate { canSendPanelGrp.Visible = false; });
+                        }
+                        
+                    }
+                    catch (Exception e)
+                    {
+                        Console.WriteLine(e.Message);
+                    }
+                }
+            }
+            catch (ObjectDisposedException)
+            {
+                Console.WriteLine("Knop niet kunnen vinden");
+            }
+
+        }
+
+        public void setListenButton(Boolean show)
+        {
+            try
+            {
+                if (this.startGroupListenerBtn.InvokeRequired)
+                {
+                    try
+                    {
+                        if (show == false)
+                        {
+                            this.startGroupListenerBtn.Invoke((MethodInvoker)delegate { startGroupListenerBtn.Visible = true; });
+                        }
+                        if (show == true)
+                        {
+                            this.startGroupListenerBtn.Invoke((MethodInvoker)delegate { startGroupListenerBtn.Visible = false; });
+                        }
+
+                    }
+                    catch (Exception e)
+                    {
+                        Console.WriteLine(e.Message);
+                    }
+                }
+            }
+            catch (ObjectDisposedException)
+            {
+                Console.WriteLine("Knop niet kunnen vinden");
+            }
+
+        }
+
+
+        public void setVolumeMeter(int amp)
+        {
+            amp = amp + 50;
+            try
+            {
+                if (this.volumemeterGrp.InvokeRequired)
+                {
+                    try
+                    {
+                        this.volumemeterGrp.Invoke((MethodInvoker)delegate { this.volumemeterGrp.Value = amp; });
+                        Console.WriteLine("AMP = " + amp);
+                    }
+                    catch (Exception e)
+                    {
+                        Console.WriteLine(e.Message);
+                    }
+                }
+            }
+            catch (ObjectDisposedException)
+            {
+                Console.WriteLine("VolumeMeter niet kunnen vinden");
+            }
+
+        }
+
+        public void addMessageFromThread(string msg, Color c)
+        {
+
+            try
+            {
+                if (this.dataGridOutput.InvokeRequired)
+                {
+                    try
+                    {
+                        dataGridOutput.Invoke((MethodInvoker)(() => addMessage(msg, c)));
+                    }
+                    catch (Exception e)
+                    {
+                        Console.WriteLine(e.Message);
+                    }
+                }
+            }
+            catch (ObjectDisposedException)
+            {
+                Console.WriteLine("VolumeMeter niet kunnen vinden");
+            }
+
+        }
+
+        #endregion
+
+        public void addMessage(string sender, string msg, Color c)
+        {
+            setListenButton(false);
             DataGridViewRow dr = new DataGridViewRow();
 
             DataGridViewTextBoxCell cell1 = new DataGridViewTextBoxCell();
@@ -134,136 +234,75 @@ namespace LifeSubsMetro
             dr.Cells.Add(cell2);
 
             dr.Height = 50;
-
+            
             dataGridOutput.Rows.Add(dr);
         }
 
         private void GroupConversations_FormClosed(object sender, FormClosedEventArgs e)
         {
+            try { deleteDir(); }
+            catch (Exception direx) { Console.WriteLine(direx.Message); }
+            
+            
             mm.Visible = true;
         }
 
         private void sendTile_Click(object sender, EventArgs e)
         {
-            try
-            {
-                System.Text.ASCIIEncoding enc = new System.Text.ASCIIEncoding();
-                byte[] msg = new byte[1500];
-                msg = enc.GetBytes(tbInput.Text);
-                //sck1.Send(msg);
-                string msgtext = tbInput.Text;
-                /*******************************/
-                SocketAsyncEventArgs h = new SocketAsyncEventArgs();
-                h.SetBuffer(msg, 0, msg.Length);
-                h.Completed += new EventHandler<SocketAsyncEventArgs>(SendCallback);
 
-                //bool completedAsync = false;
-
-                try
-                {
-                    sendSocket.SendAsync(h);
-                    Console.WriteLine("async gelukt");
-                    
-                }
-                catch (SocketException se)
-                {
-                    Console.WriteLine("Socket Exception: " + se.ErrorCode + " Message: " + se.Message);
-                }
-
-                /*************************************/
-                addMessage(tbInput.Text, Color.PowderBlue);
-                tbInput.Text = "";
-            }
-            catch (Exception exc)
-            {
-                addMessage("FOUT", exc.ToString(), Color.Red);
-                Console.WriteLine(exc);
-            }
         }
-
-
-        private void SendCallback(object sender, SocketAsyncEventArgs e)
-        {
-            if (e.SocketError == SocketError.Success)
-            {
-                addMessage("ANDER", "test", Color.Green);
-                // You may need to specify some type of state and 
-                // pass it into the BeginSend method so you don't start
-                // sending from scratch
-                //BeginSend();
-            }
-            else
-            {
-                //Console.WriteLine("Socket Error: {0} when sending to {1}",
-                //       e.SocketError,
-                //       _asyncTask.Host);
                 
-        }
-        }
 
         private void startBtn_Click(object sender, EventArgs e)
         {
-            startBtn.Text = "Bezig...";
 
-            try
-            {
-
-
-                //epLocal = new IPEndPoint(IPAddress.Parse(ipLabel.Text), Convert.ToInt32(ownPort.Text));
-                //Console.WriteLine(IPAddress.Parse(ipLabel.Text) + "<------ EIGEN IP");
-                //Console.WriteLine(Convert.ToInt32(ownPort.Text) + "<------ EIGEN POORT");
-                //listenSocket.Bind(epLocal);
-
-                listener = new UdpListener(int.Parse(ownPort.Text), ipLabel.Text);
-                epRemote = new IPEndPoint(IPAddress.Parse(friendIpTextBox.Text), Convert.ToInt32(otherPort.Text));
-                Console.WriteLine(IPAddress.Parse(friendIpTextBox.Text) + "<------ ANDER IP");
-                Console.WriteLine(Convert.ToInt32(otherPort.Text) + "<------ ANDER POORT");
-                sendSocket.Bind(epRemote);
-
-                byte[] buffer = new byte[1024];
-                sendSocket.BeginReceiveFrom(buffer, 0, buffer.Length, SocketFlags.None, ref epRemote, new AsyncCallback(messageCallBack), buffer);
-
-
-                //sck2.Accept();
-                
-                /****************/
-
-                SocketAsyncEventArgs d = new SocketAsyncEventArgs();
-                d.Completed += receiveCompleted;
-                d.SetBuffer(new byte[1024], 0, 1024);
-                if (!sendSocket.ReceiveAsync(d)) 
-                { 
-                    receiveCompleted(this, d);
-                } 
-                else
-                {
-                    Console.WriteLine("<<ONTVANGEN>>");
-                    Console.WriteLine(d.ToString());
-                }
-                /******************************/
-
-                
-
-                startBtn.Enabled = false;
-                startBtn.Text = "Verbonden!";
-                sendTile.Enabled = true;
-            }
-            catch (Exception ex)
-            {
-                addMessage("FOUT", ex.ToString(), Color.Red);
-                startBtn.Text = "Start";
-                Console.WriteLine(ex);
-            }
-
+          
 
 
         }
 
-        public void receiveCompleted(object sender, SocketAsyncEventArgs e)
+        private void startGroupListenerBtn_Click(object sender, EventArgs e)
         {
-            //ProcessData(e);
-            addMessage("TEST", "|TEST", Color.GhostWhite);
-            //if (!Socket.ReceiveAsync(e)) { receiveCompleted(this, e); }
+            startGroupListenerBtn.Visible = false;
+            volumemeterGrp.Visible = true;
+            createDir();
+            mll = new MicLevelListener(this);
+            mll.listenToStream();
+
+            int deviceNumber = settings.microphone;
+
+            //Initiate recording
+            currentListener = "listener1";
+            listener1 = new Listener(deviceNumber, currentListener, this);
+            listener1.startRecording();
+            //listener1 = new Listener(deviceNumber, currentListener, this);
+            //listener1.startRecording();
+        }
+
+        #region Directory Handling
+        private void createDir()
+        {
+            bool folderExists = Directory.Exists(path);
+            if (!folderExists) Directory.CreateDirectory(path);
+        }
+
+        private void deleteDir()
+        {
+            bool folderExists = Directory.Exists(path);
+            if (folderExists) Directory.Delete(path, true);
+        }
+        #endregion
+
+        private void canSendPanelGrp_VisibleChanged(object sender, EventArgs e)
+        {
+            if (canSendPanelGrp.Visible == true)
+            {
+                Console.WriteLine("VERSTUUR");
+                send();
+                //canSendPanelGrp.Visible = false;
+                volumemeterGrp.Visible = false;
+
+            }
         }
         
     }
