@@ -13,7 +13,6 @@ using System.Threading.Tasks;
 using System.Windows.Forms;
 using System.Threading;
 //using LifeSubsMetro.Properties
-using InstantMessengerServer;
 
 namespace LifeSubsMetro
 {
@@ -34,6 +33,7 @@ namespace LifeSubsMetro
         /// <param name="e"></param>
         private void tileSubtitle_Click(object sender, EventArgs e)
         {
+            showTiles();
             Settings settings = new Settings();
             if (settings.microphone == -1)
             {
@@ -63,10 +63,21 @@ namespace LifeSubsMetro
         /// <param name="e"></param>
         private void tileJoinRoom_Click(object sender, EventArgs e)
         {
+            showTiles();
             this.tileJoinRoom.Visible = false;
-            this.joinRoomPanel.Visible = true;
+            this.tileCreateRoom.Visible = true;
         }
 
+        private void showTiles()
+        {
+            foreach (Control c in this.Controls)
+            {
+                if (c.GetType() == typeof(MetroFramework.Controls.MetroTile))
+                {
+                    c.Visible = true;
+                }
+            }
+        }
         /// <summary>
         /// Start groupconversation
         /// </summary>
@@ -75,7 +86,6 @@ namespace LifeSubsMetro
         private void joinRoomButton_Click(object sender, EventArgs e)
         {
             this.tileJoinRoom.Visible = true;
-            this.joinRoomPanel.Visible = false;
 
             string iptojoin = getOwnIp();
             //string iptojoin = "localHost";
@@ -92,6 +102,7 @@ namespace LifeSubsMetro
         /// <param name="e"></param>
         private void tileSettings_Click(object sender, EventArgs e)
         {
+            showTiles();
             new SettingsMenu(this).ShowDialog();
         }
         #endregion
@@ -171,6 +182,10 @@ namespace LifeSubsMetro
 
         private void addRoomBtn_Click(object sender, EventArgs e)
         {
+            ss = new ServerSocket(this);
+            tileCreateRoom.Visible = true;
+            return;
+
             string roomName = roomNameCreateTextbox.Text;
             string roomPass = roomPassCreateRoomTextbox.Text;
             string roomUsername = usernameCreateRoomTextbox.Text;
@@ -199,9 +214,6 @@ namespace LifeSubsMetro
             {
                 MetroMessageBox.Show(this, "De kamernaam is: " + response + ".\r\nHet wachtwoord is: " + roomPass + "\r\n\r\nNoteer deze gegevens - ze zijn nodig voor het inloggen in de zojuist aangemaakte kamer!", "Kamer succesvol aangemaakt!", MessageBoxButtons.OK, MessageBoxIcon.Question);
             }
-
-            tileCreateRoom.Visible = true;
-            ss = new ServerSocket(this);
         }
 
         private void MainMenu_FormClosed(object sender, FormClosedEventArgs e)
@@ -215,11 +227,12 @@ namespace LifeSubsMetro
             //{
             //    Console.WriteLine(eex); ;
             //}
-            closeRoom();
+            //closeRoom();
         }
 
         private void tileCreateRoom_Click(object sender, EventArgs e)
         {
+            tileJoinRoom.Visible = true;
             tileCreateRoom.Visible = false;
         }
 

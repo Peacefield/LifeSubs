@@ -142,12 +142,11 @@
             this.joinRoomPanel.VerticalScrollbarBarColor = true;
             this.joinRoomPanel.VerticalScrollbarHighlightOnWheel = false;
             this.joinRoomPanel.VerticalScrollbarSize = 10;
-            this.joinRoomPanel.Visible = false;
             // 
             // tileExit
             // 
             this.tileExit.ActiveControl = null;
-            this.tileExit.Location = new System.Drawing.Point(561, 60);
+            this.tileExit.Location = new System.Drawing.Point(561, 150);
             this.tileExit.Name = "tileExit";
             this.tileExit.Size = new System.Drawing.Size(85, 85);
             this.tileExit.Style = MetroFramework.MetroColorStyle.Green;
@@ -165,7 +164,7 @@
             // tileSettings
             // 
             this.tileSettings.ActiveControl = null;
-            this.tileSettings.Location = new System.Drawing.Point(561, 150);
+            this.tileSettings.Location = new System.Drawing.Point(561, 60);
             this.tileSettings.Name = "tileSettings";
             this.tileSettings.Size = new System.Drawing.Size(85, 85);
             this.tileSettings.Style = MetroFramework.MetroColorStyle.Green;

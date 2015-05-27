@@ -137,7 +137,7 @@ namespace LifeSubsMetro
             if (grpConv != null) 
             {
                 grpConv.setCanSendPanel(true);    
-                grpConv.addMessageFromThread(result, Color.Orange);
+                grpConv.sendMessage(result, Color.Orange);
                 grpConv.setListenButton(false);
                 Console.WriteLine("gestopt");
             }

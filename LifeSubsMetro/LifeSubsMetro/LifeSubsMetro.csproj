@@ -75,6 +75,7 @@
     <Compile Include="GroupConversations.Designer.cs">
       <DependentUpon>GroupConversations.cs</DependentUpon>
     </Compile>
+    <Compile Include="MessageHandler.cs" />
     <Compile Include="MicLevelListener.cs" />
     <Compile Include="Program.cs" />
     <Compile Include="Properties\AssemblyInfo.cs" />
@@ -225,12 +226,6 @@
   </ItemGroup>
   <ItemGroup>
     <None Include="icons\Conversations\Microphone-50.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <ProjectReference Include="server\InstantMessengerServer.csproj">
-      <Project>{4c59e561-37a5-4ac9-a88b-9de7744fb916}</Project>
-      <Name>InstantMessengerServer</Name>
-    </ProjectReference>
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 

@@ -19,71 +19,40 @@ namespace LifeSubsMetro
 {
     public partial class GroupConversations : MetroForm
     {
+        public string userId { get; set; }
+
         string path = @"C:\audiotest";
         MainMenu mm;
-        String hostIp = "localHost";
-        string ownIpAddress;
-        System.IO.StreamWriter streamWriter;
-        System.IO.StreamReader streamReader;
-        NetworkStream networkStream;
 
         Thread th;
         Thread th2;
+
         MicLevelListener mll;
         string currentListener;
         Listener listener1 = null;
         Settings settings;
 
+        MessageHandler mh;
+
         public GroupConversations(MainMenu mm, String ip)
         {
             settings = new Settings();
             this.mm = mm;
-            this.hostIp = ip;
-            //this.hostIp = getOwnIp();
             InitializeComponent();
-
-            ownIpAddress = getOwnIp();
 
             Font font = new System.Drawing.Font("Arial", 18);
             dataGridOutput.DefaultCellStyle.Font = new Font(font, FontStyle.Regular);
             dataGridOutput.Columns[0].DefaultCellStyle.Font = new System.Drawing.Font(dataGridOutput.DefaultCellStyle.Font.ToString(), 50);
-            createClient();
-        }
-        
-        private void createClient()
-        {
-            TcpClient socketForServer;
-            try
-            {
-                socketForServer = new TcpClient(hostIp, 10);
-            }
-            catch
-            {
-                Console.WriteLine("Failed to connect to server at {0}:999", hostIp);
-                MetroFramework.MetroMessageBox.Show(mm, "Failed to connect to server at " + hostIp + ":999", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
 
-            networkStream = socketForServer.GetStream();
-            streamReader = new System.IO.StreamReader(networkStream);
-            streamWriter = new System.IO.StreamWriter(networkStream);
-            Console.WriteLine("*******This is client program who is connected to localhost on port No:10*****");
+            mh = new MessageHandler(this);
+
+            userId = "2";
         }
 
-        private void sendMessage(string msg, Color c)
+        #region sendMessage
+        public void sendMessage(string msg, Color c)
         {
-            try
-            {
-                //string outputString;
-                // read the data from the host and display it
-                {
-                    //outputString = streamReader.ReadLine();
-                    //Console.WriteLine("Message Recieved by server:" + outputString);
-
-                    //Console.WriteLine("Type your message to be recieved by server:");
                     string str = tbInput.Text;
-                    streamWriter.WriteLine(str);
-                    streamWriter.Flush();
 
                     DataGridViewRow dr = new DataGridViewRow();
 
@@ -96,19 +65,46 @@ namespace LifeSubsMetro
                     cell2.Value = msg;
                     dr.Cells.Add(cell2);
 
-                    dataGridOutput.Rows.Add(dr);
+                    if (this.dataGridOutput.InvokeRequired)
+                    {
+                        try
+                        {
+                            this.dataGridOutput.Invoke((MethodInvoker)delegate { dataGridOutput.Rows.Add(dr); });
+
+                        }
+                        catch (Exception e)
+                        {
+                            Console.WriteLine(e.Message);
+                        }
+                    }
+                    //dataGridOutput.Rows.Add(dr);
 
                     tbInput.Text = "";
-                }
-            }
-            catch
+        }
+
+        private void canSendPanelGrp_VisibleChanged(object sender, EventArgs e)
+        {
+            if (canSendPanelGrp.Visible == true)
             {
-                Console.WriteLine("Exception reading from Server");
-                MetroFramework.MetroMessageBox.Show(this, "Kan geen verbinding maken met de server", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                Console.WriteLine("VERSTUUR");
+                send();
+                //canSendPanelGrp.Visible = false;
+                volumemeterGrp.Visible = false;
             }
         }
 
-        private void receiveMessage(string sender, string msg, Color c)
+        private void tbInput_KeyDown(object sender, KeyEventArgs e)
+        {
+            if (e.KeyCode == Keys.Enter)
+            {
+                e.SuppressKeyPress = true;
+                if (tbInput.Text != "")
+                    sendMessage(tbInput.Text, Color.PowderBlue);
+            }
+        }
+        #endregion
+
+        public void receiveMessage(string sender, string msg, Color c)
         {
             DataGridViewRow dr = new DataGridViewRow();
 
@@ -118,13 +114,24 @@ namespace LifeSubsMetro
 
             DataGridViewTextBoxCell cell2 = new DataGridViewTextBoxCell();
             cell2.Style.BackColor = c;
-            cell2.Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+            cell2.Style.Alignment = DataGridViewContentAlignment.MiddleLeft;
             cell2.Value = msg;
             dr.Cells.Add(cell2);
 
-            dataGridOutput.Rows.Add(dr);
+            if (this.dataGridOutput.InvokeRequired)
+            {
+                try
+                {
+                    this.dataGridOutput.Invoke((MethodInvoker)delegate { dataGridOutput.Rows.Add(dr); dataGridOutput.CurrentCell = dataGridOutput.Rows[dr.Index].Cells[0]; });
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e.Message);
+                }
+            }
+            
         }
-
+        
         private string getOwnIp()
         {
             IPHostEntry host;
@@ -146,21 +153,11 @@ namespace LifeSubsMetro
             try { deleteDir(); }
             catch (Exception direx) { Console.WriteLine(direx.Message); }
 
-            if (streamWriter != null)
-            {
-                try
-                {
-                    streamWriter.WriteLine("exit");
-                    streamWriter.Flush();
-                }
-                catch (Exception ex)
-                {
-                    Console.WriteLine(ex.Message);
-                }
-            }
-            if (networkStream != null) networkStream.Close();
+            mh.stopTimer();
 
-            mm.closeRoom();
+            //if (serverThread != null) serverThread.Abort();
+            //mm.closeRoom();
+            Thread.Sleep(1); //To prevent black screen while room is being destroyed
             mm.Visible = true;
         }
 
@@ -277,29 +274,6 @@ namespace LifeSubsMetro
 
         }
 
-        public void addMessageFromThread(string msg, Color c)
-        {
-            try
-            {
-                if (this.dataGridOutput.InvokeRequired)
-                {
-                    try
-                    {
-                        dataGridOutput.Invoke((MethodInvoker)(() => sendMessage(msg, c)));
-                    }
-                    catch (Exception e)
-                    {
-                        Console.WriteLine(e.Message);
-                    }
-                }
-            }
-            catch (ObjectDisposedException)
-            {
-                Console.WriteLine("VolumeMeter niet kunnen vinden");
-            }
-
-        }
-
         #endregion
 
         private void startGroupListenerBtn_Click(object sender, EventArgs e)
@@ -334,16 +308,6 @@ namespace LifeSubsMetro
         }
         #endregion
 
-        private void canSendPanelGrp_VisibleChanged(object sender, EventArgs e)
-        {
-            if (canSendPanelGrp.Visible == true)
-            {
-                Console.WriteLine("VERSTUUR");
-                send();
-                //canSendPanelGrp.Visible = false;
-                volumemeterGrp.Visible = false;
-            }
-        }
-        
+
     }
 }

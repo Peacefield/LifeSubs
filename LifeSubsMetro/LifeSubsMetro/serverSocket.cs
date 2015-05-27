@@ -27,12 +27,12 @@ namespace LifeSubsMetro
         public void createServer()
         {
             IPAddress ipaddress = IPAddress.Parse(getOwnIp());
-            tcpListener = new TcpListener(ipaddress, 50);
+            tcpListener = new TcpListener(ipaddress, 10);
             tcpListener.Start();
             Console.WriteLine("************This is Server program************");
             //Console.WriteLine("Hoe many clients are going to connect to this server?:");
             //int numberOfClientsYouNeedToConnect = int.Parse(Console.ReadLine());
-            int numberOfClientsYouNeedToConnect = 10;
+            int numberOfClientsYouNeedToConnect = 50;
             for (int i = 0; i < numberOfClientsYouNeedToConnect; i++)
             {
                 Thread newThread = new Thread(new ThreadStart(Listeners));
@@ -86,6 +86,7 @@ namespace LifeSubsMetro
                 {
                     string theString = streamReader.ReadLine();
                     Console.WriteLine("Message recieved by " + socketForClient.RemoteEndPoint + " : " + theString);
+
                     if (theString == "exit")
                     {
                         Console.WriteLine(socketForClient.RemoteEndPoint + " left");
@@ -108,6 +109,7 @@ namespace LifeSubsMetro
         public void Destroy()
         {
             tcpListener.Stop();
+            Thread.Sleep(1); //To prevent black screen
         }
     }
 }
