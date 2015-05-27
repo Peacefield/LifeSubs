@@ -1,8 +1,9 @@
 ﻿using NAudio.Wave;
 using System;
+using System.Drawing;
 using System.IO;
 using System.Net;
-using System.Drawing;
+
 namespace LifeSubsMetro
 {
     class Listener
