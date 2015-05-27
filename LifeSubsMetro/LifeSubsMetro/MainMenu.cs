@@ -215,7 +215,7 @@ namespace LifeSubsMetro
             //{
             //    Console.WriteLine(eex); ;
             //}
-            
+            closeRoom();
         }
 
         private void tileCreateRoom_Click(object sender, EventArgs e)
@@ -223,9 +223,10 @@ namespace LifeSubsMetro
             tileCreateRoom.Visible = false;
         }
 
-
-
-
+        public void closeRoom()
+        {
+            if (ss != null) ss.Destroy();
+        }
 
 
 

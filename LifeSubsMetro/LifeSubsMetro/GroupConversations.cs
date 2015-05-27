@@ -59,7 +59,7 @@ namespace LifeSubsMetro
             }
             catch
             {
-                Console.WriteLine("Failed to connect to server at {0}:999", "localhost");
+                Console.WriteLine("Failed to connect to server at {0}:999", hostIp);
                 MetroFramework.MetroMessageBox.Show(mm, "Failed to connect to server at " + hostIp + ":999", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
@@ -160,6 +160,7 @@ namespace LifeSubsMetro
             }
             if (networkStream != null) networkStream.Close();
 
+            mm.closeRoom();
             mm.Visible = true;
         }
 

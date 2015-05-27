@@ -40,13 +40,13 @@
             this.tileSubtitle = new MetroFramework.Controls.MetroTile();
             this.tileJoinRoom = new MetroFramework.Controls.MetroTile();
             this.makeRoomPanel = new System.Windows.Forms.Panel();
-            this.roomNameCreateTextbox = new System.Windows.Forms.TextBox();
-            this.roomPassCreateRoomTextbox = new System.Windows.Forms.TextBox();
-            this.usernameCreateRoomTextbox = new System.Windows.Forms.TextBox();
-            this.metroLabel3 = new MetroFramework.Controls.MetroLabel();
-            this.metroLabel4 = new MetroFramework.Controls.MetroLabel();
-            this.metroLabel5 = new MetroFramework.Controls.MetroLabel();
             this.addRoomBtn = new MetroFramework.Controls.MetroTile();
+            this.metroLabel5 = new MetroFramework.Controls.MetroLabel();
+            this.metroLabel4 = new MetroFramework.Controls.MetroLabel();
+            this.metroLabel3 = new MetroFramework.Controls.MetroLabel();
+            this.usernameCreateRoomTextbox = new System.Windows.Forms.TextBox();
+            this.roomPassCreateRoomTextbox = new System.Windows.Forms.TextBox();
+            this.roomNameCreateTextbox = new System.Windows.Forms.TextBox();
             this.joinRoomPanel.SuspendLayout();
             this.makeRoomPanel.SuspendLayout();
             this.SuspendLayout();
@@ -88,7 +88,7 @@
             this.tileCreateRoom.TabIndex = 3;
             this.tileCreateRoom.Text = "Creëer kamer";
             this.tileCreateRoom.TileImage = global::LifeSubsMetro.Properties.Resources.Add_Group_64;
-            this.tileCreateRoom.TileImageAlign = System.Drawing.ContentAlignment.TopCenter;
+            this.tileCreateRoom.TileImageAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.tileCreateRoom.TileTextFontSize = MetroFramework.MetroTileTextSize.Tall;
             this.tileCreateRoom.TileTextFontWeight = MetroFramework.MetroTileTextWeight.Regular;
             this.tileCreateRoom.UseSelectable = true;
@@ -232,36 +232,25 @@
             this.makeRoomPanel.Size = new System.Drawing.Size(174, 175);
             this.makeRoomPanel.TabIndex = 9;
             // 
-            // roomNameCreateTextbox
+            // addRoomBtn
             // 
-            this.roomNameCreateTextbox.Location = new System.Drawing.Point(4, 22);
-            this.roomNameCreateTextbox.Name = "roomNameCreateTextbox";
-            this.roomNameCreateTextbox.Size = new System.Drawing.Size(167, 20);
-            this.roomNameCreateTextbox.TabIndex = 0;
+            this.addRoomBtn.ActiveControl = null;
+            this.addRoomBtn.Location = new System.Drawing.Point(4, 136);
+            this.addRoomBtn.Name = "addRoomBtn";
+            this.addRoomBtn.Size = new System.Drawing.Size(167, 23);
+            this.addRoomBtn.TabIndex = 6;
+            this.addRoomBtn.Text = "Creëer kamer";
+            this.addRoomBtn.UseSelectable = true;
+            this.addRoomBtn.Click += new System.EventHandler(this.addRoomBtn_Click);
             // 
-            // roomPassCreateRoomTextbox
+            // metroLabel5
             // 
-            this.roomPassCreateRoomTextbox.Location = new System.Drawing.Point(3, 65);
-            this.roomPassCreateRoomTextbox.Name = "roomPassCreateRoomTextbox";
-            this.roomPassCreateRoomTextbox.Size = new System.Drawing.Size(167, 20);
-            this.roomPassCreateRoomTextbox.TabIndex = 1;
-            this.roomPassCreateRoomTextbox.UseSystemPasswordChar = true;
-            // 
-            // usernameCreateRoomTextbox
-            // 
-            this.usernameCreateRoomTextbox.Location = new System.Drawing.Point(3, 109);
-            this.usernameCreateRoomTextbox.Name = "usernameCreateRoomTextbox";
-            this.usernameCreateRoomTextbox.Size = new System.Drawing.Size(167, 20);
-            this.usernameCreateRoomTextbox.TabIndex = 2;
-            // 
-            // metroLabel3
-            // 
-            this.metroLabel3.AutoSize = true;
-            this.metroLabel3.Location = new System.Drawing.Point(4, 2);
-            this.metroLabel3.Name = "metroLabel3";
-            this.metroLabel3.Size = new System.Drawing.Size(83, 19);
-            this.metroLabel3.TabIndex = 3;
-            this.metroLabel3.Text = "Kamernaam:";
+            this.metroLabel5.AutoSize = true;
+            this.metroLabel5.Location = new System.Drawing.Point(1, 88);
+            this.metroLabel5.Name = "metroLabel5";
+            this.metroLabel5.Size = new System.Drawing.Size(139, 19);
+            this.metroLabel5.TabIndex = 5;
+            this.metroLabel5.Text = "Eigen gebruikersnaam";
             // 
             // metroLabel4
             // 
@@ -273,25 +262,36 @@
             this.metroLabel4.TabIndex = 4;
             this.metroLabel4.Text = "Kamerwachtwoord";
             // 
-            // metroLabel5
+            // metroLabel3
             // 
-            this.metroLabel5.AutoSize = true;
-            this.metroLabel5.Location = new System.Drawing.Point(1, 88);
-            this.metroLabel5.Name = "metroLabel5";
-            this.metroLabel5.Size = new System.Drawing.Size(139, 19);
-            this.metroLabel5.TabIndex = 5;
-            this.metroLabel5.Text = "Eigen gebruikersnaam";
+            this.metroLabel3.AutoSize = true;
+            this.metroLabel3.Location = new System.Drawing.Point(4, 2);
+            this.metroLabel3.Name = "metroLabel3";
+            this.metroLabel3.Size = new System.Drawing.Size(83, 19);
+            this.metroLabel3.TabIndex = 3;
+            this.metroLabel3.Text = "Kamernaam:";
             // 
-            // addRoomBtn
+            // usernameCreateRoomTextbox
             // 
-            this.addRoomBtn.ActiveControl = null;
-            this.addRoomBtn.Location = new System.Drawing.Point(4, 136);
-            this.addRoomBtn.Name = "addRoomBtn";
-            this.addRoomBtn.Size = new System.Drawing.Size(167, 23);
-            this.addRoomBtn.TabIndex = 6;
-            this.addRoomBtn.Text = "Creëer kamer";
-            this.addRoomBtn.UseSelectable = true;
-            this.addRoomBtn.Click += new System.EventHandler(this.addRoomBtn_Click);
+            this.usernameCreateRoomTextbox.Location = new System.Drawing.Point(3, 109);
+            this.usernameCreateRoomTextbox.Name = "usernameCreateRoomTextbox";
+            this.usernameCreateRoomTextbox.Size = new System.Drawing.Size(167, 20);
+            this.usernameCreateRoomTextbox.TabIndex = 2;
+            // 
+            // roomPassCreateRoomTextbox
+            // 
+            this.roomPassCreateRoomTextbox.Location = new System.Drawing.Point(3, 65);
+            this.roomPassCreateRoomTextbox.Name = "roomPassCreateRoomTextbox";
+            this.roomPassCreateRoomTextbox.Size = new System.Drawing.Size(167, 20);
+            this.roomPassCreateRoomTextbox.TabIndex = 1;
+            this.roomPassCreateRoomTextbox.UseSystemPasswordChar = true;
+            // 
+            // roomNameCreateTextbox
+            // 
+            this.roomNameCreateTextbox.Location = new System.Drawing.Point(4, 22);
+            this.roomNameCreateTextbox.Name = "roomNameCreateTextbox";
+            this.roomNameCreateTextbox.Size = new System.Drawing.Size(167, 20);
+            this.roomNameCreateTextbox.TabIndex = 0;
             // 
             // MainMenu
             // 
