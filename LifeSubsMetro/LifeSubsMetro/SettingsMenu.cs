@@ -20,6 +20,7 @@ namespace LifeSubsMetro
         Thread updateUI = null;
         MainMenu mainMenu;
         Subtitle sub;
+        GroupConversations gcs;
         Settings settings;
         MicLevelListener mll;
 
@@ -51,6 +52,19 @@ namespace LifeSubsMetro
             loadSettings();
         }
 
+        /// <summary>
+        /// Constructor for calling SettingsMenu from Subtitle class
+        /// </summary>
+        /// <param name="sub"></param>
+        public SettingsMenu(GroupConversations gcs)
+        {
+            this.gcs = gcs;
+            InitializeComponent();
+            init();
+
+            settings = new Settings();
+            loadSettings();
+        }
         #region Initiate
         /// <summary>
         /// Function to fill microphone- and monitor comboboxes to available devices
@@ -90,7 +104,8 @@ namespace LifeSubsMetro
         private void SettingsMenu_FormClosing(object sender, FormClosingEventArgs e)
         {
             if (sub != null) sub.BringToFront();
-            if (mainMenu!= null) mainMenu.BringToFront();
+            if (mainMenu != null) mainMenu.BringToFront();
+            if (gcs != null) gcs.BringToFront();
 
             if (mll != null) mll.stop();
         }
@@ -311,6 +326,8 @@ namespace LifeSubsMetro
             {
                 sub.setPosition("");
             }
+            if (gcs != null)
+                gcs.setStyle();
         }
 
         /// <summary>

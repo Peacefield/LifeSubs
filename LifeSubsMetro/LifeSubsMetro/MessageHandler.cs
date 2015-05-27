@@ -25,6 +25,7 @@ namespace LifeSubsMetro
             aTimer.Elapsed += OnTimedEvent;
             aTimer.Enabled = true;
 
+            //Get userid to differentiate between message-adding functions
             userId = gcs.userId;
         }
 
@@ -34,7 +35,6 @@ namespace LifeSubsMetro
             //Console.WriteLine("The Elapsed event was raised at {0}", e.SignalTime);
 
             //Perfrom HTTP request to get new messages
-
             String httpMsg = getMessages();
 
             string[] splitReq = httpMsg.Split(new String[] { "|||" }, StringSplitOptions.None);
@@ -100,9 +100,9 @@ namespace LifeSubsMetro
                         case "text_messages":
                             msg = pair.Value;
                             if (sender == gcs.userId)
-                                gcs.sendMessage(msg, Color.PowderBlue);
+                                gcs.sendMessage(msg);
                             else
-                                gcs.receiveMessage(sender, msg, Color.Red);
+                                gcs.receiveMessage(sender, msg);
                             break;
                     }
                 }
@@ -122,7 +122,7 @@ namespace LifeSubsMetro
 
         private string getMessages()
         {
-            //return "time_messages|10-10-2010 10:22:11||sender_messages|1||text_messages|DIT IS EEN KNETTERSTOER BERICHTJE|||time_messages|10-10-2010 10:22:13||sender_messages|1||text_messages|RICARDO HEEFT EEN POEPSNOR|||";
+            return "time_messages|10-10-2010 10:22:11||sender_messages|1||text_messages|DIT IS EEN KNETTERSTOER BERICHTJE|||time_messages|10-10-2010 10:22:13||sender_messages|1||text_messages|RICARDO HEEFT EEN POEPSNOR|||";
 
             string path = "http://lifesubs.windesheim.nl/api/messages.php";
             Console.WriteLine("request started: " + path);

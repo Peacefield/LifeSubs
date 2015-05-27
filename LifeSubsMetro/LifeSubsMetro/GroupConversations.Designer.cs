@@ -38,7 +38,9 @@
             this.startGroupListenerBtn = new MetroFramework.Controls.MetroTile();
             this.volumemeterGrp = new MetroFramework.Controls.MetroProgressBar();
             this.canSendPanelGrp = new System.Windows.Forms.Panel();
+            this.settingsPB = new System.Windows.Forms.PictureBox();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridOutput)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.settingsPB)).BeginInit();
             this.SuspendLayout();
             // 
             // dataGridOutput
@@ -59,7 +61,7 @@
             dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
             dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.Transparent;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.White;
             dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.ControlText;
             dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
             this.dataGridOutput.DefaultCellStyle = dataGridViewCellStyle1;
@@ -70,7 +72,6 @@
             this.dataGridOutput.ReadOnly = true;
             this.dataGridOutput.RowHeadersVisible = false;
             this.dataGridOutput.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
-            this.dataGridOutput.SelectionMode = System.Windows.Forms.DataGridViewSelectionMode.CellSelect;
             this.dataGridOutput.Size = new System.Drawing.Size(977, 419);
             this.dataGridOutput.TabIndex = 3;
             // 
@@ -102,6 +103,8 @@
             this.tbInput.SelectedText = "";
             this.tbInput.Size = new System.Drawing.Size(858, 59);
             this.tbInput.TabIndex = 1;
+            this.tbInput.UseCustomBackColor = true;
+            this.tbInput.UseCustomForeColor = true;
             this.tbInput.UseSelectable = true;
             this.tbInput.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tbInput_KeyDown);
             // 
@@ -148,11 +151,25 @@
             this.canSendPanelGrp.Visible = false;
             this.canSendPanelGrp.VisibleChanged += new System.EventHandler(this.canSendPanelGrp_VisibleChanged);
             // 
+            // settingsPB
+            // 
+            this.settingsPB.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.settingsPB.Image = global::LifeSubsMetro.Properties.Resources._1428589893_engineering_48;
+            this.settingsPB.Location = new System.Drawing.Point(940, 5);
+            this.settingsPB.Margin = new System.Windows.Forms.Padding(2);
+            this.settingsPB.Name = "settingsPB";
+            this.settingsPB.Size = new System.Drawing.Size(20, 20);
+            this.settingsPB.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.settingsPB.TabIndex = 19;
+            this.settingsPB.TabStop = false;
+            this.settingsPB.Click += new System.EventHandler(this.settingsPB_Click);
+            // 
             // GroupConversations
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(1020, 565);
+            this.Controls.Add(this.settingsPB);
             this.Controls.Add(this.startGroupListenerBtn);
             this.Controls.Add(this.sendTile);
             this.Controls.Add(this.dataGridOutput);
@@ -165,6 +182,7 @@
             this.Text = "Kamer: IT innovations";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.GroupConversations_FormClosed);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridOutput)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.settingsPB)).EndInit();
             this.ResumeLayout(false);
 
         }
@@ -179,6 +197,7 @@
         private MetroFramework.Controls.MetroTile startGroupListenerBtn;
         private MetroFramework.Controls.MetroProgressBar volumemeterGrp;
         private System.Windows.Forms.Panel canSendPanelGrp;
+        private System.Windows.Forms.PictureBox settingsPB;
 
 
 

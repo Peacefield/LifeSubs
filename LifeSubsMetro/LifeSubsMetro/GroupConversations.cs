@@ -31,18 +31,17 @@ namespace LifeSubsMetro
         string currentListener;
         Listener listener1 = null;
         Settings settings;
+        Color backColor;
+        Color foreColor;
 
         MessageHandler mh;
 
         public GroupConversations(MainMenu mm, String ip)
         {
-            settings = new Settings();
             this.mm = mm;
             InitializeComponent();
 
-            Font font = new System.Drawing.Font("Arial", 18);
-            dataGridOutput.DefaultCellStyle.Font = new Font(font, FontStyle.Regular);
-            dataGridOutput.Columns[0].DefaultCellStyle.Font = new System.Drawing.Font(dataGridOutput.DefaultCellStyle.Font.ToString(), 50);
+            setStyle();
 
             mh = new MessageHandler(this);
 
@@ -50,7 +49,7 @@ namespace LifeSubsMetro
         }
 
         #region sendMessage
-        public void sendMessage(string msg, Color c)
+        public void sendMessage(string msg)
         {
                     string str = tbInput.Text;
 
@@ -60,7 +59,7 @@ namespace LifeSubsMetro
                     dr.Cells.Add(cell1);
 
                     DataGridViewTextBoxCell cell2 = new DataGridViewTextBoxCell();
-                    cell2.Style.BackColor = c;
+                    cell2.Style.BackColor = Color.PowderBlue;
                     cell2.Style.Alignment = DataGridViewContentAlignment.MiddleRight;
                     cell2.Value = msg;
                     dr.Cells.Add(cell2);
@@ -99,12 +98,12 @@ namespace LifeSubsMetro
             {
                 e.SuppressKeyPress = true;
                 if (tbInput.Text != "")
-                    sendMessage(tbInput.Text, Color.PowderBlue);
+                    sendMessage(tbInput.Text);
             }
         }
         #endregion
 
-        public void receiveMessage(string sender, string msg, Color c)
+        public void receiveMessage(string sender, string msg)
         {
             DataGridViewRow dr = new DataGridViewRow();
 
@@ -113,7 +112,8 @@ namespace LifeSubsMetro
             dr.Cells.Add(cell1);
 
             DataGridViewTextBoxCell cell2 = new DataGridViewTextBoxCell();
-            cell2.Style.BackColor = c;
+            cell2.Style.BackColor = backColor;
+            cell2.Style.ForeColor = foreColor;
             cell2.Style.Alignment = DataGridViewContentAlignment.MiddleLeft;
             cell2.Value = msg;
             dr.Cells.Add(cell2);
@@ -129,24 +129,23 @@ namespace LifeSubsMetro
                     Console.WriteLine(e.Message);
                 }
             }
-            
         }
         
-        private string getOwnIp()
-        {
-            IPHostEntry host;
-            host = Dns.GetHostEntry(Dns.GetHostName());
-            Console.WriteLine(host);
+        //private string getOwnIp()
+        //{
+        //    IPHostEntry host;
+        //    host = Dns.GetHostEntry(Dns.GetHostName());
+        //    Console.WriteLine(host);
 
-            foreach (IPAddress ip in host.AddressList)
-            {
-                if (ip.AddressFamily == AddressFamily.InterNetwork)
-                {
-                    return ip.ToString();
-                }
-            }
-            return "127.0.0.1";
-        }
+        //    foreach (IPAddress ip in host.AddressList)
+        //    {
+        //        if (ip.AddressFamily == AddressFamily.InterNetwork)
+        //        {
+        //            return ip.ToString();
+        //        }
+        //    }
+        //    return "127.0.0.1";
+        //}
 
         private void GroupConversations_FormClosed(object sender, FormClosedEventArgs e)
         {
@@ -165,7 +164,7 @@ namespace LifeSubsMetro
         {
             if (tbInput.Text == "") return;
 
-            sendMessage(tbInput.Text, Color.PowderBlue);
+            sendMessage(tbInput.Text);
         }
 
         public void send()
@@ -308,6 +307,26 @@ namespace LifeSubsMetro
         }
         #endregion
 
+        private void settingsPB_Click(object sender, EventArgs e)
+        {
+            SettingsMenu sm = new SettingsMenu(this);
+            sm.ShowDialog();
+        }
+        public void setStyle()
+        {
+            settings = new Settings();
+            Font font = new System.Drawing.Font(settings.font, settings.fontsize);
+            dataGridOutput.DefaultCellStyle.Font = font;
+            dataGridOutput.DefaultCellStyle.BackColor = settings.bgColor;
+            dataGridOutput.DefaultCellStyle.ForeColor = settings.subColor;
+            dataGridOutput.DefaultCellStyle.SelectionBackColor = settings.bgColor;
+            dataGridOutput.DefaultCellStyle.SelectionForeColor = settings.subColor;
+            dataGridOutput.BackgroundColor = settings.bgColor;
 
+            tbInput.BackColor = settings.bgColor;
+            tbInput.ForeColor = settings.subColor;
+
+            //TODO: Implement listener functionality and change microphone of requestlistener and miclevellistener here
+        }
     }
 }
