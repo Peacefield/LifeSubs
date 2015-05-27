@@ -31,8 +31,6 @@ namespace LifeSubsMetro
         string currentListener;
         Listener listener1 = null;
         Settings settings;
-        Color backColor;
-        Color foreColor;
 
         MessageHandler mh;
 
@@ -51,34 +49,38 @@ namespace LifeSubsMetro
         #region sendMessage
         public void sendMessage(string msg)
         {
-                    string str = tbInput.Text;
+            string str = tbInput.Text;
 
-                    DataGridViewRow dr = new DataGridViewRow();
+            DataGridViewRow dr = new DataGridViewRow();
 
-                    DataGridViewTextBoxCell cell1 = new DataGridViewTextBoxCell();
-                    dr.Cells.Add(cell1);
+            DataGridViewTextBoxCell cell1 = new DataGridViewTextBoxCell();
+            cell1.Style.BackColor = Color.PowderBlue;
+            dr.Cells.Add(cell1);
 
-                    DataGridViewTextBoxCell cell2 = new DataGridViewTextBoxCell();
-                    cell2.Style.BackColor = Color.PowderBlue;
-                    cell2.Style.Alignment = DataGridViewContentAlignment.MiddleRight;
-                    cell2.Value = msg;
-                    dr.Cells.Add(cell2);
+            DataGridViewTextBoxCell cell2 = new DataGridViewTextBoxCell();
+            cell2.Style.BackColor = Color.PowderBlue;
+            cell2.Style.Alignment = DataGridViewContentAlignment.MiddleRight;
+            cell2.Value = msg;
+            dr.Cells.Add(cell2);
 
-                    if (this.dataGridOutput.InvokeRequired)
-                    {
-                        try
-                        {
-                            this.dataGridOutput.Invoke((MethodInvoker)delegate { dataGridOutput.Rows.Add(dr); });
-
-                        }
-                        catch (Exception e)
-                        {
-                            Console.WriteLine(e.Message);
-                        }
-                    }
-                    //dataGridOutput.Rows.Add(dr);
-
-                    tbInput.Text = "";
+            if (this.dataGridOutput.InvokeRequired)
+            {
+                try
+                {
+                    this.dataGridOutput.Invoke((MethodInvoker)delegate { dataGridOutput.Rows.Add(dr); dataGridOutput.CurrentCell = dataGridOutput.Rows[dr.Index+1].Cells[0]; });
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e.Message);
+                }
+            }
+            else
+            {
+                dataGridOutput.Rows.Add(dr);
+                dataGridOutput.CurrentCell = dataGridOutput.Rows[dr.Index+1].Cells[0]; 
+                tbInput.Text = "";
+            }
+            
         }
 
         private void canSendPanelGrp_VisibleChanged(object sender, EventArgs e)
@@ -101,6 +103,13 @@ namespace LifeSubsMetro
                     sendMessage(tbInput.Text);
             }
         }
+        private void sendTile_Click(object sender, EventArgs e)
+        {
+            if (tbInput.Text == "") return;
+
+            sendMessage(tbInput.Text);
+        }
+
         #endregion
 
         public void receiveMessage(string sender, string msg)
@@ -112,8 +121,6 @@ namespace LifeSubsMetro
             dr.Cells.Add(cell1);
 
             DataGridViewTextBoxCell cell2 = new DataGridViewTextBoxCell();
-            cell2.Style.BackColor = backColor;
-            cell2.Style.ForeColor = foreColor;
             cell2.Style.Alignment = DataGridViewContentAlignment.MiddleLeft;
             cell2.Value = msg;
             dr.Cells.Add(cell2);
@@ -153,18 +160,7 @@ namespace LifeSubsMetro
             catch (Exception direx) { Console.WriteLine(direx.Message); }
 
             mh.stopTimer();
-
-            //if (serverThread != null) serverThread.Abort();
-            //mm.closeRoom();
-            Thread.Sleep(1); //To prevent black screen while room is being destroyed
             mm.Visible = true;
-        }
-
-        private void sendTile_Click(object sender, EventArgs e)
-        {
-            if (tbInput.Text == "") return;
-
-            sendMessage(tbInput.Text);
         }
 
         public void send()
@@ -326,7 +322,7 @@ namespace LifeSubsMetro
             tbInput.BackColor = settings.bgColor;
             tbInput.ForeColor = settings.subColor;
 
-            //TODO: Implement listener functionality and change microphone of requestlistener and miclevellistener here
+            //TODO: Complete listener functionality and change microphone of requestlistener and miclevellistener here
         }
     }
 }

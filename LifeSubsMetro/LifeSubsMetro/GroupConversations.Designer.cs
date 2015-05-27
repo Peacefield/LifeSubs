@@ -114,6 +114,7 @@
             this.sendTile.Location = new System.Drawing.Point(885, 483);
             this.sendTile.Name = "sendTile";
             this.sendTile.Size = new System.Drawing.Size(67, 59);
+            this.sendTile.Style = MetroFramework.MetroColorStyle.Green;
             this.sendTile.TabIndex = 2;
             this.sendTile.Text = "Verzend";
             this.sendTile.UseSelectable = true;
@@ -125,6 +126,7 @@
             this.startGroupListenerBtn.Location = new System.Drawing.Point(958, 483);
             this.startGroupListenerBtn.Name = "startGroupListenerBtn";
             this.startGroupListenerBtn.Size = new System.Drawing.Size(47, 59);
+            this.startGroupListenerBtn.Style = MetroFramework.MetroColorStyle.Green;
             this.startGroupListenerBtn.TabIndex = 16;
             this.startGroupListenerBtn.TileImage = ((System.Drawing.Image)(resources.GetObject("startGroupListenerBtn.TileImage")));
             this.startGroupListenerBtn.TileImageAlign = System.Drawing.ContentAlignment.MiddleCenter;
@@ -179,6 +181,7 @@
             this.MaximizeBox = false;
             this.Name = "GroupConversations";
             this.Resizable = false;
+            this.Style = MetroFramework.MetroColorStyle.Green;
             this.Text = "Kamer: IT innovations";
             this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.GroupConversations_FormClosed);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridOutput)).EndInit();

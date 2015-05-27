@@ -12,38 +12,41 @@ namespace LifeSubsMetro
 {
     class MessageHandler
     {
-        private Timer aTimer;
+        private Timer timer;
         GroupConversations gcs;
         string time;
         string userId;
         public MessageHandler(GroupConversations gc)
         {
             this.gcs = gc;
-            // Create a timer with a two second interval.
-            aTimer = new System.Timers.Timer(2000);
-            // Hook up the Elapsed event for the timer. 
-            aTimer.Elapsed += OnTimedEvent;
-            aTimer.Enabled = true;
+            //Create a timer with a one second interval
+            timer = new System.Timers.Timer(1000);
+            timer.Elapsed += OnTimedEvent;
+            timer.Enabled = true;
 
             //Get userid to differentiate between message-adding functions
             userId = gcs.userId;
         }
 
+        /// <summary>
+        /// Elapsed event for Timer timer
+        /// </summary>
+        /// <param name="source"></param>
+        /// <param name="e"></param>
         private void OnTimedEvent(Object source, ElapsedEventArgs e)
         {
             this.time = e.SignalTime.ToString();
-            //Console.WriteLine("The Elapsed event was raised at {0}", e.SignalTime);
 
             //Perfrom HTTP request to get new messages
+            //TODO: Base on timestamp/id
             String httpMsg = getMessages();
 
+            //Loop through the Http response and add to Dictionary<string, string> values
             string[] splitReq = httpMsg.Split(new String[] { "|||" }, StringSplitOptions.None);
 
             string keyvalue = "key";
             string key = "";
             string value = "";
-
-
 
             foreach (string s in splitReq)
             {
@@ -80,6 +83,7 @@ namespace LifeSubsMetro
                     }
                 }
 
+                //Loop trough Dictionary<string, string> values to seperate items
                 string sender = "";
                 string msg = "";
                 string time = "";
@@ -107,24 +111,21 @@ namespace LifeSubsMetro
                     }
                 }
             }
-
-            //if (user == "localip")
-            //    gcs.sendMessage("Bericht", Color.PowderBlue);
-            //if(user == "remoteip")
-            //    gcs.receiveMessage("Jan", "Bericht", Color.Red);
         }
-
 
         public void stopTimer()
         {
-            aTimer.Stop();
+            timer.Stop();
         }
 
         private string getMessages()
         {
-            return "time_messages|10-10-2010 10:22:11||sender_messages|1||text_messages|DIT IS EEN KNETTERSTOER BERICHTJE|||time_messages|10-10-2010 10:22:13||sender_messages|1||text_messages|RICARDO HEEFT EEN POEPSNOR|||";
+            return "time_messages|10-10-2010 10:22:11||sender_messages|2||text_messages|DIT IS EEN KNETTERSTOER BERICHTJE"
+                    + "|||"
+                    + "time_messages|10-10-2010 10:22:13||sender_messages|1||text_messages|RICARDO HEEFT EEN POEPSNOR|||";
 
             string path = "http://lifesubs.windesheim.nl/api/messages.php";
+            //path += "?timeID=5";
             Console.WriteLine("request started: " + path);
             string result;
 
