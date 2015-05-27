@@ -24,19 +24,23 @@ namespace LifeSubsMetro
 
         MessageHandler mh;
 
-        public GroupConversations(MainMenu mm, String ip)
+        public GroupConversations(MainMenu mm)
         {
             this.mm = mm;
             InitializeComponent();
 
             setStyle();
-
             mh = new MessageHandler(this);
 
+            //TODO: Get userId from database
             userId = "2";
         }
 
         #region sendMessage
+        /// <summary>
+        /// Place your own message into the datagridview dataGridOutput as a new row
+        /// </summary>
+        /// <param name="msg"></param>
         public void sendMessage(string msg)
         {
             string str = tbInput.Text;
@@ -72,18 +76,13 @@ namespace LifeSubsMetro
             }
             
         }
-
-        private void canSendPanelGrp_VisibleChanged(object sender, EventArgs e)
-        {
-            if (canSendPanelGrp.Visible == true)
-            {
-                Console.WriteLine("VERSTUUR");
-                send();
-                //canSendPanelGrp.Visible = false;
-                volumemeterGrp.Visible = false;
-            }
-        }
-
+        
+        /// <summary>
+        /// KeyDown event handler.
+        /// Sends the text on "Enter"-press if tbInput containts text.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void tbInput_KeyDown(object sender, KeyEventArgs e)
         {
             if (e.KeyCode == Keys.Enter)
@@ -93,6 +92,12 @@ namespace LifeSubsMetro
                     sendMessage(tbInput.Text);
             }
         }
+        /// <summary>
+        /// Click event handler.
+        /// Sends your message if tbInput containts text.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void sendTile_Click(object sender, EventArgs e)
         {
             if (tbInput.Text == "") return;
@@ -102,6 +107,11 @@ namespace LifeSubsMetro
 
         #endregion
 
+        /// <summary>
+        /// Place a received message into the datagridview dataGridOutput as a new row
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="msg"></param>
         public void receiveMessage(string sender, string msg)
         {
             DataGridViewRow dr = new DataGridViewRow();
@@ -143,35 +153,7 @@ namespace LifeSubsMetro
         //    }
         //    return "127.0.0.1";
         //}
-
-        private void GroupConversations_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            try { deleteDir(); }
-            catch (Exception direx) { Console.WriteLine(direx.Message); }
-
-            mh.stopTimer();
-            mm.Visible = true;
-        }
-
-        public void send()
-        {
-            Console.WriteLine("listener1 currently recording");
-            //Stop listener
-            Console.WriteLine("Stop listener1");
-            listener1.stop();
-
-            th = new Thread(listener1.request);
-            th.Start();
-            while (!th.IsAlive) ;
-            Thread.Sleep(1);
-            if (th2 != null)
-            {
-                Console.WriteLine("th2 leeft");
-                th2.Abort();
-                th2.Join();
-            }
-        }
-
+                
         #region set properties from other thread
         public void setCanSendPanel(Boolean sent)
         {
@@ -261,8 +243,47 @@ namespace LifeSubsMetro
 
         #endregion
 
+        #region Speech-to-text listener
+        public void send()
+        {
+            Console.WriteLine("listener1 currently recording");
+            //Stop listener
+            Console.WriteLine("Stop listener1");
+            listener1.stop();
+
+            th = new Thread(listener1.request);
+            th.Start();
+            while (!th.IsAlive) ;
+            Thread.Sleep(1);
+            if (th2 != null)
+            {
+                Console.WriteLine("th2 leeft");
+                th2.Abort();
+                th2.Join();
+            }
+        }
+
+        private void canSendPanelGrp_VisibleChanged(object sender, EventArgs e)
+        {
+            if (canSendPanelGrp.Visible == true)
+            {
+                Console.WriteLine("VERSTUUR");
+                send();
+                //canSendPanelGrp.Visible = false;
+                volumemeterGrp.Visible = false;
+            }
+        }
+
+        /// <summary>
+        /// Starts a listenerloop that stops when this button is pressed and ended when this button is pressed again.
+        /// TODO: Implement above ^^^
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void startGroupListenerBtn_Click(object sender, EventArgs e)
         {
+            return;
+
             startGroupListenerBtn.Visible = false;
             volumemeterGrp.Visible = true;
             createDir();
@@ -278,6 +299,7 @@ namespace LifeSubsMetro
             //listener1 = new Listener(deviceNumber, currentListener, this);
             //listener1.startRecording();
         }
+        #endregion
 
         #region Directory Handling
         private void createDir()
@@ -293,11 +315,35 @@ namespace LifeSubsMetro
         }
         #endregion
 
+        /// <summary>
+        /// Event handler for when the settings picturebox is clicked.
+        /// Opens the Settingsmenu in a Dialog window.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void settingsPB_Click(object sender, EventArgs e)
         {
             SettingsMenu sm = new SettingsMenu(this);
             sm.ShowDialog();
         }
+
+        /// <summary>
+        /// Event handler for when this form is closed
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void GroupConversations_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            try { deleteDir(); }
+            catch (Exception direx) { Console.WriteLine(direx.Message); }
+
+            mh.stopTimer();
+            mm.Visible = true;
+        }
+
+        /// <summary>
+        /// Set the datagridview and textbox tot the user-specified or default style
+        /// </summary>
         public void setStyle()
         {
             settings = new Settings();

@@ -10,7 +10,6 @@ namespace LifeSubsMetro
 {
     public partial class MainMenu : MetroForm
     {
-        ServerSocket ss = null;
         public MainMenu()
         {
             InitializeComponent();
@@ -49,7 +48,7 @@ namespace LifeSubsMetro
         }
 
         /// <summary>
-        /// Hides tileJoinRoom to show joinRoomPanel
+        /// Show joinRoom menu
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -57,9 +56,22 @@ namespace LifeSubsMetro
         {
             showTiles();
             this.tileJoinRoom.Visible = false;
-            this.tileCreateRoom.Visible = true;
         }
 
+        /// <summary>
+        /// Show CreateRoom menu
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void tileCreateRoom_Click(object sender, EventArgs e)
+        {
+            showTiles();
+            tileCreateRoom.Visible = false;
+        }
+
+        /// <summary>
+        /// Close all submenus 
+        /// </summary>
         private void showTiles()
         {
             foreach (Control c in this.Controls)
@@ -70,6 +82,7 @@ namespace LifeSubsMetro
                 }
             }
         }
+
         /// <summary>
         /// Start groupconversation
         /// </summary>
@@ -79,10 +92,7 @@ namespace LifeSubsMetro
         {
             this.tileJoinRoom.Visible = true;
 
-            string iptojoin = getOwnIp();
-            //string iptojoin = "localHost";
-
-            GroupConversations groupWindow = new GroupConversations(this, iptojoin);
+            GroupConversations groupWindow = new GroupConversations(this);
             this.Visible = false;
             groupWindow.Visible = true;
         }
@@ -97,6 +107,7 @@ namespace LifeSubsMetro
             showTiles();
             new SettingsMenu(this).ShowDialog();
         }
+
         #endregion
 
         #region hoverEvents
@@ -174,7 +185,7 @@ namespace LifeSubsMetro
 
         private void addRoomBtn_Click(object sender, EventArgs e)
         {
-            ss = new ServerSocket(this);
+            MetroMessageBox.Show(this, "Nog niet geïmplementeerd", "Oeps! Er is iets foutgegaan:", MessageBoxButtons.OK, MessageBoxIcon.Error);
             tileCreateRoom.Visible = true;
             return;
 
@@ -210,50 +221,7 @@ namespace LifeSubsMetro
 
         private void MainMenu_FormClosed(object sender, FormClosedEventArgs e)
         {
-            //try
-            //{
-            //    //serverThread.Abort();
-            //    //serverThread.Join();
-            //}
-            //catch (Exception eex)
-            //{
-            //    Console.WriteLine(eex); ;
-            //}
-            //closeRoom();
-        }
 
-        private void tileCreateRoom_Click(object sender, EventArgs e)
-        {
-            tileJoinRoom.Visible = true;
-            tileCreateRoom.Visible = false;
-        }
-
-        public void closeRoom()
-        {
-            if (ss != null) ss.Destroy();
-        }
-
-
-
-
-
-
-
-        //REMOVE
-        private string getOwnIp()
-        {
-            IPHostEntry host;
-            host = Dns.GetHostEntry(Dns.GetHostName());
-            Console.WriteLine(host);
-
-            foreach (IPAddress ip in host.AddressList)
-            {
-                if (ip.AddressFamily == System.Net.Sockets.AddressFamily.InterNetwork)
-                {
-                    return ip.ToString();
-                }
-            }
-            return "127.0.0.1";
         }
     }
 }

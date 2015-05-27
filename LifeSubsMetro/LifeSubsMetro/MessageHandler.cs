@@ -24,6 +24,7 @@ namespace LifeSubsMetro
             userId = gcs.userId;
         }
 
+        #region timer
         /// <summary>
         /// Elapsed event for Timer timer
         /// </summary>
@@ -113,7 +114,9 @@ namespace LifeSubsMetro
         {
             timer.Stop();
         }
+        #endregion
 
+        #region request
         private string getMessages()
         {
             return "time_messages|10-10-2010 10:22:11||sender_messages|2||text_messages|DIT IS EEN KNETTERSTOER BERICHTJE"
@@ -176,5 +179,6 @@ namespace LifeSubsMetro
 
             return result;
         }
+        #endregion
     }
 }
