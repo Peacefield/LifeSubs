@@ -78,17 +78,17 @@ namespace LifeSubsMetro
 
             switch (noiseLevel)
             {
-                case "Luidruchtig": 
+                case "Rustig": 
+                    min = -5;
+                    max = 5;
+                    break;
+                case "Normaal":
                     min = -10;
                     max = 10;
                     break;
-                case "Normaal":
-                    min = -20;
-                    max = 20;
-                    break;
-                case "Rustig":
-                    min = -30;
-                    max = 30;
+                case "Luidruchtig":
+                    min = -15;
+                    max = 15;
                     break;
             }
 
@@ -130,34 +130,34 @@ namespace LifeSubsMetro
                 if (subtitleForm != null)
                 {
 
-                count = 0;
-                if (canSend)
-                {
-                    //HTTP request has to be sent from here!!
-                    //Count variable should be set to 0
-                    canSend = false;
+                    count = 0;
+                    if (canSend)
+                    {
+                        //HTTP request has to be sent from here!!
+                        //Count variable should be set to 0
+                        canSend = false;
                     
-                    if (subtitleForm != null)
-                    {
-                    subtitleForm.setSendNoti(Color.Red);
-                    subtitleForm.setLabel("send");
-                }
-                    if (grpConv != null)
-                    {
-                        grpConv.setCanSendPanel(false);
-                        this.stop();
-                    }
+                        if (subtitleForm != null)
+                        {
+                        subtitleForm.setSendNoti(Color.Red);
+                        subtitleForm.setLabel("send");
+                        }
+                        if (grpConv != null)
+                        {
+                            grpConv.setCanSendPanel(false);
+                            this.stop();
+                        }
 
-                }
-                else
-                {
-                    if (subtitleForm != null)
+                    }
+                    else
                     {
-                    subtitleForm.setSendNoti(Color.Yellow);
-                    subtitleForm.setLabel("leeg");
+                        if (subtitleForm != null)
+                        {
+                        subtitleForm.setSendNoti(Color.Yellow);
+                        subtitleForm.setLabel("leeg");
+                        }
                     }
                 }
-            }
 
             }
         }

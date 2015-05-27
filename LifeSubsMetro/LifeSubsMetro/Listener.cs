@@ -9,8 +9,8 @@ namespace LifeSubsMetro
     class Listener
     {
         public String language { get; set; }
+        public int deviceNumber { get; set; }
         string fileName;
-        int deviceNumber;
         Subtitle subtitleForm;
         GroupConversations grpConv;
 
@@ -29,10 +29,18 @@ namespace LifeSubsMetro
             this.fileName = "C:\\audiotest\\" + fileName + ".wav";
         }
 
+        /// <summary>
+        /// Constructor to create a new Listener object
+        /// </summary>
+        /// <param name="deviceNumber">Index of the selected microphone</param>
+        /// <param name="fileName">Filename for the (temporary) audiofile</param>
+        /// <param name="grp">GroupConversation form that shows the returned message</param>
         public Listener(int deviceNumber, string fileName, GroupConversations grp)
         {
+            Settings settings = new Settings();
             this.grpConv = grp;
-            this.deviceNumber = deviceNumber;
+            this.deviceNumber = settings.microphone;
+            this.language = settings.subLanguage;
             this.fileName = "C:\\audiotest\\" + fileName + ".wav";
         }
 
@@ -137,9 +145,9 @@ namespace LifeSubsMetro
             }
             if (grpConv != null) 
             {
-                grpConv.setCanSendPanel(true);    
+                grpConv.setCanSendPanel(false);    
                 grpConv.sendMessage(result);
-                grpConv.setListenButton(false);
+                grpConv.setListenButton(true);
                 Console.WriteLine("gestopt");
             }
             
@@ -163,9 +171,16 @@ namespace LifeSubsMetro
             //sourceStream.WaveFormat = new NAudio.Wave.WaveFormat(16000, NAudio.Wave.WaveIn.GetCapabilities(deviceNumber).Channels);
 
             sourceStream.DataAvailable += new EventHandler<NAudio.Wave.WaveInEventArgs>(sourceStream_DataAvailable);
-            waveWriter = new NAudio.Wave.WaveFileWriter(fileName, sourceStream.WaveFormat);
+            try
+            {
+                waveWriter = new NAudio.Wave.WaveFileWriter(fileName, sourceStream.WaveFormat);
 
-            sourceStream.StartRecording();
+                sourceStream.StartRecording();
+            }
+            catch (DirectoryNotFoundException dnfe)
+            {
+                Console.WriteLine("Directory not found --->" + dnfe.Message);
+            }
         }
 
         //Set NAudio variables

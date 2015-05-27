@@ -35,7 +35,6 @@ namespace LifeSubsMetro
             this.position = "bottom";
 
             createDir();
-            //setStyle();
             setPosition(position);  
         }
 
@@ -86,8 +85,16 @@ namespace LifeSubsMetro
             settings = new Settings(); 
             setStyle();
 
-            if (listener1 != null) listener1.language = settings.subLanguage;
-            if (listener2 != null) listener2.language = settings.subLanguage;
+            if (listener1 != null)
+            {
+                listener1.language = settings.subLanguage;
+                listener1.deviceNumber = settings.microphone;
+            }
+            if (listener2 != null)
+            {
+                listener2.language = settings.subLanguage;
+                listener2.deviceNumber = settings.microphone;
+            }
             if (pos == "") pos = position;
 
             switch (pos)
@@ -390,7 +397,6 @@ namespace LifeSubsMetro
             mll.listenToStream();
 
             this.logPath = saveLogPath();
-            Console.WriteLine(logPath);
 
             //Initiate recording
             currentListener = "listener1";
@@ -412,8 +418,7 @@ namespace LifeSubsMetro
             stop();
             mll.stop();
             mm.Visible = true;
-            //TODO: Uncomment deleteDir()
-            //deleteDir();
+            deleteDir();
         }
         #endregion
 
@@ -510,6 +515,7 @@ namespace LifeSubsMetro
 
         public void updateLog(String text)
         {
+            if (text == "" || text == "500") return;
             Console.WriteLine(logPath);
             try
             {
