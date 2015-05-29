@@ -129,7 +129,6 @@ namespace LifeSubsMetro
             {
                 if (subtitleForm != null)
                 {
-
                     count = 0;
                     if (canSend)
                     {
@@ -142,11 +141,6 @@ namespace LifeSubsMetro
                         subtitleForm.setSendNoti(Color.Red);
                         subtitleForm.setLabel("send");
                         }
-                        if (grpConv != null)
-                        {
-                            grpConv.setCanSendPanel(false);
-                            this.stop();
-                        }
 
                     }
                     else
@@ -157,6 +151,11 @@ namespace LifeSubsMetro
                         subtitleForm.setLabel("leeg");
                         }
                     }
+                }
+                if (grpConv != null)
+                {
+                    grpConv.setCanSendPanel(false);
+                    this.stop();
                 }
 
             }

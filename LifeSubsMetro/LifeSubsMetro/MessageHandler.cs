@@ -119,12 +119,14 @@ namespace LifeSubsMetro
         #region request
         private string getMessages()
         {
-            return "time_messages|10-10-2010 10:22:11||sender_messages|2||text_messages|DIT IS EEN KNETTERSTOER BERICHTJE"
+            return "time_messages|10-10-2010 10:22:11||sender_messages|2||text_messages|DIT IS MIJN BERICHTJE"
                     + "|||"
-                    + "time_messages|10-10-2010 10:22:13||sender_messages|1||text_messages|RICARDO HEEFT EEN POEPSNOR|||";
+                    + "time_messages|10-10-2010 10:22:13||sender_messages|1||text_messages|DIT IS EEN BINNENGEKOMEN BERICHTJE|||";
 
-            string path = "http://lifesubs.windesheim.nl/api/messages.php";
-            //path += "?timeID=5";
+            string path = "http://lifesubs.windesheim.nl/api/messages.php"
+                + "?timeID=" + userId
+                + "?timeID=" + time;
+
             Console.WriteLine("request started: " + path);
             string result;
 

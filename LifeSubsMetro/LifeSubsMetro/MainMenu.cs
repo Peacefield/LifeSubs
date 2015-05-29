@@ -1,6 +1,7 @@
 ﻿using MetroFramework;
 using MetroFramework.Forms;
 using System;
+using System.IO;
 using System.Net;
 using System.Security.Cryptography;
 using System.Text;
@@ -91,10 +92,82 @@ namespace LifeSubsMetro
         private void joinRoomButton_Click(object sender, EventArgs e)
         {
             this.tileJoinRoom.Visible = true;
+            this.Visible = false;
+
+            //joinRoom(roomNameBox.Text, passwordBox.Text);
+
 
             GroupConversations groupWindow = new GroupConversations(this);
-            this.Visible = false;
+            //groupWindow.roomId = result.roomid;
+            //groupWindow.userId = result.userid;
             groupWindow.Visible = true;
+        }
+
+        private void joinRoom(string roomName, string password)
+        {
+
+            string path = "http://lifesubs.windesheim.nl/api/joinroom.php"
+                + "?roomName=" + roomName
+                + "?key=" + password;
+
+            Console.WriteLine("request started: " + path);
+            string result;
+
+            try
+            {
+                HttpWebRequest request = (HttpWebRequest)WebRequest.Create(path);
+
+                request.Method = "POST";
+                request.ContentType = "application/json";
+                request.Accept = "application/json";
+
+                Stream stream = request.GetResponse().GetResponseStream();
+                StreamReader sr = new StreamReader(stream);
+
+                result = sr.ReadToEnd();
+
+                sr.Close();
+                stream.Close();
+
+
+                GroupConversations groupWindow = new GroupConversations(this);
+                //groupWindow.roomId = result.roomid;
+                //groupWindow.userId = result.userid;
+                groupWindow.Visible = true;
+
+            }
+            catch (WebException ex)
+            {
+                if (ex.Status == WebExceptionStatus.ProtocolError)
+                {
+                    var response = ex.Response as HttpWebResponse;
+                    if (response != null)
+                    {
+                        if ((int)response.StatusCode == 500)
+                        {
+                            Console.WriteLine("HTTP Status Code: " + (int)response.StatusCode);
+                            result = "500";
+                        }
+                        else
+                        {
+                            Console.WriteLine("HTTP Status Code: " + (int)response.StatusCode);
+                            result = "";
+                        }
+                    }
+                    else
+                    {
+                        // no http status code available
+                        Console.WriteLine("ProtocolError: " + ex.Status);
+                        result = "";
+                    }
+                }
+                else
+                {
+                    // no http status code available
+                    Console.WriteLine(ex.Status.ToString());
+                    result = "";
+                }
+            }
         }
 
         /// <summary>
@@ -192,13 +265,14 @@ namespace LifeSubsMetro
             string roomName = roomNameCreateTextbox.Text;
             string roomPass = roomPassCreateRoomTextbox.Text;
             string roomUsername = usernameCreateRoomTextbox.Text;
-            
+            string ownerIp = getOwnIp();
+
             string response;
             bool error;
 
             string roomPassMD5 = toMD5(roomPass);
 
-            string url = "http://lifesubs.windesheim.nl/api/addRoomTest.php?func=addRoom&name=" + roomName + "&ip=[IPADRES_AANMAKER]&usn=" + roomUsername + "&key=" + roomPassMD5;
+            string url = "http://lifesubs.windesheim.nl/api/addRoom.php?func=addRoom&name=" + roomName + "&ip=" + ownerIp + " &usn=" + roomUsername + "&key=" + roomPassMD5;
 
             using (var wb = new WebClient())
             {
@@ -216,7 +290,25 @@ namespace LifeSubsMetro
             else
             {
                 MetroMessageBox.Show(this, "De kamernaam is: " + response + ".\r\nHet wachtwoord is: " + roomPass + "\r\n\r\nNoteer deze gegevens - ze zijn nodig voor het inloggen in de zojuist aangemaakte kamer!", "Kamer succesvol aangemaakt!", MessageBoxButtons.OK, MessageBoxIcon.Question);
+                
+
             }
+        }
+
+        private string getOwnIp()
+        {
+            IPHostEntry host;
+            host = Dns.GetHostEntry(Dns.GetHostName());
+            Console.WriteLine(host);
+
+            foreach (IPAddress ip in host.AddressList)
+            {
+                if (ip.AddressFamily == System.Net.Sockets.AddressFamily.InterNetwork)
+                {
+                    return ip.ToString();
+                }
+            }
+            return "127.0.0.1";
         }
 
         private void MainMenu_FormClosed(object sender, FormClosedEventArgs e)

@@ -2,6 +2,7 @@
 using System;
 using System.Drawing;
 using System.IO;
+using System.Net;
 using System.Threading;
 using System.Windows.Forms;
 
@@ -10,6 +11,8 @@ namespace LifeSubsMetro
     public partial class GroupConversations : MetroForm
     {
         public string userId { get; set; }
+        public string roomId { get; set; }
+        public DateTime time { get; set; }
 
         string path = @"C:\audiotest";
         MainMenu mm;
@@ -32,8 +35,9 @@ namespace LifeSubsMetro
             setStyle();
             mh = new MessageHandler(this);
 
-            //TODO: Get userId from database
+            //TODO: Get userId and roomId from database
             userId = "2";
+            roomId = "1";
         }
 
         #region sendMessage
@@ -43,7 +47,7 @@ namespace LifeSubsMetro
         /// <param name="msg"></param>
         public void sendMessage(string msg)
         {
-            string str = tbInput.Text;
+            //sendRequest(msg);
 
             DataGridViewRow dr = new DataGridViewRow();
 
@@ -77,6 +81,66 @@ namespace LifeSubsMetro
             
         }
         
+        public void sendRequest(string msg)
+        {
+            time = DateTime.Now;
+
+            string path = "http://lifesubs.windesheim.nl/api/addMessage.php?func=addMessage&room=" + roomId + "&sender=" + userId + "&text=" + msg + "&time=" + time;
+
+            Console.WriteLine("request started: " + path);
+            return;
+            string result;
+
+            try
+            {
+                HttpWebRequest request = (HttpWebRequest)WebRequest.Create(path);
+
+                request.Method = "POST";
+                request.ContentType = "application/json";
+                request.Accept = "application/json";
+
+                Stream stream = request.GetResponse().GetResponseStream();
+                StreamReader sr = new StreamReader(stream);
+
+                result = sr.ReadToEnd();
+
+                sr.Close();
+                stream.Close();
+            }
+            catch (WebException ex)
+            {
+                if (ex.Status == WebExceptionStatus.ProtocolError)
+                {
+                    var response = ex.Response as HttpWebResponse;
+                    if (response != null)
+                    {
+                        if ((int)response.StatusCode == 500)
+                        {
+                            Console.WriteLine("HTTP Status Code: " + (int)response.StatusCode);
+                            result = "500";
+                        }
+                        else
+                        {
+                            Console.WriteLine("HTTP Status Code: " + (int)response.StatusCode);
+                            result = "";
+                        }
+                    }
+                    else
+                    {
+                        // no http status code available
+                        Console.WriteLine("ProtocolError: " + ex.Status);
+                        result = "";
+                    }
+                }
+                else
+                {
+                    // no http status code available
+                    Console.WriteLine(ex.Status.ToString());
+                    result = "";
+                }
+            }
+        }
+
         /// <summary>
         /// KeyDown event handler.
         /// Sends the text on "Enter"-press if tbInput containts text.
@@ -137,54 +201,8 @@ namespace LifeSubsMetro
                 }
             }
         }
-        
-        //private string getOwnIp()
-        //{
-        //    IPHostEntry host;
-        //    host = Dns.GetHostEntry(Dns.GetHostName());
-        //    Console.WriteLine(host);
-
-        //    foreach (IPAddress ip in host.AddressList)
-        //    {
-        //        if (ip.AddressFamily == AddressFamily.InterNetwork)
-        //        {
-        //            return ip.ToString();
-        //        }
-        //    }
-        //    return "127.0.0.1";
-        //}
                 
         #region set properties from other thread
-        public void setCanSendPanel(Boolean sent)
-        {
-            try
-            {
-                if (this.canSendPanelGrp.InvokeRequired)
-                {
-                    try
-                    {
-                        if (sent == false)
-                        {
-                            this.canSendPanelGrp.Invoke((MethodInvoker)delegate { canSendPanelGrp.Visible = true; });
-                        }
-                        if (sent == true)
-                        {
-                            this.canSendPanelGrp.Invoke((MethodInvoker)delegate { canSendPanelGrp.Visible = false; });
-                        }
-                        
-                    }
-                    catch (Exception e)
-                    {
-                        Console.WriteLine(e.Message);
-                    }
-                }
-            }
-            catch (ObjectDisposedException)
-            {
-                Console.WriteLine("Knop niet kunnen vinden");
-            }
-
-        }
 
         public void setListenButton(Boolean show)
         {
@@ -241,11 +259,55 @@ namespace LifeSubsMetro
 
         }
 
+        public void setCanSendPanel(Boolean sent)
+        {
+            try
+            {
+                if (this.canSendPanelGrp.InvokeRequired)
+                {
+                    try
+                    {
+                        if (sent == false)
+                        {
+                            this.canSendPanelGrp.Invoke((MethodInvoker)delegate { canSendPanelGrp.Visible = true; });
+                        }
+                        if (sent == true)
+                        {
+                            this.canSendPanelGrp.Invoke((MethodInvoker)delegate { canSendPanelGrp.Visible = false; });
+                        }
+
+                    }
+                    catch (Exception e)
+                    {
+                        Console.WriteLine(e.Message);
+                    }
+                }
+            }
+            catch (ObjectDisposedException)
+            {
+                Console.WriteLine("Knop niet kunnen vinden");
+            }
+
+        }
         #endregion
 
         #region Speech-to-text listener
+        private void canSendPanelGrp_VisibleChanged(object sender, EventArgs e)
+        {
+            if (canSendPanelGrp.Visible == true)
+            {
+                Console.WriteLine("VERSTUUR");
+                send();
+                canSendPanelGrp.Visible = false;
+                volumemeterGrp.Visible = false;
+                startGroupListenerBtn.Visible = true;
+                th.Abort();
+            }
+        }
+
         public void send()
         {
+            if (listener1 == null) return;
             Console.WriteLine("listener1 currently recording");
             //Stop listener
             Console.WriteLine("Stop listener1");
@@ -255,23 +317,6 @@ namespace LifeSubsMetro
             th.Start();
             while (!th.IsAlive) ;
             Thread.Sleep(1);
-            if (th2 != null)
-            {
-                Console.WriteLine("th2 leeft");
-                th2.Abort();
-                th2.Join();
-            }
-        }
-
-        private void canSendPanelGrp_VisibleChanged(object sender, EventArgs e)
-        {
-            if (canSendPanelGrp.Visible == true)
-            {
-                Console.WriteLine("VERSTUUR");
-                send();
-                //canSendPanelGrp.Visible = false;
-                volumemeterGrp.Visible = false;
-            }
         }
 
         /// <summary>
@@ -282,8 +327,6 @@ namespace LifeSubsMetro
         /// <param name="e"></param>
         private void startGroupListenerBtn_Click(object sender, EventArgs e)
         {
-            return;
-
             startGroupListenerBtn.Visible = false;
             volumemeterGrp.Visible = true;
             createDir();

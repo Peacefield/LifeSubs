@@ -142,6 +142,7 @@ namespace LifeSubsMetro
             { 
             subtitleForm.setResult(result);
             subtitleForm.setSendNoti(Color.LightGreen);
+            subtitleForm.updateLog(result);
             }
             if (grpConv != null) 
             {
@@ -151,7 +152,6 @@ namespace LifeSubsMetro
                 Console.WriteLine("gestopt");
             }
             
-            subtitleForm.updateLog(result);
             //return result;
         }
         #endregion
