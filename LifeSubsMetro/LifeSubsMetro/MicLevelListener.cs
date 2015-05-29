@@ -109,7 +109,6 @@ namespace LifeSubsMetro
                 if (settingsMenu != null) settingsMenu.setVolumeMeter(i);
                 if (grpConv != null) grpConv.setVolumeMeter(i);
                 count++;
-                if (subtitleForm != null) subtitleForm.setLabel("STIL");
             }
             // Sound level is not between min and max, which means speaker is talking
             else
@@ -127,9 +126,9 @@ namespace LifeSubsMetro
             //If no sound has been recorded for ... seconds, send audio to server
             if (count > sec)
             {
+                count = 0;
                 if (subtitleForm != null)
                 {
-                    count = 0;
                     if (canSend)
                     {
                         //HTTP request has to be sent from here!!
@@ -141,7 +140,6 @@ namespace LifeSubsMetro
                             subtitleForm.setSendNoti(Color.Red);
                             subtitleForm.setLabel("send");
                         }
-
                     }
                     else
                     {
@@ -152,12 +150,13 @@ namespace LifeSubsMetro
                         }
                     }
                 }
+
                 if (grpConv != null)
                 {
-                    grpConv.setCanSendPanel(false);
+                    Console.WriteLine("setting panel in miclevellistener");
+                    grpConv.setCanSendPanel(true);
                     this.stop();
                 }
-
             }
         }
 

@@ -35,12 +35,14 @@
             this.metroLabel1 = new MetroFramework.Controls.MetroLabel();
             this.metroLabel2 = new MetroFramework.Controls.MetroLabel();
             this.joinRoomPanel = new MetroFramework.Controls.MetroPanel();
+            this.usernameLabel = new MetroFramework.Controls.MetroLabel();
+            this.usernameTB = new MetroFramework.Controls.MetroTextBox();
             this.tileExit = new MetroFramework.Controls.MetroTile();
             this.tileSettings = new MetroFramework.Controls.MetroTile();
             this.tileSubtitle = new MetroFramework.Controls.MetroTile();
             this.tileJoinRoom = new MetroFramework.Controls.MetroTile();
             this.makeRoomPanel = new System.Windows.Forms.Panel();
-            this.addRoomBtn = new MetroFramework.Controls.MetroTile();
+            this.addRoomBtn = new MetroFramework.Controls.MetroButton();
             this.metroLabel5 = new MetroFramework.Controls.MetroLabel();
             this.metroLabel4 = new MetroFramework.Controls.MetroLabel();
             this.metroLabel3 = new MetroFramework.Controls.MetroLabel();
@@ -54,14 +56,14 @@
             // passwordBox
             // 
             this.passwordBox.Lines = new string[0];
-            this.passwordBox.Location = new System.Drawing.Point(0, 83);
+            this.passwordBox.Location = new System.Drawing.Point(0, 113);
             this.passwordBox.MaxLength = 32767;
             this.passwordBox.Name = "passwordBox";
             this.passwordBox.PasswordChar = '●';
             this.passwordBox.ScrollBars = System.Windows.Forms.ScrollBars.None;
             this.passwordBox.SelectedText = "";
             this.passwordBox.Size = new System.Drawing.Size(147, 23);
-            this.passwordBox.TabIndex = 1;
+            this.passwordBox.TabIndex = 2;
             this.passwordBox.UseSelectable = true;
             this.passwordBox.UseSystemPasswordChar = true;
             // 
@@ -99,10 +101,10 @@
             // 
             // joinRoomButton
             // 
-            this.joinRoomButton.Location = new System.Drawing.Point(0, 122);
+            this.joinRoomButton.Location = new System.Drawing.Point(0, 142);
             this.joinRoomButton.Name = "joinRoomButton";
-            this.joinRoomButton.Size = new System.Drawing.Size(147, 37);
-            this.joinRoomButton.TabIndex = 2;
+            this.joinRoomButton.Size = new System.Drawing.Size(147, 23);
+            this.joinRoomButton.TabIndex = 3;
             this.joinRoomButton.Text = "Verbinden";
             this.joinRoomButton.UseSelectable = true;
             this.joinRoomButton.Click += new System.EventHandler(this.joinRoomButton_Click);
@@ -119,7 +121,7 @@
             // metroLabel2
             // 
             this.metroLabel2.AutoSize = true;
-            this.metroLabel2.Location = new System.Drawing.Point(-3, 58);
+            this.metroLabel2.Location = new System.Drawing.Point(-3, 91);
             this.metroLabel2.Name = "metroLabel2";
             this.metroLabel2.Size = new System.Drawing.Size(86, 19);
             this.metroLabel2.TabIndex = 7;
@@ -127,6 +129,8 @@
             // 
             // joinRoomPanel
             // 
+            this.joinRoomPanel.Controls.Add(this.usernameLabel);
+            this.joinRoomPanel.Controls.Add(this.usernameTB);
             this.joinRoomPanel.Controls.Add(this.metroLabel1);
             this.joinRoomPanel.Controls.Add(this.metroLabel2);
             this.joinRoomPanel.Controls.Add(this.passwordBox);
@@ -142,6 +146,28 @@
             this.joinRoomPanel.VerticalScrollbarBarColor = true;
             this.joinRoomPanel.VerticalScrollbarHighlightOnWheel = false;
             this.joinRoomPanel.VerticalScrollbarSize = 10;
+            // 
+            // usernameLabel
+            // 
+            this.usernameLabel.AutoSize = true;
+            this.usernameLabel.Location = new System.Drawing.Point(-3, 43);
+            this.usernameLabel.Name = "usernameLabel";
+            this.usernameLabel.Size = new System.Drawing.Size(104, 19);
+            this.usernameLabel.TabIndex = 9;
+            this.usernameLabel.Text = "Gebruikersnaam";
+            // 
+            // usernameTB
+            // 
+            this.usernameTB.Lines = new string[0];
+            this.usernameTB.Location = new System.Drawing.Point(0, 63);
+            this.usernameTB.MaxLength = 32767;
+            this.usernameTB.Name = "usernameTB";
+            this.usernameTB.PasswordChar = '\0';
+            this.usernameTB.ScrollBars = System.Windows.Forms.ScrollBars.None;
+            this.usernameTB.SelectedText = "";
+            this.usernameTB.Size = new System.Drawing.Size(147, 23);
+            this.usernameTB.TabIndex = 1;
+            this.usernameTB.UseSelectable = true;
             // 
             // tileExit
             // 
@@ -233,11 +259,10 @@
             // 
             // addRoomBtn
             // 
-            this.addRoomBtn.ActiveControl = null;
-            this.addRoomBtn.Location = new System.Drawing.Point(4, 136);
+            this.addRoomBtn.Location = new System.Drawing.Point(4, 135);
             this.addRoomBtn.Name = "addRoomBtn";
-            this.addRoomBtn.Size = new System.Drawing.Size(167, 23);
-            this.addRoomBtn.TabIndex = 6;
+            this.addRoomBtn.Size = new System.Drawing.Size(166, 37);
+            this.addRoomBtn.TabIndex = 3;
             this.addRoomBtn.Text = "Creëer kamer";
             this.addRoomBtn.UseSelectable = true;
             this.addRoomBtn.Click += new System.EventHandler(this.addRoomBtn_Click);
@@ -333,13 +358,15 @@
         private MetroFramework.Controls.MetroLabel metroLabel2;
         private MetroFramework.Controls.MetroPanel joinRoomPanel;
         private System.Windows.Forms.Panel makeRoomPanel;
-        private MetroFramework.Controls.MetroTile addRoomBtn;
         private MetroFramework.Controls.MetroLabel metroLabel5;
         private MetroFramework.Controls.MetroLabel metroLabel4;
         private MetroFramework.Controls.MetroLabel metroLabel3;
         private System.Windows.Forms.TextBox usernameCreateRoomTextbox;
         private System.Windows.Forms.TextBox roomPassCreateRoomTextbox;
         private System.Windows.Forms.TextBox roomNameCreateTextbox;
+        private MetroFramework.Controls.MetroLabel usernameLabel;
+        private MetroFramework.Controls.MetroTextBox usernameTB;
+        private MetroFramework.Controls.MetroButton addRoomBtn;
 
     }
 }

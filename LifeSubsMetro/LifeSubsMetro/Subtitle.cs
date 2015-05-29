@@ -452,7 +452,7 @@ namespace LifeSubsMetro
         /// <param name="amp"></param>
         public void setVolumeMeter(int amp)
         {
-            amp = amp + 150;
+            amp = amp + 25;
             try
             {
                 if (this.volumeMeter.InvokeRequired)

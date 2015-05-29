@@ -11,6 +11,7 @@ namespace LifeSubsMetro
 {
     public partial class MainMenu : MetroForm
     {
+        ApiHandler apiHandler = new ApiHandler();
         public MainMenu()
         {
             InitializeComponent();
@@ -91,83 +92,9 @@ namespace LifeSubsMetro
         /// <param name="e"></param>
         private void joinRoomButton_Click(object sender, EventArgs e)
         {
-            this.tileJoinRoom.Visible = true;
-            this.Visible = false;
+            //this.tileJoinRoom.Visible = true;
 
-            //joinRoom(roomNameBox.Text, passwordBox.Text);
-
-
-            GroupConversations groupWindow = new GroupConversations(this);
-            //groupWindow.roomId = result.roomid;
-            //groupWindow.userId = result.userid;
-            groupWindow.Visible = true;
-        }
-
-        private void joinRoom(string roomName, string password)
-        {
-
-            string path = "http://lifesubs.windesheim.nl/api/joinroom.php"
-                + "?roomName=" + roomName
-                + "?key=" + password;
-
-            Console.WriteLine("request started: " + path);
-            string result;
-
-            try
-            {
-                HttpWebRequest request = (HttpWebRequest)WebRequest.Create(path);
-
-                request.Method = "POST";
-                request.ContentType = "application/json";
-                request.Accept = "application/json";
-
-                Stream stream = request.GetResponse().GetResponseStream();
-                StreamReader sr = new StreamReader(stream);
-
-                result = sr.ReadToEnd();
-
-                sr.Close();
-                stream.Close();
-
-
-                GroupConversations groupWindow = new GroupConversations(this);
-                //groupWindow.roomId = result.roomid;
-                //groupWindow.userId = result.userid;
-                groupWindow.Visible = true;
-
-            }
-            catch (WebException ex)
-            {
-                if (ex.Status == WebExceptionStatus.ProtocolError)
-                {
-                    var response = ex.Response as HttpWebResponse;
-                    if (response != null)
-                    {
-                        if ((int)response.StatusCode == 500)
-                        {
-                            Console.WriteLine("HTTP Status Code: " + (int)response.StatusCode);
-                            result = "500";
-                        }
-                        else
-                        {
-                            Console.WriteLine("HTTP Status Code: " + (int)response.StatusCode);
-                            result = "";
-                        }
-                    }
-                    else
-                    {
-                        // no http status code available
-                        Console.WriteLine("ProtocolError: " + ex.Status);
-                        result = "";
-                    }
-                }
-                else
-                {
-                    // no http status code available
-                    Console.WriteLine(ex.Status.ToString());
-                    result = "";
-                }
-            }
+            apiHandler.joinRoom(roomNameBox.Text, toMD5(passwordBox.Text), getOwnIp(), usernameTB.Text, this);
         }
 
         /// <summary>
@@ -258,41 +185,14 @@ namespace LifeSubsMetro
 
         private void addRoomBtn_Click(object sender, EventArgs e)
         {
-            MetroMessageBox.Show(this, "Nog niet geïmplementeerd", "Oeps! Er is iets foutgegaan:", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            tileCreateRoom.Visible = true;
-            return;
-
             string roomName = roomNameCreateTextbox.Text;
             string roomPass = roomPassCreateRoomTextbox.Text;
             string roomUsername = usernameCreateRoomTextbox.Text;
+            string roomPassMD5 = toMD5(roomPass);
             string ownerIp = getOwnIp();
 
-            string response;
-            bool error;
-
-            string roomPassMD5 = toMD5(roomPass);
-
-            string url = "http://lifesubs.windesheim.nl/api/addRoom.php?func=addRoom&name=" + roomName + "&ip=" + ownerIp + " &usn=" + roomUsername + "&key=" + roomPassMD5;
-
-            using (var wb = new WebClient())
-            {
-                response = wb.DownloadString(url);
-                Console.WriteLine(response);
-            }
-
-            error = response.Contains("error");
-
-            if (error)
-            {
-                string[] returnParts = response.Split('|');
-                MetroMessageBox.Show(this, returnParts[1], "Oeps! Er is iets foutgegaan:", MessageBoxButtons.OK, MessageBoxIcon.Error);
-            }
-            else
-            {
-                MetroMessageBox.Show(this, "De kamernaam is: " + response + ".\r\nHet wachtwoord is: " + roomPass + "\r\n\r\nNoteer deze gegevens - ze zijn nodig voor het inloggen in de zojuist aangemaakte kamer!", "Kamer succesvol aangemaakt!", MessageBoxButtons.OK, MessageBoxIcon.Question);
-
-
-            }
+            apiHandler.createRoom(roomName, ownerIp, roomPass, roomPassMD5, roomUsername, this);
+            //tileCreateRoom.Visible = true;
         }
 
         private string getOwnIp()

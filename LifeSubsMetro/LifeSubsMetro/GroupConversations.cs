@@ -12,7 +12,8 @@ namespace LifeSubsMetro
     {
         public string userId { get; set; }
         public string roomId { get; set; }
-        public DateTime time { get; set; }
+        public string roomName { get; set; }
+        public string timeId { get; set; }
 
         string path = @"C:\audiotest";
         MainMenu mm;
@@ -26,18 +27,12 @@ namespace LifeSubsMetro
         Settings settings;
 
         MessageHandler mh;
+        ApiHandler apiHandler = new ApiHandler();
 
         public GroupConversations(MainMenu mm)
         {
             this.mm = mm;
             InitializeComponent();
-
-            setStyle();
-            mh = new MessageHandler(this);
-
-            //TODO: Get userId and roomId from database
-            userId = "2";
-            roomId = "1";
         }
 
         #region sendMessage
@@ -47,8 +42,6 @@ namespace LifeSubsMetro
         /// <param name="msg"></param>
         public void sendMessage(string msg)
         {
-            //sendRequest(msg);
-
             DataGridViewRow dr = new DataGridViewRow();
 
             DataGridViewTextBoxCell cell1 = new DataGridViewTextBoxCell();
@@ -81,66 +74,6 @@ namespace LifeSubsMetro
 
         }
 
-        public void sendRequest(string msg)
-        {
-            time = DateTime.Now;
-
-            string path = "http://lifesubs.windesheim.nl/api/addMessage.php?func=addMessage&room=" + roomId + "&sender=" + userId + "&text=" + msg + "&time=" + time;
-
-            Console.WriteLine("request started: " + path);
-            return;
-            string result;
-
-            try
-            {
-                HttpWebRequest request = (HttpWebRequest)WebRequest.Create(path);
-
-                request.Method = "POST";
-                request.ContentType = "application/json";
-                request.Accept = "application/json";
-
-                Stream stream = request.GetResponse().GetResponseStream();
-                StreamReader sr = new StreamReader(stream);
-
-                result = sr.ReadToEnd();
-
-                sr.Close();
-                stream.Close();
-            }
-            catch (WebException ex)
-            {
-                if (ex.Status == WebExceptionStatus.ProtocolError)
-                {
-                    var response = ex.Response as HttpWebResponse;
-                    if (response != null)
-                    {
-                        if ((int)response.StatusCode == 500)
-                        {
-                            Console.WriteLine("HTTP Status Code: " + (int)response.StatusCode);
-                            result = "500";
-                        }
-                        else
-                        {
-                            Console.WriteLine("HTTP Status Code: " + (int)response.StatusCode);
-                            result = "";
-                        }
-                    }
-                    else
-                    {
-                        // no http status code available
-                        Console.WriteLine("ProtocolError: " + ex.Status);
-                        result = "";
-                    }
-                }
-                else
-                {
-                    // no http status code available
-                    Console.WriteLine(ex.Status.ToString());
-                    result = "";
-                }
-            }
-        }
-
         /// <summary>
         /// KeyDown event handler.
         /// Sends the text on "Enter"-press if tbInput containts text.
@@ -153,7 +86,7 @@ namespace LifeSubsMetro
             {
                 e.SuppressKeyPress = true;
                 if (tbInput.Text != "")
-                    sendMessage(tbInput.Text);
+                    sendToApi(tbInput.Text);
             }
         }
         /// <summary>
@@ -166,7 +99,17 @@ namespace LifeSubsMetro
         {
             if (tbInput.Text == "") return;
 
-            sendMessage(tbInput.Text);
+            sendToApi(tbInput.Text);
+        }
+
+        public void sendToApi(string msg)
+        {
+            apiHandler.sendMessage(roomId, userId, msg, this);
+        }
+
+        public void clearTextBox()
+        {
+            tbInput.Text = "";
         }
 
         #endregion
@@ -212,20 +155,17 @@ namespace LifeSubsMetro
                 {
                     try
                     {
-                        if (show == false)
-                        {
-                            this.startGroupListenerBtn.Invoke((MethodInvoker)delegate { startGroupListenerBtn.Visible = true; });
-                        }
-                        if (show == true)
-                        {
-                            this.startGroupListenerBtn.Invoke((MethodInvoker)delegate { startGroupListenerBtn.Visible = false; });
-                        }
+                        this.startGroupListenerBtn.Invoke((MethodInvoker)delegate { startGroupListenerBtn.Visible = show; });
 
                     }
                     catch (Exception e)
                     {
                         Console.WriteLine(e.Message);
                     }
+                }
+                else
+                {
+                    startGroupListenerBtn.Visible = show;
                 }
             }
             catch (ObjectDisposedException)
@@ -236,6 +176,7 @@ namespace LifeSubsMetro
 
         public void setVolumeMeter(int amp)
         {
+            Console.WriteLine("AMP = " + amp);
             amp = amp + 50;
             try
             {
@@ -244,7 +185,6 @@ namespace LifeSubsMetro
                     try
                     {
                         this.volumemeterGrp.Invoke((MethodInvoker)delegate { this.volumemeterGrp.Value = amp; });
-                        Console.WriteLine("AMP = " + amp);
                     }
                     catch (Exception e)
                     {
@@ -267,20 +207,19 @@ namespace LifeSubsMetro
                 {
                     try
                     {
-                        if (sent == false)
-                        {
-                            this.canSendPanelGrp.Invoke((MethodInvoker)delegate { canSendPanelGrp.Visible = true; });
-                        }
-                        if (sent == true)
-                        {
-                            this.canSendPanelGrp.Invoke((MethodInvoker)delegate { canSendPanelGrp.Visible = false; });
-                        }
+                        Console.WriteLine("settings visibility of canSendPanelGrp in other thread to " + sent);
+                        this.canSendPanelGrp.Invoke((MethodInvoker)delegate { canSendPanelGrp.Visible = sent; });
 
                     }
                     catch (Exception e)
                     {
                         Console.WriteLine(e.Message);
                     }
+                }
+                else
+                {
+                    Console.WriteLine("settings visibility of canSendPanelGrp in same thread to " + sent);
+                    canSendPanelGrp.Visible = sent;
                 }
             }
             catch (ObjectDisposedException)
@@ -297,17 +236,21 @@ namespace LifeSubsMetro
             if (canSendPanelGrp.Visible == true)
             {
                 Console.WriteLine("VERSTUUR");
-                send();
-                canSendPanelGrp.Visible = false;
+                sendRequest();
+
                 volumemeterGrp.Visible = false;
                 startGroupListenerBtn.Visible = true;
-                th.Abort();
+            }
+            else
+            {
+                if (th != null) th.Abort();
             }
         }
 
-        public void send()
+        public void sendRequest()
         {
             if (listener1 == null) return;
+            if (th != null) th.Abort();
             Console.WriteLine("listener1 currently recording");
             //Stop listener
             Console.WriteLine("Stop listener1");
@@ -327,20 +270,19 @@ namespace LifeSubsMetro
         /// <param name="e"></param>
         private void startGroupListenerBtn_Click(object sender, EventArgs e)
         {
+            createDir();
             startGroupListenerBtn.Visible = false;
             volumemeterGrp.Visible = true;
-            createDir();
-            mll = new MicLevelListener(this);
-            mll.listenToStream();
-
             int deviceNumber = settings.microphone;
+
+            mll = new MicLevelListener(this);
+            mll.deviceNumber = deviceNumber;
+            mll.listenToStream();
 
             //Initiate recording
             currentListener = "listener1";
             listener1 = new Listener(deviceNumber, currentListener, this);
             listener1.startRecording();
-            //listener1 = new Listener(deviceNumber, currentListener, this);
-            //listener1.startRecording();
         }
         #endregion
 
@@ -377,6 +319,7 @@ namespace LifeSubsMetro
         /// <param name="e"></param>
         private void GroupConversations_FormClosed(object sender, FormClosedEventArgs e)
         {
+            apiHandler.exitRoom(this);
             try { deleteDir(); }
             catch (Exception direx) { Console.WriteLine(direx.Message); }
 
@@ -402,6 +345,15 @@ namespace LifeSubsMetro
             tbInput.ForeColor = settings.subColor;
 
             //TODO: Complete listener functionality and change microphone of requestlistener and miclevellistener here
+        }
+
+        private void GroupConversations_Load(object sender, EventArgs e)
+        {
+            this.Text = roomName;
+            this.timeId = "0";
+
+            setStyle();
+            mh = new MessageHandler(this);
         }
     }
 }

@@ -146,8 +146,9 @@ namespace LifeSubsMetro
             }
             if (grpConv != null)
             {
+                grpConv.sendToApi(result);
+                //grpConv.sendMessage(result);
                 grpConv.setCanSendPanel(false);
-                grpConv.sendMessage(result);
                 grpConv.setListenButton(true);
                 Console.WriteLine("gestopt");
             }

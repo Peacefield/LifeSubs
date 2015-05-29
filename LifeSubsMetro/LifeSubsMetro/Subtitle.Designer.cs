@@ -65,10 +65,11 @@
             // 
             this.volumeMeter.ForeColor = System.Drawing.SystemColors.Desktop;
             this.volumeMeter.Location = new System.Drawing.Point(44, 14);
-            this.volumeMeter.Maximum = 300;
+            this.volumeMeter.Maximum = 50;
             this.volumeMeter.Name = "volumeMeter";
             this.volumeMeter.Size = new System.Drawing.Size(200, 15);
             this.volumeMeter.TabIndex = 5;
+            this.volumeMeter.Value = 25;
             // 
             // sendNotificationPanel
             // 
