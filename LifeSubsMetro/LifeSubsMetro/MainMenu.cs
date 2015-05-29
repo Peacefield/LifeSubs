@@ -32,7 +32,7 @@ namespace LifeSubsMetro
                 MetroMessageBox.Show(this, "Microfoon niet gevonden", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
                 return;
             }
-            
+
             Subtitle subtitle = new Subtitle(this);
             subtitle.Show();
             this.Visible = false;
@@ -284,13 +284,13 @@ namespace LifeSubsMetro
 
             if (error)
             {
-                string [] returnParts = response.Split('|');
+                string[] returnParts = response.Split('|');
                 MetroMessageBox.Show(this, returnParts[1], "Oeps! Er is iets foutgegaan:", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
             else
             {
                 MetroMessageBox.Show(this, "De kamernaam is: " + response + ".\r\nHet wachtwoord is: " + roomPass + "\r\n\r\nNoteer deze gegevens - ze zijn nodig voor het inloggen in de zojuist aangemaakte kamer!", "Kamer succesvol aangemaakt!", MessageBoxButtons.OK, MessageBoxIcon.Question);
-                
+
 
             }
         }

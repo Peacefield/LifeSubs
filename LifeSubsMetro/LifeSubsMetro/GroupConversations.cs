@@ -65,7 +65,7 @@ namespace LifeSubsMetro
             {
                 try
                 {
-                    this.dataGridOutput.Invoke((MethodInvoker)delegate { dataGridOutput.Rows.Add(dr); dataGridOutput.CurrentCell = dataGridOutput.Rows[dr.Index+1].Cells[0]; });
+                    this.dataGridOutput.Invoke((MethodInvoker)delegate { dataGridOutput.Rows.Add(dr); dataGridOutput.CurrentCell = dataGridOutput.Rows[dr.Index + 1].Cells[0]; });
                 }
                 catch (Exception e)
                 {
@@ -75,12 +75,12 @@ namespace LifeSubsMetro
             else
             {
                 dataGridOutput.Rows.Add(dr);
-                dataGridOutput.CurrentCell = dataGridOutput.Rows[dr.Index+1].Cells[0]; 
+                dataGridOutput.CurrentCell = dataGridOutput.Rows[dr.Index + 1].Cells[0];
                 tbInput.Text = "";
             }
-            
+
         }
-        
+
         public void sendRequest(string msg)
         {
             time = DateTime.Now;
@@ -201,7 +201,7 @@ namespace LifeSubsMetro
                 }
             }
         }
-                
+
         #region set properties from other thread
 
         public void setListenButton(Boolean show)

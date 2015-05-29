@@ -35,7 +35,7 @@ namespace LifeSubsMetro
             this.position = "bottom";
 
             createDir();
-            setPosition(position);  
+            setPosition(position);
         }
 
         /// <summary>
@@ -82,7 +82,7 @@ namespace LifeSubsMetro
         /// If empty it defaults to bottom if this hasn't been changed by the user during the running of the application</param>
         public void setPosition(string pos)
         {
-            settings = new Settings(); 
+            settings = new Settings();
             setStyle();
 
             if (listener1 != null)
@@ -126,7 +126,7 @@ namespace LifeSubsMetro
 
             switch (font.Name)
             {
-                case "Arial": 
+                case "Arial":
                     if (font.Size == 20)
                     {
                         additionalSpacing = 60;
@@ -135,7 +135,7 @@ namespace LifeSubsMetro
                     {
                         additionalSpacing = 50;
                     }
-                    else if(font.Size == 24)
+                    else if (font.Size == 24)
                     {
                         additionalSpacing = 60;
                     }
@@ -189,7 +189,7 @@ namespace LifeSubsMetro
                     if (lines == 1) additionalSpacing -= 20;
 
                     break;
-                case "Georgia": 
+                case "Georgia":
                     if (font.Size == 18)
                     {
                         additionalSpacing = 50;
@@ -309,7 +309,7 @@ namespace LifeSubsMetro
                 case "Times New Roman":
                     if (font.Size <= 24)
                     {
-                        additionalSpacing = 60;   
+                        additionalSpacing = 60;
                     }
                     else if (font.Size == 26)
                     {
@@ -329,7 +329,7 @@ namespace LifeSubsMetro
                     }
                     else if (font.Size == 20)
                     {
-                        additionalSpacing = 55;                        
+                        additionalSpacing = 55;
                     }
                     else if (font.Size == 22)
                     {
@@ -377,7 +377,7 @@ namespace LifeSubsMetro
         {
             bool folderExists = Directory.Exists(path);
             if (folderExists) Directory.Delete(path, true);
-        }   
+        }
         #endregion
 
         #region form opening/closing handling
@@ -437,7 +437,7 @@ namespace LifeSubsMetro
                     this.tbOutput.Invoke((MethodInvoker)delegate { this.tbOutput.AppendText(result); });
                 else
                     this.tbOutput.AppendText(result);
-                    //this.tbOutput.AppendText( result );a
+                //this.tbOutput.AppendText( result );a
             }
             catch (ObjectDisposedException)
             {
@@ -471,7 +471,7 @@ namespace LifeSubsMetro
             {
                 Console.WriteLine("VolumeMeter niet kunnen vinden");
             }
-            
+
         }
 
         /// <summary>
@@ -578,7 +578,7 @@ namespace LifeSubsMetro
             if (datetime.Minute < 10) minute = "0" + datetime.Minute;
             if (datetime.Second < 10) seconds = "0" + datetime.Second;
 
-            string date = datetime.Year + "-" + month + "-" + datetime.Day + "_" + hour +  minute + seconds;
+            string date = datetime.Year + "-" + month + "-" + datetime.Day + "_" + hour + minute + seconds;
             savePath += date + ".txt";
 
             return savePath;
@@ -650,7 +650,7 @@ namespace LifeSubsMetro
                     listener2.startRecording();
                     Console.WriteLine("Stop listener1");
                     listener1.stop();
-                    
+
                     Console.WriteLine("listener1 currently recording");
                     listener1.stop();
                     th = new Thread(listener1.request);
@@ -703,7 +703,7 @@ namespace LifeSubsMetro
         {
             new SettingsMenu(this).ShowDialog();
         }
-        
+
         /// <summary>
         /// Clickevent on picturebox with snapicon, arrow up or down, sets position for currently running application
         /// Does not get saved to .xml so it will not be remembered for later use
@@ -759,9 +759,10 @@ namespace LifeSubsMetro
             {
                 if (this.tbOutput.InvokeRequired)
                 {
-                    this.Invoke((MethodInvoker)delegate { 
+                    this.Invoke((MethodInvoker)delegate
+                    {
                         this.Left = e.X + Left - dragAt.X;
-                        this.Top = e.Y + Top - dragAt.Y; 
+                        this.Top = e.Y + Top - dragAt.Y;
                     });
                 }
                 else

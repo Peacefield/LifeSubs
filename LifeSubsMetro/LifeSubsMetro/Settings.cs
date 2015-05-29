@@ -5,8 +5,8 @@ using System.IO;
 namespace LifeSubsMetro
 {
     public class Settings
-    {      
-        public int microphone { get; set; } 
+    {
+        public int microphone { get; set; }
         public string font { get; set; }
         public int fontsize { get; set; }
         public int lines { get; set; }
@@ -64,7 +64,7 @@ namespace LifeSubsMetro
             if (!checkMic(microphone)) this.microphone = -1;
 
             //Load the font tile
-            this.font = ds.Tables["Font"].Rows[0][0].ToString(); 
+            this.font = ds.Tables["Font"].Rows[0][0].ToString();
             this.fontsize = Int32.Parse(ds.Tables["Font"].Rows[0][1].ToString());
             this.lines = Int32.Parse(ds.Tables["Subtitle"].Rows[0][0].ToString());
             //load the subtitle tile

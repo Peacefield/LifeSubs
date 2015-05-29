@@ -98,7 +98,7 @@ namespace LifeSubsMetro
                 //StreamReader sr = new StreamReader((Stream)sourceStream);
 
                 result = sr.ReadToEnd();
-                
+
                 sr.Close();
                 stream.Close();
             }
@@ -139,23 +139,23 @@ namespace LifeSubsMetro
             }
             Console.WriteLine(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>" + result);
             if (subtitleForm != null)
-            { 
-            subtitleForm.setResult(result);
-            subtitleForm.setSendNoti(Color.LightGreen);
-            subtitleForm.updateLog(result);
-            }
-            if (grpConv != null) 
             {
-                grpConv.setCanSendPanel(false);    
+                subtitleForm.setResult(result);
+                subtitleForm.setSendNoti(Color.LightGreen);
+                subtitleForm.updateLog(result);
+            }
+            if (grpConv != null)
+            {
+                grpConv.setCanSendPanel(false);
                 grpConv.sendMessage(result);
                 grpConv.setListenButton(true);
                 Console.WriteLine("gestopt");
             }
-            
+
             //return result;
         }
         #endregion
-        
+
         #region NAudio handlers
         /// <summary>
         /// Starts recording an audiofile at a rate of 8000hz, 16-bit, mono
@@ -201,7 +201,7 @@ namespace LifeSubsMetro
             waveWriter.Flush();
         }
         #endregion
-        
+
         /// <summary>
         /// Stops the listenerobject from recording
         /// </summary>

@@ -63,8 +63,8 @@ namespace LifeSubsMetro
         /// <summary>
         /// Function to fill microphone- and monitor comboboxes to available devices
         /// </summary>
-        private void init() 
-        {   
+        private void init()
+        {
             //Load Input devices
             List<NAudio.Wave.WaveInCapabilities> sources = new List<NAudio.Wave.WaveInCapabilities>();
 
@@ -88,7 +88,7 @@ namespace LifeSubsMetro
                 monitorComboBox.Items.Add(screen.DeviceName);
             }
         }
-        
+
         /// <summary>
         /// Bring the main menu back when closing the SettingsMenu from MainMenu class
         /// Bring the subtitle screen back to front when closing SettingsMenu from Subtitles class
@@ -177,7 +177,7 @@ namespace LifeSubsMetro
         /// Function to hide all tiles and then show tile that was clicked
         /// </summary>
         /// <param name="naam">Name of the clicked tile</param>
-        private void displayTiles(string naam) 
+        private void displayTiles(string naam)
         {
             foreach (Control c in this.Controls)
             {
@@ -187,7 +187,7 @@ namespace LifeSubsMetro
                 }
             }
 
-            switch (naam) 
+            switch (naam)
             {
                 case "mic": //Microphone tile
                     microphoneTile.Visible = false;
@@ -268,7 +268,7 @@ namespace LifeSubsMetro
             ds.Tables.Add(dt);
 
             //xml datatable font
-            DataTable dt1 = new DataTable("Font"); 
+            DataTable dt1 = new DataTable("Font");
             DataColumn dc2 = new DataColumn("FontType");
             DataColumn dc3 = new DataColumn("FontSize");
             dt1.Columns.Add(dc2);
@@ -346,7 +346,7 @@ namespace LifeSubsMetro
                     return "nld-NLD";
             }
         }
-                   
+
         #endregion Save to XML
 
         #region Subtitle Color
@@ -364,7 +364,7 @@ namespace LifeSubsMetro
                     c.Invalidate();
                 }
             });
-            
+
         }
 
         /// <summary>
@@ -555,7 +555,7 @@ namespace LifeSubsMetro
                 mll.deviceNumber = microphoneComboBox.SelectedIndex;
                 mll.listenToStream();
             }
-            
+
         }
 
         /// <summary>

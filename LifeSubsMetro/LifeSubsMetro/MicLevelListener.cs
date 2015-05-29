@@ -78,7 +78,7 @@ namespace LifeSubsMetro
 
             switch (noiseLevel)
             {
-                case "Rustig": 
+                case "Rustig":
                     min = -5;
                     max = 5;
                     break;
@@ -112,7 +112,7 @@ namespace LifeSubsMetro
                 if (subtitleForm != null) subtitleForm.setLabel("STIL");
             }
             // Sound level is not between min and max, which means speaker is talking
-            else 
+            else
             {
                 //Console.WriteLine("GELUID");
                 if (subtitleForm != null)
@@ -135,11 +135,11 @@ namespace LifeSubsMetro
                         //HTTP request has to be sent from here!!
                         //Count variable should be set to 0
                         canSend = false;
-                    
+
                         if (subtitleForm != null)
                         {
-                        subtitleForm.setSendNoti(Color.Red);
-                        subtitleForm.setLabel("send");
+                            subtitleForm.setSendNoti(Color.Red);
+                            subtitleForm.setLabel("send");
                         }
 
                     }
@@ -147,8 +147,8 @@ namespace LifeSubsMetro
                     {
                         if (subtitleForm != null)
                         {
-                        subtitleForm.setSendNoti(Color.Yellow);
-                        subtitleForm.setLabel("leeg");
+                            subtitleForm.setSendNoti(Color.Yellow);
+                            subtitleForm.setLabel("leeg");
                         }
                     }
                 }
