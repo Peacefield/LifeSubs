@@ -40,7 +40,7 @@ namespace LifeSubsMetro
             this.microphone = -1;
             this.font = "Arial";
             this.fontsize = 20;
-            this.lines = 3;
+            this.lines = 4;
             this.subColor = System.Drawing.Color.Black;
             this.bgColor = System.Drawing.Color.White;
             this.savePath = @"log.txt";

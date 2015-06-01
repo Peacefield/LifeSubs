@@ -43,40 +43,38 @@ namespace LifeSubsMetro
         /// </summary>
         private void setStyle()
         {
-            //int additionalSpacing;
-
             this.screen = Screen.AllScreens[settings.screenIndex];
             var width = screen.Bounds.Width;
             this.Width = width;
             this.dataOutput.Width = width - 40;
             this.TopMost = true;
 
-            dataOutput.Columns[0].Width = this.Width-70;
+            dataOutput.RowTemplate.Height = settings.fontsize;
+            this.lines = settings.lines;
+
+            dataOutput.Height = (settings.fontsize * lines) * 2;
+            
+            this.Height = dataOutput.Height + 50;
+            dataOutput.Columns[0].Width = this.Width - 70;
             dataOutput.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
-            dataOutput.DefaultCellStyle.Font = new Font(settings.font, settings.fontsize); ;
+            dataOutput.DefaultCellStyle.Font = new Font(settings.font, settings.fontsize);
+            dataOutput.DefaultCellStyle.Font = new Font(settings.font, settings.fontsize + 1);
+            dataOutput.DefaultCellStyle.Font = new Font(settings.font, settings.fontsize);
             dataOutput.DefaultCellStyle.BackColor = settings.bgColor;
             dataOutput.DefaultCellStyle.ForeColor = settings.subColor;
-            //this.lines = settings.lines;
             dataOutput.DefaultCellStyle.SelectionBackColor = settings.bgColor;
             dataOutput.DefaultCellStyle.SelectionForeColor = settings.subColor;
             dataOutput.BackgroundColor = settings.bgColor;
-
-            //additionalSpacing = calcAdditionalSpacing(this.tbOutput.Font);
-
-            int fontsize = Int32.Parse(dataOutput.DefaultCellStyle.Font.Size.ToString());
-            //this.tbOutput.Height = (fontsize * lines) + additionalSpacing;
-            this.dataOutput.Height = this.Height - 50;
-            this.Height = dataOutput.Height + 50;
-
+            
             this.deviceNumber = settings.microphone;
 
             if (mll != null)
             {
                 mll.stop();
-                mll = new MicLevelListener(this);
+                //mll = new MicLevelListener(this);
                 mll.deviceNumber = settings.microphone;
                 mll.noiseLevel = settings.noiseLevel;
-                mll.sec = settings.delay;
+                mll.sec = settings.delay * 10;
                 mll.listenToStream();
             }
         }
@@ -118,6 +116,8 @@ namespace LifeSubsMetro
                     position = "bottom";
                     break;
             }
+            if (dataOutput.Rows.Count > 0)
+                dataOutput.CurrentCell = dataOutput.Rows[dataOutput.Rows.Count - 1].Cells[0];
         }
 
         #region Responsive to font-changes
@@ -400,13 +400,15 @@ namespace LifeSubsMetro
             mll = new MicLevelListener(this);
             mll.deviceNumber = settings.microphone;
             mll.noiseLevel = settings.noiseLevel;
+            mll.sec = settings.delay * 10;
             mll.listenToStream();
 
             this.logPath = saveLogPath();
 
             //Initiate recording
             currentListener = "listener1";
-            listener1 = new Listener(deviceNumber, currentListener, this);
+            listener1 = new Listener(deviceNumber, "listener1", this);
+            listener2 = new Listener(deviceNumber, "listener2", this);
             listener1.startRecording();
         }
 
@@ -437,7 +439,6 @@ namespace LifeSubsMetro
         {
             if (result == "" || result == "500") return;
 
-
             DataGridViewRow dr = new DataGridViewRow();
 
             DataGridViewTextBoxCell cell1 = new DataGridViewTextBoxCell();
@@ -450,12 +451,12 @@ namespace LifeSubsMetro
                     this.dataOutput.Invoke((MethodInvoker)delegate { dataOutput.Rows.Add(dr); dataOutput.CurrentCell = dataOutput.Rows[dr.Index].Cells[0]; });
                 else
                     dataOutput.Rows.Add(dr); dataOutput.CurrentCell = dataOutput.Rows[dr.Index].Cells[0];
-                //this.tbOutput.AppendText( result );a
+                //this.tbOutput.AppendText( result );
             }
             catch (ObjectDisposedException)
             {
-                Console.WriteLine("Textbox niet kunnen vinden");
-                Console.WriteLine(result); //Misschien wel toevoegen aan log?
+                Console.WriteLine("Datagridview niet kunnen vinden");
+                Console.WriteLine(result);
             }
         }
 
@@ -621,7 +622,6 @@ namespace LifeSubsMetro
                     //Set next listener
                     currentListener = "listener2";
                     //Create next listener
-                    listener2 = new Listener(deviceNumber, currentListener, this);
                     //Start next listener
                     listener2.startRecording();
 
@@ -634,7 +634,7 @@ namespace LifeSubsMetro
                     //Set next listener
                     currentListener = "listener1";
                     //Create next listener
-                    listener1 = new Listener(deviceNumber, currentListener, this);
+                    //listener1 = new Listener(deviceNumber, currentListener, this);
                     //Start next listener
                     listener1.startRecording();
 
@@ -658,7 +658,7 @@ namespace LifeSubsMetro
                     //Set next listener
                     currentListener = "listener2";
                     //Create next listener
-                    listener2 = new Listener(deviceNumber, currentListener, this);
+                    //listener2 = new Listener(deviceNumber, currentListener, this);
                     //Start next listener
                     listener2.startRecording();
                     Console.WriteLine("Stop listener1");
@@ -684,7 +684,7 @@ namespace LifeSubsMetro
                     //Set next listener
                     currentListener = "listener1";
                     //Create next listener
-                    listener1 = new Listener(deviceNumber, currentListener, this);
+                    //listener1 = new Listener(deviceNumber, currentListener, this);
                     //Start next listener
                     listener1.startRecording();
                     Console.WriteLine("Stop listener2");

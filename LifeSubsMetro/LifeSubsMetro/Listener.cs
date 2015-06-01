@@ -198,7 +198,6 @@ namespace LifeSubsMetro
         private void sourceStream_DataAvailable(object sender, NAudio.Wave.WaveInEventArgs e)
         {
             if (waveWriter == null) return;
-            Console.WriteLine("dataavailable");
             waveWriter.WriteData(e.Buffer, 0, e.BytesRecorded);
             waveWriter.Flush();
         }
