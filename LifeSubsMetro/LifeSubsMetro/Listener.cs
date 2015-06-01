@@ -146,7 +146,7 @@ namespace LifeSubsMetro
             }
             if (grpConv != null)
             {
-                grpConv.sendToApi(result);
+                if ( result != "" && result != "500" ) grpConv.sendToApi(result);
                 //grpConv.sendMessage(result);
                 grpConv.setCanSendPanel(false);
                 grpConv.setListenButton(true);

@@ -151,7 +151,7 @@ namespace LifeSubsMetro
         public void sendMessage(string roomId, string userId, string msg, GroupConversations gc)
         {
             string time = DateTime.Now.ToString().Replace(" ", "%20");
-            string msgEnc = msg.Replace(" ", "%20");
+            string msgEnc = msg.Replace(" ", "%20").Replace("#","%23").Replace("&","%26");
 
             string url = "http://lifesubs.windesheim.nl/api/addMessage.php?func=addMessage&room="
                 + roomId
