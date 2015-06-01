@@ -16,7 +16,7 @@ namespace LifeSubsMetro
         {
             this.gcs = gc;
             //Create a timer with a one second interval
-            timer = new System.Timers.Timer(1000);
+            timer = new System.Timers.Timer(500);
             timer.Elapsed += OnTimedEvent;
             timer.Enabled = true;
         }
