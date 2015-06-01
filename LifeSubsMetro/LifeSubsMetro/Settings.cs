@@ -43,7 +43,7 @@ namespace LifeSubsMetro
             this.lines = 4;
             this.subColor = System.Drawing.Color.Black;
             this.bgColor = System.Drawing.Color.White;
-            this.savePath = @"log.txt";
+            this.savePath = @"logs\";
             this.delay = 1;
             this.noiseLevel = "Normaal";
             this.subLanguage = "Nederlands";

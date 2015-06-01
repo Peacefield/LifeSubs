@@ -18,7 +18,7 @@ namespace LifeSubsMetro
         String currentListener;
         Settings settings;
         int deviceNumber = -1;
-        string path = @"C:\audiotest";
+        string path = @"audio\";
         string logPath;
         int lines;
         public string position;
@@ -547,9 +547,9 @@ namespace LifeSubsMetro
                         sw.WriteLine(text);
                     }
             }
-            catch (FileNotFoundException fnfe)
+            catch (DirectoryNotFoundException dnfe)
             {
-                Console.WriteLine("File not found: " + fnfe.Message);
+                Console.WriteLine("File not found: " + dnfe.Message);
             }
         }
         #endregion
@@ -581,20 +581,29 @@ namespace LifeSubsMetro
         private string saveLogPath()
         {
             string savePath = settings.savePath;
+
+            Console.WriteLine("LogPath ---> " + savePath);
+
+            bool folderExists = Directory.Exists(savePath);
+            if (!folderExists) Directory.CreateDirectory(savePath);
+
             DateTime datetime = DateTime.Now;
+            string day = datetime.Day.ToString();
             string month = datetime.Month.ToString();
             string hour = datetime.Hour.ToString();
             string minute = datetime.Minute.ToString();
             string seconds = datetime.Second.ToString();
 
+            if (datetime.Day < 10) day = "0" + datetime.Day;
             if (datetime.Month < 10) month = "0" + datetime.Month;
             if (datetime.Hour < 10) hour = "0" + datetime.Hour;
             if (datetime.Minute < 10) minute = "0" + datetime.Minute;
             if (datetime.Second < 10) seconds = "0" + datetime.Second;
 
-            string date = datetime.Year + "-" + month + "-" + datetime.Day + "_" + hour + minute + seconds;
+            string date = datetime.Year + "-" + month + "-" + day + "_" + hour + minute + seconds;
             savePath += date + ".txt";
 
+            
             return savePath;
         }
 

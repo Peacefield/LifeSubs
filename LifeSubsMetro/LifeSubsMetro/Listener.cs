@@ -26,7 +26,7 @@ namespace LifeSubsMetro
             this.subtitleForm = subtitleForm;
             this.deviceNumber = settings.microphone;
             this.language = settings.subLanguage;
-            this.fileName = "C:\\audiotest\\" + fileName + ".wav";
+            this.fileName = @"audio\" + fileName + ".wav";
         }
 
         /// <summary>
@@ -41,7 +41,7 @@ namespace LifeSubsMetro
             this.grpConv = grp;
             this.deviceNumber = settings.microphone;
             this.language = settings.subLanguage;
-            this.fileName = "C:\\audiotest\\" + fileName + ".wav";
+            this.fileName = @"audio\" + fileName + ".wav";
         }
 
         #region request
