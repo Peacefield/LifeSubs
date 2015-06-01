@@ -325,6 +325,7 @@ namespace LifeSubsMetro
             dataGridOutput.DefaultCellStyle.SelectionBackColor = settings.bgColor;
             dataGridOutput.DefaultCellStyle.SelectionForeColor = settings.subColor;
             dataGridOutput.BackgroundColor = settings.bgColor;
+            
 
             tbInput.BackColor = settings.bgColor;
             tbInput.ForeColor = settings.subColor;

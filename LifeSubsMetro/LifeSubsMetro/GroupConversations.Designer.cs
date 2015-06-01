@@ -49,6 +49,7 @@
             this.dataGridOutput.AllowUserToResizeColumns = false;
             this.dataGridOutput.AllowUserToResizeRows = false;
             this.dataGridOutput.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
+            this.dataGridOutput.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
             this.dataGridOutput.BackgroundColor = System.Drawing.SystemColors.Window;
             this.dataGridOutput.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dataGridOutput.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.RaisedHorizontal;
