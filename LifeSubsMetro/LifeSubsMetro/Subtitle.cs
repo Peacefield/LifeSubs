@@ -9,6 +9,10 @@ namespace LifeSubsMetro
 {
     public partial class Subtitle : MetroForm
     {
+        public string userId { get; set; }
+        public string roomId { get; set; }
+
+
         MainMenu mm;
         MicLevelListener mll;
         Thread th = null;
@@ -22,6 +26,7 @@ namespace LifeSubsMetro
         string logPath;
         int lines;
         public string position;
+        public ApiHandler apihandler;
         // Drag form
         private bool dragging;
         private Point dragAt = Point.Empty;
@@ -38,6 +43,17 @@ namespace LifeSubsMetro
             setPosition(position);
         }
 
+        public Subtitle(MainMenu mm, ApiHandler api)
+        {
+            InitializeComponent();
+            this.StartPosition = FormStartPosition.Manual;
+            this.mm = mm;
+            this.position = "bottom";
+            this.apihandler = api;
+
+            createDir();
+            setPosition(position);
+        }
         /// <summary>
         /// Sets the style of the form according to the settings class
         /// </summary>
@@ -419,6 +435,11 @@ namespace LifeSubsMetro
             mll.stop();
             mm.Visible = true;
             deleteDir();
+
+            if(apihandler != null)
+            {
+                apihandler.exitRoom(null, userId);
+            }
         }
         #endregion
 
@@ -430,7 +451,10 @@ namespace LifeSubsMetro
         public void setResult(string result)
         {
             if (result == "" || result == "500") return;
-
+            if(apihandler != null)
+            {
+                apihandler.sendMessage(roomId, userId, result, null);
+            }
             try
             {
                 if (this.tbOutput.InvokeRequired)

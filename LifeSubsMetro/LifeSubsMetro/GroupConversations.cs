@@ -350,7 +350,7 @@ namespace LifeSubsMetro
         private void GroupConversations_FormClosing(object sender, FormClosingEventArgs e)
         {
             mh.stopTimer();
-            apiHandler.exitRoom(this);
+            apiHandler.exitRoom(this, null);
             //mm.Visible = true;
             mm.BringToFront();
 

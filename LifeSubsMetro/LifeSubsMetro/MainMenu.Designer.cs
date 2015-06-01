@@ -49,8 +49,19 @@
             this.usernameCreateRoomTextbox = new System.Windows.Forms.TextBox();
             this.roomPassCreateRoomTextbox = new System.Windows.Forms.TextBox();
             this.roomNameCreateTextbox = new System.Windows.Forms.TextBox();
+            this.subtitleRoomPanel = new System.Windows.Forms.Panel();
+            this.subtitleRoomNameTextbox = new System.Windows.Forms.TextBox();
+            this.newRoomCheckbox = new MetroFramework.Controls.MetroCheckBox();
+            this.subtitleUsernameTextbox = new System.Windows.Forms.TextBox();
+            this.subtitlePasswordTextbox = new System.Windows.Forms.TextBox();
+            this.passwordLabel = new MetroFramework.Controls.MetroLabel();
+            this.nameLabel = new MetroFramework.Controls.MetroLabel();
+            this.roomNameLabel = new MetroFramework.Controls.MetroLabel();
+            this.startSubtitlingButton = new MetroFramework.Controls.MetroButton();
+            this.loginButton = new MetroFramework.Controls.MetroButton();
             this.joinRoomPanel.SuspendLayout();
             this.makeRoomPanel.SuspendLayout();
+            this.subtitleRoomPanel.SuspendLayout();
             this.SuspendLayout();
             // 
             // passwordBox
@@ -83,9 +94,9 @@
             // tileCreateRoom
             // 
             this.tileCreateRoom.ActiveControl = null;
-            this.tileCreateRoom.Location = new System.Drawing.Point(381, 60);
+            this.tileCreateRoom.Location = new System.Drawing.Point(420, 58);
             this.tileCreateRoom.Name = "tileCreateRoom";
-            this.tileCreateRoom.Size = new System.Drawing.Size(175, 175);
+            this.tileCreateRoom.Size = new System.Drawing.Size(200, 200);
             this.tileCreateRoom.Style = MetroFramework.MetroColorStyle.Green;
             this.tileCreateRoom.TabIndex = 3;
             this.tileCreateRoom.Text = "Creëer kamer";
@@ -139,7 +150,7 @@
             this.joinRoomPanel.HorizontalScrollbarBarColor = true;
             this.joinRoomPanel.HorizontalScrollbarHighlightOnWheel = false;
             this.joinRoomPanel.HorizontalScrollbarSize = 10;
-            this.joinRoomPanel.Location = new System.Drawing.Point(212, 62);
+            this.joinRoomPanel.Location = new System.Drawing.Point(232, 76);
             this.joinRoomPanel.Name = "joinRoomPanel";
             this.joinRoomPanel.Size = new System.Drawing.Size(150, 171);
             this.joinRoomPanel.TabIndex = 8;
@@ -172,9 +183,9 @@
             // tileExit
             // 
             this.tileExit.ActiveControl = null;
-            this.tileExit.Location = new System.Drawing.Point(561, 150);
+            this.tileExit.Location = new System.Drawing.Point(626, 161);
             this.tileExit.Name = "tileExit";
-            this.tileExit.Size = new System.Drawing.Size(85, 85);
+            this.tileExit.Size = new System.Drawing.Size(95, 97);
             this.tileExit.Style = MetroFramework.MetroColorStyle.Green;
             this.tileExit.TabIndex = 5;
             this.tileExit.TileImage = global::LifeSubsMetro.Properties.Resources.exit_48;
@@ -190,9 +201,9 @@
             // tileSettings
             // 
             this.tileSettings.ActiveControl = null;
-            this.tileSettings.Location = new System.Drawing.Point(561, 60);
+            this.tileSettings.Location = new System.Drawing.Point(626, 58);
             this.tileSettings.Name = "tileSettings";
-            this.tileSettings.Size = new System.Drawing.Size(85, 85);
+            this.tileSettings.Size = new System.Drawing.Size(95, 97);
             this.tileSettings.Style = MetroFramework.MetroColorStyle.Green;
             this.tileSettings.TabIndex = 2;
             this.tileSettings.TileImage = global::LifeSubsMetro.Properties.Resources.settings_21_48;
@@ -208,9 +219,9 @@
             // tileSubtitle
             // 
             this.tileSubtitle.ActiveControl = null;
-            this.tileSubtitle.Location = new System.Drawing.Point(20, 60);
+            this.tileSubtitle.Location = new System.Drawing.Point(8, 58);
             this.tileSubtitle.Name = "tileSubtitle";
-            this.tileSubtitle.Size = new System.Drawing.Size(175, 175);
+            this.tileSubtitle.Size = new System.Drawing.Size(200, 200);
             this.tileSubtitle.Style = MetroFramework.MetroColorStyle.Green;
             this.tileSubtitle.TabIndex = 0;
             this.tileSubtitle.Text = "Start ondertiteling";
@@ -227,9 +238,9 @@
             // tileJoinRoom
             // 
             this.tileJoinRoom.ActiveControl = null;
-            this.tileJoinRoom.Location = new System.Drawing.Point(200, 60);
+            this.tileJoinRoom.Location = new System.Drawing.Point(214, 58);
             this.tileJoinRoom.Name = "tileJoinRoom";
-            this.tileJoinRoom.Size = new System.Drawing.Size(175, 175);
+            this.tileJoinRoom.Size = new System.Drawing.Size(200, 200);
             this.tileJoinRoom.Style = MetroFramework.MetroColorStyle.Green;
             this.tileJoinRoom.TabIndex = 4;
             this.tileJoinRoom.Text = "Verbind met kamer";
@@ -252,7 +263,7 @@
             this.makeRoomPanel.Controls.Add(this.usernameCreateRoomTextbox);
             this.makeRoomPanel.Controls.Add(this.roomPassCreateRoomTextbox);
             this.makeRoomPanel.Controls.Add(this.roomNameCreateTextbox);
-            this.makeRoomPanel.Location = new System.Drawing.Point(381, 60);
+            this.makeRoomPanel.Location = new System.Drawing.Point(433, 72);
             this.makeRoomPanel.Name = "makeRoomPanel";
             this.makeRoomPanel.Size = new System.Drawing.Size(174, 175);
             this.makeRoomPanel.TabIndex = 9;
@@ -317,18 +328,116 @@
             this.roomNameCreateTextbox.Size = new System.Drawing.Size(167, 20);
             this.roomNameCreateTextbox.TabIndex = 0;
             // 
+            // subtitleRoomPanel
+            // 
+            this.subtitleRoomPanel.Controls.Add(this.subtitleRoomNameTextbox);
+            this.subtitleRoomPanel.Controls.Add(this.newRoomCheckbox);
+            this.subtitleRoomPanel.Controls.Add(this.subtitleUsernameTextbox);
+            this.subtitleRoomPanel.Controls.Add(this.subtitlePasswordTextbox);
+            this.subtitleRoomPanel.Controls.Add(this.passwordLabel);
+            this.subtitleRoomPanel.Controls.Add(this.nameLabel);
+            this.subtitleRoomPanel.Controls.Add(this.roomNameLabel);
+            this.subtitleRoomPanel.Controls.Add(this.startSubtitlingButton);
+            this.subtitleRoomPanel.Controls.Add(this.loginButton);
+            this.subtitleRoomPanel.Location = new System.Drawing.Point(20, 58);
+            this.subtitleRoomPanel.Name = "subtitleRoomPanel";
+            this.subtitleRoomPanel.Size = new System.Drawing.Size(179, 200);
+            this.subtitleRoomPanel.TabIndex = 10;
+            this.subtitleRoomPanel.Visible = false;
+            // 
+            // subtitleRoomNameTextbox
+            // 
+            this.subtitleRoomNameTextbox.Location = new System.Drawing.Point(3, 41);
+            this.subtitleRoomNameTextbox.Name = "subtitleRoomNameTextbox";
+            this.subtitleRoomNameTextbox.Size = new System.Drawing.Size(167, 20);
+            this.subtitleRoomNameTextbox.TabIndex = 0;
+            // 
+            // newRoomCheckbox
+            // 
+            this.newRoomCheckbox.AutoSize = true;
+            this.newRoomCheckbox.Location = new System.Drawing.Point(3, 8);
+            this.newRoomCheckbox.Name = "newRoomCheckbox";
+            this.newRoomCheckbox.Size = new System.Drawing.Size(162, 15);
+            this.newRoomCheckbox.TabIndex = 8;
+            this.newRoomCheckbox.Text = "Nieuwe kamer aanmaken?";
+            this.newRoomCheckbox.UseSelectable = true;
+            this.newRoomCheckbox.CheckedChanged += new System.EventHandler(this.newRoomCheckbox_CheckedChanged);
+            // 
+            // subtitleUsernameTextbox
+            // 
+            this.subtitleUsernameTextbox.Location = new System.Drawing.Point(3, 115);
+            this.subtitleUsernameTextbox.Name = "subtitleUsernameTextbox";
+            this.subtitleUsernameTextbox.Size = new System.Drawing.Size(167, 20);
+            this.subtitleUsernameTextbox.TabIndex = 2;
+            // 
+            // subtitlePasswordTextbox
+            // 
+            this.subtitlePasswordTextbox.Location = new System.Drawing.Point(3, 79);
+            this.subtitlePasswordTextbox.Name = "subtitlePasswordTextbox";
+            this.subtitlePasswordTextbox.Size = new System.Drawing.Size(167, 20);
+            this.subtitlePasswordTextbox.TabIndex = 1;
+            this.subtitlePasswordTextbox.UseSystemPasswordChar = true;
+            // 
+            // passwordLabel
+            // 
+            this.passwordLabel.AutoSize = true;
+            this.passwordLabel.Location = new System.Drawing.Point(0, 61);
+            this.passwordLabel.Name = "passwordLabel";
+            this.passwordLabel.Size = new System.Drawing.Size(83, 19);
+            this.passwordLabel.TabIndex = 7;
+            this.passwordLabel.Text = "Wachtwoord";
+            // 
+            // nameLabel
+            // 
+            this.nameLabel.AutoSize = true;
+            this.nameLabel.Location = new System.Drawing.Point(0, 98);
+            this.nameLabel.Name = "nameLabel";
+            this.nameLabel.Size = new System.Drawing.Size(104, 19);
+            this.nameLabel.TabIndex = 6;
+            this.nameLabel.Text = "Gebruikersnaam";
+            // 
+            // roomNameLabel
+            // 
+            this.roomNameLabel.AutoSize = true;
+            this.roomNameLabel.Location = new System.Drawing.Point(0, 24);
+            this.roomNameLabel.Name = "roomNameLabel";
+            this.roomNameLabel.Size = new System.Drawing.Size(80, 19);
+            this.roomNameLabel.TabIndex = 5;
+            this.roomNameLabel.Text = "Kamernaam";
+            // 
+            // startSubtitlingButton
+            // 
+            this.startSubtitlingButton.Location = new System.Drawing.Point(3, 169);
+            this.startSubtitlingButton.Name = "startSubtitlingButton";
+            this.startSubtitlingButton.Size = new System.Drawing.Size(167, 25);
+            this.startSubtitlingButton.TabIndex = 4;
+            this.startSubtitlingButton.Text = "Zonder kamer gebruiken";
+            this.startSubtitlingButton.UseSelectable = true;
+            this.startSubtitlingButton.Click += new System.EventHandler(this.startSubtitlingButton_Click);
+            // 
+            // loginButton
+            // 
+            this.loginButton.Location = new System.Drawing.Point(3, 141);
+            this.loginButton.Name = "loginButton";
+            this.loginButton.Size = new System.Drawing.Size(167, 25);
+            this.loginButton.TabIndex = 3;
+            this.loginButton.Text = "Log in";
+            this.loginButton.UseSelectable = true;
+            this.loginButton.Click += new System.EventHandler(this.loginButton_Click);
+            // 
             // MainMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
-            this.ClientSize = new System.Drawing.Size(670, 250);
-            this.Controls.Add(this.tileJoinRoom);
+            this.ClientSize = new System.Drawing.Size(733, 270);
             this.Controls.Add(this.tileExit);
             this.Controls.Add(this.tileSettings);
-            this.Controls.Add(this.tileSubtitle);
-            this.Controls.Add(this.joinRoomPanel);
+            this.Controls.Add(this.tileJoinRoom);
             this.Controls.Add(this.tileCreateRoom);
+            this.Controls.Add(this.joinRoomPanel);
             this.Controls.Add(this.makeRoomPanel);
+            this.Controls.Add(this.tileSubtitle);
+            this.Controls.Add(this.subtitleRoomPanel);
             this.MaximizeBox = false;
             this.Name = "MainMenu";
             this.Resizable = false;
@@ -340,6 +449,8 @@
             this.joinRoomPanel.PerformLayout();
             this.makeRoomPanel.ResumeLayout(false);
             this.makeRoomPanel.PerformLayout();
+            this.subtitleRoomPanel.ResumeLayout(false);
+            this.subtitleRoomPanel.PerformLayout();
             this.ResumeLayout(false);
 
         }
@@ -367,6 +478,16 @@
         private MetroFramework.Controls.MetroLabel usernameLabel;
         private MetroFramework.Controls.MetroTextBox usernameTB;
         private MetroFramework.Controls.MetroButton addRoomBtn;
+        private System.Windows.Forms.Panel subtitleRoomPanel;
+        private System.Windows.Forms.TextBox subtitleUsernameTextbox;
+        private System.Windows.Forms.TextBox subtitlePasswordTextbox;
+        private MetroFramework.Controls.MetroLabel passwordLabel;
+        private MetroFramework.Controls.MetroLabel nameLabel;
+        private MetroFramework.Controls.MetroLabel roomNameLabel;
+        private MetroFramework.Controls.MetroButton startSubtitlingButton;
+        private MetroFramework.Controls.MetroButton loginButton;
+        private System.Windows.Forms.TextBox subtitleRoomNameTextbox;
+        private MetroFramework.Controls.MetroCheckBox newRoomCheckbox;
 
     }
 }

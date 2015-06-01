@@ -27,16 +27,8 @@ namespace LifeSubsMetro
         private void tileSubtitle_Click(object sender, EventArgs e)
         {
             showTiles();
-            Settings settings = new Settings();
-            if (settings.microphone == -1)
-            {
-                MetroMessageBox.Show(this, "Microfoon niet gevonden", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
-                return;
-            }
-
-            Subtitle subtitle = new Subtitle(this);
-            subtitle.Show();
-            this.Visible = false;
+            subtitleRoomPanel.Visible = true;
+            tileSubtitle.Visible = false;
         }
 
         /// <summary>
@@ -94,7 +86,7 @@ namespace LifeSubsMetro
         {
             //this.tileJoinRoom.Visible = true;
 
-            apiHandler.joinRoom(roomNameBox.Text, toMD5(passwordBox.Text), getOwnIp(), usernameTB.Text, this);
+            apiHandler.joinRoom(roomNameBox.Text, toMD5(passwordBox.Text), getOwnIp(), usernameTB.Text, this, false);
         }
 
         /// <summary>
@@ -191,7 +183,7 @@ namespace LifeSubsMetro
             string roomPassMD5 = toMD5(roomPass);
             string ownerIp = getOwnIp();
 
-            apiHandler.createRoom(roomName, ownerIp, roomPass, roomPassMD5, roomUsername, this);
+            apiHandler.createRoom(roomName, ownerIp, roomPass, roomPassMD5, roomUsername, this, false);
             //tileCreateRoom.Visible = true;
         }
 
@@ -215,5 +207,48 @@ namespace LifeSubsMetro
         {
             Application.Exit();
         }
+
+        private void startSubtitlingButton_Click(object sender, EventArgs e)
+        {
+            showTiles();
+            Settings settings = new Settings();
+            if (settings.microphone == -1)
+            {
+                MetroMessageBox.Show(this, "Microfoon niet gevonden", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
+
+            Subtitle subtitle = new Subtitle(this);
+            subtitle.Show();
+            this.Visible = false;
+        }
+
+        private void loginButton_Click(object sender, EventArgs e)
+        {
+            string roomPassMD5 = toMD5(subtitlePasswordTextbox.Text);
+            string ownerIp = getOwnIp();
+            if (newRoomCheckbox.Checked)
+            {
+                apiHandler.createRoom(subtitleRoomNameTextbox.Text, ownerIp, subtitlePasswordTextbox.Text, roomPassMD5, subtitleUsernameTextbox.Text, this, true);    
+            }
+            else
+            {
+                apiHandler.joinRoom(subtitleRoomNameTextbox.Text, roomPassMD5, ownerIp, subtitleUsernameTextbox.Text, this, true);
+            }
+            
+        }
+
+        private void newRoomCheckbox_CheckedChanged(object sender, EventArgs e)
+        {
+            if(newRoomCheckbox.Checked)
+            {
+                loginButton.Text = "Maak aan";
+            }
+            else
+            {
+                loginButton.Text = "Log in";
+            }
+        }
+
     }
 }

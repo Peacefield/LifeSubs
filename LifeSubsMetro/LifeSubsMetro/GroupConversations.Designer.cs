@@ -51,7 +51,7 @@
             this.dataGridOutput.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dataGridOutput.BackgroundColor = System.Drawing.SystemColors.Window;
             this.dataGridOutput.BorderStyle = System.Windows.Forms.BorderStyle.None;
-            this.dataGridOutput.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.RaisedHorizontal;
+            this.dataGridOutput.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleVertical;
             this.dataGridOutput.ColumnHeadersHeightSizeMode = System.Windows.Forms.DataGridViewColumnHeadersHeightSizeMode.AutoSize;
             this.dataGridOutput.ColumnHeadersVisible = false;
             this.dataGridOutput.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
@@ -157,7 +157,7 @@
             // 
             this.settingsPB.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
             this.settingsPB.Image = global::LifeSubsMetro.Properties.Resources._1428589893_engineering_48;
-            this.settingsPB.Location = new System.Drawing.Point(940, 5);
+            this.settingsPB.Location = new System.Drawing.Point(942, 9);
             this.settingsPB.Margin = new System.Windows.Forms.Padding(2);
             this.settingsPB.Name = "settingsPB";
             this.settingsPB.Size = new System.Drawing.Size(20, 20);

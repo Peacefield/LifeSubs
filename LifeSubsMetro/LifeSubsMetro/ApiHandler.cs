@@ -10,14 +10,14 @@ using System.Windows.Forms;
 
 namespace LifeSubsMetro
 {
-    class ApiHandler
+    public class ApiHandler
     {
         public ApiHandler()
         {
 
         }
 
-        public void createRoom(string name, string ip, string pass, string md5Pass, string username, MainMenu mm)
+        public void createRoom(string name, string ip, string pass, string md5Pass, string username, MainMenu mm, Boolean isSubtitle)
         {
             string url = "http://lifesubs.windesheim.nl/api/addRoom.php?func=addRoom&name=" + name + "&ip=" + ip + " &usn=" + username + "&key=" + md5Pass;
 
@@ -74,15 +74,27 @@ namespace LifeSubsMetro
                     }
                 }
 
-                GroupConversations gcs = new GroupConversations(mm);
-                gcs.userId = userId;
-                gcs.roomId = roomId;
-                gcs.roomName = roomName;
-                gcs.ShowDialog();
+                if(isSubtitle)
+                {
+                    Subtitle sub = new Subtitle(mm, this);
+                    sub.userId = userId;
+                    sub.roomId = roomId;
+                    sub.Show();
+                }
+                else
+                {
+                    GroupConversations gcs = new GroupConversations(mm);
+                    gcs.userId = userId;
+                    gcs.roomId = roomId;
+                    gcs.roomName = roomName;
+                    gcs.ShowDialog();
+                }
+
+                
             }
         }
 
-        public void joinRoom(string name, string key, string ip, string username, MainMenu mm)
+        public void joinRoom(string name, string key, string ip, string username, MainMenu mm, Boolean isSubtitle)
         {
             string nameEnc = name.Replace("#", "%23");
             string url = "http://lifesubs.windesheim.nl/api/enterRoom.php?func=enterRoom&roomName=" + nameEnc + "&key=" + key + "&ip=" + ip + "&username=" + username;
@@ -129,12 +141,22 @@ namespace LifeSubsMetro
                 }
                 MetroMessageBox.Show(mm, "Welkom in " + roomName + ", " + username, "Succesvol verbonden!", MessageBoxButtons.OK, MessageBoxIcon.Question);
 
-                GroupConversations gcs = new GroupConversations(mm);
-                gcs.userId = userId;
-                gcs.roomId = roomId;
-                gcs.roomName = roomName;
-                gcs.ShowDialog();
-
+                if(isSubtitle)
+                {
+                    Subtitle sub = new Subtitle(mm, this);
+                    sub.userId = userId;
+                    sub.roomId = roomId;
+                    sub.Show();
+                }
+                else
+                {
+                    GroupConversations gcs = new GroupConversations(mm);
+                    gcs.userId = userId;
+                    gcs.roomId = roomId;
+                    gcs.roomName = roomName;
+                    gcs.ShowDialog();
+                }
+                
                 foreach (Control c in mm.Controls)
                 {
                     if (c.GetType() == typeof(MetroFramework.Controls.MetroTile))
@@ -179,7 +201,11 @@ namespace LifeSubsMetro
             }
             else
             {
-                gc.clearTextBox();
+                if(gc != null)
+                {
+                    gc.clearTextBox();
+                }
+                
                 //MetroMessageBox.Show(gc, "Verzonden", "Bericht succesvol verzonden!", MessageBoxButtons.OK, MessageBoxIcon.Question);
             }
         }
@@ -297,10 +323,20 @@ namespace LifeSubsMetro
             }
         }
 
-        public void exitRoom(GroupConversations gcs)
+        public void exitRoom(GroupConversations gcs, string id)
         {
+            string userId;
+
+            if(id != null)
+            {
+                userId = id;
+            }
+            else
+            {
+                userId = gcs.userId;
+            }
             string url = "http://lifesubs.windesheim.nl/api/deleteData.php?func=exitRoom&userid="
-                + gcs.userId;
+                + userId;
 
             Console.WriteLine("Start ----> " + url);
 
