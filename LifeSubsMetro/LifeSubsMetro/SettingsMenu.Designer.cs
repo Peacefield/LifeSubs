@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(SettingsMenu));
             this.microphoneButton = new MetroFramework.Controls.MetroButton();
             this.microphoneComboBox = new MetroFramework.Controls.MetroComboBox();
             this.microphoneLabel = new System.Windows.Forms.Label();
@@ -36,6 +37,7 @@
             this.monitorComboBox = new MetroFramework.Controls.MetroComboBox();
             this.microphoneProgressBar = new MetroFramework.Controls.MetroProgressBar();
             this.fontPanel = new System.Windows.Forms.Panel();
+            this.fontComboBox = new LifeSubsMetro.FontComboBox();
             this.fontSizeComboBox = new MetroFramework.Controls.MetroComboBox();
             this.fontLabel = new System.Windows.Forms.Label();
             this.fontButton = new MetroFramework.Controls.MetroButton();
@@ -78,7 +80,6 @@
             this.delayTile = new MetroFramework.Controls.MetroTile();
             this.languageTile = new MetroFramework.Controls.MetroTile();
             this.saveTile = new MetroFramework.Controls.MetroTile();
-            this.fontComboBox = new LifeSubsMetro.FontComboBox();
             this.microphonePanel.SuspendLayout();
             this.fontPanel.SuspendLayout();
             this.volumePanel.SuspendLayout();
@@ -173,6 +174,16 @@
             this.fontPanel.Name = "fontPanel";
             this.fontPanel.Size = new System.Drawing.Size(200, 200);
             this.fontPanel.TabIndex = 4;
+            // 
+            // fontComboBox
+            // 
+            this.fontComboBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Append;
+            this.fontComboBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
+            this.fontComboBox.FormattingEnabled = true;
+            this.fontComboBox.Location = new System.Drawing.Point(5, 33);
+            this.fontComboBox.Name = "fontComboBox";
+            this.fontComboBox.Size = new System.Drawing.Size(130, 23);
+            this.fontComboBox.TabIndex = 6;
             // 
             // fontSizeComboBox
             // 
@@ -657,16 +668,6 @@
             this.saveTile.MouseEnter += new System.EventHandler(this.saveTile_MouseEnter);
             this.saveTile.MouseLeave += new System.EventHandler(this.saveTile_MouseLeave);
             // 
-            // fontComboBox
-            // 
-            this.fontComboBox.AutoCompleteMode = System.Windows.Forms.AutoCompleteMode.Append;
-            this.fontComboBox.AutoCompleteSource = System.Windows.Forms.AutoCompleteSource.ListItems;
-            this.fontComboBox.FormattingEnabled = true;
-            this.fontComboBox.Location = new System.Drawing.Point(5, 33);
-            this.fontComboBox.Name = "fontComboBox";
-            this.fontComboBox.Size = new System.Drawing.Size(130, 23);
-            this.fontComboBox.TabIndex = 6;
-            // 
             // SettingsMenu
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(8F, 16F);
@@ -685,6 +686,7 @@
             this.Controls.Add(this.microphoneTile);
             this.Controls.Add(this.microphonePanel);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4);
             this.MaximizeBox = false;
             this.MinimizeBox = false;

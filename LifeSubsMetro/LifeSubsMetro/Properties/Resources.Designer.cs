@@ -203,16 +203,6 @@ namespace LifeSubsMetro.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Microphone_50 {
-            get {
-                object obj = ResourceManager.GetObject("Microphone_50", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap Monitor_32 {
             get {
                 object obj = ResourceManager.GetObject("Monitor_32", resourceCulture);

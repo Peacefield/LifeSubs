@@ -28,6 +28,7 @@
         /// </summary>
         private void InitializeComponent()
         {
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Subtitle));
             this.label1 = new System.Windows.Forms.Label();
             this.tbOutput = new System.Windows.Forms.TextBox();
             this.volumeMeter = new System.Windows.Forms.ProgressBar();
@@ -132,6 +133,7 @@
             this.Controls.Add(this.volumeMeter);
             this.Controls.Add(this.tbOutput);
             this.Controls.Add(this.label1);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Movable = false;
             this.Name = "Subtitle";

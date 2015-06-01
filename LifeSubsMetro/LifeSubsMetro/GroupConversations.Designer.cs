@@ -35,10 +35,10 @@
             this.msgColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.tbInput = new MetroFramework.Controls.MetroTextBox();
             this.sendTile = new MetroFramework.Controls.MetroTile();
-            this.startGroupListenerBtn = new MetroFramework.Controls.MetroTile();
             this.volumemeterGrp = new MetroFramework.Controls.MetroProgressBar();
             this.canSendPanelGrp = new System.Windows.Forms.Panel();
             this.settingsPB = new System.Windows.Forms.PictureBox();
+            this.startGroupListenerBtn = new MetroFramework.Controls.MetroTile();
             ((System.ComponentModel.ISupportInitialize)(this.dataGridOutput)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.settingsPB)).BeginInit();
             this.SuspendLayout();
@@ -120,21 +120,6 @@
             this.sendTile.UseSelectable = true;
             this.sendTile.Click += new System.EventHandler(this.sendTile_Click);
             // 
-            // startGroupListenerBtn
-            // 
-            this.startGroupListenerBtn.ActiveControl = null;
-            this.startGroupListenerBtn.Location = new System.Drawing.Point(958, 483);
-            this.startGroupListenerBtn.Name = "startGroupListenerBtn";
-            this.startGroupListenerBtn.Size = new System.Drawing.Size(47, 59);
-            this.startGroupListenerBtn.Style = MetroFramework.MetroColorStyle.Green;
-            this.startGroupListenerBtn.TabIndex = 16;
-            this.startGroupListenerBtn.TileImage = ((System.Drawing.Image)(resources.GetObject("startGroupListenerBtn.TileImage")));
-            this.startGroupListenerBtn.TileImageAlign = System.Drawing.ContentAlignment.MiddleCenter;
-            this.startGroupListenerBtn.TileTextFontSize = MetroFramework.MetroTileTextSize.Small;
-            this.startGroupListenerBtn.UseSelectable = true;
-            this.startGroupListenerBtn.UseTileImage = true;
-            this.startGroupListenerBtn.Click += new System.EventHandler(this.startGroupListenerBtn_Click);
-            // 
             // volumemeterGrp
             // 
             this.volumemeterGrp.Location = new System.Drawing.Point(20, 548);
@@ -166,6 +151,21 @@
             this.settingsPB.TabStop = false;
             this.settingsPB.Click += new System.EventHandler(this.settingsPB_Click);
             // 
+            // startGroupListenerBtn
+            // 
+            this.startGroupListenerBtn.ActiveControl = null;
+            this.startGroupListenerBtn.Location = new System.Drawing.Point(958, 483);
+            this.startGroupListenerBtn.Name = "startGroupListenerBtn";
+            this.startGroupListenerBtn.Size = new System.Drawing.Size(47, 59);
+            this.startGroupListenerBtn.Style = MetroFramework.MetroColorStyle.Green;
+            this.startGroupListenerBtn.TabIndex = 16;
+            this.startGroupListenerBtn.TileImage = ((System.Drawing.Image)(resources.GetObject("startGroupListenerBtn.TileImage")));
+            this.startGroupListenerBtn.TileImageAlign = System.Drawing.ContentAlignment.MiddleCenter;
+            this.startGroupListenerBtn.TileTextFontSize = MetroFramework.MetroTileTextSize.Small;
+            this.startGroupListenerBtn.UseSelectable = true;
+            this.startGroupListenerBtn.UseTileImage = true;
+            this.startGroupListenerBtn.Click += new System.EventHandler(this.startGroupListenerBtn_Click);
+            // 
             // GroupConversations
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
@@ -178,6 +178,7 @@
             this.Controls.Add(this.tbInput);
             this.Controls.Add(this.canSendPanelGrp);
             this.Controls.Add(this.volumemeterGrp);
+            this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;
             this.Name = "GroupConversations";
             this.Resizable = false;
