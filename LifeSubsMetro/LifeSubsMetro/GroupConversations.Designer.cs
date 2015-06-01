@@ -183,7 +183,7 @@
             this.Resizable = false;
             this.Style = MetroFramework.MetroColorStyle.Green;
             this.Text = "Kamer: IT innovations";
-            this.FormClosed += new System.Windows.Forms.FormClosedEventHandler(this.GroupConversations_FormClosed);
+            this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.GroupConversations_FormClosing);
             this.Load += new System.EventHandler(this.GroupConversations_Load);
             ((System.ComponentModel.ISupportInitialize)(this.dataGridOutput)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.settingsPB)).EndInit();

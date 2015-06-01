@@ -143,7 +143,7 @@ namespace LifeSubsMetro
                     }
                 }
 
-                mm.Visible = false;
+                //mm.Visible = false;
             }
 
         }

@@ -313,22 +313,6 @@ namespace LifeSubsMetro
         }
 
         /// <summary>
-        /// Event handler for when this form is closed
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void GroupConversations_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            apiHandler.exitRoom(this);
-
-            try { deleteDir(); }
-            catch (Exception direx) { Console.WriteLine(direx.Message); }
-
-            mh.stopTimer();
-            mm.Visible = true;
-        }
-
-        /// <summary>
         /// Set the datagridview and textbox tot the user-specified or default style
         /// </summary>
         public void setStyle()
@@ -355,6 +339,24 @@ namespace LifeSubsMetro
 
             setStyle();
             mh = new MessageHandler(this);
+        }
+
+
+        /// <summary>
+        /// Event handler for when this form is closing
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void GroupConversations_FormClosing(object sender, FormClosingEventArgs e)
+        {
+            mh.stopTimer();
+            apiHandler.exitRoom(this);
+            //mm.Visible = true;
+            mm.BringToFront();
+
+            try { deleteDir(); }
+            catch (Exception direx) { Console.WriteLine(direx.Message); }
+
         }
     }
 }
