@@ -43,24 +43,30 @@ namespace LifeSubsMetro
         /// </summary>
         private void setStyle()
         {
-            int additionalSpacing;
+            //int additionalSpacing;
 
             this.screen = Screen.AllScreens[settings.screenIndex];
             var width = screen.Bounds.Width;
             this.Width = width;
-            this.tbOutput.Width = width - 40;
+            this.dataOutput.Width = width - 40;
             this.TopMost = true;
 
-            this.tbOutput.Font = new Font(settings.font, settings.fontsize);
-            this.tbOutput.BackColor = settings.bgColor;
-            this.tbOutput.ForeColor = settings.subColor;
-            this.lines = settings.lines;
+            dataOutput.Columns[0].Width = this.Width-70;
+            dataOutput.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
+            dataOutput.DefaultCellStyle.Font = new Font(settings.font, settings.fontsize); ;
+            dataOutput.DefaultCellStyle.BackColor = settings.bgColor;
+            dataOutput.DefaultCellStyle.ForeColor = settings.subColor;
+            //this.lines = settings.lines;
+            dataOutput.DefaultCellStyle.SelectionBackColor = settings.bgColor;
+            dataOutput.DefaultCellStyle.SelectionForeColor = settings.subColor;
+            dataOutput.BackgroundColor = settings.bgColor;
 
-            additionalSpacing = calcAdditionalSpacing(this.tbOutput.Font);
+            //additionalSpacing = calcAdditionalSpacing(this.tbOutput.Font);
 
-            int fontsize = Int32.Parse(tbOutput.Font.Size.ToString());
-            this.tbOutput.Height = (fontsize * lines) + additionalSpacing;
-            this.Height = tbOutput.Height + 50;
+            int fontsize = Int32.Parse(dataOutput.DefaultCellStyle.Font.Size.ToString());
+            //this.tbOutput.Height = (fontsize * lines) + additionalSpacing;
+            this.dataOutput.Height = this.Height - 50;
+            this.Height = dataOutput.Height + 50;
 
             this.deviceNumber = settings.microphone;
 
@@ -431,12 +437,19 @@ namespace LifeSubsMetro
         {
             if (result == "" || result == "500") return;
 
+
+            DataGridViewRow dr = new DataGridViewRow();
+
+            DataGridViewTextBoxCell cell1 = new DataGridViewTextBoxCell();
+            cell1.Value = result;
+            dr.Cells.Add(cell1);
+
             try
             {
-                if (this.tbOutput.InvokeRequired)
-                    this.tbOutput.Invoke((MethodInvoker)delegate { this.tbOutput.AppendText(result); });
+                if (this.dataOutput.InvokeRequired)
+                    this.dataOutput.Invoke((MethodInvoker)delegate { dataOutput.Rows.Add(dr); dataOutput.CurrentCell = dataOutput.Rows[dr.Index].Cells[0]; });
                 else
-                    this.tbOutput.AppendText(result);
+                    dataOutput.Rows.Add(dr); dataOutput.CurrentCell = dataOutput.Rows[dr.Index].Cells[0];
                 //this.tbOutput.AppendText( result );a
             }
             catch (ObjectDisposedException)
@@ -519,8 +532,8 @@ namespace LifeSubsMetro
             Console.WriteLine(logPath);
             try
             {
-                if (this.tbOutput.InvokeRequired)
-                    this.tbOutput.Invoke((MethodInvoker)delegate
+                if (this.dataOutput.InvokeRequired)
+                    this.dataOutput.Invoke((MethodInvoker)delegate
                     {
                         using (StreamWriter sw = File.AppendText(logPath))
                         {
@@ -757,7 +770,7 @@ namespace LifeSubsMetro
         {
             if (dragging && e.Button == MouseButtons.Left)
             {
-                if (this.tbOutput.InvokeRequired)
+                if (this.dataOutput.InvokeRequired)
                 {
                     this.Invoke((MethodInvoker)delegate
                     {

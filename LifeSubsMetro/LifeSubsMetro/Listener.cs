@@ -97,7 +97,8 @@ namespace LifeSubsMetro
                 StreamReader sr = new StreamReader(stream);
                 //StreamReader sr = new StreamReader((Stream)sourceStream);
 
-                result = sr.ReadToEnd();
+                //result = sr.ReadToEnd();
+                result = sr.ReadLine();
 
                 sr.Close();
                 stream.Close();
