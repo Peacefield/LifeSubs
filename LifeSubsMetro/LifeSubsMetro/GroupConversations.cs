@@ -320,6 +320,7 @@ namespace LifeSubsMetro
         private void GroupConversations_FormClosed(object sender, FormClosedEventArgs e)
         {
             apiHandler.exitRoom(this);
+
             try { deleteDir(); }
             catch (Exception direx) { Console.WriteLine(direx.Message); }
 
