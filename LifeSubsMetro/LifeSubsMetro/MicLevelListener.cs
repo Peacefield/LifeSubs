@@ -73,8 +73,8 @@ namespace LifeSubsMetro
 
         private void countLowVoiceLevelBits(int i)
         {
-            int min = -5;
-            int max = 5;
+            int min = -15;
+            int max = 15;
 
             switch (noiseLevel)
             {
@@ -108,7 +108,6 @@ namespace LifeSubsMetro
                 }
                 if (settingsMenu != null) settingsMenu.setVolumeMeter(i);
                 if (grpConv != null) grpConv.setVolumeMeter(i);
-                count++;
             }
             // Sound level is not between min and max, which means speaker is talking
             else

@@ -164,10 +164,7 @@ namespace LifeSubsMetro
                         c.Visible = true;
                     }
                 }
-
-                //mm.Visible = false;
             }
-
         }
 
         public void sendMessage(string roomId, string userId, string msg, GroupConversations gc)
@@ -358,7 +355,7 @@ namespace LifeSubsMetro
             }
             else
             {
-                MetroMessageBox.Show(gcs, "Doei", "Kamer succesvol verlaten!", MessageBoxButtons.OK, MessageBoxIcon.Question);
+                //MetroMessageBox.Show(gcs, "Doei", "Kamer succesvol verlaten!", MessageBoxButtons.OK, MessageBoxIcon.Question);
             }
         }
 

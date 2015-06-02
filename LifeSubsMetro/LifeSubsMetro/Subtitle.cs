@@ -22,7 +22,7 @@ namespace LifeSubsMetro
         String currentListener;
         Settings settings;
         int deviceNumber = -1;
-        string path = @"C:\audiotest";
+        string path = @"audio\";
         string logPath;
         int lines;
         public string position;
@@ -59,34 +59,38 @@ namespace LifeSubsMetro
         /// </summary>
         private void setStyle()
         {
-            int additionalSpacing;
-
             this.screen = Screen.AllScreens[settings.screenIndex];
             var width = screen.Bounds.Width;
             this.Width = width;
-            this.tbOutput.Width = width - 40;
+            this.dataOutput.Width = width - 40;
             this.TopMost = true;
 
-            this.tbOutput.Font = new Font(settings.font, settings.fontsize);
-            this.tbOutput.BackColor = settings.bgColor;
-            this.tbOutput.ForeColor = settings.subColor;
+            dataOutput.RowTemplate.Height = settings.fontsize;
             this.lines = settings.lines;
 
-            additionalSpacing = calcAdditionalSpacing(this.tbOutput.Font);
+            dataOutput.Height = (settings.fontsize * lines) * 2;
 
-            int fontsize = Int32.Parse(tbOutput.Font.Size.ToString());
-            this.tbOutput.Height = (fontsize * lines) + additionalSpacing;
-            this.Height = tbOutput.Height + 50;
+            this.Height = dataOutput.Height + 50;
+            dataOutput.Columns[0].Width = this.Width - 70;
+            dataOutput.DefaultCellStyle.WrapMode = DataGridViewTriState.True;
+            dataOutput.DefaultCellStyle.Font = new Font(settings.font, settings.fontsize);
+            dataOutput.DefaultCellStyle.Font = new Font(settings.font, settings.fontsize + 1);
+            dataOutput.DefaultCellStyle.Font = new Font(settings.font, settings.fontsize);
+            dataOutput.DefaultCellStyle.BackColor = settings.bgColor;
+            dataOutput.DefaultCellStyle.ForeColor = settings.subColor;
+            dataOutput.DefaultCellStyle.SelectionBackColor = settings.bgColor;
+            dataOutput.DefaultCellStyle.SelectionForeColor = settings.subColor;
+            dataOutput.BackgroundColor = settings.bgColor;
 
             this.deviceNumber = settings.microphone;
 
             if (mll != null)
             {
                 mll.stop();
-                mll = new MicLevelListener(this);
+                //mll = new MicLevelListener(this);
                 mll.deviceNumber = settings.microphone;
                 mll.noiseLevel = settings.noiseLevel;
-                mll.sec = settings.delay;
+                mll.sec = settings.delay * 10;
                 mll.listenToStream();
             }
         }
@@ -128,6 +132,8 @@ namespace LifeSubsMetro
                     position = "bottom";
                     break;
             }
+            if (dataOutput.Rows.Count > 0)
+                dataOutput.CurrentCell = dataOutput.Rows[dataOutput.Rows.Count - 1].Cells[0];
         }
 
         #region Responsive to font-changes
@@ -410,13 +416,15 @@ namespace LifeSubsMetro
             mll = new MicLevelListener(this);
             mll.deviceNumber = settings.microphone;
             mll.noiseLevel = settings.noiseLevel;
+            mll.sec = settings.delay * 10;
             mll.listenToStream();
 
             this.logPath = saveLogPath();
 
             //Initiate recording
             currentListener = "listener1";
-            listener1 = new Listener(deviceNumber, currentListener, this);
+            listener1 = new Listener(deviceNumber, "listener1", this);
+            listener2 = new Listener(deviceNumber, "listener2", this);
             listener1.startRecording();
         }
 
@@ -455,18 +463,25 @@ namespace LifeSubsMetro
             {
                 apihandler.sendMessage(roomId, userId, result, null);
             }
+
+            DataGridViewRow dr = new DataGridViewRow();
+
+            DataGridViewTextBoxCell cell1 = new DataGridViewTextBoxCell();
+            cell1.Value = result;
+            dr.Cells.Add(cell1);
+
             try
             {
-                if (this.tbOutput.InvokeRequired)
-                    this.tbOutput.Invoke((MethodInvoker)delegate { this.tbOutput.AppendText(result); });
+                if (this.dataOutput.InvokeRequired)
+                    this.dataOutput.Invoke((MethodInvoker)delegate { dataOutput.Rows.Add(dr); dataOutput.CurrentCell = dataOutput.Rows[dr.Index].Cells[0]; });
                 else
-                    this.tbOutput.AppendText(result);
-                //this.tbOutput.AppendText( result );a
+                    dataOutput.Rows.Add(dr); dataOutput.CurrentCell = dataOutput.Rows[dr.Index].Cells[0];
+                //this.tbOutput.AppendText( result );
             }
             catch (ObjectDisposedException)
             {
-                Console.WriteLine("Textbox niet kunnen vinden");
-                Console.WriteLine(result); //Misschien wel toevoegen aan log?
+                Console.WriteLine("Datagridview niet kunnen vinden");
+                Console.WriteLine(result);
             }
         }
 
@@ -543,8 +558,8 @@ namespace LifeSubsMetro
             Console.WriteLine(logPath);
             try
             {
-                if (this.tbOutput.InvokeRequired)
-                    this.tbOutput.Invoke((MethodInvoker)delegate
+                if (this.dataOutput.InvokeRequired)
+                    this.dataOutput.Invoke((MethodInvoker)delegate
                     {
                         using (StreamWriter sw = File.AppendText(logPath))
                         {
@@ -557,9 +572,9 @@ namespace LifeSubsMetro
                         sw.WriteLine(text);
                     }
             }
-            catch (FileNotFoundException fnfe)
+            catch (DirectoryNotFoundException dnfe)
             {
-                Console.WriteLine("File not found: " + fnfe.Message);
+                Console.WriteLine("File not found: " + dnfe.Message);
             }
         }
         #endregion
@@ -591,20 +606,29 @@ namespace LifeSubsMetro
         private string saveLogPath()
         {
             string savePath = settings.savePath;
+
+            Console.WriteLine("LogPath ---> " + savePath);
+
+            bool folderExists = Directory.Exists(savePath);
+            if (!folderExists) Directory.CreateDirectory(savePath);
+
             DateTime datetime = DateTime.Now;
+            string day = datetime.Day.ToString();
             string month = datetime.Month.ToString();
             string hour = datetime.Hour.ToString();
             string minute = datetime.Minute.ToString();
             string seconds = datetime.Second.ToString();
 
+            if (datetime.Day < 10) day = "0" + datetime.Day;
             if (datetime.Month < 10) month = "0" + datetime.Month;
             if (datetime.Hour < 10) hour = "0" + datetime.Hour;
             if (datetime.Minute < 10) minute = "0" + datetime.Minute;
             if (datetime.Second < 10) seconds = "0" + datetime.Second;
 
-            string date = datetime.Year + "-" + month + "-" + datetime.Day + "_" + hour + minute + seconds;
+            string date = datetime.Year + "-" + month + "-" + day + "_" + hour + minute + seconds;
             savePath += date + ".txt";
 
+            
             return savePath;
         }
 
@@ -632,7 +656,6 @@ namespace LifeSubsMetro
                     //Set next listener
                     currentListener = "listener2";
                     //Create next listener
-                    listener2 = new Listener(deviceNumber, currentListener, this);
                     //Start next listener
                     listener2.startRecording();
 
@@ -645,7 +668,7 @@ namespace LifeSubsMetro
                     //Set next listener
                     currentListener = "listener1";
                     //Create next listener
-                    listener1 = new Listener(deviceNumber, currentListener, this);
+                    //listener1 = new Listener(deviceNumber, currentListener, this);
                     //Start next listener
                     listener1.startRecording();
 
@@ -669,7 +692,7 @@ namespace LifeSubsMetro
                     //Set next listener
                     currentListener = "listener2";
                     //Create next listener
-                    listener2 = new Listener(deviceNumber, currentListener, this);
+                    //listener2 = new Listener(deviceNumber, currentListener, this);
                     //Start next listener
                     listener2.startRecording();
                     Console.WriteLine("Stop listener1");
@@ -695,7 +718,7 @@ namespace LifeSubsMetro
                     //Set next listener
                     currentListener = "listener1";
                     //Create next listener
-                    listener1 = new Listener(deviceNumber, currentListener, this);
+                    //listener1 = new Listener(deviceNumber, currentListener, this);
                     //Start next listener
                     listener1.startRecording();
                     Console.WriteLine("Stop listener2");
@@ -781,7 +804,7 @@ namespace LifeSubsMetro
         {
             if (dragging && e.Button == MouseButtons.Left)
             {
-                if (this.tbOutput.InvokeRequired)
+                if (this.dataOutput.InvokeRequired)
                 {
                     this.Invoke((MethodInvoker)delegate
                     {

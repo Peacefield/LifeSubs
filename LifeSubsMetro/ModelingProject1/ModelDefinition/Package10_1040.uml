@@ -1,0 +1,605 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm4="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/LogicalClassDesigner" xmlns:dm9="http://schemas.microsoft.com/VisualStudio/TeamArchitect/SequenceDesigner" xmlns:dm10="http://schemas.microsoft.com/dsltools/SimpleShapesModel" xmlns:dm11="http://schemas.microsoft.com/VisualStudio/TeamArchitect/ActivityDesigner"
+  dslVersion="1.0.0.0"
+  Id="c32fed9e-fdbc-49eb-8abe-547f76398c10"
+  name="Controls"
+  visibility="Private" xmlns="http://schemas.microsoft.com/dsltools/ModelStore">
+  <referencesInternal>
+    <reference
+      Id="0c3ae921-08d6-4fa6-bb15-6118b566f741"
+      handle="viewcode://./CodeSchema_Namespace?Namespace%3DMetroFramework.Controls"
+      tag="ViewCode" />
+  </referencesInternal>
+  <profileInstances>
+    <packageHasProfileInstances
+      Id="03046aa5-c1d7-49ac-8f1b-b39829c15ca0">
+      <profileInstance
+        Id="5fe5e81f-ec2d-4897-aa11-c1e18feaf735"
+        name="CSharpProfile" />
+    </packageHasProfileInstances>
+  </profileInstances>
+  <packagedElements>
+    <packageHasNamedElement>
+      <class
+        Id="5890f2e8-82cd-4ee5-906e-162152952d3f"
+        name="MetroTextBox"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <referencesInternal>
+          <reference
+            Id="984ed5ab-fd6c-47ed-a456-82ebacb4edd3"
+            handle="viewcode://./CodeSchema_Class?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2FJeremy%2FSource%2FRepos%2FLifeSubs%2FLifeSubsMetro%2FLifeSubsMetro%2FDLL%2FMetroFramework.dll Namespace%3DMetroFramework.Controls Type%3DMetroTextBox"
+            tag="ViewCode" />
+        </referencesInternal>
+        <appliedStereotypesInternal>
+          <stereotypeInstance
+            Id="83ea33b5-e9b0-4de7-ace2-dc40e313c08a"
+            name="class"
+            profile="CSharpProfile">
+            <propertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="ed5aa127-1eb5-43d5-9efd-dbe3092ac0d9">
+                <propertyInstance
+                  Id="509840a4-fde0-4a71-abf4-751719eb5053"
+                  name="ClrAttributes" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="cdfce236-cf71-43ae-b2bc-dbbace687fac">
+                <propertyInstance
+                  Id="1b1cebe2-6541-4df0-b60b-f270abc6738b"
+                  name="IsPartial"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="d850ce3c-8457-4e5d-a919-7a3f8590fe0b">
+                <propertyInstance
+                  Id="da4dd31e-91da-4f0e-aa73-0283971da583"
+                  name="IsStatic"
+                  value="False" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="1c71bf45-d5f5-4941-8946-1adca12355ea">
+                <propertyInstance
+                  Id="36a1487c-db25-4a91-aba9-ef53cc04edec"
+                  name="IsUnsafe"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="227e11a1-e406-4b15-9580-b99ce9242824">
+                <propertyInstance
+                  Id="7612035e-6182-40ab-924e-e75e4a41d96f"
+                  name="PackageVisibility"
+                  value="internal" />
+              </stereotypeInstanceHasPropertyInstances>
+            </propertyInstances>
+          </stereotypeInstance>
+        </appliedStereotypesInternal>
+        <generalsInternal>
+          <generalization
+            Id="728669a8-9b8a-4d9c-821c-7715bea13bd0"
+            isSubstitutable="false">
+            <classMoniker
+              Id="44b15470-371e-4213-bdaa-0e7b8e9f6bdd"
+              LastKnownName="Control"
+              LastKnownLocation="Package5_1040.uml" />
+          </generalization>
+        </generalsInternal>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="6297c47b-43a0-4b56-8278-e8b342bc1d22"
+        name="MetroTile"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <referencesInternal>
+          <reference
+            Id="d730c562-ff0f-453b-a7aa-e23b7da26801"
+            handle="viewcode://./CodeSchema_Class?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2FJeremy%2FSource%2FRepos%2FLifeSubs%2FLifeSubsMetro%2FLifeSubsMetro%2FDLL%2FMetroFramework.dll Namespace%3DMetroFramework.Controls Type%3DMetroTile"
+            tag="ViewCode" />
+        </referencesInternal>
+        <appliedStereotypesInternal>
+          <stereotypeInstance
+            Id="c3ae74aa-9dff-484e-8527-d916de147bda"
+            name="class"
+            profile="CSharpProfile">
+            <propertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="55ade399-e1d1-4d61-8ebd-dbd77b7c7d36">
+                <propertyInstance
+                  Id="dcfb2cd8-7d04-4783-b9bd-de2c57cb6e3a"
+                  name="ClrAttributes" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="edb29a48-cfa8-49df-a1c7-770ce5f3c478">
+                <propertyInstance
+                  Id="0fad6ae9-0694-4ece-b835-323983a46ba5"
+                  name="IsPartial"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="f6b3399f-01d2-4cd3-8617-276487081696">
+                <propertyInstance
+                  Id="74ea2a95-3356-42f5-9982-0dcf34067efb"
+                  name="IsStatic"
+                  value="False" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="5a401ddc-d877-4932-993f-948469082143">
+                <propertyInstance
+                  Id="7d184378-4999-47ef-a6ca-0bc3058fbd5f"
+                  name="IsUnsafe"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="565dea2d-083e-4885-a056-aac188f64b7d">
+                <propertyInstance
+                  Id="ee19f458-80a8-4fb7-bb17-4168d1fa022d"
+                  name="PackageVisibility"
+                  value="internal" />
+              </stereotypeInstanceHasPropertyInstances>
+            </propertyInstances>
+          </stereotypeInstance>
+        </appliedStereotypesInternal>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="349a6446-e7b4-4d70-8aea-6d333bfc8c6a"
+        name="MetroProgressBar"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <referencesInternal>
+          <reference
+            Id="a65263a0-7e16-4d6c-b0b2-2260684487fd"
+            handle="viewcode://./CodeSchema_Class?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2FJeremy%2FSource%2FRepos%2FLifeSubs%2FLifeSubsMetro%2FLifeSubsMetro%2FDLL%2FMetroFramework.dll Namespace%3DMetroFramework.Controls Type%3DMetroProgressBar"
+            tag="ViewCode" />
+        </referencesInternal>
+        <appliedStereotypesInternal>
+          <stereotypeInstance
+            Id="a4c75693-ee89-480d-a267-892cc194efdb"
+            name="class"
+            profile="CSharpProfile">
+            <propertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="21e96e4c-482b-413d-9b27-8ae73406f50d">
+                <propertyInstance
+                  Id="919fd8ea-6cdc-4cc8-aa03-f052ba3cf732"
+                  name="ClrAttributes" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="a7c29f32-e9a5-4bec-a665-217724fd9eb2">
+                <propertyInstance
+                  Id="e520f5e0-c10d-423e-93b8-72efd4c8f6d9"
+                  name="IsPartial"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="a908bf22-28fb-426a-bd2c-a40c990d10f1">
+                <propertyInstance
+                  Id="eb31af84-0e24-4d4c-a7f2-f2d29825df95"
+                  name="IsStatic"
+                  value="False" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="93a922c5-ede0-467a-8e76-3111fd7d077a">
+                <propertyInstance
+                  Id="b7735aa2-7520-4ffa-8e25-e9ac22c68ac0"
+                  name="IsUnsafe"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="1b3fc977-cc0c-492c-8701-22077c7eec61">
+                <propertyInstance
+                  Id="f9cc1012-f1ca-4b4d-b921-da96c6b7f52a"
+                  name="PackageVisibility"
+                  value="internal" />
+              </stereotypeInstanceHasPropertyInstances>
+            </propertyInstances>
+          </stereotypeInstance>
+        </appliedStereotypesInternal>
+        <generalsInternal>
+          <generalization
+            Id="bfa3cd09-f615-4a26-9eb0-e9f276b8e41d"
+            isSubstitutable="false">
+            <classMoniker
+              Id="8e14b2c5-4461-4d06-829f-c277b548d570"
+              LastKnownName="ProgressBar"
+              LastKnownLocation="Package5_1040.uml" />
+          </generalization>
+        </generalsInternal>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="760dce0b-873f-4702-9916-c137b3849962"
+        name="MetroButton"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <referencesInternal>
+          <reference
+            Id="11356038-5423-4d12-8546-f86caf652cf7"
+            handle="viewcode://./CodeSchema_Class?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2FJeremy%2FSource%2FRepos%2FLifeSubs%2FLifeSubsMetro%2FLifeSubsMetro%2FDLL%2FMetroFramework.dll Namespace%3DMetroFramework.Controls Type%3DMetroButton"
+            tag="ViewCode" />
+        </referencesInternal>
+        <appliedStereotypesInternal>
+          <stereotypeInstance
+            Id="3b165111-dfa9-4183-bad7-facb90459c92"
+            name="class"
+            profile="CSharpProfile">
+            <propertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="e0845c71-d355-4cb7-b274-1fbf737ba832">
+                <propertyInstance
+                  Id="509afe79-7d65-42da-ad10-c04f8050001f"
+                  name="ClrAttributes" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="e94e2844-2457-4bb2-969c-0241b4bf8fe9">
+                <propertyInstance
+                  Id="cf4737d2-4edc-44b7-bc9c-8ac6ece10fd5"
+                  name="IsPartial"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="e2de9e97-9720-4e08-8345-4a917d43b892">
+                <propertyInstance
+                  Id="8073d09b-bbca-4d28-a78d-31b7ae128f57"
+                  name="IsStatic"
+                  value="False" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="1427d848-1e1c-4fda-b1b9-7137abfd336c">
+                <propertyInstance
+                  Id="2635a522-d335-474b-a085-ae7c79df7a22"
+                  name="IsUnsafe"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="a98b8f50-7ff7-4fb5-aa7a-5d0cd4dedb88">
+                <propertyInstance
+                  Id="2574ddc4-f765-469b-ba56-54c3570d9e99"
+                  name="PackageVisibility"
+                  value="internal" />
+              </stereotypeInstanceHasPropertyInstances>
+            </propertyInstances>
+          </stereotypeInstance>
+        </appliedStereotypesInternal>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="758d15f9-e725-490c-b126-f2809d8abb65"
+        name="MetroLabel"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <referencesInternal>
+          <reference
+            Id="612dd022-8086-4ae7-9290-bcec1a45966e"
+            handle="viewcode://./CodeSchema_Class?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2FJeremy%2FSource%2FRepos%2FLifeSubs%2FLifeSubsMetro%2FLifeSubsMetro%2FDLL%2FMetroFramework.dll Namespace%3DMetroFramework.Controls Type%3DMetroLabel"
+            tag="ViewCode" />
+        </referencesInternal>
+        <appliedStereotypesInternal>
+          <stereotypeInstance
+            Id="5e7da3cb-b312-46bc-9124-799918da23b7"
+            name="class"
+            profile="CSharpProfile">
+            <propertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="b7b4ee84-b470-4325-bf6a-284ebe75ca90">
+                <propertyInstance
+                  Id="03afeb4d-b995-4511-9b80-59c3665f40ff"
+                  name="ClrAttributes" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="41bd9939-04ee-4837-bd37-53c6c54f2a71">
+                <propertyInstance
+                  Id="1ed9ba4f-26a5-432b-8c05-ff24fcc88c82"
+                  name="IsPartial"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="0d4c0959-a53e-4571-8873-b843345ea989">
+                <propertyInstance
+                  Id="494b6376-3cc9-4802-a86d-99233afcf1cc"
+                  name="IsStatic"
+                  value="False" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="88914521-1cfd-4d41-882b-214053236e8a">
+                <propertyInstance
+                  Id="1f0abfbc-5430-4373-9401-f6d98e986b33"
+                  name="IsUnsafe"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="9fc580c4-746b-484c-ae6f-59512a00985a">
+                <propertyInstance
+                  Id="33d87010-bf42-4ec2-977b-526492331f3a"
+                  name="PackageVisibility"
+                  value="internal" />
+              </stereotypeInstanceHasPropertyInstances>
+            </propertyInstances>
+          </stereotypeInstance>
+        </appliedStereotypesInternal>
+        <generalsInternal>
+          <generalization
+            Id="37881a26-9463-456e-9103-28e496873b90"
+            isSubstitutable="false">
+            <classMoniker
+              Id="7a091e44-9980-41f0-874c-9d3e19d22e22"
+              LastKnownName="Label"
+              LastKnownLocation="Package5_1040.uml" />
+          </generalization>
+        </generalsInternal>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="4c7aaef7-1ec3-44fb-a758-b62e0ae9362b"
+        name="MetroPanel"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <referencesInternal>
+          <reference
+            Id="a84f7a57-9150-4f3b-a611-d35490ed72d0"
+            handle="viewcode://./CodeSchema_Class?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2FJeremy%2FSource%2FRepos%2FLifeSubs%2FLifeSubsMetro%2FLifeSubsMetro%2FDLL%2FMetroFramework.dll Namespace%3DMetroFramework.Controls Type%3DMetroPanel"
+            tag="ViewCode" />
+        </referencesInternal>
+        <appliedStereotypesInternal>
+          <stereotypeInstance
+            Id="aecbf01c-267f-42ce-9837-14571ffc9620"
+            name="class"
+            profile="CSharpProfile">
+            <propertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="3777e49c-bf67-48a6-9e7f-914a5544f929">
+                <propertyInstance
+                  Id="b367a81d-b2d7-494c-ab31-719ffd14c7d2"
+                  name="ClrAttributes" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="eeacd303-fc75-4568-a0c0-45ebf79e8546">
+                <propertyInstance
+                  Id="81543ff0-9051-47d0-8284-e41e27f3b9ba"
+                  name="IsPartial"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="d27ea121-4bcc-4599-8d19-d475a6e1b2be">
+                <propertyInstance
+                  Id="2a81d7f9-be01-4cad-bbbd-80abc7d7ea29"
+                  name="IsStatic"
+                  value="False" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="a100bbfc-d3e5-4063-9525-e167054efeb0">
+                <propertyInstance
+                  Id="93c845dd-43b9-4463-9779-05d02d56e45e"
+                  name="IsUnsafe"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="574432cc-e307-4cda-afd5-9c302e1dbe3f">
+                <propertyInstance
+                  Id="70d467c1-aad1-43bf-964a-f41ed02b69e8"
+                  name="PackageVisibility"
+                  value="internal" />
+              </stereotypeInstanceHasPropertyInstances>
+            </propertyInstances>
+          </stereotypeInstance>
+        </appliedStereotypesInternal>
+        <generalsInternal>
+          <generalization
+            Id="345c8b8d-034a-4c6e-bfe5-00988b7ba98d"
+            isSubstitutable="false">
+            <classMoniker
+              Id="2db9758e-6161-450d-85d8-d8bdf696f137"
+              LastKnownName="Panel"
+              LastKnownLocation="Package5_1040.uml" />
+          </generalization>
+        </generalsInternal>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="aafaea6e-040c-4150-9b5d-611c77ab00d2"
+        name="MetroCheckBox"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <referencesInternal>
+          <reference
+            Id="26319902-88b1-4b73-b9f6-3c0f3d338fcf"
+            handle="viewcode://./CodeSchema_Class?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2FJeremy%2FSource%2FRepos%2FLifeSubs%2FLifeSubsMetro%2FLifeSubsMetro%2FDLL%2FMetroFramework.dll Namespace%3DMetroFramework.Controls Type%3DMetroCheckBox"
+            tag="ViewCode" />
+        </referencesInternal>
+        <appliedStereotypesInternal>
+          <stereotypeInstance
+            Id="962b87d5-559c-4cb3-9230-7601ec0759af"
+            name="class"
+            profile="CSharpProfile">
+            <propertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="d6c1701c-e0e0-496c-b3e1-1f4e5ca6b5fe">
+                <propertyInstance
+                  Id="1e9a5393-22d4-4d4f-9aff-e90d0ee07116"
+                  name="ClrAttributes" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="ee3dc099-a03d-41c2-beb4-d46f52c04a64">
+                <propertyInstance
+                  Id="78e75026-029f-40e9-ba9c-69ec02123c37"
+                  name="IsPartial"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="be82cbb1-5592-4366-b6fe-0220e787893a">
+                <propertyInstance
+                  Id="380542e7-4ec9-4a1e-b70d-ffe918e452d2"
+                  name="IsStatic"
+                  value="False" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="413a3f85-fff3-463e-9015-8a0e0449cf09">
+                <propertyInstance
+                  Id="d0d28e05-3a13-472d-8409-524fc4c6140b"
+                  name="IsUnsafe"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="0e5f6c85-234c-48f0-b699-bf1ad9dd050c">
+                <propertyInstance
+                  Id="0981023d-ab3a-45c2-8c32-987501abe9fd"
+                  name="PackageVisibility"
+                  value="internal" />
+              </stereotypeInstanceHasPropertyInstances>
+            </propertyInstances>
+          </stereotypeInstance>
+        </appliedStereotypesInternal>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="1ed751c8-9597-4826-aee7-218f1844a714"
+        name="MetroComboBox"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <referencesInternal>
+          <reference
+            Id="4bdf0a50-b703-4d0f-803c-842f75b41aee"
+            handle="viewcode://./CodeSchema_Class?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2FJeremy%2FSource%2FRepos%2FLifeSubs%2FLifeSubsMetro%2FLifeSubsMetro%2FDLL%2FMetroFramework.dll Namespace%3DMetroFramework.Controls Type%3DMetroComboBox"
+            tag="ViewCode" />
+        </referencesInternal>
+        <appliedStereotypesInternal>
+          <stereotypeInstance
+            Id="4c06ab96-38cd-4435-820c-111a24501cc1"
+            name="class"
+            profile="CSharpProfile">
+            <propertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="5e77cf66-c514-4215-9aa4-bb071ca9f4ea">
+                <propertyInstance
+                  Id="9b3242fd-d5c8-4532-9d2a-d0f6c2988fcd"
+                  name="ClrAttributes" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="0af0fdba-d628-4739-bf0a-82dc7202df38">
+                <propertyInstance
+                  Id="57291cb7-d3b8-4936-90b0-81b9396eba55"
+                  name="IsPartial"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="8bd97f76-611b-4dcd-a8a1-61070d1db5e6">
+                <propertyInstance
+                  Id="403cc9de-346f-4025-8ac4-f1d4c5975296"
+                  name="IsStatic"
+                  value="False" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="4f2aa9f7-578e-4730-a470-a4fc3729a544">
+                <propertyInstance
+                  Id="e13d6c52-b13f-43e4-86d1-1f449448a7fe"
+                  name="IsUnsafe"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="706a94fd-cb8a-49cb-b134-054d1b01dccb">
+                <propertyInstance
+                  Id="739ea410-c530-438a-90b6-a9e8800e275e"
+                  name="PackageVisibility"
+                  value="internal" />
+              </stereotypeInstanceHasPropertyInstances>
+            </propertyInstances>
+          </stereotypeInstance>
+        </appliedStereotypesInternal>
+        <generalsInternal>
+          <generalization
+            Id="c716bd21-e1d3-4726-9879-9df18598e0ec"
+            isSubstitutable="false">
+            <classMoniker
+              Id="74b2e726-5576-437f-8e04-f6a8894e6b6c"
+              LastKnownName="ComboBox"
+              LastKnownLocation="Package5_1040.uml" />
+          </generalization>
+        </generalsInternal>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="df9059f3-139a-4607-8287-e8c397b65d7f"
+        name="MetroTrackBar"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <referencesInternal>
+          <reference
+            Id="903c906a-2010-48ca-a925-8ef2127dba74"
+            handle="viewcode://./CodeSchema_Class?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2FJeremy%2FSource%2FRepos%2FLifeSubs%2FLifeSubsMetro%2FLifeSubsMetro%2FDLL%2FMetroFramework.dll Namespace%3DMetroFramework.Controls Type%3DMetroTrackBar"
+            tag="ViewCode" />
+        </referencesInternal>
+        <appliedStereotypesInternal>
+          <stereotypeInstance
+            Id="728fc82a-0dc0-4398-85cc-68b76386348e"
+            name="class"
+            profile="CSharpProfile">
+            <propertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="0ec9a3e6-c081-4b37-b387-2517c8cc076c">
+                <propertyInstance
+                  Id="04ca5bf2-1545-42cd-8feb-091faa120fd7"
+                  name="ClrAttributes" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="5b86a2a6-4063-48af-ac62-eb46d34f02eb">
+                <propertyInstance
+                  Id="e3413a07-c143-4c7e-a619-87f872e1db89"
+                  name="IsPartial"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="4c18e931-8e02-4c16-a5cf-4c0eb352aa65">
+                <propertyInstance
+                  Id="a9ec9398-1e6e-439a-a846-655a428f4bc5"
+                  name="IsStatic"
+                  value="False" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="00c51748-6aa5-4298-8137-d01dd4f3a174">
+                <propertyInstance
+                  Id="b88465b8-e9be-44a2-b0dc-36a085203115"
+                  name="IsUnsafe"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="f263947a-a539-4b1a-a868-38503928713b">
+                <propertyInstance
+                  Id="d9593d2a-531e-4dbf-81c3-72199d7676cf"
+                  name="PackageVisibility"
+                  value="internal" />
+              </stereotypeInstanceHasPropertyInstances>
+            </propertyInstances>
+          </stereotypeInstance>
+        </appliedStereotypesInternal>
+        <generalsInternal>
+          <generalization
+            Id="b73e6be7-9951-412b-b909-ac0dd80fd3b1"
+            isSubstitutable="false">
+            <classMoniker
+              Id="44b15470-371e-4213-bdaa-0e7b8e9f6bdd"
+              LastKnownName="Control"
+              LastKnownLocation="Package5_1040.uml" />
+          </generalization>
+        </generalsInternal>
+      </class>
+    </packageHasNamedElement>
+  </packagedElements>
+</package>

@@ -26,7 +26,7 @@ namespace LifeSubsMetro
             this.subtitleForm = subtitleForm;
             this.deviceNumber = settings.microphone;
             this.language = settings.subLanguage;
-            this.fileName = "C:\\audiotest\\" + fileName + ".wav";
+            this.fileName = @"audio\" + fileName + ".wav";
         }
 
         /// <summary>
@@ -41,7 +41,7 @@ namespace LifeSubsMetro
             this.grpConv = grp;
             this.deviceNumber = settings.microphone;
             this.language = settings.subLanguage;
-            this.fileName = "C:\\audiotest\\" + fileName + ".wav";
+            this.fileName = @"audio\" + fileName + ".wav";
         }
 
         #region request
@@ -97,7 +97,8 @@ namespace LifeSubsMetro
                 StreamReader sr = new StreamReader(stream);
                 //StreamReader sr = new StreamReader((Stream)sourceStream);
 
-                result = sr.ReadToEnd();
+                //result = sr.ReadToEnd();
+                result = sr.ReadLine();
 
                 sr.Close();
                 stream.Close();
@@ -197,7 +198,6 @@ namespace LifeSubsMetro
         private void sourceStream_DataAvailable(object sender, NAudio.Wave.WaveInEventArgs e)
         {
             if (waveWriter == null) return;
-            Console.WriteLine("dataavailable");
             waveWriter.WriteData(e.Buffer, 0, e.BytesRecorded);
             waveWriter.Flush();
         }

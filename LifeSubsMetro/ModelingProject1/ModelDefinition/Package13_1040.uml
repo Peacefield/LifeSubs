@@ -1,0 +1,207 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm4="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/LogicalClassDesigner" xmlns:dm9="http://schemas.microsoft.com/VisualStudio/TeamArchitect/SequenceDesigner" xmlns:dm10="http://schemas.microsoft.com/dsltools/SimpleShapesModel" xmlns:dm11="http://schemas.microsoft.com/VisualStudio/TeamArchitect/ActivityDesigner"
+  dslVersion="1.0.0.0"
+  Id="57d0ada3-3b54-4140-bacb-677aa1806f17"
+  name="Wave"
+  visibility="Private" xmlns="http://schemas.microsoft.com/dsltools/ModelStore">
+  <referencesInternal>
+    <reference
+      Id="f6c19d0b-8561-47f0-a0cc-53944b33adc2"
+      handle="viewcode://./CodeSchema_Namespace?Namespace%3DNAudio.Wave"
+      tag="ViewCode" />
+  </referencesInternal>
+  <profileInstances>
+    <packageHasProfileInstances
+      Id="e6cb9793-1d0e-412f-b45c-1e9cca70b11d">
+      <profileInstance
+        Id="bed43afe-ddbb-403d-b117-203e0435c81b"
+        name="CSharpProfile" />
+    </packageHasProfileInstances>
+  </profileInstances>
+  <packagedElements>
+    <packageHasNamedElement>
+      <class
+        Id="4d7649c0-2098-418e-a52e-eabc78aa0db9"
+        name="WaveInEventArgs"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <referencesInternal>
+          <reference
+            Id="21ce532d-598a-4660-b665-b0c93a3a4918"
+            handle="viewcode://./CodeSchema_Class?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2FJeremy%2FSource%2FRepos%2FLifeSubs%2FLifeSubsMetro%2FLifeSubsMetro%2FDLL%2FNAudio.dll Namespace%3DNAudio.Wave Type%3DWaveInEventArgs"
+            tag="ViewCode" />
+        </referencesInternal>
+        <appliedStereotypesInternal>
+          <stereotypeInstance
+            Id="0bd378e4-800c-4a04-a9d4-21e67aa92891"
+            name="class"
+            profile="CSharpProfile">
+            <propertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="ee84b8c9-1fe0-4adb-8d81-a15c3ee147ce">
+                <propertyInstance
+                  Id="dc8b3d4d-b60c-4b3e-b3f0-5dcb46a8a099"
+                  name="ClrAttributes" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="f9d974cc-c69b-4587-8858-fe3f50358d39">
+                <propertyInstance
+                  Id="cc333d1e-dc0f-4a75-ae62-44e0e1d114d4"
+                  name="IsPartial"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="45aa9cae-08a5-4a13-a861-699df58f4064">
+                <propertyInstance
+                  Id="850921af-ee19-4c5a-b317-3ceb2319be29"
+                  name="IsStatic"
+                  value="False" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="1dbae82a-7682-460e-9ac4-a164361f94a4">
+                <propertyInstance
+                  Id="72607d6e-9b9f-4570-b461-68b52636232d"
+                  name="IsUnsafe"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="4dbba1a9-8d49-4573-aeee-1d850810dc2d">
+                <propertyInstance
+                  Id="ee85ce81-cb8b-431e-b96c-ff352a9d0bdb"
+                  name="PackageVisibility"
+                  value="internal" />
+              </stereotypeInstanceHasPropertyInstances>
+            </propertyInstances>
+          </stereotypeInstance>
+        </appliedStereotypesInternal>
+        <generalsInternal>
+          <generalization
+            Id="f079fab6-d9d0-4b33-b151-d4a6bffe7fea"
+            isSubstitutable="false">
+            <classMoniker
+              Id="80f02295-0979-4d6f-a457-1e0ea941a193"
+              LastKnownName="EventArgs"
+              LastKnownLocation="Package1_1040.uml" />
+          </generalization>
+        </generalsInternal>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="5aaa93ac-24c9-4dac-9534-584adf35aa24"
+        name="WaveIn"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <referencesInternal>
+          <reference
+            Id="b8bc53b4-d86f-4cef-952c-22accbcb12ef"
+            handle="viewcode://./CodeSchema_Class?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2FJeremy%2FSource%2FRepos%2FLifeSubs%2FLifeSubsMetro%2FLifeSubsMetro%2FDLL%2FNAudio.dll Namespace%3DNAudio.Wave Type%3DWaveIn"
+            tag="ViewCode" />
+        </referencesInternal>
+        <appliedStereotypesInternal>
+          <stereotypeInstance
+            Id="89a02f96-b70f-400c-9d00-ecc73cfd8b9c"
+            name="class"
+            profile="CSharpProfile">
+            <propertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="f14a6e61-e9b0-4175-a1f5-52b8d4637f1a">
+                <propertyInstance
+                  Id="ae575516-1b5c-4a25-ad5a-08d1bc941f98"
+                  name="ClrAttributes" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="4bd3b9e8-c217-488d-8c53-504ebd699456">
+                <propertyInstance
+                  Id="8d08b9da-7795-46ff-a38e-850e547e61a3"
+                  name="IsPartial"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="9893fa6b-8041-42ef-907b-80b66317c159">
+                <propertyInstance
+                  Id="5b92b906-e80a-4332-82d2-0bc20bd31aa4"
+                  name="IsStatic"
+                  value="False" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="4a9c7d65-143a-46d6-afb1-01f7737be9e4">
+                <propertyInstance
+                  Id="507f4e82-c6ca-4d43-8167-c990f6520184"
+                  name="IsUnsafe"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="6b3bc9c1-0d33-4730-a057-c94035fe09ca">
+                <propertyInstance
+                  Id="c3417e79-0fac-4196-91c1-b2728e2db682"
+                  name="PackageVisibility"
+                  value="internal" />
+              </stereotypeInstanceHasPropertyInstances>
+            </propertyInstances>
+          </stereotypeInstance>
+        </appliedStereotypesInternal>
+      </class>
+    </packageHasNamedElement>
+    <packageHasNamedElement>
+      <class
+        Id="3ab54bf6-33d0-4ff1-b44f-a2751a896cab"
+        name="WaveFileWriter"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <referencesInternal>
+          <reference
+            Id="9d28989d-11ce-43ae-bd3c-3fecb1f3b928"
+            handle="viewcode://./CodeSchema_Class?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2FJeremy%2FSource%2FRepos%2FLifeSubs%2FLifeSubsMetro%2FLifeSubsMetro%2FDLL%2FNAudio.dll Namespace%3DNAudio.Wave Type%3DWaveFileWriter"
+            tag="ViewCode" />
+        </referencesInternal>
+        <appliedStereotypesInternal>
+          <stereotypeInstance
+            Id="f38af043-b09e-4311-94e6-ed6bad3ca6bf"
+            name="class"
+            profile="CSharpProfile">
+            <propertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="9c719c11-cb04-4ae3-9b5c-360a294b765d">
+                <propertyInstance
+                  Id="42cb9d6f-881f-4531-82a3-6791e75854a2"
+                  name="ClrAttributes" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="418a6f22-b1a2-4855-966e-fcfb0aea22b9">
+                <propertyInstance
+                  Id="238092b3-92f6-4df8-ab90-d6fed2869cc0"
+                  name="IsPartial"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="453ed204-df4b-4671-8cf0-12c220616e40">
+                <propertyInstance
+                  Id="81975b5e-cd3b-4bcf-a681-418ed2cc9f4b"
+                  name="IsStatic"
+                  value="False" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="0b49cceb-dd05-4a8a-8877-b0dfacc8660b">
+                <propertyInstance
+                  Id="38176ed2-33bc-449a-9596-7d1b06baf30b"
+                  name="IsUnsafe"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="624198f7-d170-432e-8658-cda6a643279e">
+                <propertyInstance
+                  Id="223636b6-c477-45a7-a902-9bbc3c982332"
+                  name="PackageVisibility"
+                  value="internal" />
+              </stereotypeInstanceHasPropertyInstances>
+            </propertyInstances>
+          </stereotypeInstance>
+        </appliedStereotypesInternal>
+      </class>
+    </packageHasNamedElement>
+  </packagedElements>
+</package>

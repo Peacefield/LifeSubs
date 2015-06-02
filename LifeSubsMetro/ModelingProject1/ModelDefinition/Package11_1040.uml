@@ -1,0 +1,81 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<package xmlns:dm0="http://schemas.microsoft.com/VisualStudio/2008/DslTools/Core" xmlns:dm1="http://schemas.microsoft.com/dsltools/Kernel" xmlns:dm2="http://schemas.microsoft.com/dsltools/Component" xmlns:dm3="http://schemas.microsoft.com/dsltools/UseCase" xmlns:dm4="http://schemas.microsoft.com/dsltools/Activity" xmlns:dm5="http://schemas.microsoft.com/dsltools/Interaction" xmlns:dm6="http://schemas.microsoft.com/dsltools/UmlModelLibrary" xmlns:dm7="http://schemas.microsoft.com/dsltools/UmlDiagrams" xmlns:dm8="http://schemas.microsoft.com/dsltools/LogicalClassDesigner" xmlns:dm9="http://schemas.microsoft.com/VisualStudio/TeamArchitect/SequenceDesigner" xmlns:dm10="http://schemas.microsoft.com/dsltools/SimpleShapesModel" xmlns:dm11="http://schemas.microsoft.com/VisualStudio/TeamArchitect/ActivityDesigner"
+  dslVersion="1.0.0.0"
+  Id="7f4c4393-a917-4524-89db-b8df1049de52"
+  name="Forms"
+  visibility="Private" xmlns="http://schemas.microsoft.com/dsltools/ModelStore">
+  <referencesInternal>
+    <reference
+      Id="25232ef1-b88c-49d8-af4e-d26731dc6889"
+      handle="viewcode://./CodeSchema_Namespace?Namespace%3DMetroFramework.Forms"
+      tag="ViewCode" />
+  </referencesInternal>
+  <profileInstances>
+    <packageHasProfileInstances
+      Id="fc0b75f2-7868-44be-b028-58aa6793c71c">
+      <profileInstance
+        Id="337acafd-a1a7-4298-845a-a89cc6b64bfe"
+        name="CSharpProfile" />
+    </packageHasProfileInstances>
+  </profileInstances>
+  <packagedElements>
+    <packageHasNamedElement>
+      <class
+        Id="90843749-c71d-4972-8545-77266e027fa0"
+        name="MetroForm"
+        isAbstract="false"
+        isLeaf="false"
+        isActiveClass="false">
+        <referencesInternal>
+          <reference
+            Id="aa5ef5f4-6481-4bbf-a47f-449088422778"
+            handle="viewcode://./CodeSchema_Class?Assembly%3Dfile:%2F%2F%2FC:%2FUsers%2FJeremy%2FSource%2FRepos%2FLifeSubs%2FLifeSubsMetro%2FLifeSubsMetro%2FDLL%2FMetroFramework.dll Namespace%3DMetroFramework.Forms Type%3DMetroForm"
+            tag="ViewCode" />
+        </referencesInternal>
+        <appliedStereotypesInternal>
+          <stereotypeInstance
+            Id="b9474347-a544-462e-b4ef-0fc018dba7a5"
+            name="class"
+            profile="CSharpProfile">
+            <propertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="8b6e82b8-c26d-4dfb-9906-10411dfdbd2d">
+                <propertyInstance
+                  Id="31ebc7a7-8f73-414f-aad6-17d94f102467"
+                  name="ClrAttributes" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="3aad70f6-14e3-41d0-a24c-21cf6e128688">
+                <propertyInstance
+                  Id="bc8fc4b2-456f-45bc-961c-e7b2b88f7c93"
+                  name="IsPartial"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="c3b543bd-1cd7-4493-8a6f-fde84216ac1b">
+                <propertyInstance
+                  Id="530f1a08-f011-45c2-8976-907a528db91c"
+                  name="IsStatic"
+                  value="False" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="0c6fc34c-7814-4640-aa5d-ede928640ef2">
+                <propertyInstance
+                  Id="52b74eed-8e49-4f23-83d6-6a7b5e5d5cf0"
+                  name="IsUnsafe"
+                  value="false" />
+              </stereotypeInstanceHasPropertyInstances>
+              <stereotypeInstanceHasPropertyInstances
+                Id="3138b54b-509f-41ca-b824-b0988dbe7cef">
+                <propertyInstance
+                  Id="57b8bd4f-aeb2-4325-95ad-0f28a9554286"
+                  name="PackageVisibility"
+                  value="internal" />
+              </stereotypeInstanceHasPropertyInstances>
+            </propertyInstances>
+          </stereotypeInstance>
+        </appliedStereotypesInternal>
+      </class>
+    </packageHasNamedElement>
+  </packagedElements>
+</package>
