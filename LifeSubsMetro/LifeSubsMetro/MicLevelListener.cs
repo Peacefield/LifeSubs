@@ -163,7 +163,8 @@ namespace LifeSubsMetro
         private void actThing(object sender, WaveInEventArgs e)
         {
             //Loop through the received bytes
-            for (int index = 0; index < e.BytesRecorded; index += 2)
+            //We only want the first byte from the array, so the loop can be cut off after the first runthrough
+            for (int index = 0; index == 0; index ++)
             {
                 //Convert the received bytes into a 32bit float
                 short sample = (short)((e.Buffer[index + 1] << 8) |
@@ -176,9 +177,6 @@ namespace LifeSubsMetro
 
                 //pass the test to the function that listens to sound
                 countLowVoiceLevelBits(test);
-
-                //We only want the first byte from the array, so the loop can be cut off 
-                break;
             }
         }
 

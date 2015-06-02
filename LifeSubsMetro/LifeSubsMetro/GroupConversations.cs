@@ -20,7 +20,6 @@ namespace LifeSubsMetro
         MainMenu mm;
 
         Thread th;
-        Thread th2;
 
         MicLevelListener mll;
         Listener listener1 = null;

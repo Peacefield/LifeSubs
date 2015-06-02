@@ -59,7 +59,14 @@ namespace LifeSubsMetro
         /// </summary>
         private void setStyle()
         {
-            this.screen = Screen.AllScreens[settings.screenIndex];
+            try
+            {
+                this.screen = Screen.AllScreens[settings.screenIndex];
+            }
+            catch (IndexOutOfRangeException)
+            {
+                this.screen = Screen.AllScreens[0];
+            }
             var width = screen.Bounds.Width;
             this.Width = width;
             this.dataOutput.Width = width - 40;
