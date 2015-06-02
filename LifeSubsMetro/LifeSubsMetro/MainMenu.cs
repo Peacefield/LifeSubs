@@ -12,6 +12,9 @@ namespace LifeSubsMetro
     public partial class MainMenu : MetroForm
     {
         ApiHandler apiHandler = new ApiHandler();
+        /// <summary>
+        /// Form to display the Main Menu of LifeSubs
+        /// </summary>
         public MainMenu()
         {
             InitializeComponent();

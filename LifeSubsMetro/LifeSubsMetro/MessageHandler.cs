@@ -12,6 +12,10 @@ namespace LifeSubsMetro
         GroupConversations gcs;
         ApiHandler apiHandler = new ApiHandler();
 
+        /// <summary>
+        /// Timer that handles the retrieval of newest messages
+        /// </summary>
+        /// <param name="gc"></param>
         public MessageHandler(GroupConversations gc)
         {
             this.gcs = gc;

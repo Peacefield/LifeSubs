@@ -10,6 +10,9 @@ using System.Windows.Forms;
 
 namespace LifeSubsMetro
 {
+    /// <summary>
+    /// Handles the communication towards the API
+    /// </summary>
     public class ApiHandler
     {
         public ApiHandler()

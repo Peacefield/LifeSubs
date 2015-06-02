@@ -20,6 +20,9 @@ namespace LifeSubsMetro
         public int screenIndex { get; set; }
         string settingsFile = @"Settings.xml";
 
+        /// <summary>
+        /// Fetch the settings from the Settings.xml located in the same location as the .exe
+        /// </summary>
         public Settings()
         {
             try
