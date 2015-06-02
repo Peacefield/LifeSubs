@@ -74,7 +74,7 @@ namespace LifeSubsMetro
                     }
                 }
 
-                if(isSubtitle)
+                if (isSubtitle)
                 {
                     Subtitle sub = new Subtitle(mm, this);
                     sub.userId = userId;
@@ -90,7 +90,7 @@ namespace LifeSubsMetro
                     gcs.ShowDialog();
                 }
 
-                
+
             }
         }
 
@@ -141,7 +141,7 @@ namespace LifeSubsMetro
                 }
                 MetroMessageBox.Show(mm, "Welkom in " + roomName + ", " + username, "Succesvol verbonden!", MessageBoxButtons.OK, MessageBoxIcon.Question);
 
-                if(isSubtitle)
+                if (isSubtitle)
                 {
                     Subtitle sub = new Subtitle(mm, this);
                     sub.userId = userId;
@@ -156,7 +156,7 @@ namespace LifeSubsMetro
                     gcs.roomName = roomName;
                     gcs.ShowDialog();
                 }
-                
+
                 foreach (Control c in mm.Controls)
                 {
                     if (c.GetType() == typeof(MetroFramework.Controls.MetroTile))
@@ -170,7 +170,7 @@ namespace LifeSubsMetro
         public void sendMessage(string roomId, string userId, string msg, GroupConversations gc)
         {
             string time = DateTime.Now.ToString().Replace(" ", "%20");
-            string msgEnc = msg.Replace(" ", "%20").Replace("#","%23").Replace("&","%26");
+            string msgEnc = msg.Replace(" ", "%20").Replace("#", "%23").Replace("&", "%26");
 
             string url = "http://lifesubs.windesheim.nl/api/addMessage.php?func=addMessage&room="
                 + roomId
@@ -198,11 +198,11 @@ namespace LifeSubsMetro
             }
             else
             {
-                if(gc != null)
+                if (gc != null)
                 {
                     gc.clearTextBox();
                 }
-                
+
                 //MetroMessageBox.Show(gc, "Verzonden", "Bericht succesvol verzonden!", MessageBoxButtons.OK, MessageBoxIcon.Question);
             }
         }
@@ -333,7 +333,7 @@ namespace LifeSubsMetro
         {
             string userId;
 
-            if(id != null)
+            if (id != null)
             {
                 userId = id;
             }

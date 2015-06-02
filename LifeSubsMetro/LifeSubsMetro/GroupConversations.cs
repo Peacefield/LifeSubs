@@ -334,11 +334,11 @@ namespace LifeSubsMetro
         }
         /// <summary>
         /// Create a path for the saved log location
-        /// Uses a timestamp to make it unique
+        /// Uses a timestamp to make it unique in combination with the room name
         /// 
         /// Call at start-up form
         /// </summary>
-        /// <returns>Timestamp in format yyyy-mm-dd_hhmmss</returns>
+        /// <returns>Timestamp in format yyyy-mm-dd_hhmm</returns>
         private string saveLogPath()
         {
             string savePath = settings.savePath;
@@ -361,7 +361,7 @@ namespace LifeSubsMetro
             if (datetime.Minute < 10) minute = "0" + datetime.Minute;
 
             string date = datetime.Year + "-" + month + "-" + day + "_" + hour + minute;
-            savePath += date + " - "  + roomName +  ".txt";
+            savePath += date + " - " + roomName + ".txt";
 
             return savePath;
         }
