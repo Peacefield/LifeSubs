@@ -15,14 +15,13 @@ namespace LifeSubsMetro
         public string roomName { get; set; }
         public string timeId { get; set; }
 
-        string path = @"C:\audiotest";
+        string path = @"audio\";
         MainMenu mm;
 
         Thread th;
         Thread th2;
 
         MicLevelListener mll;
-        string currentListener;
         Listener listener1 = null;
         Settings settings;
 
@@ -250,12 +249,11 @@ namespace LifeSubsMetro
         public void sendRequest()
         {
             if (listener1 == null) return;
-            if (th != null) th.Abort();
-            Console.WriteLine("listener1 currently recording");
             //Stop listener
-            Console.WriteLine("Stop listener1");
+            Console.WriteLine("Stop recording listener1");
             listener1.stop();
 
+            Console.WriteLine("Start request listener1");
             th = new Thread(listener1.request);
             th.Start();
             while (!th.IsAlive) ;
@@ -263,8 +261,7 @@ namespace LifeSubsMetro
         }
 
         /// <summary>
-        /// Starts a listenerloop that stops when this button is pressed and ended when this button is pressed again.
-        /// TODO: Implement above ^^^
+        /// Starts a listenerloop that stops when this button is pressed and ended when there was a silence for the set amount of time
         /// </summary>
         /// <param name="sender"></param>
         /// <param name="e"></param>
@@ -275,14 +272,17 @@ namespace LifeSubsMetro
             volumemeterGrp.Visible = true;
             int deviceNumber = settings.microphone;
 
+            //Initiate recording
+            listener1 = new Listener(deviceNumber, "listener1", this);
+            listener1.startRecording();
+            Console.WriteLine("listener1 currently recording");
+
+            //Initiate listening to silences
             mll = new MicLevelListener(this);
             mll.deviceNumber = deviceNumber;
             mll.listenToStream();
+            Console.WriteLine("MicLevelListener currently listening");
 
-            //Initiate recording
-            currentListener = "listener1";
-            listener1 = new Listener(deviceNumber, currentListener, this);
-            listener1.startRecording();
         }
         #endregion
 

@@ -221,11 +221,12 @@
   <ItemGroup>
     <None Include="icons\SettingsMenu\Folder-20.png" />
   </ItemGroup>
-  <ItemGroup>
-    <Folder Include="Resources\" />
-  </ItemGroup>
+  <ItemGroup />
   <ItemGroup>
     <None Include="icons\Conversations\Microphone-50.png" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="Resources\Add Group-100.png" />
   </ItemGroup>
   <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
   <!-- To modify your build process, add your task inside one of the targets below and uncomment it. 
