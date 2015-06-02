@@ -20,24 +20,39 @@ namespace LifeSubsMetro
 
         Settings settings = new Settings();
 
+        /// <summary>
+        /// Listen to audio from subtitle form
+        /// </summary>
+        /// <param name="f">Subtitle form object</param>
         public MicLevelListener(Subtitle f)
         {
             this.subtitleForm = f;
             this.sec = settings.delay * 10;
         }
 
+        /// <summary>
+        /// Listen to audio from settings menu
+        /// </summary>
+        /// <param name="f">Settings menu form object</param>
         public MicLevelListener(SettingsMenu f)
         {
             this.settingsMenu = f;
             this.sec = settings.delay * 10;
         }
 
+        /// <summary>
+        /// Listen to audio from Group conversations form
+        /// </summary>
+        /// <param name="grp">Group conversations form object</param>
         public MicLevelListener(GroupConversations grp)
         {
             this.grpConv = grp;
             this.sec = settings.delay * 10;
         }
 
+        /// <summary>
+        /// Listen to the actual audiostream and read the bitvalues
+        /// </summary>
         public void listenToStream()
         {
             //Get all microphones
@@ -160,7 +175,12 @@ namespace LifeSubsMetro
             }
         }
 
-        private void actThing(object sender, WaveInEventArgs e)
+        /// <summary>
+        /// Function to execute when there is data available from the audio stream
+        /// </summary>
+        /// <param name="sender">Sender object</param>
+        /// <param name="e">WaveInEventArgs</param>
+        private void actOnAvailableData(object sender, WaveInEventArgs e)
         {
             //Loop through the received bytes
             //We only want the first byte from the array, so the loop can be cut off after the first runthrough
@@ -180,11 +200,17 @@ namespace LifeSubsMetro
             }
         }
 
+        /// <summary>
+        /// Data available event handler
+        /// </summary>
+        /// <param name="sender">Sender object</param>
+        /// <param name="e">        /// <param name="e">WaveInEventArgs</param>
+</param>
         public void waveIn_DataAvailable(object sender, WaveInEventArgs e)
         {
             //Put the functions on another thread, so the GUI will not freeze
 
-            new Thread(() => actThing(sender, e)).Start();
+            new Thread(() => actOnAvailableData(sender, e)).Start();
         }
     }
 }
