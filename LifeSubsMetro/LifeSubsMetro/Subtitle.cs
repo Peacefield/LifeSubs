@@ -12,7 +12,6 @@ namespace LifeSubsMetro
         public string userId { get; set; }
         public string roomId { get; set; }
 
-
         MainMenu mm;
         MicLevelListener mll;
         Thread th = null;
@@ -54,6 +53,8 @@ namespace LifeSubsMetro
             createDir();
             setPosition(position);
         }
+
+        #region StyleHandlers
         /// <summary>
         /// Sets the style of the form according to the settings class
         /// </summary>
@@ -143,249 +144,40 @@ namespace LifeSubsMetro
                 dataOutput.CurrentCell = dataOutput.Rows[dataOutput.Rows.Count - 1].Cells[0];
         }
 
-        #region Responsive to font-changes
         /// <summary>
-        /// Calculates the additonal spacing needed for the desired font and fontsize to be displayed correctly
+        /// Create a path for the saved log location
+        /// Uses a timestamp to make it unique
+        /// 
+        /// Call at start-up form
         /// </summary>
-        /// <param name="font">Font selected by user</param>
-        /// <returns>additionalSpacing</returns>
-        private int calcAdditionalSpacing(Font font)
+        /// <returns>Timestamp in format yyyy-mm-dd_hhmmss</returns>
+        private string saveLogPath()
         {
-            int additionalSpacing = 40;
+            string savePath = settings.savePath;
 
-            switch (font.Name)
-            {
-                case "Arial":
-                    if (font.Size == 20)
-                    {
-                        additionalSpacing = 60;
-                    }
-                    else if (font.Size < 24)
-                    {
-                        additionalSpacing = 50;
-                    }
-                    else if (font.Size == 24)
-                    {
-                        additionalSpacing = 60;
-                    }
-                    else
-                    {
-                        additionalSpacing = 70;
-                    }
+            Console.WriteLine("LogPath ---> " + savePath);
 
-                    if (lines == 1) additionalSpacing -= 10;
+            bool folderExists = Directory.Exists(savePath);
+            if (!folderExists) Directory.CreateDirectory(savePath);
 
-                    break;
-                case "Calibri":
-                    if (font.Size < 24)
-                    {
-                        additionalSpacing = 50;
-                    }
-                    else if (font.Size == 24)
-                    {
-                        additionalSpacing = 60;
-                    }
-                    else
-                    {
-                        additionalSpacing = 70;
-                    }
+            DateTime datetime = DateTime.Now;
+            string day = datetime.Day.ToString();
+            string month = datetime.Month.ToString();
+            string hour = datetime.Hour.ToString();
+            string minute = datetime.Minute.ToString();
+            string seconds = datetime.Second.ToString();
 
-                    if (lines == 4) additionalSpacing += 15;
-                    if (lines == 1) additionalSpacing -= 10;
+            if (datetime.Day < 10) day = "0" + datetime.Day;
+            if (datetime.Month < 10) month = "0" + datetime.Month;
+            if (datetime.Hour < 10) hour = "0" + datetime.Hour;
+            if (datetime.Minute < 10) minute = "0" + datetime.Minute;
+            if (datetime.Second < 10) seconds = "0" + datetime.Second;
 
-                    break;
-                case "Constantia":
-                    if (font.Size == 18)
-                    {
-                        additionalSpacing = 50;
-                    }
-                    else if (font.Size == 20)
-                    {
-                        additionalSpacing = 60;
-                    }
-                    else if (font.Size == 22)
-                    {
-                        additionalSpacing = 65;
-                    }
-                    else if (font.Size == 30)
-                    {
-                        additionalSpacing = 90;
-                    }
-                    else
-                    {
-                        additionalSpacing = 70;
-                    }
-                    if (lines == 1) additionalSpacing -= 20;
+            string date = datetime.Year + "-" + month + "-" + day + "_" + hour + minute + seconds;
+            savePath += date + ".txt";
 
-                    break;
-                case "Georgia":
-                    if (font.Size == 18)
-                    {
-                        additionalSpacing = 50;
-                    }
-                    else if (font.Size == 20)
-                    {
-                        additionalSpacing = 60;
-                    }
-                    else if (font.Size == 22)
-                    {
-                        additionalSpacing = 65;
-                    }
-                    else if (font.Size == 30)
-                    {
-                        additionalSpacing = 90;
-                    }
-                    else
-                    {
-                        additionalSpacing = 70;
-                    }
-                    if (lines == 1) additionalSpacing = 40;
-                    if (lines == 2) additionalSpacing -= 10;
 
-                    break;
-                case "Gill Sans MT":
-                    if (font.Size == 18)
-                    {
-                        additionalSpacing = 50;
-                    }
-                    else if (font.Size == 20)
-                    {
-                        additionalSpacing = 60;
-                    }
-                    else if (font.Size == 22)
-                    {
-                        additionalSpacing = 80;
-                    }
-                    else if (font.Size == 24)
-                    {
-                        additionalSpacing = 90;
-                    }
-                    else if (font.Size == 26)
-                    {
-                        additionalSpacing = 100;
-                    }
-                    else if (font.Size == 28)
-                    {
-                        additionalSpacing = 105;
-                    }
-                    else if (font.Size == 30)
-                    {
-                        additionalSpacing = 110;
-                    }
-
-                    if (lines == 1) additionalSpacing = 40;
-                    if (lines == 2) additionalSpacing -= 10;
-
-                    break;
-                case "Impact":
-                    if (font.Size == 18)
-                    {
-                        additionalSpacing = 55;
-                    }
-                    else if (font.Size <= 24)
-                    {
-                        additionalSpacing = 70;
-                    }
-                    else
-                    {
-                        additionalSpacing = 80;
-                    }
-
-                    if (lines == 1) additionalSpacing -= 20;
-
-                    break;
-                case "Rockwell":
-                    if (font.Size < 24)
-                    {
-                        additionalSpacing = 50;
-                    }
-                    else if (font.Size < 28)
-                    {
-                        additionalSpacing = 60;
-                    }
-                    else if (font.Size >= 28)
-                    {
-                        additionalSpacing = 70;
-                    }
-
-                    if (lines == 1) additionalSpacing -= 10;
-
-                    break;
-                case "Segoe WP":
-                    if (font.Size == 18)
-                    {
-                        additionalSpacing = 65;
-                    }
-                    else if (font.Size < 24)
-                    {
-                        additionalSpacing = 80;
-                    }
-                    else if (font.Size < 28)
-                    {
-                        additionalSpacing = 90;
-                    }
-                    else if (font.Size == 28)
-                    {
-                        additionalSpacing = 100;
-                    }
-                    else if (font.Size == 30)
-                    {
-                        additionalSpacing = 110;
-                    }
-
-                    if (lines == 1) additionalSpacing -= 10;
-                    break;
-                case "Times New Roman":
-                    if (font.Size <= 24)
-                    {
-                        additionalSpacing = 60;
-                    }
-                    else if (font.Size == 26)
-                    {
-                        additionalSpacing = 75;
-                    }
-                    else if (font.Size > 24)
-                    {
-                        additionalSpacing = 80;
-                    }
-
-                    if (lines == 1) additionalSpacing -= 20;
-                    break;
-                case "Verdana":
-                    if (font.Size == 18)
-                    {
-                        additionalSpacing = 50;
-                    }
-                    else if (font.Size == 20)
-                    {
-                        additionalSpacing = 55;
-                    }
-                    else if (font.Size == 22)
-                    {
-                        additionalSpacing = 60;
-                    }
-                    else if (font.Size == 24)
-                    {
-                        additionalSpacing = 65;
-                    }
-                    else if (font.Size == 26)
-                    {
-                        additionalSpacing = 70;
-                    }
-                    else if (font.Size == 28)
-                    {
-                        additionalSpacing = 75;
-                    }
-                    else if (font.Size == 30)
-                    {
-                        additionalSpacing = 80;
-                    }
-
-                    if (lines == 1) additionalSpacing -= 10;
-                    break;
-            }
-
-            return additionalSpacing;
+            return savePath;
         }
         #endregion
 
@@ -585,6 +377,8 @@ namespace LifeSubsMetro
             }
         }
         #endregion
+        
+        #region Listenhandlers
 
         /// <summary>
         /// TextChanged eventhandler to call the appropriate functions
@@ -603,43 +397,6 @@ namespace LifeSubsMetro
             }
         }
 
-        /// <summary>
-        /// Create a path for the saved log location
-        /// Uses a timestamp to make it unique
-        /// 
-        /// Call at start-up form
-        /// </summary>
-        /// <returns>Timestamp in format yyyy-mm-dd_hhmmss</returns>
-        private string saveLogPath()
-        {
-            string savePath = settings.savePath;
-
-            Console.WriteLine("LogPath ---> " + savePath);
-
-            bool folderExists = Directory.Exists(savePath);
-            if (!folderExists) Directory.CreateDirectory(savePath);
-
-            DateTime datetime = DateTime.Now;
-            string day = datetime.Day.ToString();
-            string month = datetime.Month.ToString();
-            string hour = datetime.Hour.ToString();
-            string minute = datetime.Minute.ToString();
-            string seconds = datetime.Second.ToString();
-
-            if (datetime.Day < 10) day = "0" + datetime.Day;
-            if (datetime.Month < 10) month = "0" + datetime.Month;
-            if (datetime.Hour < 10) hour = "0" + datetime.Hour;
-            if (datetime.Minute < 10) minute = "0" + datetime.Minute;
-            if (datetime.Second < 10) seconds = "0" + datetime.Second;
-
-            string date = datetime.Year + "-" + month + "-" + day + "_" + hour + minute + seconds;
-            savePath += date + ".txt";
-
-            
-            return savePath;
-        }
-
-        #region Listenhandlers
         /// <summary>
         /// Stops the listeners if they're active
         /// </summary>

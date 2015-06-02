@@ -26,7 +26,7 @@ namespace LifeSubsMetro
         Settings settings;
 
         MessageHandler mh;
-        ApiHandler apiHandler = new ApiHandler();
+        ApiHandler apiHandler;
 
         public GroupConversations(MainMenu mm)
         {
@@ -331,6 +331,7 @@ namespace LifeSubsMetro
 
             //TODO: Complete listener functionality and change microphone of requestlistener and miclevellistener here
         }
+
         /// <summary>
         /// Create a path for the saved log location
         /// Uses a timestamp to make it unique in combination with the room name
@@ -365,6 +366,10 @@ namespace LifeSubsMetro
             return savePath;
         }
 
+        /// <summary>
+        /// Update the rooms log with the latest messages
+        /// </summary>
+        /// <param name="text"></param>
         public void updateLog(String text)
         {
             if (text == "" || text == "500") return;
@@ -391,6 +396,11 @@ namespace LifeSubsMetro
             }
         }
 
+        /// <summary>
+        /// Event handler for when this form is loaded
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void GroupConversations_Load(object sender, EventArgs e)
         {
             this.Text = roomName;
@@ -399,8 +409,8 @@ namespace LifeSubsMetro
             setStyle();
             this.logpath = saveLogPath();
             mh = new MessageHandler(this);
+            apiHandler = new ApiHandler();
         }
-
 
         /// <summary>
         /// Event handler for when this form is closing
@@ -411,7 +421,6 @@ namespace LifeSubsMetro
         {
             mh.stopTimer();
             apiHandler.exitRoom(this, null);
-            //mm.Visible = true;
             mm.BringToFront();
 
             try { deleteDir(); }

@@ -59,6 +59,7 @@ namespace LifeSubsMetro
             settings = new Settings();
             loadSettings();
         }
+
         #region Initiate
         /// <summary>
         /// Function to fill microphone- and monitor comboboxes to available devices
@@ -416,7 +417,7 @@ namespace LifeSubsMetro
         #endregion
 
         /// <summary>
-        /// Function to load the settings for the Settings.cs into the SettingsMenu
+        /// Function to display the settings for the Settings.cs into the SettingsMenu
         /// </summary>
         private void loadSettings()
         {
@@ -484,6 +485,7 @@ namespace LifeSubsMetro
             }
         }
 
+        #region other eventhandlers
         /// <summary>
         /// Function to set the volumeMeter of the devices tile from another thread
         /// This gives the user direct feedback on the selected microphone
@@ -505,7 +507,6 @@ namespace LifeSubsMetro
             }
         }
 
-        #region other eventhandlers
         /// <summary>
         /// Functio to set the numeric label value of the delay trackbar
         /// </summary>
@@ -567,6 +568,18 @@ namespace LifeSubsMetro
         {
             if (microphoneTile.Visible == false) return;
             if (mll != null) mll.stop();
+        }
+
+        /// <summary>
+        /// Clickevent handler to open the savelocation selected by the user
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void openFolderTile_Click(object sender, EventArgs e)
+        {
+            string savedPath = pathTextBox.Text;
+            bool folderExists = System.IO.Directory.Exists(savedPath);
+            if (folderExists) System.Diagnostics.Process.Start(savedPath);
         }
         #endregion
 
@@ -633,11 +646,5 @@ namespace LifeSubsMetro
         }
         #endregion
 
-        private void openFolderTile_Click(object sender, EventArgs e)
-        {
-            string savedPath = pathTextBox.Text;
-            bool folderExists = System.IO.Directory.Exists(savedPath);
-            if (folderExists) System.Diagnostics.Process.Start(savedPath);
-        }
     }
 }

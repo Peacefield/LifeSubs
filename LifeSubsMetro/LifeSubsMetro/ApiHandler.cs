@@ -17,6 +17,16 @@ namespace LifeSubsMetro
 
         }
 
+        /// <summary>
+        /// Declare a new room in the database
+        /// </summary>
+        /// <param name="name">Room name</param>
+        /// <param name="ip">User IP</param>
+        /// <param name="pass">Room password</param>
+        /// <param name="md5Pass">Room password encodes to MD5</param>
+        /// <param name="username">Username</param>
+        /// <param name="mm">MainMenu</param>
+        /// <param name="isSubtitle">Boolean to check if the room was created on opening a Subtitle form</param>
         public void createRoom(string name, string ip, string pass, string md5Pass, string username, MainMenu mm, Boolean isSubtitle)
         {
             string url = "http://lifesubs.windesheim.nl/api/addRoom.php?func=addRoom&name=" + name + "&ip=" + ip + " &usn=" + username + "&key=" + md5Pass;
@@ -94,6 +104,15 @@ namespace LifeSubsMetro
             }
         }
 
+        /// <summary>
+        /// Create a new user in an existing room in the database
+        /// </summary>
+        /// <param name="name">Room namee</param>
+        /// <param name="key">Room password</param>
+        /// <param name="ip">User IP</param>
+        /// <param name="username">Username</param>
+        /// <param name="mm">MainMenu</param>
+        /// <param name="isSubtitle">Boolean to check if the room was joined on opening a Subtitle form</param>
         public void joinRoom(string name, string key, string ip, string username, MainMenu mm, Boolean isSubtitle)
         {
             string nameEnc = name.Replace("#", "%23");
@@ -167,6 +186,13 @@ namespace LifeSubsMetro
             }
         }
 
+        /// <summary>
+        /// Add a message in the database
+        /// </summary>
+        /// <param name="roomId">Room ID</param>
+        /// <param name="userId">User ID</param>
+        /// <param name="msg">Message that was sent by the user</param>
+        /// <param name="gc">GroupConversations</param>
         public void sendMessage(string roomId, string userId, string msg, GroupConversations gc)
         {
             string time = DateTime.Now.ToString().Replace(" ", "%20");
@@ -202,11 +228,14 @@ namespace LifeSubsMetro
                 {
                     gc.clearTextBox();
                 }
-
-                //MetroMessageBox.Show(gc, "Verzonden", "Bericht succesvol verzonden!", MessageBoxButtons.OK, MessageBoxIcon.Question);
             }
         }
 
+        /// <summary>
+        /// Retrieve new messages from the database
+        /// </summary>
+        /// <param name="messageId">Latest message Id that the user retrieved</param>
+        /// <param name="gcs">GroupConversations</param>
         public void getMessages(string messageId, GroupConversations gcs)
         {
             string roomId = gcs.roomId;
@@ -236,8 +265,6 @@ namespace LifeSubsMetro
             }
             else
             {
-                //Dictionary<string, string> values = splitReturn(response);
-
                 string[] splitReq = response.Split(new String[] { "|||" }, StringSplitOptions.None);
 
                 string keyvalue = "key";
@@ -329,6 +356,13 @@ namespace LifeSubsMetro
             }
         }
 
+        /// <summary>
+        /// Remove the user from the databasde and everything related to the user.
+        /// When the user was the owner this includes deleting the room
+        /// When the user was just a participant this means that his messages get deleted.
+        /// </summary>
+        /// <param name="gcs">GroupConversations</param>
+        /// <param name="id">User ID</param>
         public void exitRoom(GroupConversations gcs, string id)
         {
             string userId;
@@ -368,6 +402,11 @@ namespace LifeSubsMetro
             }
         }
 
+        /// <summary>
+        /// Place the HTTP Response into a key-value paired Dictionary to make it easy to loop trough the response
+        /// </summary>
+        /// <param name="httpResponse">HTTP Response</param>
+        /// <returns></returns>
         public Dictionary<string, string> splitReturn(string httpResponse)
         {
             //Loop through the Http response and add to Dictionary<string, string> values

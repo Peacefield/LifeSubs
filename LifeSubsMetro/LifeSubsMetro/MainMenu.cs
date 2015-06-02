@@ -155,6 +155,11 @@ namespace LifeSubsMetro
 
         #endregion
 
+        /// <summary>
+        /// Encode a string to MD5
+        /// </summary>
+        /// <param name="pass"></param>
+        /// <returns></returns>
         private string toMD5(string pass)
         {
             // byte array representation of that string
@@ -175,6 +180,13 @@ namespace LifeSubsMetro
             return encoded;
         }
 
+        #region Submenu buttons clickevents
+        /// <summary>
+        /// Create a new room.
+        /// Opens a new GroupConversations dialog on success.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void addRoomBtn_Click(object sender, EventArgs e)
         {
             string roomName = roomNameCreateTextbox.Text;
@@ -184,9 +196,12 @@ namespace LifeSubsMetro
             string ownerIp = getOwnIp();
 
             apiHandler.createRoom(roomName, ownerIp, roomPass, roomPassMD5, roomUsername, this, false);
-            //tileCreateRoom.Visible = true;
         }
 
+        /// <summary>
+        /// Get own ip to send to database
+        /// </summary>
+        /// <returns></returns>
         private string getOwnIp()
         {
             IPHostEntry host;
@@ -203,11 +218,11 @@ namespace LifeSubsMetro
             return "127.0.0.1";
         }
 
-        private void MainMenu_FormClosed(object sender, FormClosedEventArgs e)
-        {
-            Application.Exit();
-        }
-
+        /// <summary>
+        /// Open a new subtitling window without logging into a room
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void startSubtitlingButton_Click(object sender, EventArgs e)
         {
             showTiles();
@@ -223,24 +238,35 @@ namespace LifeSubsMetro
             this.Visible = false;
         }
 
+        /// <summary>
+        /// Open a new subtitling window that also sends the returned text to a room.
+        /// The room get creates if the user indicated wishing to do this by clicking the checkbox
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void loginButton_Click(object sender, EventArgs e)
         {
             string roomPassMD5 = toMD5(subtitlePasswordTextbox.Text);
             string ownerIp = getOwnIp();
             if (newRoomCheckbox.Checked)
             {
-                apiHandler.createRoom(subtitleRoomNameTextbox.Text, ownerIp, subtitlePasswordTextbox.Text, roomPassMD5, subtitleUsernameTextbox.Text, this, true);    
+                apiHandler.createRoom(subtitleRoomNameTextbox.Text, ownerIp, subtitlePasswordTextbox.Text, roomPassMD5, subtitleUsernameTextbox.Text, this, true);
             }
             else
             {
                 apiHandler.joinRoom(subtitleRoomNameTextbox.Text, roomPassMD5, ownerIp, subtitleUsernameTextbox.Text, this, true);
             }
-            
+
         }
 
+        /// <summary>
+        /// Changes the text on the room-login button according to the checkbox value
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
         private void newRoomCheckbox_CheckedChanged(object sender, EventArgs e)
         {
-            if(newRoomCheckbox.Checked)
+            if (newRoomCheckbox.Checked)
             {
                 loginButton.Text = "Maak aan";
             }
@@ -249,6 +275,11 @@ namespace LifeSubsMetro
                 loginButton.Text = "Log in";
             }
         }
+        #endregion
 
+        private void MainMenu_FormClosed(object sender, FormClosedEventArgs e)
+        {
+            Application.Exit();
+        }
     }
 }

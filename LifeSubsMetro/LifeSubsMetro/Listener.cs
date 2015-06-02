@@ -201,7 +201,6 @@ namespace LifeSubsMetro
             waveWriter.WriteData(e.Buffer, 0, e.BytesRecorded);
             waveWriter.Flush();
         }
-        #endregion
 
         /// <summary>
         /// Stops the listenerobject from recording
@@ -220,5 +219,6 @@ namespace LifeSubsMetro
                 waveWriter = null;
             }
         }
+        #endregion
     }
 }

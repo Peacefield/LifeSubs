@@ -164,7 +164,7 @@ namespace LifeSubsMetro
         {
             //Loop through the received bytes
             //We only want the first byte from the array, so the loop can be cut off after the first runthrough
-            for (int index = 0; index == 0; index ++)
+            for (int index = 0; index == 0; index++)
             {
                 //Convert the received bytes into a 32bit float
                 short sample = (short)((e.Buffer[index + 1] << 8) |

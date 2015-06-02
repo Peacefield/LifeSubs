@@ -33,7 +33,7 @@ namespace LifeSubsMetro
         }
 
         /// <summary>
-        /// Function to give the application default settings
+        /// Give the application default settings since the file doesn't exist
         /// </summary>
         private void createDefault()
         {
@@ -51,6 +51,9 @@ namespace LifeSubsMetro
             this.screenIndex = 0;
         }
 
+        /// <summary>
+        /// Load the settings specified by the user if the file exists
+        /// </summary>
         private void loadXML()
         {
             Console.WriteLine("start loading settings");
@@ -90,6 +93,11 @@ namespace LifeSubsMetro
             Console.WriteLine("done loading settings");
         }
 
+        /// <summary>
+        /// Check if the specified microphone still exists
+        /// </summary>
+        /// <param name="deviceNumber"></param>
+        /// <returns></returns>
         private bool checkMic(int deviceNumber)
         {
             //Load Input devices
