@@ -13,8 +13,9 @@ namespace LifeSubsMetro
         public string userId { get; set; }
         public string roomId { get; set; }
         public string roomName { get; set; }
-        public string timeId { get; set; }
+        public string messageId { get; set; }
 
+        string logpath;
         string path = @"audio\";
         MainMenu mm;
 
@@ -325,20 +326,79 @@ namespace LifeSubsMetro
             dataGridOutput.DefaultCellStyle.SelectionBackColor = settings.bgColor;
             dataGridOutput.DefaultCellStyle.SelectionForeColor = settings.subColor;
             dataGridOutput.BackgroundColor = settings.bgColor;
-            
 
             tbInput.BackColor = settings.bgColor;
             tbInput.ForeColor = settings.subColor;
 
             //TODO: Complete listener functionality and change microphone of requestlistener and miclevellistener here
         }
+        /// <summary>
+        /// Create a path for the saved log location
+        /// Uses a timestamp to make it unique
+        /// 
+        /// Call at start-up form
+        /// </summary>
+        /// <returns>Timestamp in format yyyy-mm-dd_hhmmss</returns>
+        private string saveLogPath()
+        {
+            string savePath = settings.savePath;
+
+            Console.WriteLine("LogPath ---> " + savePath);
+
+            bool folderExists = Directory.Exists(savePath);
+            if (!folderExists) Directory.CreateDirectory(savePath);
+
+            DateTime datetime = DateTime.Now;
+            string day = datetime.Day.ToString();
+            string month = datetime.Month.ToString();
+            string hour = datetime.Hour.ToString();
+            string minute = datetime.Minute.ToString();
+            string seconds = datetime.Second.ToString();
+
+            if (datetime.Day < 10) day = "0" + datetime.Day;
+            if (datetime.Month < 10) month = "0" + datetime.Month;
+            if (datetime.Hour < 10) hour = "0" + datetime.Hour;
+            if (datetime.Minute < 10) minute = "0" + datetime.Minute;
+
+            string date = datetime.Year + "-" + month + "-" + day + "_" + hour + minute;
+            savePath += date + " - "  + roomName +  ".txt";
+
+            return savePath;
+        }
+
+        public void updateLog(String text)
+        {
+            if (text == "" || text == "500") return;
+            Console.WriteLine(logpath);
+            try
+            {
+                if (this.dataGridOutput.InvokeRequired)
+                    this.dataGridOutput.Invoke((MethodInvoker)delegate
+                    {
+                        using (StreamWriter sw = File.AppendText(logpath))
+                        {
+                            sw.WriteLine(text);
+                        }
+                    });
+                else
+                    using (StreamWriter sw = File.AppendText(logpath))
+                    {
+                        sw.WriteLine(text);
+                    }
+            }
+            catch (DirectoryNotFoundException dnfe)
+            {
+                Console.WriteLine("File not found: " + dnfe.Message);
+            }
+        }
 
         private void GroupConversations_Load(object sender, EventArgs e)
         {
             this.Text = roomName;
-            this.timeId = "0";
+            this.messageId = "0";
 
             setStyle();
+            this.logpath = saveLogPath();
             mh = new MessageHandler(this);
         }
 

@@ -147,10 +147,10 @@ namespace LifeSubsMetro
             }
             if (grpConv != null)
             {
-                if ( result != "" && result != "500" ) grpConv.sendToApi(result);
-                //grpConv.sendMessage(result);
+                if (result != "" && result != "500") grpConv.sendToApi(result);
                 grpConv.setCanSendPanel(false);
                 grpConv.setListenButton(true);
+                //grpConv.sendMessage(result);
                 Console.WriteLine("gestopt");
             }
 

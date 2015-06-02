@@ -29,7 +29,7 @@ namespace LifeSubsMetro
         /// <param name="e"></param>
         private void OnTimedEvent(Object source, ElapsedEventArgs e)
         {
-            apiHandler.getMessages(gcs.timeId, gcs);
+            apiHandler.getMessages(gcs.messageId, gcs);
         }
 
         public void stopTimer()

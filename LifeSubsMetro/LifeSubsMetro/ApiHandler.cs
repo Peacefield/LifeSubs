@@ -207,10 +207,9 @@ namespace LifeSubsMetro
             }
         }
 
-        public void getMessages(string time, GroupConversations gcs)
+        public void getMessages(string messageId, GroupConversations gcs)
         {
             string roomId = gcs.roomId;
-            string messageId = gcs.timeId;
 
             string url = "http://lifesubs.windesheim.nl/api/getMessages.php?func=getMessages"
                 + "&room=" + roomId
@@ -284,6 +283,10 @@ namespace LifeSubsMetro
                     string senderId = "";
                     string senderName = "";
                     string msg = "";
+                    string time = "";
+
+                    string logMsg = "";
+
                     foreach (KeyValuePair<string, string> pair in values)
                     {
                         //Console.WriteLine("{0} => {1}",
@@ -293,7 +296,7 @@ namespace LifeSubsMetro
                         switch (pair.Key)
                         {
                             case "idmessages":
-                                gcs.timeId = pair.Value;
+                                gcs.messageId = pair.Value;
                                 break;
                             case "sender_messages":
                                 senderId = pair.Value;
@@ -304,11 +307,17 @@ namespace LifeSubsMetro
                                 Console.WriteLine("Bericht ----->" + msg);
                                 break;
                             case "time_messages":
+                                time = pair.Value;
                                 break;
                             case "room_messages":
                                 break;
                             case "name_user":
                                 senderName = pair.Value;
+
+                                logMsg = /*"[" + gcs.messageId + "] " +*/ senderName + ": " + msg;
+
+                                gcs.updateLog(logMsg);
+
                                 if (senderId == gcs.userId)
                                     gcs.sendMessage(msg);
                                 else
