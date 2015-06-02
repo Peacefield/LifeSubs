@@ -178,7 +178,7 @@ namespace LifeSubsMetro
             }
         }
 
-        private void actThing(object sender, WaveInEventArgs e)
+        private void actOnDataAvailable(object sender, WaveInEventArgs e)
         {
             //Loop through the received bytes
             for (int index = 0; index < e.BytesRecorded; index += 2)
@@ -204,7 +204,7 @@ namespace LifeSubsMetro
         {
             //Put the functions on another thread, so the GUI will not freeze
 
-            new Thread(() => actThing(sender, e)).Start();
+            new Thread(() => actOnDataAvailable(sender, e)).Start();
         }
     }
 }
