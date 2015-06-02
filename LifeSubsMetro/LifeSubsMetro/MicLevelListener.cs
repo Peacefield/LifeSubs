@@ -20,24 +20,39 @@ namespace LifeSubsMetro
 
         Settings settings = new Settings();
 
+        /// <summary>
+        /// Listens to silences from the subtitle form
+        /// </summary>
+        /// <param name="f">Subtitle form</param>
         public MicLevelListener(Subtitle f)
         {
             this.subtitleForm = f;
             this.sec = settings.delay * 10;
         }
 
+        /// <summary>
+        /// Listens to silences from settings menu
+        /// </summary>
+        /// <param name="f">Settings menu form</param>
         public MicLevelListener(SettingsMenu f)
         {
             this.settingsMenu = f;
             this.sec = settings.delay * 10;
         }
 
+        /// <summary>
+        /// Listens to silences from Group conversations
+        /// </summary>
+        /// <param name="grp">Group conversations form</param>
         public MicLevelListener(GroupConversations grp)
         {
             this.grpConv = grp;
             this.sec = settings.delay * 10;
         }
 
+        /// <summary>
+        /// Listens to the audiostream from the selected microphone
+        /// </summary>
         public void listenToStream()
         {
             //Get all microphones
@@ -66,6 +81,9 @@ namespace LifeSubsMetro
             waveIn.StartRecording();
         }
 
+        /// <summary>
+        /// Stop recording
+        /// </summary>
         public void stop()
         {
             waveIn.StopRecording();
