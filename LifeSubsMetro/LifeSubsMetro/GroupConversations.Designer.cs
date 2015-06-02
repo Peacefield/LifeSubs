@@ -48,8 +48,8 @@
             this.dataGridOutput.AllowUserToDeleteRows = false;
             this.dataGridOutput.AllowUserToResizeColumns = false;
             this.dataGridOutput.AllowUserToResizeRows = false;
-            this.dataGridOutput.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dataGridOutput.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.AllCells;
+            this.dataGridOutput.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
             this.dataGridOutput.BackgroundColor = System.Drawing.SystemColors.Window;
             this.dataGridOutput.BorderStyle = System.Windows.Forms.BorderStyle.None;
             this.dataGridOutput.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.SingleVertical;
@@ -82,7 +82,7 @@
             this.imgColumn.Name = "imgColumn";
             this.imgColumn.ReadOnly = true;
             this.imgColumn.Resizable = System.Windows.Forms.DataGridViewTriState.False;
-            this.imgColumn.Width = 200;
+            this.imgColumn.Width = 21;
             // 
             // msgColumn
             // 
@@ -160,7 +160,7 @@
             this.startGroupListenerBtn.Size = new System.Drawing.Size(47, 59);
             this.startGroupListenerBtn.Style = MetroFramework.MetroColorStyle.Green;
             this.startGroupListenerBtn.TabIndex = 16;
-            this.startGroupListenerBtn.TileImage = ((System.Drawing.Image)(resources.GetObject("startGroupListenerBtn.TileImage")));
+            this.startGroupListenerBtn.TileImage = global::LifeSubsMetro.Properties.Resources.Microphone_50;
             this.startGroupListenerBtn.TileImageAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.startGroupListenerBtn.TileTextFontSize = MetroFramework.MetroTileTextSize.Small;
             this.startGroupListenerBtn.UseSelectable = true;

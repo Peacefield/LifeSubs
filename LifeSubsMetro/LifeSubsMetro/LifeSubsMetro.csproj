@@ -132,67 +132,28 @@
     <None Include="App.config" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="icons\Settings\1428589893_engineering.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="icons\Exit\1428591099_logout.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="icons\Exit\1428591099_logout_48.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="icons\Settings\1428589893_engineering_48.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="icons\Settings\settings-21-48.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="icons\Exit\close-window-48.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="icons\Exit\exit-48.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="icons\SettingsMenu\Speaker-50.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="icons\Subtitles\text-justify-48.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="icons\Subtitles\text-center-64.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="icons\Subtitles\broken_lines.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="icons\Conversations\Groups-64.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="icons\Conversations\Groups Filled-64.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="icons\Conversations\Add Group-64.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="icons\SettingsMenu\1428589893_engineering.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="icons\SettingsMenu\Ac Dc Converter-50.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="icons\SettingsMenu\Generic Text-50.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="icons\SettingsMenu\Microphone2-50.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="icons\SettingsMenu\Numbered List-50.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="icons\SettingsMenu\Save-50.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="icons\SettingsMenu\Time-50.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="icons\SettingsMenu\Geography-50.png" />
@@ -207,19 +168,10 @@
     <None Include="icons\Subtitles\Resize Four Directions-32.png" />
   </ItemGroup>
   <ItemGroup>
-    <None Include="icons\Subtitles\Monitor-32.png" />
-  </ItemGroup>
-  <ItemGroup>
     <None Include="icons\SettingsMenu\devices.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="icons\SettingsMenu\Volume Up-50.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="icons\SettingsMenu\Opened Folder-26.png" />
-  </ItemGroup>
-  <ItemGroup>
-    <None Include="icons\SettingsMenu\Opened Folder-20.png" />
   </ItemGroup>
   <ItemGroup>
     <None Include="icons\SettingsMenu\Folder-20.png" />
@@ -230,6 +182,7 @@
   </ItemGroup>
   <ItemGroup>
     <Content Include="icon.ico" />
+    <None Include="icons\Conversations\Add Group-100.png" />
     <Content Include="LifeSubs_app_2k.ico" />
     <None Include="Resources\icon.bmp" />
   </ItemGroup>
