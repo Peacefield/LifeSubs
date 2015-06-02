@@ -31,6 +31,11 @@ namespace LifeSubsMetro
         private Point dragAt = Point.Empty;
         private Screen screen;
 
+        /// <summary>
+        /// Starts an instance of the Subtitle class from the main menu without joining a room
+        /// Displays a form that listens for incoming speech to display as text
+        /// </summary>
+        /// <param name="mm">MainMenu</param>
         public Subtitle(MainMenu mm)
         {
             InitializeComponent();
@@ -42,6 +47,12 @@ namespace LifeSubsMetro
             setPosition(position);
         }
 
+        /// <summary>
+        /// Starts an instance of the Subtitle class from the main menu while joining a room
+        /// Displays a form that listens for incoming speech to display as text
+        /// </summary>
+        /// <param name="mm">MainMenu</param>
+        /// <param name="api">ApiHandler</param>
         public Subtitle(MainMenu mm, ApiHandler api)
         {
             InitializeComponent();

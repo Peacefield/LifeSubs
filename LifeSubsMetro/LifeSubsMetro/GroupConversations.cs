@@ -28,6 +28,10 @@ namespace LifeSubsMetro
         MessageHandler mh;
         ApiHandler apiHandler;
 
+        /// <summary>
+        /// Form for groupconversations
+        /// </summary>
+        /// <param name="mm">MainMenu</param>
         public GroupConversations(MainMenu mm)
         {
             this.mm = mm;
