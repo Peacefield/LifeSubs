@@ -397,7 +397,7 @@
             this.tileCreateRoom.Style = MetroFramework.MetroColorStyle.Green;
             this.tileCreateRoom.TabIndex = 3;
             this.tileCreateRoom.Text = "Creëer kamer";
-            this.tileCreateRoom.TileImage = global::LifeSubsMetro.Properties.Resources.Add_Group_64;
+            this.tileCreateRoom.TileImage = global::LifeSubsMetro.Properties.Resources.Add_Group_100;
             this.tileCreateRoom.TileImageAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.tileCreateRoom.TileTextFontSize = MetroFramework.MetroTileTextSize.Tall;
             this.tileCreateRoom.TileTextFontWeight = MetroFramework.MetroTileTextWeight.Regular;
