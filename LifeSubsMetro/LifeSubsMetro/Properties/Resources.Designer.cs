@@ -73,19 +73,9 @@ namespace LifeSubsMetro.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap _1428591099_logout_48 {
+        internal static System.Drawing.Bitmap Add_Group_100 {
             get {
-                object obj = ResourceManager.GetObject("_1428591099_logout_48", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap Add_Group_64 {
-            get {
-                object obj = ResourceManager.GetObject("Add_Group_64", resourceCulture);
+                object obj = ResourceManager.GetObject("Add_Group_100", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -96,16 +86,6 @@ namespace LifeSubsMetro.Properties {
         internal static System.Drawing.Bitmap broken_lines {
             get {
                 object obj = ResourceManager.GetObject("broken_lines", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap close_window_48 {
-            get {
-                object obj = ResourceManager.GetObject("close_window_48", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -163,29 +143,9 @@ namespace LifeSubsMetro.Properties {
         /// <summary>
         ///   Looks up a localized resource of type System.Drawing.Bitmap.
         /// </summary>
-        internal static System.Drawing.Bitmap Generic_Text_501 {
-            get {
-                object obj = ResourceManager.GetObject("Generic_Text_501", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
         internal static System.Drawing.Bitmap Geography_50 {
             get {
                 object obj = ResourceManager.GetObject("Geography_50", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap Groups_64 {
-            get {
-                object obj = ResourceManager.GetObject("Groups_64", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }
@@ -246,46 +206,6 @@ namespace LifeSubsMetro.Properties {
         internal static System.Drawing.Bitmap settings_21_48 {
             get {
                 object obj = ResourceManager.GetObject("settings_21_48", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap Speaker_50 {
-            get {
-                object obj = ResourceManager.GetObject("Speaker_50", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap text_center_64 {
-            get {
-                object obj = ResourceManager.GetObject("text_center_64", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap text_justify_48 {
-            get {
-                object obj = ResourceManager.GetObject("text_justify_48", resourceCulture);
-                return ((System.Drawing.Bitmap)(obj));
-            }
-        }
-        
-        /// <summary>
-        ///   Looks up a localized resource of type System.Drawing.Bitmap.
-        /// </summary>
-        internal static System.Drawing.Bitmap Time_50 {
-            get {
-                object obj = ResourceManager.GetObject("Time_50", resourceCulture);
                 return ((System.Drawing.Bitmap)(obj));
             }
         }

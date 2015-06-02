@@ -122,6 +122,7 @@ namespace LifeSubsMetro
                 canSend = true;
                 count = 0;
             }
+
             //If no sound has been recorded for ... seconds, send audio to server
             if (count > sec)
             {
