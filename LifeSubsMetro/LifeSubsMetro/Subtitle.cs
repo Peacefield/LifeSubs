@@ -293,6 +293,11 @@ namespace LifeSubs
                 Console.WriteLine("Datagridview niet kunnen vinden");
                 Console.WriteLine(result);
             }
+            catch (InvalidOperationException)
+            {
+                Console.WriteLine("Datagridview niet kunnen vinden");
+                Console.WriteLine(result);
+            }
         }
 
         /// <summary>
