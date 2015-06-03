@@ -1,4 +1,4 @@
-﻿namespace LifeSubsMetro
+﻿namespace LifeSubs
 {
     partial class MainMenu
     {
@@ -341,7 +341,7 @@
             this.tileExit.Size = new System.Drawing.Size(95, 97);
             this.tileExit.Style = MetroFramework.MetroColorStyle.Green;
             this.tileExit.TabIndex = 5;
-            this.tileExit.TileImage = global::LifeSubsMetro.Properties.Resources.exit_48;
+            this.tileExit.TileImage = global::LifeSubs.Properties.Resources.exit_48;
             this.tileExit.TileImageAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.tileExit.TileTextFontSize = MetroFramework.MetroTileTextSize.Tall;
             this.tileExit.TileTextFontWeight = MetroFramework.MetroTileTextWeight.Regular;
@@ -359,7 +359,7 @@
             this.tileSettings.Size = new System.Drawing.Size(95, 97);
             this.tileSettings.Style = MetroFramework.MetroColorStyle.Green;
             this.tileSettings.TabIndex = 2;
-            this.tileSettings.TileImage = global::LifeSubsMetro.Properties.Resources.settings_21_48;
+            this.tileSettings.TileImage = global::LifeSubs.Properties.Resources.settings_21_48;
             this.tileSettings.TileImageAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.tileSettings.TileTextFontSize = MetroFramework.MetroTileTextSize.Tall;
             this.tileSettings.TileTextFontWeight = MetroFramework.MetroTileTextWeight.Regular;
@@ -378,7 +378,7 @@
             this.tileJoinRoom.Style = MetroFramework.MetroColorStyle.Green;
             this.tileJoinRoom.TabIndex = 4;
             this.tileJoinRoom.Text = "Verbind met kamer";
-            this.tileJoinRoom.TileImage = global::LifeSubsMetro.Properties.Resources.Groups_Filled_64;
+            this.tileJoinRoom.TileImage = global::LifeSubs.Properties.Resources.Groups_Filled_64;
             this.tileJoinRoom.TileImageAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.tileJoinRoom.TileTextFontSize = MetroFramework.MetroTileTextSize.Tall;
             this.tileJoinRoom.TileTextFontWeight = MetroFramework.MetroTileTextWeight.Regular;
@@ -397,7 +397,7 @@
             this.tileCreateRoom.Style = MetroFramework.MetroColorStyle.Green;
             this.tileCreateRoom.TabIndex = 3;
             this.tileCreateRoom.Text = "Creëer kamer";
-            this.tileCreateRoom.TileImage = global::LifeSubsMetro.Properties.Resources.Add_Group_100;
+            this.tileCreateRoom.TileImage = global::LifeSubs.Properties.Resources.Add_Group_100;
             this.tileCreateRoom.TileImageAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.tileCreateRoom.TileTextFontSize = MetroFramework.MetroTileTextSize.Tall;
             this.tileCreateRoom.TileTextFontWeight = MetroFramework.MetroTileTextWeight.Regular;
@@ -416,7 +416,7 @@
             this.tileSubtitle.Style = MetroFramework.MetroColorStyle.Green;
             this.tileSubtitle.TabIndex = 0;
             this.tileSubtitle.Text = "Start ondertiteling";
-            this.tileSubtitle.TileImage = global::LifeSubsMetro.Properties.Resources.broken_lines;
+            this.tileSubtitle.TileImage = global::LifeSubs.Properties.Resources.broken_lines;
             this.tileSubtitle.TileImageAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.tileSubtitle.TileTextFontSize = MetroFramework.MetroTileTextSize.Tall;
             this.tileSubtitle.TileTextFontWeight = MetroFramework.MetroTileTextWeight.Regular;

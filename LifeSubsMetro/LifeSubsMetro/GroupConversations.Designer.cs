@@ -1,4 +1,4 @@
-﻿namespace LifeSubsMetro
+﻿namespace LifeSubs
 {
     partial class GroupConversations
     {
@@ -142,7 +142,7 @@
             // settingsPB
             // 
             this.settingsPB.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.settingsPB.Image = global::LifeSubsMetro.Properties.Resources._1428589893_engineering_48;
+            this.settingsPB.Image = global::LifeSubs.Properties.Resources._1428589893_engineering_48;
             this.settingsPB.Location = new System.Drawing.Point(942, 9);
             this.settingsPB.Margin = new System.Windows.Forms.Padding(2);
             this.settingsPB.Name = "settingsPB";
@@ -160,7 +160,7 @@
             this.startGroupListenerBtn.Size = new System.Drawing.Size(47, 59);
             this.startGroupListenerBtn.Style = MetroFramework.MetroColorStyle.Green;
             this.startGroupListenerBtn.TabIndex = 16;
-            this.startGroupListenerBtn.TileImage = global::LifeSubsMetro.Properties.Resources.Microphone_50;
+            this.startGroupListenerBtn.TileImage = global::LifeSubs.Properties.Resources.Microphone_50;
             this.startGroupListenerBtn.TileImageAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.startGroupListenerBtn.TileTextFontSize = MetroFramework.MetroTileTextSize.Small;
             this.startGroupListenerBtn.UseSelectable = true;

@@ -1,7 +1,7 @@
 ﻿using System;
 using System.Windows.Forms;
 
-namespace LifeSubsMetro
+namespace LifeSubs
 {
     static class Program
     {

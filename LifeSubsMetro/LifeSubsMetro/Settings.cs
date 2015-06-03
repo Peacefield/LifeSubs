@@ -2,7 +2,7 @@
 using System.Data;
 using System.IO;
 
-namespace LifeSubsMetro
+namespace LifeSubs
 {
     public class Settings
     {

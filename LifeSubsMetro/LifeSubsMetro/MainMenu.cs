@@ -7,7 +7,7 @@ using System.Security.Cryptography;
 using System.Text;
 using System.Windows.Forms;
 
-namespace LifeSubsMetro
+namespace LifeSubs
 {
     public partial class MainMenu : MetroForm
     {

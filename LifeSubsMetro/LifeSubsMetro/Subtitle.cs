@@ -5,7 +5,7 @@ using System.IO;
 using System.Threading;
 using System.Windows.Forms;
 
-namespace LifeSubsMetro
+namespace LifeSubs
 {
     public partial class Subtitle : MetroForm
     {
@@ -140,13 +140,13 @@ namespace LifeSubsMetro
             {
                 //switch snap to top
                 case "top":
-                    this.snapPB.Image = global::LifeSubsMetro.Properties.Resources.Down_Circular_32;
+                    this.snapPB.Image = global::LifeSubs.Properties.Resources.Down_Circular_32;
                     this.Location = new Point(screen.Bounds.X, screen.Bounds.Y);
                     position = "top";
                     break;
                 //switch snap to bottom
                 case "bottom":
-                    this.snapPB.Image = global::LifeSubsMetro.Properties.Resources.Up_Circular_32;
+                    this.snapPB.Image = global::LifeSubs.Properties.Resources.Up_Circular_32;
                     this.Location = new Point(screen.Bounds.X, screen.Bounds.Height - this.Height);
                     position = "bottom";
                     break;

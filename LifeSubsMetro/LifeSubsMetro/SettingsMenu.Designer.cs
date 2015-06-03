@@ -1,4 +1,4 @@
-﻿namespace LifeSubsMetro
+﻿namespace LifeSubs
 {
     partial class SettingsMenu
     {
@@ -37,7 +37,7 @@
             this.monitorComboBox = new MetroFramework.Controls.MetroComboBox();
             this.microphoneProgressBar = new MetroFramework.Controls.MetroProgressBar();
             this.fontPanel = new System.Windows.Forms.Panel();
-            this.fontComboBox = new LifeSubsMetro.FontComboBox();
+            this.fontComboBox = new LifeSubs.FontComboBox();
             this.fontSizeComboBox = new MetroFramework.Controls.MetroComboBox();
             this.fontLabel = new System.Windows.Forms.Label();
             this.fontButton = new MetroFramework.Controls.MetroButton();
@@ -343,7 +343,7 @@
             this.openFolderTile.Style = MetroFramework.MetroColorStyle.Silver;
             this.openFolderTile.TabIndex = 4;
             this.openFolderTile.Theme = MetroFramework.MetroThemeStyle.Light;
-            this.openFolderTile.TileImage = global::LifeSubsMetro.Properties.Resources.Folder_20;
+            this.openFolderTile.TileImage = global::LifeSubs.Properties.Resources.Folder_20;
             this.openFolderTile.TileImageAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.openFolderTile.UseSelectable = true;
             this.openFolderTile.UseTileImage = true;
@@ -569,7 +569,7 @@
             this.fontTile.Size = new System.Drawing.Size(200, 200);
             this.fontTile.TabIndex = 4;
             this.fontTile.Text = "Lettertype";
-            this.fontTile.TileImage = global::LifeSubsMetro.Properties.Resources.Generic_Text_50;
+            this.fontTile.TileImage = global::LifeSubs.Properties.Resources.Generic_Text_50;
             this.fontTile.TileImageAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.fontTile.TileTextFontSize = MetroFramework.MetroTileTextSize.Tall;
             this.fontTile.UseSelectable = true;
@@ -587,7 +587,7 @@
             this.microphoneTile.Size = new System.Drawing.Size(200, 200);
             this.microphoneTile.TabIndex = 0;
             this.microphoneTile.Text = "Apparaten";
-            this.microphoneTile.TileImage = global::LifeSubsMetro.Properties.Resources.devices;
+            this.microphoneTile.TileImage = global::LifeSubs.Properties.Resources.devices;
             this.microphoneTile.TileImageAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.microphoneTile.TileTextFontSize = MetroFramework.MetroTileTextSize.Tall;
             this.microphoneTile.UseSelectable = true;
@@ -605,7 +605,7 @@
             this.linesTile.Size = new System.Drawing.Size(200, 200);
             this.linesTile.TabIndex = 5;
             this.linesTile.Text = "Ondertiteling";
-            this.linesTile.TileImage = global::LifeSubsMetro.Properties.Resources.Numbered_List_50;
+            this.linesTile.TileImage = global::LifeSubs.Properties.Resources.Numbered_List_50;
             this.linesTile.TileImageAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.linesTile.TileTextFontSize = MetroFramework.MetroTileTextSize.Tall;
             this.linesTile.UseSelectable = true;
@@ -623,7 +623,7 @@
             this.delayTile.Size = new System.Drawing.Size(200, 200);
             this.delayTile.TabIndex = 9;
             this.delayTile.Text = "Omgevingsgeluid";
-            this.delayTile.TileImage = global::LifeSubsMetro.Properties.Resources.Volume_Up_50;
+            this.delayTile.TileImage = global::LifeSubs.Properties.Resources.Volume_Up_50;
             this.delayTile.TileImageAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.delayTile.TileTextFontSize = MetroFramework.MetroTileTextSize.Tall;
             this.delayTile.UseSelectable = true;
@@ -641,7 +641,7 @@
             this.languageTile.Size = new System.Drawing.Size(200, 200);
             this.languageTile.TabIndex = 11;
             this.languageTile.Text = "Taal";
-            this.languageTile.TileImage = global::LifeSubsMetro.Properties.Resources.Geography_50;
+            this.languageTile.TileImage = global::LifeSubs.Properties.Resources.Geography_50;
             this.languageTile.TileImageAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.languageTile.TileTextFontSize = MetroFramework.MetroTileTextSize.Tall;
             this.languageTile.UseSelectable = true;
@@ -659,7 +659,7 @@
             this.saveTile.Size = new System.Drawing.Size(200, 200);
             this.saveTile.TabIndex = 7;
             this.saveTile.Text = "Opslag";
-            this.saveTile.TileImage = global::LifeSubsMetro.Properties.Resources.Save_50;
+            this.saveTile.TileImage = global::LifeSubs.Properties.Resources.Save_50;
             this.saveTile.TileImageAlign = System.Drawing.ContentAlignment.MiddleCenter;
             this.saveTile.TileTextFontSize = MetroFramework.MetroTileTextSize.Tall;
             this.saveTile.UseSelectable = true;

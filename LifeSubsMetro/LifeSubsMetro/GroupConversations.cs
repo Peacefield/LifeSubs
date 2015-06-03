@@ -6,7 +6,7 @@ using System.Net;
 using System.Threading;
 using System.Windows.Forms;
 
-namespace LifeSubsMetro
+namespace LifeSubs
 {
     public partial class GroupConversations : MetroForm
     {

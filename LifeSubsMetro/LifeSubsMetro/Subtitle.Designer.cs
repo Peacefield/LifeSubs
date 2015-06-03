@@ -1,4 +1,4 @@
-﻿namespace LifeSubsMetro
+﻿namespace LifeSubs
 {
     partial class Subtitle
     {
@@ -76,7 +76,7 @@
             // dragPB
             // 
             this.dragPB.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.dragPB.Image = global::LifeSubsMetro.Properties.Resources.Resize_Four_Directions_32;
+            this.dragPB.Image = global::LifeSubs.Properties.Resources.Resize_Four_Directions_32;
             this.dragPB.Location = new System.Drawing.Point(191, 10);
             this.dragPB.Margin = new System.Windows.Forms.Padding(2);
             this.dragPB.Name = "dragPB";
@@ -91,7 +91,7 @@
             // snapPB
             // 
             this.snapPB.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.snapPB.Image = global::LifeSubsMetro.Properties.Resources.Up_Circular_32;
+            this.snapPB.Image = global::LifeSubs.Properties.Resources.Up_Circular_32;
             this.snapPB.Location = new System.Drawing.Point(208, 10);
             this.snapPB.Margin = new System.Windows.Forms.Padding(2);
             this.snapPB.Name = "snapPB";
@@ -104,7 +104,7 @@
             // settingsPB
             // 
             this.settingsPB.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
-            this.settingsPB.Image = global::LifeSubsMetro.Properties.Resources._1428589893_engineering_48;
+            this.settingsPB.Image = global::LifeSubs.Properties.Resources._1428589893_engineering_48;
             this.settingsPB.Location = new System.Drawing.Point(225, 10);
             this.settingsPB.Margin = new System.Windows.Forms.Padding(2);
             this.settingsPB.Name = "settingsPB";

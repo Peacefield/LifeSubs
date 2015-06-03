@@ -7,7 +7,7 @@ using MetroFramework.Forms;
 using MetroFramework.Controls;
 using System.Threading;
 
-namespace LifeSubsMetro
+namespace LifeSubs
 {
     public partial class SettingsMenu : MetroForm
     {

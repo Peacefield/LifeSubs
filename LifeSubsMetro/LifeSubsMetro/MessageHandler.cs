@@ -4,7 +4,7 @@ using System.IO;
 using System.Net;
 using System.Timers;
 
-namespace LifeSubsMetro
+namespace LifeSubs
 {
     class MessageHandler
     {

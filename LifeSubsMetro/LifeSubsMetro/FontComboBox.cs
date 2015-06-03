@@ -6,7 +6,7 @@ using System.Drawing;
 using System.Drawing.Text;
 using System.Windows.Forms;
 
-namespace LifeSubsMetro
+namespace LifeSubs
 {
     class FontComboBox : ComboBox
     {
