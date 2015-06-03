@@ -204,8 +204,7 @@ namespace LifeSubsMetro
         /// Data available event handler
         /// </summary>
         /// <param name="sender">Sender object</param>
-        /// <param name="e">        /// <param name="e">WaveInEventArgs</param>
-</param>
+        /// <param name="e">WaveInEventArgs</param>
         public void waveIn_DataAvailable(object sender, WaveInEventArgs e)
         {
             //Put the functions on another thread, so the GUI will not freeze
