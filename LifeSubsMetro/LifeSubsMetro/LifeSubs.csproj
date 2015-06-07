@@ -183,6 +183,11 @@
   <ItemGroup>
     <Content Include="icon.ico" />
     <None Include="icons\Conversations\Add Group-100.png" />
+    <None Include="icons\Subtitles\Chat-50.png" />
+    <None Include="icons\Subtitles\Google Groups Filled-50.png" />
+    <None Include="icons\Subtitles\Groups Filled-50.png" />
+    <None Include="icons\Subtitles\Chat Filled-50.png" />
+    <None Include="icons\Subtitles\Chat Message-50.png" />
     <Content Include="LifeSubs_app_2k.ico" />
     <None Include="Resources\icon.bmp" />
   </ItemGroup>

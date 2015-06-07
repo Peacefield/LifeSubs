@@ -259,7 +259,6 @@ namespace LifeSubs
             {
                 apiHandler.joinRoom(subtitleRoomNameTextbox.Text, roomPassMD5, ownerIp, subtitleUsernameTextbox.Text, this, true);
             }
-
         }
 
         /// <summary>

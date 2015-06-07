@@ -28,20 +28,22 @@
         /// </summary>
         private void InitializeComponent()
         {
-            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Subtitle));
             System.Windows.Forms.DataGridViewCellStyle dataGridViewCellStyle1 = new System.Windows.Forms.DataGridViewCellStyle();
+            System.ComponentModel.ComponentResourceManager resources = new System.ComponentModel.ComponentResourceManager(typeof(Subtitle));
             this.label1 = new System.Windows.Forms.Label();
             this.volumeMeter = new System.Windows.Forms.ProgressBar();
             this.sendNotificationPanel = new System.Windows.Forms.Panel();
+            this.dataOutput = new System.Windows.Forms.DataGridView();
+            this.outputColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            this.groupConvoPB = new System.Windows.Forms.PictureBox();
             this.dragPB = new System.Windows.Forms.PictureBox();
             this.snapPB = new System.Windows.Forms.PictureBox();
             this.settingsPB = new System.Windows.Forms.PictureBox();
-            this.dataOutput = new System.Windows.Forms.DataGridView();
-            this.outputColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
+            ((System.ComponentModel.ISupportInitialize)(this.dataOutput)).BeginInit();
+            ((System.ComponentModel.ISupportInitialize)(this.groupConvoPB)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.dragPB)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.snapPB)).BeginInit();
             ((System.ComponentModel.ISupportInitialize)(this.settingsPB)).BeginInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataOutput)).BeginInit();
             this.SuspendLayout();
             // 
             // label1
@@ -72,6 +74,55 @@
             this.sendNotificationPanel.Name = "sendNotificationPanel";
             this.sendNotificationPanel.Size = new System.Drawing.Size(15, 15);
             this.sendNotificationPanel.TabIndex = 6;
+            // 
+            // dataOutput
+            // 
+            this.dataOutput.AllowUserToAddRows = false;
+            this.dataOutput.AllowUserToDeleteRows = false;
+            this.dataOutput.AllowUserToResizeColumns = false;
+            this.dataOutput.AllowUserToResizeRows = false;
+            this.dataOutput.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
+            this.dataOutput.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
+            this.dataOutput.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
+            this.dataOutput.ColumnHeadersVisible = false;
+            this.dataOutput.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
+            this.outputColumn});
+            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
+            dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
+            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.White;
+            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.ControlText;
+            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
+            this.dataOutput.DefaultCellStyle = dataGridViewCellStyle1;
+            this.dataOutput.Location = new System.Drawing.Point(23, 46);
+            this.dataOutput.MultiSelect = false;
+            this.dataOutput.Name = "dataOutput";
+            this.dataOutput.ReadOnly = true;
+            this.dataOutput.RowHeadersVisible = false;
+            this.dataOutput.Size = new System.Drawing.Size(240, 150);
+            this.dataOutput.TabIndex = 10;
+            // 
+            // outputColumn
+            // 
+            this.outputColumn.HeaderText = "Output";
+            this.outputColumn.Name = "outputColumn";
+            this.outputColumn.ReadOnly = true;
+            this.outputColumn.Width = this.dataOutput.Width;
+            // 
+            // groupConvoPB
+            // 
+            this.groupConvoPB.Anchor = ((System.Windows.Forms.AnchorStyles)((System.Windows.Forms.AnchorStyles.Top | System.Windows.Forms.AnchorStyles.Right)));
+            this.groupConvoPB.Image = global::LifeSubs.Properties.Resources.Chat_Message_50;
+            this.groupConvoPB.Location = new System.Drawing.Point(174, 10);
+            this.groupConvoPB.Margin = new System.Windows.Forms.Padding(2);
+            this.groupConvoPB.Name = "groupConvoPB";
+            this.groupConvoPB.Size = new System.Drawing.Size(13, 14);
+            this.groupConvoPB.SizeMode = System.Windows.Forms.PictureBoxSizeMode.StretchImage;
+            this.groupConvoPB.TabIndex = 11;
+            this.groupConvoPB.TabStop = false;
+            this.groupConvoPB.Visible = false;
+            this.groupConvoPB.Click += new System.EventHandler(this.groupConvoPB_Click);
             // 
             // dragPB
             // 
@@ -114,46 +165,12 @@
             this.settingsPB.TabStop = false;
             this.settingsPB.Click += new System.EventHandler(this.settingsPB_Click);
             // 
-            // dataOutput
-            // 
-            this.dataOutput.AllowUserToAddRows = false;
-            this.dataOutput.AllowUserToDeleteRows = false;
-            this.dataOutput.AllowUserToResizeColumns = false;
-            this.dataOutput.AllowUserToResizeRows = false;
-            this.dataOutput.AutoSizeColumnsMode = System.Windows.Forms.DataGridViewAutoSizeColumnsMode.Fill;
-            this.dataOutput.AutoSizeRowsMode = System.Windows.Forms.DataGridViewAutoSizeRowsMode.AllCells;
-            this.dataOutput.CellBorderStyle = System.Windows.Forms.DataGridViewCellBorderStyle.None;
-            this.dataOutput.ColumnHeadersVisible = false;
-            this.dataOutput.Columns.AddRange(new System.Windows.Forms.DataGridViewColumn[] {
-            this.outputColumn});
-            dataGridViewCellStyle1.Alignment = System.Windows.Forms.DataGridViewContentAlignment.MiddleCenter;
-            dataGridViewCellStyle1.BackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.Font = new System.Drawing.Font("Microsoft Sans Serif", 8.25F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
-            dataGridViewCellStyle1.ForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle1.SelectionBackColor = System.Drawing.Color.White;
-            dataGridViewCellStyle1.SelectionForeColor = System.Drawing.SystemColors.ControlText;
-            dataGridViewCellStyle1.WrapMode = System.Windows.Forms.DataGridViewTriState.True;
-            this.dataOutput.DefaultCellStyle = dataGridViewCellStyle1;
-            this.dataOutput.Location = new System.Drawing.Point(23, 46);
-            this.dataOutput.MultiSelect = false;
-            this.dataOutput.Name = "dataOutput";
-            this.dataOutput.ReadOnly = true;
-            this.dataOutput.RowHeadersVisible = false;
-            this.dataOutput.Size = new System.Drawing.Size(240, 150);
-            this.dataOutput.TabIndex = 10;
-            // 
-            // outputColumn
-            // 
-            this.outputColumn.HeaderText = "Output";
-            this.outputColumn.Name = "outputColumn";
-            this.outputColumn.ReadOnly = true;
-            this.outputColumn.Width = this.dataOutput.Width;
-            // 
             // Subtitle
             // 
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(300, 300);
+            this.Controls.Add(this.groupConvoPB);
             this.Controls.Add(this.dataOutput);
             this.Controls.Add(this.dragPB);
             this.Controls.Add(this.snapPB);
@@ -169,10 +186,11 @@
             this.Style = MetroFramework.MetroColorStyle.Green;
             this.FormClosing += new System.Windows.Forms.FormClosingEventHandler(this.Subtitle_FormClosing);
             this.Load += new System.EventHandler(this.Subtitle_Load);
+            ((System.ComponentModel.ISupportInitialize)(this.dataOutput)).EndInit();
+            ((System.ComponentModel.ISupportInitialize)(this.groupConvoPB)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.dragPB)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.snapPB)).EndInit();
             ((System.ComponentModel.ISupportInitialize)(this.settingsPB)).EndInit();
-            ((System.ComponentModel.ISupportInitialize)(this.dataOutput)).EndInit();
             this.ResumeLayout(false);
             this.PerformLayout();
 
@@ -188,5 +206,6 @@
         private System.Windows.Forms.PictureBox dragPB;
         private System.Windows.Forms.DataGridView dataOutput;
         private System.Windows.Forms.DataGridViewTextBoxColumn outputColumn;
+        private System.Windows.Forms.PictureBox groupConvoPB;
     }
 }

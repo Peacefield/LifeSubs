@@ -255,7 +255,7 @@
             // 
             // subtitleRoomNameTextbox
             // 
-            this.subtitleRoomNameTextbox.Location = new System.Drawing.Point(3, 41);
+            this.subtitleRoomNameTextbox.Location = new System.Drawing.Point(6, 19);
             this.subtitleRoomNameTextbox.Name = "subtitleRoomNameTextbox";
             this.subtitleRoomNameTextbox.Size = new System.Drawing.Size(167, 20);
             this.subtitleRoomNameTextbox.TabIndex = 0;
@@ -263,7 +263,7 @@
             // newRoomCheckbox
             // 
             this.newRoomCheckbox.AutoSize = true;
-            this.newRoomCheckbox.Location = new System.Drawing.Point(3, 8);
+            this.newRoomCheckbox.Location = new System.Drawing.Point(3, 120);
             this.newRoomCheckbox.Name = "newRoomCheckbox";
             this.newRoomCheckbox.Size = new System.Drawing.Size(162, 15);
             this.newRoomCheckbox.TabIndex = 8;
@@ -273,14 +273,14 @@
             // 
             // subtitleUsernameTextbox
             // 
-            this.subtitleUsernameTextbox.Location = new System.Drawing.Point(3, 115);
+            this.subtitleUsernameTextbox.Location = new System.Drawing.Point(6, 93);
             this.subtitleUsernameTextbox.Name = "subtitleUsernameTextbox";
             this.subtitleUsernameTextbox.Size = new System.Drawing.Size(167, 20);
             this.subtitleUsernameTextbox.TabIndex = 2;
             // 
             // subtitlePasswordTextbox
             // 
-            this.subtitlePasswordTextbox.Location = new System.Drawing.Point(3, 79);
+            this.subtitlePasswordTextbox.Location = new System.Drawing.Point(6, 57);
             this.subtitlePasswordTextbox.Name = "subtitlePasswordTextbox";
             this.subtitlePasswordTextbox.Size = new System.Drawing.Size(167, 20);
             this.subtitlePasswordTextbox.TabIndex = 1;
@@ -289,7 +289,7 @@
             // passwordLabel
             // 
             this.passwordLabel.AutoSize = true;
-            this.passwordLabel.Location = new System.Drawing.Point(0, 61);
+            this.passwordLabel.Location = new System.Drawing.Point(3, 39);
             this.passwordLabel.Name = "passwordLabel";
             this.passwordLabel.Size = new System.Drawing.Size(83, 19);
             this.passwordLabel.TabIndex = 7;
@@ -298,7 +298,7 @@
             // nameLabel
             // 
             this.nameLabel.AutoSize = true;
-            this.nameLabel.Location = new System.Drawing.Point(0, 98);
+            this.nameLabel.Location = new System.Drawing.Point(3, 76);
             this.nameLabel.Name = "nameLabel";
             this.nameLabel.Size = new System.Drawing.Size(104, 19);
             this.nameLabel.TabIndex = 6;
@@ -307,7 +307,7 @@
             // roomNameLabel
             // 
             this.roomNameLabel.AutoSize = true;
-            this.roomNameLabel.Location = new System.Drawing.Point(0, 24);
+            this.roomNameLabel.Location = new System.Drawing.Point(3, 2);
             this.roomNameLabel.Name = "roomNameLabel";
             this.roomNameLabel.Size = new System.Drawing.Size(80, 19);
             this.roomNameLabel.TabIndex = 5;
@@ -431,13 +431,13 @@
             this.AutoScaleDimensions = new System.Drawing.SizeF(6F, 13F);
             this.AutoScaleMode = System.Windows.Forms.AutoScaleMode.Font;
             this.ClientSize = new System.Drawing.Size(733, 270);
+            this.Controls.Add(this.tileSubtitle);
             this.Controls.Add(this.tileExit);
             this.Controls.Add(this.tileSettings);
             this.Controls.Add(this.tileJoinRoom);
             this.Controls.Add(this.tileCreateRoom);
             this.Controls.Add(this.joinRoomPanel);
             this.Controls.Add(this.makeRoomPanel);
-            this.Controls.Add(this.tileSubtitle);
             this.Controls.Add(this.subtitleRoomPanel);
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.MaximizeBox = false;

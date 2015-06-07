@@ -14,7 +14,7 @@ namespace LifeSubs
         public string roomId { get; set; }
         public string roomName { get; set; }
         public string messageId { get; set; }
-
+        public bool isPresenting = false;
         string logpath;
         string path = @"audio\";
         MainMenu mm;
@@ -70,9 +70,16 @@ namespace LifeSubs
             }
             else
             {
-                dataGridOutput.Rows.Add(dr);
-                dataGridOutput.CurrentCell = dataGridOutput.Rows[dr.Index + 1].Cells[0];
-                tbInput.Text = "";
+                try
+                {
+                    dataGridOutput.Rows.Add(dr);
+                    dataGridOutput.CurrentCell = dataGridOutput.Rows[dr.Index + 1].Cells[0];
+                    tbInput.Text = "";
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine(e.Message);
+                }
             }
 
         }
@@ -424,12 +431,14 @@ namespace LifeSubs
         private void GroupConversations_FormClosing(object sender, FormClosingEventArgs e)
         {
             mh.stopTimer();
-            apiHandler.exitRoom(this, null);
-            mm.BringToFront();
+            if (!isPresenting)
+            {
+                apiHandler.exitRoom(this, null);
+                mm.BringToFront();
 
-            try { deleteDir(); }
-            catch (Exception direx) { Console.WriteLine(direx.Message); }
-
+                try { deleteDir(); }
+                catch (Exception direx) { Console.WriteLine(direx.Message); }
+            }
         }
     }
 }

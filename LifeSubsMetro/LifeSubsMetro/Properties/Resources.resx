@@ -169,4 +169,7 @@
   <data name="Microphone_50" type="System.Resources.ResXFileRef, System.Windows.Forms">
     <value>..\icons\Conversations\Microphone-50.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
   </data>
+  <data name="Chat_Message_50" type="System.Resources.ResXFileRef, System.Windows.Forms">
+    <value>..\icons\Subtitles\Chat Message-50.png;System.Drawing.Bitmap, System.Drawing, Version=4.0.0.0, Culture=neutral, PublicKeyToken=b03f5f7f11d50a3a</value>
+  </data>
 </root>

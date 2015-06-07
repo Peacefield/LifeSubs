@@ -11,7 +11,7 @@ namespace LifeSubs
     {
         public string userId { get; set; }
         public string roomId { get; set; }
-
+        public string roomName { get; set; }
         MainMenu mm;
         MicLevelListener mll;
         Thread th = null;
@@ -26,6 +26,7 @@ namespace LifeSubs
         int lines;
         public string position;
         public ApiHandler apihandler;
+        GroupConversations gcs;
         // Drag form
         private bool dragging;
         private Point dragAt = Point.Empty;
@@ -60,6 +61,7 @@ namespace LifeSubs
             this.mm = mm;
             this.position = "bottom";
             this.apihandler = api;
+            this.groupConvoPB.Visible = true;
 
             createDir();
             setPosition(position);
@@ -604,5 +606,15 @@ namespace LifeSubs
             }
         }
         #endregion
+
+        private void groupConvoPB_Click(object sender, EventArgs e)
+        {
+            this.gcs = new GroupConversations(mm);
+            this.gcs.userId = this.userId;
+            this.gcs.roomId = this.roomId;
+            this.gcs.roomName = this.roomName;
+            this.gcs.isPresenting = true;
+            this.gcs.Show();
+        }
     }
 }

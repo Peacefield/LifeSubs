@@ -92,6 +92,7 @@ namespace LifeSubs
                     Subtitle sub = new Subtitle(mm, this);
                     sub.userId = userId;
                     sub.roomId = roomId;
+                    sub.roomName = roomName;
                     sub.Show();
                 }
                 else
@@ -102,7 +103,7 @@ namespace LifeSubs
                     gcs.roomName = roomName;
                     gcs.ShowDialog();
                 }
-
+                mm.Visible = false;
 
             }
         }
@@ -168,6 +169,7 @@ namespace LifeSubs
                     Subtitle sub = new Subtitle(mm, this);
                     sub.userId = userId;
                     sub.roomId = roomId;
+                    sub.roomName = roomName;
                     sub.Show();
                 }
                 else
