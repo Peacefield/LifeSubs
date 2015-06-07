@@ -249,6 +249,12 @@ namespace LifeSubs
         /// <param name="e"></param>
         private void loginButton_Click(object sender, EventArgs e)
         {
+            Settings settings = new Settings();
+            if (settings.microphone == -1)
+            {
+                MetroMessageBox.Show(this, "Microfoon niet gevonden", "Error", MessageBoxButtons.OK, MessageBoxIcon.Error);
+                return;
+            }
             string roomPassMD5 = toMD5(subtitlePasswordTextbox.Text);
             string ownerIp = getOwnIp();
             if (newRoomCheckbox.Checked)
