@@ -33,7 +33,6 @@
             this.dataGridOutput = new System.Windows.Forms.DataGridView();
             this.imgColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.msgColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            //this.tbInput = new MetroFramework.Controls.MetroTextBox();
             this.tbInput = new System.Windows.Forms.RichTextBox();
             this.sendTile = new MetroFramework.Controls.MetroTile();
             this.volumemeterGrp = new MetroFramework.Controls.MetroProgressBar();
@@ -95,19 +94,14 @@
             // 
             // tbInput
             // 
-            this.tbInput.Lines = new string[0];
+            this.tbInput.BorderStyle = System.Windows.Forms.BorderStyle.FixedSingle;
             this.tbInput.Location = new System.Drawing.Point(20, 483);
             this.tbInput.MaxLength = 32767;
-            this.tbInput.Multiline = true;
             this.tbInput.Name = "tbInput";
-            //this.tbInput.PasswordChar = '\0';
-            //this.tbInput.ScrollBars = System.Windows.Forms.ScrollBars.None;
-            this.tbInput.SelectedText = "";
+            this.tbInput.ScrollBars = System.Windows.Forms.RichTextBoxScrollBars.Vertical;
             this.tbInput.Size = new System.Drawing.Size(858, 59);
             this.tbInput.TabIndex = 1;
-            //this.tbInput.UseCustomBackColor = true;
-            //this.tbInput.UseCustomForeColor = true;
-            //this.tbInput.UseSelectable = true;
+            this.tbInput.Text = "";
             this.tbInput.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tbInput_KeyDown);
             // 
             // sendTile

@@ -339,6 +339,7 @@ namespace LifeSubs
 
             tbInput.BackColor = settings.bgColor;
             tbInput.ForeColor = settings.subColor;
+            tbInput.Font = font;
 
             //TODO: Complete listener functionality and change microphone of requestlistener and miclevellistener here
         }
