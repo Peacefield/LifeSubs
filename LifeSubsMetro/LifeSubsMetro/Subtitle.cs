@@ -253,6 +253,7 @@ namespace LifeSubs
         {
             stop();
             mll.stop();
+            if (gcs != null) gcs.Close();
             mm.Visible = true;
             deleteDir();
 
