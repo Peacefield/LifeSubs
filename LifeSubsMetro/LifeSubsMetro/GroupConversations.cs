@@ -14,7 +14,7 @@ namespace LifeSubs
         public string roomId { get; set; }
         public string roomName { get; set; }
         public string messageId { get; set; }
-        public bool isPresenting = false;
+        public bool isPresenting { get; set; }
         string logpath;
         string path = @"audio\";
         MainMenu mm;
@@ -434,10 +434,13 @@ namespace LifeSubs
             if (!isPresenting)
             {
                 apiHandler.exitRoom(this, null);
-                mm.BringToFront();
 
                 try { deleteDir(); }
                 catch (Exception direx) { Console.WriteLine(direx.Message); }
+
+                mm.Visible = true;
+                //mm.BringToFront();
+                Console.WriteLine(">>>>>>>>>>>>>>>>>>> Ik ben hier <<<<<<<<<<<<<<<<<<<<<<<<<<");
             }
         }
     }

@@ -86,6 +86,8 @@ namespace LifeSubs
                         c.Visible = true;
                     }
                 }
+                mm.Visible = false;
+                Console.WriteLine("Visibility is false");
 
                 if (isSubtitle)
                 {
@@ -101,10 +103,9 @@ namespace LifeSubs
                     gcs.userId = userId;
                     gcs.roomId = roomId;
                     gcs.roomName = roomName;
+                    gcs.isPresenting = false;
                     gcs.ShowDialog();
                 }
-                mm.Visible = false;
-
             }
         }
 
@@ -164,6 +165,16 @@ namespace LifeSubs
                 }
                 MetroMessageBox.Show(mm, "Welkom in " + roomName + ", " + username, "Succesvol verbonden!", MessageBoxButtons.OK, MessageBoxIcon.Question);
 
+
+                foreach (Control c in mm.Controls)
+                {
+                    if (c.GetType() == typeof(MetroFramework.Controls.MetroTile))
+                    {
+                        c.Visible = true;
+                    }
+                }
+                mm.Visible = false;
+
                 if (isSubtitle)
                 {
                     Subtitle sub = new Subtitle(mm, this);
@@ -178,15 +189,8 @@ namespace LifeSubs
                     gcs.userId = userId;
                     gcs.roomId = roomId;
                     gcs.roomName = roomName;
+                    gcs.isPresenting = false;
                     gcs.ShowDialog();
-                }
-
-                foreach (Control c in mm.Controls)
-                {
-                    if (c.GetType() == typeof(MetroFramework.Controls.MetroTile))
-                    {
-                        c.Visible = true;
-                    }
                 }
             }
         }

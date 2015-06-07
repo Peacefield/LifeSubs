@@ -33,7 +33,8 @@
             this.dataGridOutput = new System.Windows.Forms.DataGridView();
             this.imgColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
             this.msgColumn = new System.Windows.Forms.DataGridViewTextBoxColumn();
-            this.tbInput = new MetroFramework.Controls.MetroTextBox();
+            //this.tbInput = new MetroFramework.Controls.MetroTextBox();
+            this.tbInput = new System.Windows.Forms.RichTextBox();
             this.sendTile = new MetroFramework.Controls.MetroTile();
             this.volumemeterGrp = new MetroFramework.Controls.MetroProgressBar();
             this.canSendPanelGrp = new System.Windows.Forms.Panel();
@@ -99,14 +100,14 @@
             this.tbInput.MaxLength = 32767;
             this.tbInput.Multiline = true;
             this.tbInput.Name = "tbInput";
-            this.tbInput.PasswordChar = '\0';
-            this.tbInput.ScrollBars = System.Windows.Forms.ScrollBars.None;
+            //this.tbInput.PasswordChar = '\0';
+            //this.tbInput.ScrollBars = System.Windows.Forms.ScrollBars.None;
             this.tbInput.SelectedText = "";
             this.tbInput.Size = new System.Drawing.Size(858, 59);
             this.tbInput.TabIndex = 1;
-            this.tbInput.UseCustomBackColor = true;
-            this.tbInput.UseCustomForeColor = true;
-            this.tbInput.UseSelectable = true;
+            //this.tbInput.UseCustomBackColor = true;
+            //this.tbInput.UseCustomForeColor = true;
+            //this.tbInput.UseSelectable = true;
             this.tbInput.KeyDown += new System.Windows.Forms.KeyEventHandler(this.tbInput_KeyDown);
             // 
             // sendTile
@@ -195,7 +196,7 @@
 
         #endregion
 
-        private MetroFramework.Controls.MetroTextBox tbInput;
+        //private MetroFramework.Controls.MetroTextBox tbInput;
         private MetroFramework.Controls.MetroTile sendTile;
         private System.Windows.Forms.DataGridView dataGridOutput;
         private System.Windows.Forms.DataGridViewTextBoxColumn imgColumn;
@@ -204,6 +205,7 @@
         private MetroFramework.Controls.MetroProgressBar volumemeterGrp;
         private System.Windows.Forms.Panel canSendPanelGrp;
         private System.Windows.Forms.PictureBox settingsPB;
+        private System.Windows.Forms.RichTextBox tbInput;
 
 
 

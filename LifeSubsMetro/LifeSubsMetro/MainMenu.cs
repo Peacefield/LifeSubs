@@ -80,17 +80,6 @@ namespace LifeSubs
             }
         }
 
-        /// <summary>
-        /// Start groupconversation
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void joinRoomButton_Click(object sender, EventArgs e)
-        {
-            //this.tileJoinRoom.Visible = true;
-
-            apiHandler.joinRoom(roomNameBox.Text, toMD5(passwordBox.Text), getOwnIp(), usernameTB.Text, this, false);
-        }
 
         /// <summary>
         /// Start settingsmenu
@@ -183,24 +172,6 @@ namespace LifeSubs
             return encoded;
         }
 
-        #region Submenu buttons clickevents
-        /// <summary>
-        /// Create a new room.
-        /// Opens a new GroupConversations dialog on success.
-        /// </summary>
-        /// <param name="sender"></param>
-        /// <param name="e"></param>
-        private void addRoomBtn_Click(object sender, EventArgs e)
-        {
-            string roomName = roomNameCreateTextbox.Text;
-            string roomPass = roomPassCreateRoomTextbox.Text;
-            string roomUsername = usernameCreateRoomTextbox.Text;
-            string roomPassMD5 = toMD5(roomPass);
-            string ownerIp = getOwnIp();
-
-            apiHandler.createRoom(roomName, ownerIp, roomPass, roomPassMD5, roomUsername, this, false);
-        }
-
         /// <summary>
         /// Get own ip to send to database
         /// </summary>
@@ -219,6 +190,36 @@ namespace LifeSubs
                 }
             }
             return "127.0.0.1";
+        }
+
+        #region Submenu buttons clickevents
+        /// <summary>
+        /// Start groupconversation
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void joinRoomButton_Click(object sender, EventArgs e)
+        {
+            //this.tileJoinRoom.Visible = true;
+
+            apiHandler.joinRoom(roomNameBox.Text, toMD5(passwordBox.Text), getOwnIp(), usernameTB.Text, this, false);
+        }
+
+        /// <summary>
+        /// Create a new room.
+        /// Opens a new GroupConversations dialog on success.
+        /// </summary>
+        /// <param name="sender"></param>
+        /// <param name="e"></param>
+        private void addRoomBtn_Click(object sender, EventArgs e)
+        {
+            string roomName = roomNameCreateTextbox.Text;
+            string roomPass = roomPassCreateRoomTextbox.Text;
+            string roomUsername = usernameCreateRoomTextbox.Text;
+            string roomPassMD5 = toMD5(roomPass);
+            string ownerIp = getOwnIp();
+
+            apiHandler.createRoom(roomName, ownerIp, roomPass, roomPassMD5, roomUsername, this, false);
         }
 
         /// <summary>
