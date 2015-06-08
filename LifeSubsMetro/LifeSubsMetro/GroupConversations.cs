@@ -429,8 +429,8 @@ namespace LifeSubs
         {
             if (isPresenting)
             {
-                tbInput.Visible = false;
-                sendTile.Visible = false;
+                //tbInput.Visible = false;
+                //sendTile.Visible = false;
                 startGroupListenerBtn.Visible = false;
             }
 
