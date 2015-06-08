@@ -183,6 +183,10 @@ namespace LifeSubs
             {
                 Console.WriteLine("Directory not found --->" + dnfe.Message);
             }
+            catch (NAudio.MmException nmm)
+            {
+                Console.WriteLine("<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< nAudio MM Exception!!!" + nmm.Message);
+            }
         }
 
         //Set NAudio variables
@@ -209,7 +213,14 @@ namespace LifeSubs
         {
             if (sourceStream != null)
             {
-                sourceStream.StopRecording();
+                try
+                {
+                    sourceStream.StopRecording();
+                }
+                catch (NAudio.MmException nmm)
+                {
+                    Console.WriteLine("<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<<< nAudio MM Exception!!!" + nmm.Message);
+                }
                 sourceStream.Dispose();
                 sourceStream = null;
             }

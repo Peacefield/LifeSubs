@@ -65,7 +65,7 @@ namespace LifeSubs
                 }
                 catch (Exception e)
                 {
-                    Console.WriteLine(e.Message);
+                    Console.WriteLine("Kan niet scrollen invoked >>>>>>>>>>>>>>>>>>>>>>>>" + e.Message);
                 }
             }
             else
@@ -78,7 +78,7 @@ namespace LifeSubs
                 }
                 catch (Exception e)
                 {
-                    Console.WriteLine(e.Message);
+                    Console.WriteLine("Kan niet scrollen >>>>>>>>>>>>>>>>>>>>>>>>" + e.Message);
                 }
             }
 
@@ -146,11 +146,24 @@ namespace LifeSubs
             {
                 try
                 {
-                    this.dataGridOutput.Invoke((MethodInvoker)delegate { dataGridOutput.Rows.Add(dr); dataGridOutput.CurrentCell = dataGridOutput.Rows[dr.Index].Cells[0]; });
+                    this.dataGridOutput.Invoke((MethodInvoker)delegate { dataGridOutput.Rows.Add(dr); dataGridOutput.CurrentCell = dataGridOutput.Rows[dr.Index + 1].Cells[0]; });
                 }
                 catch (Exception e)
                 {
-                    Console.WriteLine(e.Message);
+                    Console.WriteLine("Kan niet scrollen invoked >>>>>>>>>>>>>>>>>>>>>>>>" + e.Message);
+                }
+            }
+            else
+            {
+                try
+                {
+                    dataGridOutput.Rows.Add(dr);
+                    dataGridOutput.CurrentCell = dataGridOutput.Rows[dr.Index + 1].Cells[0];
+                    tbInput.Text = "";
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine("Kan niet scrollen >>>>>>>>>>>>>>>>>>>>>>>>" + e.Message);
                 }
             }
         }
@@ -166,7 +179,6 @@ namespace LifeSubs
                     try
                     {
                         this.startGroupListenerBtn.Invoke((MethodInvoker)delegate { startGroupListenerBtn.Visible = show; });
-
                     }
                     catch (Exception e)
                     {
@@ -415,6 +427,13 @@ namespace LifeSubs
         /// <param name="e"></param>
         private void GroupConversations_Load(object sender, EventArgs e)
         {
+            if (isPresenting)
+            {
+                tbInput.Visible = false;
+                sendTile.Visible = false;
+                startGroupListenerBtn.Visible = false;
+            }
+
             this.Text = roomName;
             this.messageId = "0";
 
@@ -441,7 +460,6 @@ namespace LifeSubs
 
                 mm.Visible = true;
                 //mm.BringToFront();
-                Console.WriteLine(">>>>>>>>>>>>>>>>>>> Ik ben hier <<<<<<<<<<<<<<<<<<<<<<<<<<");
             }
         }
     }
