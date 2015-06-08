@@ -271,7 +271,7 @@ namespace LifeSubs
         /// <param name="result">Returned message from Http request</param>
         public void setResult(string result)
         {
-            if (result == "" || result == "500") return;
+            if (result == "") return;
             if(apihandler != null)
             {
                 apihandler.sendMessage(roomId, userId, result, null);
@@ -372,7 +372,7 @@ namespace LifeSubs
 
         public void updateLog(String text)
         {
-            if (text == "" || text == "500") return;
+            if (text == "") return;
             Console.WriteLine(logPath);
             try
             {

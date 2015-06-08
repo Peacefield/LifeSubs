@@ -396,7 +396,7 @@ namespace LifeSubs
         /// <param name="text"></param>
         public void updateLog(String text)
         {
-            if (text == "" || text == "500") return;
+            if (text == "") return;
             Console.WriteLine(logpath);
             try
             {
