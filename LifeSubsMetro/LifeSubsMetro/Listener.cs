@@ -114,7 +114,7 @@ namespace LifeSubs
                         {
                             Console.WriteLine("HTTP Status Code: " + (int)response.StatusCode);
                             //result = "500 internal server error: No match found";
-                            result = "500";
+                            result = "";
                         }
                         else
                         {
@@ -147,7 +147,7 @@ namespace LifeSubs
             }
             if (grpConv != null)
             {
-                if (result != "" && result != "500") grpConv.sendToApi(result);
+                if (result != "") grpConv.sendToApi(result);
                 grpConv.setCanSendPanel(false);
                 grpConv.setListenButton(true);
                 //grpConv.sendMessage(result);
