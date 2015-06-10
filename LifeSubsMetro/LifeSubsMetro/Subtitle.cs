@@ -285,7 +285,7 @@ namespace LifeSubs
 
             try
             {
-                if (this.dataOutput.InvokeRequired)
+                if (this.InvokeRequired)
                     this.dataOutput.Invoke((MethodInvoker)delegate { dataOutput.Rows.Add(dr); dataOutput.CurrentCell = dataOutput.Rows[dr.Index].Cells[0]; });
                 else
                     dataOutput.Rows.Add(dr); dataOutput.CurrentCell = dataOutput.Rows[dr.Index].Cells[0];
@@ -483,11 +483,14 @@ namespace LifeSubs
 
                     Console.WriteLine("listener1 currently recording");
                     listener1.stop();
-                    th = new Thread(listener1.request);
-                    th.Start();
-                    while (!th.IsAlive) ;
+                    if(File.Exists(path))
+                    {
+                        th = new Thread(listener1.request);
+                        th.Start();
+                        while (!th.IsAlive) ;
+                        Thread.Sleep(1);
+                    }
 
-                    Thread.Sleep(1);
                     if (th2 != null)
                     {
                         Console.WriteLine("th2 leeft");
@@ -507,10 +510,14 @@ namespace LifeSubs
                     Console.WriteLine("Stop listener2");
                     listener2.stop();
 
-                    th2 = new Thread(listener2.request);
-                    th2.Start();
-                    while (!th2.IsAlive) ;
-                    Thread.Sleep(1);
+                    if (File.Exists(path))
+                    {
+                        th2 = new Thread(listener2.request);
+                        th2.Start();
+                        while (!th2.IsAlive) ;
+                        Thread.Sleep(1);
+                    }
+
                     if (th != null)
                     {
                         Console.WriteLine("th leeft");

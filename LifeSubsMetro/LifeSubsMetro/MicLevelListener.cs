@@ -27,7 +27,7 @@ namespace LifeSubs
         public MicLevelListener(Subtitle f)
         {
             this.subtitleForm = f;
-            this.sec = settings.delay * 10;
+            this.sec = settings.delay * 7;
         }
 
         /// <summary>
@@ -37,7 +37,7 @@ namespace LifeSubs
         public MicLevelListener(SettingsMenu f)
         {
             this.settingsMenu = f;
-            this.sec = settings.delay * 10;
+            this.sec = settings.delay * 7;
         }
 
         /// <summary>
@@ -47,7 +47,7 @@ namespace LifeSubs
         public MicLevelListener(GroupConversations grp)
         {
             this.grpConv = grp;
-            this.sec = settings.delay * 10;
+            this.sec = settings.delay * 7;
         }
 
         /// <summary>
