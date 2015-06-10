@@ -75,6 +75,7 @@
             this.dataGridOutput.RowHeadersWidthSizeMode = System.Windows.Forms.DataGridViewRowHeadersWidthSizeMode.DisableResizing;
             this.dataGridOutput.Size = new System.Drawing.Size(977, 419);
             this.dataGridOutput.TabIndex = 3;
+            this.dataGridOutput.RowsAdded += new System.Windows.Forms.DataGridViewRowsAddedEventHandler(this.dataGridOutput_RowsAdded);
             // 
             // imgColumn
             // 
