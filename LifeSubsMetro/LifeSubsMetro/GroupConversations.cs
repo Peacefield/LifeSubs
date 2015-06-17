@@ -119,7 +119,29 @@ namespace LifeSubs
 
         public void clearTextBox()
         {
-            tbInput.Text = "";
+            if (this.InvokeRequired)
+            {
+                try
+                {
+                    this.dataGridOutput.Invoke((MethodInvoker)delegate { tbInput.Text = ""; });
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine("Kan niet legen invoked >>>>>>>>>>>>>>>>>>>>>>>>" + e.Message);
+                }
+            }
+            else
+            {
+                try
+                {
+                    tbInput.Text = "";
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine("Kan niet legen >>>>>>>>>>>>>>>>>>>>>>>>" + e.Message);
+                }
+            }
+            
         }
 
         #endregion
@@ -146,7 +168,7 @@ namespace LifeSubs
             {
                 try
                 {
-                    this.Invoke((MethodInvoker)delegate { dataGridOutput.Rows.Add(dr); dataGridOutput.CurrentCell = dataGridOutput.Rows[dr.Index + 1].Cells[0]; });
+                    this.Invoke((MethodInvoker)delegate { dataGridOutput.Rows.Add(dr); /*dataGridOutput.CurrentCell = dataGridOutput.Rows[dr.Index + 1].Cells[0];*/ });
                 }
                 catch (Exception e)
                 {
@@ -158,7 +180,7 @@ namespace LifeSubs
                 try
                 {
                     dataGridOutput.Rows.Add(dr);
-                    dataGridOutput.CurrentCell = dataGridOutput.Rows[dr.Index + 1].Cells[0];
+                    //dataGridOutput.CurrentCell = dataGridOutput.Rows[dr.Index + 1].Cells[0];
                     tbInput.Text = "";
                 }
                 catch (Exception e)
