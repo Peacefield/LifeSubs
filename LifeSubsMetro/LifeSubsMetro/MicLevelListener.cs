@@ -168,7 +168,6 @@ namespace LifeSubs
 
                 if (grpConv != null)
                 {
-                    Console.WriteLine("setting panel in miclevellistener");
                     grpConv.setCanSendPanel(true);
                     this.stop();
                 }

@@ -440,6 +440,7 @@ namespace LifeSubs
                     //Create next listener
                     //Start next listener
                     listener2.startRecording();
+                    Thread.Sleep(1);
 
                     Console.WriteLine("Stop listener1");
                     listener1.stop();
@@ -453,6 +454,7 @@ namespace LifeSubs
                     //listener1 = new Listener(deviceNumber, currentListener, this);
                     //Start next listener
                     listener1.startRecording();
+                    Thread.Sleep(1);
 
                     Console.WriteLine("Stop listener2");
                     listener2.stop();
