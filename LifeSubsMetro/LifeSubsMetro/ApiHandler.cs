@@ -240,8 +240,9 @@ namespace LifeSubs
         /// <param name="gcs">GroupConversations</param>
         public void getMessages(string messageId, GroupConversations gcs)
         {
-            string roomId = gcs.roomId;
+            gcs.isRetrieving = true;
 
+            string roomId = gcs.roomId;
             string url = "http://lifesubs.windesheim.nl/api/getMessages.php?func=getMessages"
                 + "&room=" + roomId
                 + "&messageId=" + messageId;
@@ -351,6 +352,8 @@ namespace LifeSubs
                                     gcs.sendMessage(msg);
                                 else
                                     gcs.receiveMessage(senderName, msg);
+
+                                gcs.isRetrieving = false;
                                 break;
                         }
                     }

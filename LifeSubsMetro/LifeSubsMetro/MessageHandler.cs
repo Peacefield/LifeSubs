@@ -33,7 +33,8 @@ namespace LifeSubs
         /// <param name="e"></param>
         private void OnTimedEvent(Object source, ElapsedEventArgs e)
         {
-            apiHandler.getMessages(gcs.messageId, gcs);
+            if(!gcs.isRetrieving)
+                apiHandler.getMessages(gcs.messageId, gcs);
         }
 
         public void stopTimer()

@@ -15,6 +15,7 @@ namespace LifeSubs
         public string roomName { get; set; }
         public string messageId { get; set; }
         public bool isPresenting { get; set; }
+        public bool isRetrieving { get; set; }
         string logpath;
         string path = @"audio\";
         MainMenu mm;
@@ -35,6 +36,7 @@ namespace LifeSubs
         public GroupConversations(MainMenu mm)
         {
             this.mm = mm;
+            this.isRetrieving = false;
             InitializeComponent();
         }
 
