@@ -119,7 +119,29 @@ namespace LifeSubs
 
         public void clearTextBox()
         {
+            if (this.InvokeRequired)
+            {
+                try
+                {
+                    this.dataGridOutput.Invoke((MethodInvoker)delegate { tbInput.Text = ""; });
+                }
+                catch (Exception e)
+                {
+                    Console.WriteLine("Kan niet legen invoked >>>>>>>>>>>>>>>>>>>>>>>>" + e.Message);
+                }
+            }
+            else
+            {
+                try
+                {
             tbInput.Text = "";
+        }
+                catch (Exception e)
+                {
+                    Console.WriteLine("Kan niet legen >>>>>>>>>>>>>>>>>>>>>>>>" + e.Message);
+                }
+            }
+
         }
 
         #endregion
@@ -142,11 +164,11 @@ namespace LifeSubs
             cell2.Value = msg;
             dr.Cells.Add(cell2);
 
-            if (this.dataGridOutput.InvokeRequired)
+            if (this.InvokeRequired)
             {
                 try
                 {
-                    this.dataGridOutput.Invoke((MethodInvoker)delegate { dataGridOutput.Rows.Add(dr); dataGridOutput.CurrentCell = dataGridOutput.Rows[dr.Index + 1].Cells[0]; });
+                    this.Invoke((MethodInvoker)delegate { dataGridOutput.Rows.Add(dr); /*dataGridOutput.CurrentCell = dataGridOutput.Rows[dr.Index + 1].Cells[0];*/ });
                 }
                 catch (Exception e)
                 {
@@ -158,7 +180,7 @@ namespace LifeSubs
                 try
                 {
                     dataGridOutput.Rows.Add(dr);
-                    dataGridOutput.CurrentCell = dataGridOutput.Rows[dr.Index + 1].Cells[0];
+                    //dataGridOutput.CurrentCell = dataGridOutput.Rows[dr.Index + 1].Cells[0];
                     tbInput.Text = "";
                 }
                 catch (Exception e)
@@ -463,6 +485,11 @@ namespace LifeSubs
                 mm.Visible = true;
                 //mm.BringToFront();
             }
+        }
+
+        private void dataGridOutput_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
+        {
+            dataGridOutput.CurrentCell = dataGridOutput.Rows[dataGridOutput.RowCount-1].Cells[0];
         }
 
         private void dataGridOutput_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
