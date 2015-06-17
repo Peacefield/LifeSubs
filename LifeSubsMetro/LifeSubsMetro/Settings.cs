@@ -47,7 +47,7 @@ namespace LifeSubs
             this.subColor = System.Drawing.Color.Black;
             this.bgColor = System.Drawing.Color.White;
             this.savePath = @"logs\";
-            this.delay = 1;
+            this.delay = 100;
             this.noiseLevel = "Normaal";
             this.subLanguage = "Nederlands";
             this.appLanguage = "Nederlands";
@@ -87,6 +87,7 @@ namespace LifeSubs
             this.savePath = ds.Tables["Save"].Rows[0][0].ToString();
             //load the delay tile
             this.delay = Int32.Parse(ds.Tables["Delay"].Rows[0][0].ToString());
+            Console.WriteLine("Delay =============> " + delay);
             this.noiseLevel = ds.Tables["Delay"].Rows[0][1].ToString();
             this.subLanguage = ds.Tables["Language"].Rows[0][0].ToString();
 

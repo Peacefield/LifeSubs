@@ -441,23 +441,25 @@
             // metroLabel1
             // 
             this.metroLabel1.AutoSize = true;
-            this.metroLabel1.Location = new System.Drawing.Point(20, 76);
+            this.metroLabel1.Location = new System.Drawing.Point(30, 76);
             this.metroLabel1.Name = "metroLabel1";
-            this.metroLabel1.Size = new System.Drawing.Size(74, 19);
+            this.metroLabel1.Size = new System.Drawing.Size(26, 19);
             this.metroLabel1.TabIndex = 5;
-            this.metroLabel1.Text = "Seconde(n)";
+            this.metroLabel1.Text = "ms";
             // 
             // delayTrackBar
             // 
             this.delayTrackBar.BackColor = System.Drawing.Color.Transparent;
+            this.delayTrackBar.LargeChange = 100;
             this.delayTrackBar.Location = new System.Drawing.Point(9, 47);
-            this.delayTrackBar.Maximum = 3;
-            this.delayTrackBar.Minimum = 1;
+            this.delayTrackBar.Maximum = 300;
+            this.delayTrackBar.Minimum = 50;
+            this.delayTrackBar.MouseWheelBarPartitions = 50;
             this.delayTrackBar.Name = "delayTrackBar";
             this.delayTrackBar.Size = new System.Drawing.Size(176, 23);
+            this.delayTrackBar.SmallChange = 50;
             this.delayTrackBar.TabIndex = 2;
             this.delayTrackBar.Text = "metroTrackBar1";
-            this.delayTrackBar.Value = 1;
             this.delayTrackBar.Scroll += new System.Windows.Forms.ScrollEventHandler(this.delayTrackBar_Scroll);
             // 
             // label2
@@ -677,14 +679,14 @@
             this.Controls.Add(this.fontPanel);
             this.Controls.Add(this.linesTile);
             this.Controls.Add(this.volumePanel);
-            this.Controls.Add(this.delayTile);
             this.Controls.Add(this.languageTile);
             this.Controls.Add(this.languagePanel);
-            this.Controls.Add(this.delayPanel);
             this.Controls.Add(this.saveTile);
             this.Controls.Add(this.savePanel);
             this.Controls.Add(this.microphoneTile);
             this.Controls.Add(this.microphonePanel);
+            this.Controls.Add(this.delayTile);
+            this.Controls.Add(this.delayPanel);
             this.Font = new System.Drawing.Font("Microsoft Sans Serif", 9.75F, System.Drawing.FontStyle.Regular, System.Drawing.GraphicsUnit.Point, ((byte)(0)));
             this.Icon = ((System.Drawing.Icon)(resources.GetObject("$this.Icon")));
             this.Margin = new System.Windows.Forms.Padding(4);

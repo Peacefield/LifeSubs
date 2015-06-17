@@ -345,8 +345,10 @@ namespace LifeSubs
             dataGridOutput.DefaultCellStyle.Font = font;
             dataGridOutput.DefaultCellStyle.BackColor = settings.bgColor;
             dataGridOutput.DefaultCellStyle.ForeColor = settings.subColor;
-            dataGridOutput.DefaultCellStyle.SelectionBackColor = settings.bgColor;
-            dataGridOutput.DefaultCellStyle.SelectionForeColor = settings.subColor;
+
+            dataGridOutput.DefaultCellStyle.SelectionBackColor = Color.Transparent;
+            dataGridOutput.DefaultCellStyle.SelectionForeColor = Color.Transparent;
+
             dataGridOutput.BackgroundColor = settings.bgColor;
 
             tbInput.BackColor = settings.bgColor;
@@ -461,6 +463,12 @@ namespace LifeSubs
                 mm.Visible = true;
                 //mm.BringToFront();
             }
+        }
+
+        private void dataGridOutput_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
+        {
+            if (dataGridOutput.RowCount > 0)
+                dataGridOutput.CurrentCell = dataGridOutput.Rows[dataGridOutput.RowCount - 1].Cells[0];
         }
     }
 }

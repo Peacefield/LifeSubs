@@ -27,7 +27,8 @@ namespace LifeSubs
         public MicLevelListener(Subtitle f)
         {
             this.subtitleForm = f;
-            this.sec = settings.delay * 10;
+            this.sec = settings.delay / 10;
+            Console.WriteLine("Sec ========> " + sec);
         }
 
         /// <summary>
@@ -37,7 +38,7 @@ namespace LifeSubs
         public MicLevelListener(SettingsMenu f)
         {
             this.settingsMenu = f;
-            this.sec = settings.delay * 10;
+            this.sec = settings.delay / 10;
         }
 
         /// <summary>
@@ -47,7 +48,7 @@ namespace LifeSubs
         public MicLevelListener(GroupConversations grp)
         {
             this.grpConv = grp;
-            this.sec = settings.delay * 10;
+            this.sec = settings.delay / 10;
         }
 
         /// <summary>
@@ -90,6 +91,8 @@ namespace LifeSubs
         {
             int min = -15;
             int max = 15;
+
+            Console.WriteLine("Ik ben in countLowVoiceLevelBits >>>>>>" + sec);
 
             switch (noiseLevel)
             {
@@ -186,6 +189,7 @@ namespace LifeSubs
             //We only want the first byte from the array, so the loop can be cut off after the first runthrough
             for (int index = 0; index == 0; index++)
             {
+                Console.WriteLine("Ik ben in actOnAvailableData >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>");
                 //Convert the received bytes into a 32bit float
                 short sample = (short)((e.Buffer[index + 1] << 8) |
                                         e.Buffer[index + 0]);

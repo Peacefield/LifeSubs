@@ -138,7 +138,7 @@ namespace LifeSubs
                     result = "";
                 }
             }
-            Console.WriteLine(">>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>" + result);
+            Console.WriteLine("Result >>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>>" + result);
             if (subtitleForm != null)
             {
                 subtitleForm.setResult(result);
@@ -150,7 +150,6 @@ namespace LifeSubs
                 if (result != "") grpConv.sendToApi(result);
                 grpConv.setCanSendPanel(false);
                 grpConv.setListenButton(true);
-                //grpConv.sendMessage(result);
                 Console.WriteLine("gestopt");
             }
 
@@ -170,7 +169,6 @@ namespace LifeSubs
             sourceStream = new NAudio.Wave.WaveIn();
             sourceStream.DeviceNumber = deviceNumber;
             sourceStream.WaveFormat = new NAudio.Wave.WaveFormat(8000, 16, 1);
-            //sourceStream.WaveFormat = new NAudio.Wave.WaveFormat(16000, NAudio.Wave.WaveIn.GetCapabilities(deviceNumber).Channels);
 
             sourceStream.DataAvailable += new EventHandler<NAudio.Wave.WaveInEventArgs>(sourceStream_DataAvailable);
             try

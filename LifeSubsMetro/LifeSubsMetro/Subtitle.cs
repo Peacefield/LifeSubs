@@ -111,7 +111,7 @@ namespace LifeSubs
                 //mll = new MicLevelListener(this);
                 mll.deviceNumber = settings.microphone;
                 mll.noiseLevel = settings.noiseLevel;
-                mll.sec = settings.delay * 10;
+                mll.sec = settings.delay / 10;
                 mll.listenToStream();
             }
         }
@@ -228,7 +228,7 @@ namespace LifeSubs
             mll = new MicLevelListener(this);
             mll.deviceNumber = settings.microphone;
             mll.noiseLevel = settings.noiseLevel;
-            mll.sec = settings.delay * 10;
+            mll.sec = settings.delay / 10;
             mll.listenToStream();
 
             this.logPath = saveLogPath();
@@ -289,17 +289,16 @@ namespace LifeSubs
                     this.dataOutput.Invoke((MethodInvoker)delegate { dataOutput.Rows.Add(dr); dataOutput.CurrentCell = dataOutput.Rows[dr.Index].Cells[0]; });
                 else
                     dataOutput.Rows.Add(dr); dataOutput.CurrentCell = dataOutput.Rows[dr.Index].Cells[0];
-                //this.tbOutput.AppendText( result );
             }
             catch (ObjectDisposedException)
             {
                 Console.WriteLine("Datagridview niet kunnen vinden");
-                Console.WriteLine(result);
+                Console.WriteLine("ObjectDisposedException: " + result);
             }
             catch (InvalidOperationException)
             {
                 Console.WriteLine("Datagridview niet kunnen vinden");
-                Console.WriteLine(result);
+                Console.WriteLine("InvalidOperationException: " + result);
             }
         }
 
