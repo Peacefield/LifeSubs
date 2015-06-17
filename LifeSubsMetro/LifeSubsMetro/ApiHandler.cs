@@ -231,13 +231,6 @@ namespace LifeSubs
                 string[] returnParts = response.Split('|');
                 MetroMessageBox.Show(gc, returnParts[1], "Oeps! Er is iets foutgegaan:", MessageBoxButtons.OK, MessageBoxIcon.Error);
             }
-            else
-            {
-                if (gc != null)
-                {
-                    gc.clearTextBox();
-                }
-            }
         }
 
         /// <summary>

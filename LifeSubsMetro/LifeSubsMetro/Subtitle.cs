@@ -477,12 +477,11 @@ namespace LifeSubs
                     //listener2 = new Listener(deviceNumber, currentListener, this);
                     //Start next listener
                     listener2.startRecording();
+                    Thread.Sleep(1);
                     Console.WriteLine("Stop listener1");
                     listener1.stop();
 
-                    Console.WriteLine("listener1 currently recording");
-                    listener1.stop();
-                    if(File.Exists(path))
+                    if(Directory.Exists(path))
                     {
                         th = new Thread(listener1.request);
                         th.Start();
@@ -506,10 +505,11 @@ namespace LifeSubs
                     //listener1 = new Listener(deviceNumber, currentListener, this);
                     //Start next listener
                     listener1.startRecording();
+                    Thread.Sleep(1);
                     Console.WriteLine("Stop listener2");
                     listener2.stop();
 
-                    if (File.Exists(path))
+                    if (Directory.Exists(path))
                     {
                         th2 = new Thread(listener2.request);
                         th2.Start();
