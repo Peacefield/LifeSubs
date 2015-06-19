@@ -485,9 +485,12 @@ namespace LifeSubs
 
                     if(Directory.Exists(path))
                     {
-                        th = new Thread(listener1.request);
-                        th.Start();
-                        while (!th.IsAlive) ;
+                        //th = new Thread(listener1.request);
+                        //th.Start();
+                        //while (!th.IsAlive) ;
+
+                        Thread thread = new Thread(listener1.request);
+                        thread.Start();
                         Thread.Sleep(1);
                     }
 
@@ -513,9 +516,14 @@ namespace LifeSubs
 
                     if (Directory.Exists(path))
                     {
-                        th2 = new Thread(listener2.request);
-                        th2.Start();
-                        while (!th2.IsAlive) ;
+                        //th2 = new Thread(listener2.request);
+                        //th2.Start();
+                        //while (!th2.IsAlive) ;
+
+
+
+                        Thread thread = new Thread(listener2.request);
+                        thread.Start();
                         Thread.Sleep(1);
                     }
 
