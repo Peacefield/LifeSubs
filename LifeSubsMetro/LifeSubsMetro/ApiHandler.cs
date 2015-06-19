@@ -353,12 +353,12 @@ namespace LifeSubs
                                 else
                                     gcs.receiveMessage(senderName, msg);
 
-                                gcs.isRetrieving = false;
                                 break;
                         }
                     }
                 }
             }
+            gcs.isRetrieving = false;
         }
 
         /// <summary>

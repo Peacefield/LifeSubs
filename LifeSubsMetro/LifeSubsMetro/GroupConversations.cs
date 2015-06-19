@@ -36,7 +36,6 @@ namespace LifeSubs
         public GroupConversations(MainMenu mm)
         {
             this.mm = mm;
-            this.isRetrieving = false;
             InitializeComponent();
         }
 
@@ -467,6 +466,7 @@ namespace LifeSubs
 
             this.Text = roomName;
             this.messageId = "0";
+            this.isRetrieving = false;
 
             setStyle();
             this.logpath = saveLogPath();
@@ -485,19 +485,14 @@ namespace LifeSubs
             if (!isPresenting)
             {
                 apiHandler.exitRoom(this, null);
-
-                try { deleteDir(); }
-                catch (Exception direx) { Console.WriteLine(direx.Message); }
+                deleteDir();
+                //try { deleteDir(); }
+                //catch (Exception direx) { Console.WriteLine(direx.Message); }
 
                 mm.Visible = true;
                 //mm.BringToFront();
             }
         }
-
-        //private void dataGridOutput_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
-        //{
-        //    dataGridOutput.CurrentCell = dataGridOutput.Rows[dataGridOutput.RowCount-1].Cells[0];
-        //}
 
         private void dataGridOutput_RowsAdded(object sender, DataGridViewRowsAddedEventArgs e)
         {
